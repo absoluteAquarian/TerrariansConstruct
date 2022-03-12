@@ -1,0 +1,3 @@
+Create tool parts and combine them to make custom gear!
+
+This mod adds the ability to swap out parts of tools/weapons/etc. to change how they function.
