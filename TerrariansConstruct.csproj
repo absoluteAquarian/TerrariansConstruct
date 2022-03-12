@@ -10,4 +10,14 @@
   <ItemGroup>
     <PackageReference Include="tModLoader.CodeAssist" Version="0.1.*" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Assets\Parts\WeaponShortSwordBlade\" />
+    <Folder Include="Assets\Parts\WeaponLongSwordBlade\" />
+    <Folder Include="Assets\Parts\WeaponSwordGuard\" />
+    <Folder Include="Assets\Parts\ToolHammerHead\" />
+    <Folder Include="Assets\Parts\ToolAxeHead\" />
+    <Folder Include="Assets\Parts\ToolPickHead\" />
+    <Folder Include="Assets\Parts\ToolBinding\" />
+    <Folder Include="Assets\Parts\ToolRod\" />
+  </ItemGroup>
 </Project>
