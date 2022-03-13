@@ -1,8 +1,10 @@
-﻿using Terraria;
+﻿using System;
+using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 using TerrariansConstruct.API;
+using TerrariansConstruct.ID;
 using TerrariansConstruct.Items;
 using TerrariansConstruct.Materials;
 
@@ -33,6 +35,15 @@ namespace TerrariansConstruct.Registry {
 		public static readonly ItemPartActionsBuilder Wood = new ItemPartActionsBuilder()
 			.WithModifyWeaponKnockback((int partID, Player player, ref StatModifier knockback, ref float flat) => {
 				knockback -= 0.1f;
+			});
+
+		public static readonly ItemPartActionsBuilder Cobweb = new ItemPartActionsBuilder()
+			.WithItemDefaults((partID, item) => {
+				if (partID != MaterialPartID.WeaponBowString)
+					throw new Exception($"Cobweb is only expected to be used on {nameof(MaterialPartID)}.{nameof(MaterialPartID.WeaponBowString)} parts");
+
+				//No-op, but it's here for an example
+				item.shootSpeed *= 1;
 			});
 	}
 }

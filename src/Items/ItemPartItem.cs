@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using TerrariansConstruct.ID;
@@ -82,9 +83,6 @@ namespace TerrariansConstruct.Items {
 			});
 		}
 
-		public override bool IsLoadingEnabled(Mod mod)
-			=> false;
-
 		public override bool CanStack(Item item2)
 			=> item2.ModItem is ItemPartItem pItem
 				&& part.material.type == pItem.part.material.type && part.partID == pItem.part.partID;
@@ -92,7 +90,12 @@ namespace TerrariansConstruct.Items {
 		public override void SetStaticDefaults() {
 			part = registeredPartsByItemID[Type];
 
-			DisplayName.SetDefault(Lang.GetItemNameValue(part.material.type) + " " + MaterialPartID.registeredIDsToNames[part.partID]);
+			// TODO: localization handling
+			string name = Lang.GetItemNameValue(part.material.type);
+			if (name.EndsWith(" Bar"))
+				name = name.AsSpan()[..^4].ToString();
+
+			DisplayName.SetDefault(name + " " + MaterialPartID.registeredIDsToNames[part.partID]);
 
 			if (part.tooltip is not null)
 				Tooltip.SetDefault(part.tooltip);
