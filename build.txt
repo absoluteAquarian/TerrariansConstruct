@@ -3,3 +3,4 @@ author = absoluteAquarian
 version = 1.0
 includeSource = true
 hideCode = false
+modReferences = TerrariansConstructLib

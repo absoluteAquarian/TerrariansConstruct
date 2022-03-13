@@ -21,5 +21,11 @@
     <Folder Include="Assets\Parts\ToolPickHead\" />
     <Folder Include="Assets\Parts\ToolBinding\" />
     <Folder Include="Assets\Parts\ToolRod\" />
+    <Folder Include="lib\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="TerrariansConstructLib">
+      <HintPath>lib\TerrariansConstructLib.dll</HintPath>
+    </Reference>
   </ItemGroup>
 </Project>

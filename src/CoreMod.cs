@@ -5,6 +5,8 @@ using Terraria.ModLoader;
 
 namespace TerrariansConstruct {
 	public partial class CoreMod : Mod {
-
+		public override void Load() {
+			AddParts();
+		}
 	}
 }

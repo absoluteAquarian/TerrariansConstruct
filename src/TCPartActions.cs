@@ -1,4 +1,13 @@
-﻿namespace TerrariansConstruct {
+﻿using System;
+using Terraria;
+using Terraria.Audio;
+using Terraria.ID;
+using Terraria.ModLoader;
+using TerrariansConstructLib;
+using TerrariansConstructLib.ID;
+using TerrariansConstructLib.Items;
+
+namespace TerrariansConstruct {
 	/// <summary>
 	/// A collection of action builders for base Terrarians' Construct materials
 	/// </summary>
