@@ -18,11 +18,12 @@ namespace TerrariansConstruct.ID {
 
 		public static readonly IdDictionary Search = IdDictionary.Create(typeof(MaterialPartID), typeof(int));
 
-		internal static int Register(string name, string assetFolderPath) {
+		internal static int Register(string internalName, string name, string assetFolderPath) {
 			int next = nextID;
 
 			registeredIDsToNames[next] = name;
 			registeredIDsToAssetFolders[next] = assetFolderPath;
+			registeredIDsToInternalNames[next] = internalName;
 
 			nextID++;
 			
@@ -59,11 +60,17 @@ namespace TerrariansConstruct.ID {
 				[WeaponBowHead] =         folder + "WeaponBowHead",
 				[WeaponBowString] =       folder + "WeaponBowString",
 			};
+
+			registeredIDsToInternalNames = new();
+
+			for (int i = 0; i < Count; i++)
+				registeredIDsToInternalNames[i] = Search.GetName(i);
 		}
 
 		internal static void Unload() {
 			registeredIDsToNames = null;
 			registeredIDsToAssetFolders = null;
+			registeredIDsToInternalNames = null;
 
 			nextID = -1;
 		}
@@ -74,5 +81,6 @@ namespace TerrariansConstruct.ID {
 
 		internal static Dictionary<int, string> registeredIDsToNames;
 		internal static Dictionary<int, string> registeredIDsToAssetFolders;
+		internal static Dictionary<int, string> registeredIDsToInternalNames;
 	}
 }

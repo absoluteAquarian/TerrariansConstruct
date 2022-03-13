@@ -51,14 +51,15 @@ namespace TerrariansConstruct {
 		/// <summary>
 		/// Registers a part definition
 		/// </summary>
+		/// <param name="internalName">The internal name of the part</param>
 		/// <param name="name">The name of the part</param>
 		/// <param name="assetFolderPath">The path to the folder containing the part's textures</param>
 		/// <returns>The ID of the registered part</returns>
-		public static int RegisterPart(string name, string assetFolderPath) {
+		public static int RegisterPart(string internalName, string name, string assetFolderPath) {
 			if (hasReachedPostSetupContent)
 				throw new Exception("Method called too late.  This method should be called in Mod.Load()");
 
-			return MaterialPartID.Register(name, assetFolderPath);
+			return MaterialPartID.Register(internalName, name, assetFolderPath);
 		}
 
 		/// <summary>

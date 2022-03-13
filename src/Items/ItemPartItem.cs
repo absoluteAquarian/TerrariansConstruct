@@ -36,6 +36,16 @@ namespace TerrariansConstruct.Items {
 				else
 					throw new Exception("Invalid material type ID");
 
+				if (!ModContent.HasAsset(asset.ToString())) {
+					// Default to the "unknown" asset
+					string path = $"{MaterialPartID.registeredIDsToAssetFolders[part.partID]}/{MaterialPartID.registeredIDsToInternalNames[part.partID]}/Unknown";
+
+					Mod.Logger.Warn($"Part texture (Material: \"{Lang.GetItemNameValue(part.material.type)}\", Name: \"{MaterialPartID.registeredIDsToNames[part.partID]}\") could not be found.  Defaulting to Unknown texture path:\n" +
+						path);
+
+					return path;
+				}
+
 				return asset.ToString();
 			}
 		}
