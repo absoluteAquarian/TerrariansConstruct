@@ -1,3 +1,5 @@
 displayName = Terrarians' Construct
 author = absoluteAquarian
 version = 1.0
+includeSource = true
+hideCode = false
