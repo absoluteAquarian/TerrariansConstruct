@@ -11,7 +11,7 @@ using TerrariansConstruct.Projectiles;
 using TerrariansConstruct.Registry;
 
 namespace TerrariansConstruct {
-	public partial class TerrariansConstruct : Mod {
+	public partial class CoreMod : Mod {
 		public static ModKeybind ActivateAbility;
 
 		private static bool hasReachedPostSetupContent = false;
@@ -30,6 +30,8 @@ namespace TerrariansConstruct {
 			}
 
 			EditsLoader.Load();
+
+			DirectDetourManager.Load();
 		}
 
 		public override void PostSetupContent() {
@@ -39,8 +41,11 @@ namespace TerrariansConstruct {
 		}
 
 		public override void Unload() {
+			DirectDetourManager.Unload();
+			
 			ConstructedAmmoID.Unload();
 			MaterialPartID.Unload();
+
 			PartActions.builders = null;
 			ItemPart.partData = null;
 			ItemPartItem.registeredPartsByItemID = null;
