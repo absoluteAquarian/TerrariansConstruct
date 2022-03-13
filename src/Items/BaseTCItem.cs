@@ -48,7 +48,8 @@ namespace TerrariansConstruct.Items {
 				"<AMMO_COUNT>");
 		}
 
-		public virtual void SafeSetDefaults() { }
+		/// <inheritdoc cref="SetStaticDefaults"/>
+		public virtual void SafeSetStaticDefaults() { }
 
 		public sealed override void SetDefaults() {
 			SafeSetDefaults();
@@ -60,7 +61,8 @@ namespace TerrariansConstruct.Items {
 			Item.consumable = false;
 		}
 
-		public virtual void SafeSetStaticDefaults() { }
+		/// <inheritdoc cref="SetDefaults"/>
+		public virtual void SafeSetDefaults() { }
 
 		public override bool CanConsumeAmmo(Player player) {
 			return base.CanConsumeAmmo(player);

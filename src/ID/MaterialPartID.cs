@@ -11,8 +11,10 @@ namespace TerrariansConstruct.ID {
 		public const int WeaponSwordGuard = 5;
 		public const int WeaponLongSwordBlade = 6;
 		public const int WeaponShortSwordBlade = 7;
+		public const int WeaponBowHead = 8;
+		public const int WeaponBowString = 9;
 
-		public const int Count = 8;
+		public const int Count = 10;
 
 		public static readonly IdDictionary Search = IdDictionary.Create(typeof(MaterialPartID), typeof(int));
 
@@ -39,6 +41,8 @@ namespace TerrariansConstruct.ID {
 				[WeaponSwordGuard] =      "Sword Guard",
 				[WeaponLongSwordBlade] =  "Sword Blade",
 				[WeaponShortSwordBlade] = "Shortsword Blade",
+				[WeaponBowHead] =         "Bow Head",
+				[WeaponBowString] =       "Bow String"
 			};
 
 			string folder = "TerrariansConstruct/Assets/Parts/";
@@ -52,6 +56,8 @@ namespace TerrariansConstruct.ID {
 				[WeaponSwordGuard] =      folder + "WeaponSwordGuard",
 				[WeaponLongSwordBlade] =  folder + "WeaponLongSwordBlade",
 				[WeaponShortSwordBlade] = folder + "WeaponShortSwordBlade",
+				[WeaponBowHead] =         folder + "WeaponBowHead",
+				[WeaponBowString] =       folder + "WeaponBowString",
 			};
 		}
 

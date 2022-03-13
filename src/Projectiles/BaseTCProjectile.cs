@@ -14,7 +14,18 @@ namespace TerrariansConstruct.Projectiles {
 			DisplayName.SetDefault("Constructed Projectile");
 		}
 
+		/// <inheritdoc cref="SetStaticDefaults"/>
 		public virtual void SafeSetStaticDefaults() { }
+
+		public sealed override void SetDefaults() {
+			SafeSetDefaults();
+
+			for (int i = 0; i < parts.Length; i++)
+				parts[i].SetProjectileDefaults(parts[i].partID, Projectile);
+		}
+
+		/// <inheritdoc cref="SetDefaults"/>
+		public virtual void SafeSetDefaults() { }
 
 		public sealed override void OnHitNPC(NPC target, int damage, float knockback, bool crit) {
 			for (int i = 0; i < parts.Length; i++)
