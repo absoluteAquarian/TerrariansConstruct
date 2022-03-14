@@ -27,7 +27,7 @@ namespace TerrariansConstruct {
 
 			RecipeBrowserResult.browserResultTypeToRegisteredItemID = new();
 
-			
+			AddRecipeBrowserResult("Sword", RegisteredItems.Sword);
 		}
 
 		private void AddRecipeBrowserResult(string texture, int registeredItemID) {
