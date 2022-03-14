@@ -331,6 +331,38 @@
             <returns>The name of the registered part, or throws an exception if a part of type <paramref name="id"/> does not exist</returns>
             <exception cref="T:System.Exception"/>
         </member>
+        <member name="M:TerrariansConstructLib.CoreLibMod.GetPartTooltip(TerrariansConstructLib.Materials.Material,System.Int32)">
+            <summary>
+            Gets the global tooltip of an <seealso cref="T:TerrariansConstructLib.Items.ItemPart"/>
+            </summary>
+            <param name="material">The material</param>
+            <param name="partID">The part ID</param>
+            <returns>The global tooltip</returns>
+        </member>
+        <member name="M:TerrariansConstructLib.CoreLibMod.SetGlobalPartTooltip(TerrariansConstructLib.Materials.Material,System.Int32,System.String)">
+            <summary>
+            Sets the global tooltip of an <seealso cref="T:TerrariansConstructLib.Items.ItemPart"/>
+            </summary>
+            <param name="material">The material</param>
+            <param name="partID">The part ID</param>
+            <param name="tooltip">The new tooltip</param>
+        </member>
+        <member name="M:TerrariansConstructLib.CoreLibMod.GetPartModifierText(TerrariansConstructLib.Materials.Material,System.Int32)">
+            <summary>
+            Gets the global modifier text of an <seealso cref="T:TerrariansConstructLib.Items.ItemPart"/>
+            </summary>
+            <param name="material">The material</param>
+            <param name="partID">The part ID</param>
+            <returns>The global modifier text</returns>
+        </member>
+        <member name="M:TerrariansConstructLib.CoreLibMod.SetGlobalPartModifierText(TerrariansConstructLib.Materials.Material,System.Int32,System.String)">
+            <summary>
+            Sets the global modifier text of an <seealso cref="T:TerrariansConstructLib.Items.ItemPart"/>
+            </summary>
+            <param name="material">The material</param>
+            <param name="partID">The part ID</param>
+            <param name="tooltip">The new modifier text</param>
+        </member>
         <member name="M:TerrariansConstructLib.CoreLibMod.GetAmmoName(System.Int32)">
             <summary>
             Gets the name of a registered constructed ammo type
@@ -398,7 +430,7 @@
         </member>
         <member name="M:TerrariansConstructLib.CoreLibMod.GetItemPart(TerrariansConstructLib.Materials.Material,System.Int32)">
             <summary>
-            Gets an <seealso cref="T:TerrariansConstructLib.Items.ItemPart"/> instance from a material and part ID
+            Gets an <seealso cref="T:TerrariansConstructLib.Items.ItemPart"/> instance clone from a material and part ID
             </summary>
             <param name="material">The material</param>
             <param name="partID">The part ID</param>
@@ -406,7 +438,17 @@
             <exception cref="T:System.Exception"/>
             <exception cref="T:System.ArgumentException"/>
         </member>
-        <member name="M:TerrariansConstructLib.CoreLibMod.AddAllPartsOfType(Terraria.ModLoader.Mod,System.Int32,System.Int32,TerrariansConstructLib.ItemPartActionsBuilder,System.String,System.Int32[])">
+        <member name="M:TerrariansConstructLib.CoreLibMod.GetItemPartItemType(TerrariansConstructLib.Materials.Material,System.Int32)">
+            <summary>
+            Gets an <seealso cref="T:TerrariansConstructLib.Items.ItemPartItem"/> item type from a material and part ID
+            </summary>
+            <param name="material">The material</param>
+            <param name="partID">The part ID</param>
+            <returns>The <seealso cref="T:TerrariansConstructLib.Items.ItemPartItem"/> item type</returns>
+            <exception cref="T:System.Exception"/>
+            <exception cref="T:System.ArgumentException"/>
+        </member>
+        <member name="M:TerrariansConstructLib.CoreLibMod.AddAllPartsOfType(Terraria.ModLoader.Mod,System.Int32,System.Int32,TerrariansConstructLib.ItemPartActionsBuilder,System.String,System.String,System.Int32[])">
             <summary>
             Registers the part items for the material, <paramref name="materialType"/>, with the given rarity, <paramref name="rarity"/>
             </summary>
@@ -414,20 +456,22 @@
             <param name="materialType">The item ID</param>
             <param name="rarity">The item rarity</param>
             <param name="actions">The actions</param>
-            <param name="tooltipForAllParts">The tooltip that will be assigned to all parts.  Can be modified via <seealso cref="M:TerrariansConstructLib.Items.ItemPart.SetTooltip(TerrariansConstructLib.Materials.Material,System.Int32,System.String)"/></param>
+            <param name="tooltipForAllParts">The tooltip that will be assigned to all parts.  Can be modified via <seealso cref="M:TerrariansConstructLib.Items.ItemPart.SetGlobalTooltip(TerrariansConstructLib.Materials.Material,System.Int32,System.String)"/></param>
+            <param name="modifierTextForAllParts">The modifier text that will be assigned to all parts.  Can be modified via <seealso cref="M:TerrariansConstructLib.Items.ItemPart.SetGlobalModifierText(TerrariansConstructLib.Materials.Material,System.Int32,System.String)"/></param>
             <param name="partIDsToIgnore">The IDs to ignore when iterating to create the part items</param>
         </member>
-        <member name="M:TerrariansConstructLib.CoreLibMod.AddAllPartsOfMaterial(Terraria.ModLoader.Mod,TerrariansConstructLib.Materials.Material,TerrariansConstructLib.ItemPartActionsBuilder,System.String,System.Int32[])">
+        <member name="M:TerrariansConstructLib.CoreLibMod.AddAllPartsOfMaterial(Terraria.ModLoader.Mod,TerrariansConstructLib.Materials.Material,TerrariansConstructLib.ItemPartActionsBuilder,System.String,System.String,System.Int32[])">
             <summary>
             Registers the part items for the material, <paramref name="material"/>
             </summary>
             <param name="mod">The mod instance to add the part to</param>
             <param name="material">The material instance</param>
             <param name="actions">The actions</param>
-            <param name="tooltipForAllParts">The tooltip that will be assigned to all parts.  Can be modified via <seealso cref="M:TerrariansConstructLib.Items.ItemPart.SetTooltip(TerrariansConstructLib.Materials.Material,System.Int32,System.String)"/></param>
+            <param name="tooltipForAllParts">The tooltip that will be assigned to all parts.  Can be modified via <seealso cref="M:TerrariansConstructLib.Items.ItemPart.SetGlobalTooltip(TerrariansConstructLib.Materials.Material,System.Int32,System.String)"/></param>
+            <param name="modifierTextForAllParts">The modifier text that will be assigned to all parts.  Can be modified via <seealso cref="M:TerrariansConstructLib.Items.ItemPart.SetGlobalModifierText(TerrariansConstructLib.Materials.Material,System.Int32,System.String)"/></param>
             <param name="partIDsToIgnore">The IDs to ignore when iterating to create the part items</param>
         </member>
-        <member name="M:TerrariansConstructLib.CoreLibMod.AddPart(Terraria.ModLoader.Mod,TerrariansConstructLib.Materials.Material,System.Int32,TerrariansConstructLib.ItemPartActionsBuilder,System.String)">
+        <member name="M:TerrariansConstructLib.CoreLibMod.AddPart(Terraria.ModLoader.Mod,TerrariansConstructLib.Materials.Material,System.Int32,TerrariansConstructLib.ItemPartActionsBuilder,System.String,System.String)">
             <summary>
             Registers a part item for the material, <paramref name="material"/>
             </summary>
@@ -435,9 +479,10 @@
             <param name="material">The material instance</param>
             <param name="partID">The part ID</param>
             <param name="actions">The actions</param>
-            <param name="tooltip">The tooltip for this part.  Can be modified via <seealso cref="M:TerrariansConstructLib.Items.ItemPart.SetTooltip(TerrariansConstructLib.Materials.Material,System.Int32,System.String)"/></param>
+            <param name="tooltip">The tooltip for this part.  Can be modified via <seealso cref="M:TerrariansConstructLib.Items.ItemPart.SetGlobalTooltip(TerrariansConstructLib.Materials.Material,System.Int32,System.String)"/></param>
+            <param name="modifierText">The modifier text that will be assigned to all parts.  Can be modified via <seealso cref="M:TerrariansConstructLib.Items.ItemPart.SetGlobalModifierText(TerrariansConstructLib.Materials.Material,System.Int32,System.String)"/></param>
         </member>
-        <member name="M:TerrariansConstructLib.CoreLibMod.AddPart(Terraria.ModLoader.Mod,System.Int32,System.Int32,System.Int32,TerrariansConstructLib.ItemPartActionsBuilder,System.String)">
+        <member name="M:TerrariansConstructLib.CoreLibMod.AddPart(Terraria.ModLoader.Mod,System.Int32,System.Int32,System.Int32,TerrariansConstructLib.ItemPartActionsBuilder,System.String,System.String)">
             <summary>
             Registers a part item for the material, <paramref name="materialType"/>, with the given rarity, <paramref name="rarity"/>
             </summary>
@@ -446,7 +491,8 @@
             <param name="rarity">The item rarity</param>
             <param name="partID">The part ID</param>
             <param name="actions">The actions</param>
-            <param name="tooltip">The tooltip for this part.  Can be modified via <seealso cref="M:TerrariansConstructLib.Items.ItemPart.SetTooltip(TerrariansConstructLib.Materials.Material,System.Int32,System.String)"/></param>
+            <param name="tooltip">The tooltip for this part.  Can be modified via <seealso cref="M:TerrariansConstructLib.Items.ItemPart.SetGlobalTooltip(TerrariansConstructLib.Materials.Material,System.Int32,System.String)"/></param>
+            <param name="modifierText">The modifier text that will be assigned to all parts.  Can be modified via <seealso cref="M:TerrariansConstructLib.Items.ItemPart.SetGlobalModifierText(TerrariansConstructLib.Materials.Material,System.Int32,System.String)"/></param>
         </member>
         <member name="P:TerrariansConstructLib.Items.BaseTCItem.VisualsFolderPath">
             <summary>
@@ -459,6 +505,9 @@
         </member>
         <member name="M:TerrariansConstructLib.Items.BaseTCItem.SafeSetDefaults">
             <inheritdoc cref="M:TerrariansConstructLib.Items.BaseTCItem.SetDefaults"/>
+        </member>
+        <member name="M:TerrariansConstructLib.Items.BaseTCItem.SafeModifyTooltips(System.Collections.Generic.List{Terraria.ModLoader.TooltipLine})">
+            <inheritdoc cref="M:TerrariansConstructLib.Items.BaseTCItem.ModifyTooltips(System.Collections.Generic.List{Terraria.ModLoader.TooltipLine})"/>
         </member>
         <member name="M:TerrariansConstructLib.Items.BaseTCItem.Clone(TerrariansConstructLib.Items.BaseTCItem,TerrariansConstructLib.Items.BaseTCItem)">
             <inheritdoc cref="M:TerrariansConstructLib.Items.BaseTCItem.Clone(Terraria.Item)"/>

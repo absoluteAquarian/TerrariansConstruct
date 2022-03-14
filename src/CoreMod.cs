@@ -2,6 +2,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.UI;
+using TerrariansConstruct.Items;
 using TerrariansConstruct.Items.Weapons;
 using TerrariansConstruct.Projectiles;
 using TerrariansConstruct.UI;
@@ -23,6 +24,16 @@ namespace TerrariansConstruct {
 
 				forgeUI.Activate();
 			}
+
+			RecipeBrowserResult.browserResultTypeToRegisteredItemID = new();
+
+			
+		}
+
+		private void AddRecipeBrowserResult(string texture, int registeredItemID) {
+			RecipeBrowserResult result = new(texture, registeredItemID);
+			AddContent(result);
+			RecipeBrowserResult.browserResultTypeToRegisteredItemID[result.Type] = result.registeredItemID;
 		}
 
 		public override void PostSetupContent() {
