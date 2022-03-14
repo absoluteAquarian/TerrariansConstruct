@@ -26,7 +26,7 @@ namespace TerrariansConstruct {
 
 		public static readonly ItemPartActionsBuilder Wood = new ItemPartActionsBuilder()
 			.WithModifyWeaponKnockback((int partID, Player player, ref StatModifier knockback, ref float flat) => {
-				knockback -= 0.1f;
+				knockback *= 0.9f;
 			});
 
 		public static readonly ItemPartActionsBuilder Cobweb = new ItemPartActionsBuilder()

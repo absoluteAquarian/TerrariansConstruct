@@ -1,0 +1,185 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TerrariansConstructLib</name>
+    </assembly>
+    <members>
+        <member name="M:TerrariansConstructLib.CoreLibMod.RegisterPart(System.String,System.String,System.String)">
+            <summary>
+            Registers a part definition
+            </summary>
+            <param name="internalName">The internal name of the part</param>
+            <param name="name">The name of the part</param>
+            <param name="assetFolderPath">The path to the folder containing the part's textures</param>
+            <returns>The ID of the registered part</returns>
+        </member>
+        <member name="M:TerrariansConstructLib.CoreLibMod.RegisterAmmo``1(System.String,System.Int32)">
+            <summary>
+            Registers a name and <seealso cref="T:Terraria.ID.ItemID"/>/<seealso cref="T:Terraria.ID.AmmoID"/> for the next constructed ammo type to be assigned an ID
+            </summary>
+            <param name="name">The name of the constructed ammo type</param>
+            <param name="ammoID"></param>
+            <typeparam name="T">The type of the projectile to spawn when using the ammo</typeparam>
+            <returns>The ID of the registered constructed ammo type</returns>
+            <remarks>Note: The returned ID does not correlate with <seealso cref="T:Terraria.ID.AmmoID"/> nor <seealso cref="T:Terraria.ID.ItemID"/></remarks>
+        </member>
+        <member name="M:TerrariansConstructLib.CoreLibMod.GetPartName(System.Int32)">
+            <summary>
+            Gets the name of a registered part
+            </summary>
+            <param name="id">The ID of the part to get</param>
+            <returns>The name of the registered part, or throws an exception if a part of type <paramref name="id"/> does not exist</returns>
+            <exception cref="T:System.Exception"/>
+        </member>
+        <member name="M:TerrariansConstructLib.CoreLibMod.GetAmmoName(System.Int32)">
+            <summary>
+            Gets the name of a registered constructed ammo type
+            </summary>
+            <param name="id">The ID of the constructed ammo type to get</param>
+            <returns>The name of the registered constructed ammo type, or throws an exception if a constructed ammo type of type <paramref name="id"/> does not exist</returns>
+            <exception cref="T:System.Exception"/>
+            <remarks>Note: The input ID does not correlate with <seealso cref="T:Terraria.ID.AmmoID"/> nor <seealso cref="T:Terraria.ID.ItemID"/></remarks>
+        </member>
+        <member name="M:TerrariansConstructLib.CoreLibMod.GetAmmoID(System.Int32)">
+            <summary>
+            Gets the <seealso cref="T:Terraria.ID.ItemID"/>/<seealso cref="T:Terraria.ID.AmmoID"/> of a registered constructed ammo type
+            </summary>
+            <param name="constructedAmmoID">The ID of the constructed ammo type to get</param>
+            <returns>The <seealso cref="T:Terraria.ID.ItemID"/>/<seealso cref="T:Terraria.ID.AmmoID"/> of the registered constructed ammo type, or throws an exception if a constructed ammo type of type <paramref name="constructedAmmoID"/> does not exist</returns>
+            <exception cref="T:System.Exception"/>
+            <remarks>Note: The input ID does not correlate with <seealso cref="T:Terraria.ID.AmmoID"/> nor <seealso cref="T:Terraria.ID.ItemID"/></remarks>
+        </member>
+        <member name="M:TerrariansConstructLib.CoreLibMod.GetItemPart(TerrariansConstructLib.Materials.Material,System.Int32)">
+            <summary>
+            Gets an <seealso cref="T:TerrariansConstructLib.Items.ItemPart"/> instance from a material and part ID
+            </summary>
+            <param name="material">The material</param>
+            <param name="partID">The part ID</param>
+            <returns>The <seealso cref="T:TerrariansConstructLib.Items.ItemPart"/> instance</returns>
+            <exception cref="T:System.Exception"/>
+            <exception cref="T:System.ArgumentException"/>
+        </member>
+        <member name="M:TerrariansConstructLib.CoreLibMod.AddAllPartsOfType(Terraria.ModLoader.Mod,System.Int32,System.Int32,TerrariansConstructLib.ItemPartActionsBuilder,System.String,System.Int32[])">
+            <summary>
+            Registers the part items for the material, <paramref name="materialType"/>, with the given rarity, <paramref name="rarity"/>
+            </summary>
+            <param name="mod">The mod instance to add the part to</param>
+            <param name="materialType">The item ID</param>
+            <param name="rarity">The item rarity</param>
+            <param name="actions">The actions</param>
+            <param name="tooltipForAllParts">The tooltip that will be assigned to all parts.  Can be modified via <seealso cref="M:TerrariansConstructLib.Items.ItemPart.SetTooltip(TerrariansConstructLib.Materials.Material,System.Int32,System.String)"/></param>
+            <param name="partIDsToIgnore">The IDs to ignore when iterating to create the part items</param>
+        </member>
+        <member name="M:TerrariansConstructLib.CoreLibMod.AddAllPartsOfMaterial(Terraria.ModLoader.Mod,TerrariansConstructLib.Materials.Material,TerrariansConstructLib.ItemPartActionsBuilder,System.String,System.Int32[])">
+            <summary>
+            Registers the part items for the material, <paramref name="material"/>
+            </summary>
+            <param name="mod">The mod instance to add the part to</param>
+            <param name="material">The material instance</param>
+            <param name="actions">The actions</param>
+            <param name="tooltipForAllParts">The tooltip that will be assigned to all parts.  Can be modified via <seealso cref="M:TerrariansConstructLib.Items.ItemPart.SetTooltip(TerrariansConstructLib.Materials.Material,System.Int32,System.String)"/></param>
+            <param name="partIDsToIgnore">The IDs to ignore when iterating to create the part items</param>
+        </member>
+        <member name="M:TerrariansConstructLib.CoreLibMod.AddPart(Terraria.ModLoader.Mod,TerrariansConstructLib.Materials.Material,System.Int32,TerrariansConstructLib.ItemPartActionsBuilder,System.String)">
+            <summary>
+            Registers a part item for the material, <paramref name="material"/>
+            </summary>
+            <param name="mod">The mod instance to add the part to</param>
+            <param name="material">The material instance</param>
+            <param name="partID">The part ID</param>
+            <param name="actions">The actions</param>
+            <param name="tooltip">The tooltip for this part.  Can be modified via <seealso cref="M:TerrariansConstructLib.Items.ItemPart.SetTooltip(TerrariansConstructLib.Materials.Material,System.Int32,System.String)"/></param>
+        </member>
+        <member name="M:TerrariansConstructLib.CoreLibMod.AddPart(Terraria.ModLoader.Mod,System.Int32,System.Int32,System.Int32,TerrariansConstructLib.ItemPartActionsBuilder,System.String)">
+            <summary>
+            Registers a part item for the material, <paramref name="materialType"/>, with the given rarity, <paramref name="rarity"/>
+            </summary>
+            <param name="mod">The mod instance to add the part to</param>
+            <param name="materialType">The item ID</param>
+            <param name="rarity">The item rarity</param>
+            <param name="partID">The part ID</param>
+            <param name="actions">The actions</param>
+            <param name="tooltip">The tooltip for this part.  Can be modified via <seealso cref="M:TerrariansConstructLib.Items.ItemPart.SetTooltip(TerrariansConstructLib.Materials.Material,System.Int32,System.String)"/></param>
+        </member>
+        <member name="P:TerrariansConstructLib.Items.BaseTCItem.VisualsFolderPath">
+            <summary>
+            The location of the folder for this item's visuals (item part pieces used for constructing the texture) <br/>
+            Example: <c>"TerrariansConstruct/Assets/Visuals/Sword"</c>
+            </summary>
+        </member>
+        <member name="M:TerrariansConstructLib.Items.BaseTCItem.SafeSetStaticDefaults">
+            <inheritdoc cref="M:TerrariansConstructLib.Items.BaseTCItem.SetStaticDefaults"/>
+        </member>
+        <member name="M:TerrariansConstructLib.Items.BaseTCItem.SafeSetDefaults">
+            <inheritdoc cref="M:TerrariansConstructLib.Items.BaseTCItem.SetDefaults"/>
+        </member>
+        <member name="M:TerrariansConstructLib.Items.BaseTCItem.Clone(TerrariansConstructLib.Items.BaseTCItem,TerrariansConstructLib.Items.BaseTCItem)">
+            <inheritdoc cref="M:TerrariansConstructLib.Items.BaseTCItem.Clone(Terraria.Item)"/>
+        </member>
+        <member name="M:TerrariansConstructLib.Items.BaseTCItem.SafeModifyWeaponDamage(Terraria.Player,Terraria.ModLoader.StatModifier@,System.Single@)">
+            <inheritdoc cref="M:TerrariansConstructLib.Items.BaseTCItem.ModifyWeaponDamage(Terraria.Player,Terraria.ModLoader.StatModifier@,System.Single@)"/>
+        </member>
+        <member name="M:TerrariansConstructLib.Items.BaseTCItem.SafeModifyWeaponKnockback(Terraria.Player,Terraria.ModLoader.StatModifier@,System.Single@)">
+            <inheritdoc cref="M:TerrariansConstructLib.Items.BaseTCItem.ModifyWeaponKnockback(Terraria.Player,Terraria.ModLoader.StatModifier@,System.Single@)"/>
+        </member>
+        <member name="M:TerrariansConstructLib.Items.BaseTCItem.SafeModifyWeaponCrit(Terraria.Player,System.Int32@)">
+            <inheritdoc cref="M:TerrariansConstructLib.Items.BaseTCItem.ModifyWeaponCrit(Terraria.Player,System.Int32@)"/>
+        </member>
+        <member name="M:TerrariansConstructLib.Items.BaseTCItem.SafeHoldItem(Terraria.Player)">
+            <inheritdoc cref="M:TerrariansConstructLib.Items.BaseTCItem.HoldItem(Terraria.Player)"/>
+        </member>
+        <member name="M:TerrariansConstructLib.Items.BaseTCItem.SafeUseItem(Terraria.Player)">
+            <inheritdoc cref="M:TerrariansConstructLib.Items.BaseTCItem.UseItem(Terraria.Player)"/>
+        </member>
+        <member name="F:TerrariansConstructLib.Items.ItemPart.material">
+            <summary>
+            The material used to create this item part
+            </summary>
+        </member>
+        <member name="F:TerrariansConstructLib.Items.ItemPart.partID">
+            <summary>
+            The part type associated with this item part
+            </summary>
+        </member>
+        <member name="T:TerrariansConstructLib.Items.ItemPartItem">
+            <summary>
+            Represents an instance of an item part item
+            </summary>
+        </member>
+        <member name="F:TerrariansConstructLib.Items.ItemPartItem.part">
+            <summary>
+            The information for the item part
+            </summary>
+        </member>
+        <member name="F:TerrariansConstructLib.Materials.Material.type">
+            <summary>
+            The ID of the item used as the material
+            </summary>
+        </member>
+        <member name="F:TerrariansConstructLib.Materials.Material.rarity">
+            <summary>
+            The rarity of the material
+            </summary>
+        </member>
+        <member name="M:TerrariansConstructLib.Projectiles.BaseTCProjectile.SafeSetStaticDefaults">
+            <inheritdoc cref="M:TerrariansConstructLib.Projectiles.BaseTCProjectile.SetStaticDefaults"/>
+        </member>
+        <member name="M:TerrariansConstructLib.Projectiles.BaseTCProjectile.SafeSetDefaults">
+            <inheritdoc cref="M:TerrariansConstructLib.Projectiles.BaseTCProjectile.SetDefaults"/>
+        </member>
+        <member name="M:TerrariansConstructLib.Projectiles.BaseTCProjectile.SafeOnHitNPC(Terraria.NPC,System.Int32,System.Single,System.Boolean)">
+            <inheritdoc cref="M:TerrariansConstructLib.Projectiles.BaseTCProjectile.OnHitNPC(Terraria.NPC,System.Int32,System.Single,System.Boolean)"/>
+        </member>
+        <member name="M:TerrariansConstructLib.Projectiles.BaseTCProjectile.SafeOnHitPlayer(Terraria.Player,System.Int32,System.Boolean)">
+            <inheritdoc cref="M:TerrariansConstructLib.Projectiles.BaseTCProjectile.OnHitPlayer(Terraria.Player,System.Int32,System.Boolean)"/>
+        </member>
+        <member name="M:TerrariansConstructLib.Projectiles.BaseTCProjectile.SafeAI">
+            <inheritdoc cref="M:TerrariansConstructLib.Projectiles.BaseTCProjectile.AI"/>
+        </member>
+        <member name="T:TerrariansConstructLib.Registry.PartActions">
+            <summary>
+            A collection of action builders
+            </summary>
+        </member>
+    </members>
+</doc>
