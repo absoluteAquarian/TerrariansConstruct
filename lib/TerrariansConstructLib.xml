@@ -295,21 +295,22 @@
             <exception cref="T:System.Exception"/>
             <exception cref="T:System.ArgumentNullException"/>
         </member>
-        <member name="M:TerrariansConstructLib.CoreLibMod.RegisterAmmo``1(Terraria.ModLoader.Mod,System.String,System.Int32)">
+        <member name="M:TerrariansConstructLib.CoreLibMod.RegisterAmmo(Terraria.ModLoader.Mod,System.String,System.Int32,System.String)">
             <summary>
             Registers a name and <seealso cref="T:Terraria.ID.ItemID"/>/<seealso cref="T:Terraria.ID.AmmoID"/> for the next constructed ammo type to be assigned an ID
             </summary>
             <param name="mod">The mod that the ammo belongs to</param>
             <param name="name">The name of the constructed ammo type</param>
-            <param name="ammoID"></param>
-            <typeparam name="T">The type of the projectile to spawn when using the ammo</typeparam>
+            <param name="ammoID">The <seealso cref="T:Terraria.ID.ItemID"/>/<seealso cref="T:Terraria.ID.AmmoID"/> for the constructed ammo ID</param>
+            <param name="projectileInternalName">The projectile that this constructed ammo will shoot.  Use the string you'd use to access the projectile via <seealso cref="M:Terraria.ModLoader.Mod.Find``1(System.String)"/></param>
+            <typeparam name="T">The <see langword="class"/> of the <seealso cref="T:TerrariansConstructLib.Projectiles.BaseTCProjectile"/> to spawn when using the ammo</typeparam>
             <returns>The ID of the registered constructed ammo type</returns>
             <remarks>Note: The returned ID does not correlate with <seealso cref="T:Terraria.ID.AmmoID"/> nor <seealso cref="T:Terraria.ID.ItemID"/></remarks>
             <exception cref="T:System.Exception"/>
             <exception cref="T:System.ArgumentOutOfRangeException"/>
             <exception cref="T:System.ArgumentNullException"/>
         </member>
-        <member name="M:TerrariansConstructLib.CoreLibMod.RegisterItem``1(Terraria.ModLoader.Mod,System.String,System.String,System.Int32[])">
+        <member name="M:TerrariansConstructLib.CoreLibMod.RegisterItem(Terraria.ModLoader.Mod,System.String,System.String,System.String,System.Int32[])">
             <summary>
             Registers a name and valid <seealso cref="T:TerrariansConstructLib.Items.ItemPart"/> IDs for an item
             </summary>
@@ -317,6 +318,7 @@
             <param name="mod">The mod that the weapon belongs to</param>
             <param name="internalName">The internal name of the weapon</param>
             <param name="name">The default item type name used by <seealso cref="P:TerrariansConstructLib.Items.BaseTCItem.RegisteredItemTypeName"/></param>
+            <param name="itemInternalName">The item type that this registered item ID will be applied to.  Use the string you'd use to access the item via <seealso cref="M:Terraria.ModLoader.Mod.Find``1(System.String)"/></param>
             <param name="validPartIDs">The array of parts that comprise the weapon</param>
             <returns>The ID of the registered item</returns>
             <exception cref="T:System.Exception"/>

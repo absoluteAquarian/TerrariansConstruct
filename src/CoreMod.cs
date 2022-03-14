@@ -43,7 +43,7 @@ namespace TerrariansConstruct {
 
 		// Method used by the library mod to load the parts
 		// NOTE: this will be called before your mod's Load hook and before it's registered to ContentInstance<T>!
-		public static void RegisterTCParts(Mod mod) {
+		public static void RegisterTCItemParts(Mod mod) {
 			RegisteredParts.ToolRod =               RegisterPart(mod, nameof(RegisteredParts.ToolRod),               "Tool Rod");
 			RegisteredParts.ToolBinding =           RegisterPart(mod, nameof(RegisteredParts.ToolBinding),           "Tool Binding");
 			RegisteredParts.ToolPickHead =          RegisterPart(mod, nameof(RegisteredParts.ToolPickHead),          "Pickaxe Head");
@@ -63,16 +63,16 @@ namespace TerrariansConstruct {
 		// Method used by the library mod to load the ammo
 		// NOTE: this will be called before your mod's Load hook and before it's registered to ContentInstance<T>!
 		public static void RegisterTCAmmunition(Mod mod) {
-			RegisteredAmmo.Bullet = CoreLibMod.RegisterAmmo<TCBulletProjectile>(mod, "Bullet", AmmoID.Bullet);
+			RegisteredAmmo.Bullet = CoreLibMod.RegisterAmmo(mod, "Bullet", AmmoID.Bullet, nameof(TCBulletProjectile));
 		}
 
 		// Method used by the library mod to load the items used by the Forge UI
 		// NOTE: this will be called before your mod's Load hook and before it's registered to ContentInstance<T>!
 		public static void RegisterTCItems(Mod mod) {
-			RegisteredItems.Sword = CoreLibMod.RegisterItem<TCSword>(mod, "Sword", "Sword",
+			RegisteredItems.Sword = CoreLibMod.RegisterItem(mod, "Sword", "Sword", nameof(TCSword),
 				RegisteredParts.WeaponLongSwordBlade, RegisteredParts.WeaponSwordGuard, RegisteredParts.ToolRod);
 
-			RegisteredItems.Shortsword = CoreLibMod.RegisterItem<TCShortsword>(mod, "Shortsword", "Shortsword",
+			RegisteredItems.Shortsword = CoreLibMod.RegisterItem(mod, "Shortsword", "Shortsword", nameof(TCShortsword),
 				RegisteredParts.WeaponShortSwordBlade, RegisteredParts.WeaponShortSwordGuard, RegisteredParts.ToolRod);
 		}
 
