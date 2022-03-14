@@ -1,13 +1,15 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.GameContent.UI.Elements;
 using Terraria.UI;
+using TerrariansConstructLib;
 using TerrariansConstructLib.API.UI;
-using TerrariansConstructLib.ID;
 using TerrariansConstructLib.Items;
+using TerrariansConstructLib.Registry;
 
 namespace TerrariansConstruct.UI {
 	internal class ForgeUI : UIState {
@@ -50,11 +52,19 @@ namespace TerrariansConstruct.UI {
 				panel.Append(t);
 
 			slots = new();
-
-			ConfigureSlots(SlotConfiguration.Weapon_Sword);
 		}
 
 		public void ConfigureSlots(SlotConfiguration[] configurations) {
+			int[] parts = configurations.Select(s => s.partID).ToArray();
+
+			if (!CoreLibMod.TryFindItem(parts, out int registeredItemID)) {
+				CoreMod.Instance.Logger.Warn("Part ID sequence did not correspond to an existing item:\n" +
+					string.Join(", ", parts.Select(PartRegistry.IDToIdentifier)));
+
+				//Default to the sword slots
+				ConfigureSlots(SlotConfiguration.Weapon_Sword);
+			}
+
 			Item[] items = slots.Where((s, i) => i < slots.Count - 1).Select(s => s.StoredItem).ToArray();
 			Item tool = slots.Count == 0 ? new() : slots[^1].StoredItem;
 
@@ -83,11 +93,15 @@ namespace TerrariansConstruct.UI {
 					itemsToDrop.Add(configuration.slot);
 			}
 
+			const int areaSize = 8;
+			Point tl = (Main.LocalPlayer.Center - new Vector2(areaSize)).ToPoint();
+			Rectangle area = new(tl.X, tl.Y, areaSize * 2, areaSize * 2);
+
 			foreach (var slot in itemsToDrop) {
 				Item item = items[slot];
 
 				//Spawn a clone of the item
-				Main.LocalPlayer.QuickSpawnClonedItem(Main.LocalPlayer.GetItemSource_Misc(item.type), item, item.stack);
+				Utility.DropItem(new EntitySource_DropAsItem(item), item, area);
 			}
 
 			//Add the result slot
@@ -103,6 +117,8 @@ namespace TerrariansConstruct.UI {
 				panel.Append(slot);
 
 			currentConfiguration = configurations;
+
+			text[0].SetText("Crafting: " + CoreLibMod.GetItemName(registeredItemID));
 		}
 
 		internal void OnItemPartChanged(Item item, SlotConfiguration configuration) {
@@ -110,7 +126,16 @@ namespace TerrariansConstruct.UI {
 			if (!CheckIfResultIsValid())
 				slots[^1].SetItem(new Item());
 			else {
-				Item display = new();
+				Item display = null;
+
+				int[] parts = currentConfiguration.Select(s => s.partID).ToArray();
+
+				if (CoreLibMod.TryFindItem(parts, out int registeredItemID)) {
+					
+				}
+
+				if (display is null)
+					slots[^1].SetItem(new Item());
 			}
 		}
 
@@ -134,43 +159,83 @@ namespace TerrariansConstruct.UI {
 		//  15 16 17 18 19
 		//  20 21 22 23 24
 
-		public static readonly SlotConfiguration[] Weapon_Sword = new SlotConfiguration[] {
-			(0,  4, MaterialPartID.WeaponLongSwordBlade),
-			(1, 12, MaterialPartID.WeaponSwordGuard),
-			(2, 20, MaterialPartID.ToolRod)
+		public static SlotConfiguration[] Weapon_Sword { get; private set; } = new SlotConfiguration[] {
+			(0,  4, CoreMod.RegisteredParts.WeaponLongSwordBlade),
+			(1, 12, CoreMod.RegisteredParts.WeaponSwordGuard),
+			(2, 20, CoreMod.RegisteredParts.ToolRod)
 		};
 
-		public static readonly SlotConfiguration[] Weapon_Shortsword = new SlotConfiguration[] {
-			(0,  4, MaterialPartID.WeaponShortSwordBlade),
-			(1, 12, MaterialPartID.WeaponSwordGuard),
-			(2, 20, MaterialPartID.ToolRod)
+		public static SlotConfiguration[] Weapon_Shortsword { get; private set; } = new SlotConfiguration[] {
+			(0,  4, CoreMod.RegisteredParts.WeaponShortSwordBlade),
+			(1, 12, CoreMod.RegisteredParts.WeaponShortSwordGuard),
+			(2, 20, CoreMod.RegisteredParts.ToolRod)
 		};
 
-		public static readonly SlotConfiguration[] Weapon_Bow = new SlotConfiguration[] {
-			(0, 16, MaterialPartID.WeaponBowString),
-			(1,  7, MaterialPartID.WeaponBowHead),
-			(2, 13, MaterialPartID.WeaponBowHead)
+		public static SlotConfiguration[] Weapon_Bow { get; private set; } = new SlotConfiguration[] {
+			(0, 16, CoreMod.RegisteredParts.WeaponBowString),
+			(1,  7, CoreMod.RegisteredParts.WeaponBowHead),
+			(2, 13, CoreMod.RegisteredParts.WeaponBowHead)
 		};
 
-		public static readonly SlotConfiguration[] Tool_Pickaxe = new SlotConfiguration[] {
-			(0,  7, MaterialPartID.ToolPickHead),
-			(1, 13, MaterialPartID.ToolPickHead),
-			(2, 12, MaterialPartID.ToolBinding),
-			(3, 16, MaterialPartID.ToolRod)
+		public static SlotConfiguration[] Tool_Pickaxe { get; private set; } = new SlotConfiguration[] {
+			(0,  7, CoreMod.RegisteredParts.ToolPickHead),
+			(1, 13, CoreMod.RegisteredParts.ToolPickHead),
+			(2, 12, CoreMod.RegisteredParts.ToolBinding),
+			(3, 16, CoreMod.RegisteredParts.ToolRod)
 		};
 
-		public static readonly SlotConfiguration[] Tool_Axe = new SlotConfiguration[] {
-			(0,  8, MaterialPartID.ToolAxeHead),
-			(2, 12, MaterialPartID.ToolBinding),
-			(3, 16, MaterialPartID.ToolRod)
+		public static SlotConfiguration[] Tool_Axe { get; private set; } = new SlotConfiguration[] {
+			(0,  8, CoreMod.RegisteredParts.ToolAxeHead),
+			(2, 12, CoreMod.RegisteredParts.ToolBinding),
+			(3, 16, CoreMod.RegisteredParts.ToolRod)
 		};
 
-		public static readonly SlotConfiguration[] Tool_Hammer = new SlotConfiguration[] {
-			(0,  7, MaterialPartID.ToolHammerHead),
-			(1, 13, MaterialPartID.ToolHammerHead),
-			(2, 12, MaterialPartID.ToolBinding),
-			(3, 16, MaterialPartID.ToolRod)
+		public static SlotConfiguration[] Tool_Hammer { get; private set; } = new SlotConfiguration[] {
+			(0,  7, CoreMod.RegisteredParts.ToolHammerHead),
+			(1, 13, CoreMod.RegisteredParts.ToolHammerHead),
+			(2, 12, CoreMod.RegisteredParts.ToolBinding),
+			(3, 16, CoreMod.RegisteredParts.ToolRod)
 		};
+
+		internal static void Initialize() {
+			Weapon_Sword = new SlotConfiguration[] {
+				(0,  4, CoreMod.RegisteredParts.WeaponLongSwordBlade),
+				(1, 12, CoreMod.RegisteredParts.WeaponSwordGuard),
+				(2, 20, CoreMod.RegisteredParts.ToolRod)
+			};
+
+			Weapon_Shortsword = new SlotConfiguration[] {
+				(0,  4, CoreMod.RegisteredParts.WeaponShortSwordBlade),
+				(1, 12, CoreMod.RegisteredParts.WeaponShortSwordGuard),
+				(2, 20, CoreMod.RegisteredParts.ToolRod)
+			};
+
+			Weapon_Bow = new SlotConfiguration[] {
+				(0, 16, CoreMod.RegisteredParts.WeaponBowString),
+				(1,  7, CoreMod.RegisteredParts.WeaponBowHead),
+				(2, 13, CoreMod.RegisteredParts.WeaponBowHead)
+			};
+
+			Tool_Pickaxe = new SlotConfiguration[] {
+				(0,  7, CoreMod.RegisteredParts.ToolPickHead),
+				(1, 13, CoreMod.RegisteredParts.ToolPickHead),
+				(2, 12, CoreMod.RegisteredParts.ToolBinding),
+				(3, 16, CoreMod.RegisteredParts.ToolRod)
+			};
+
+			Tool_Axe = new SlotConfiguration[] {
+				(0,  8, CoreMod.RegisteredParts.ToolAxeHead),
+				(2, 12, CoreMod.RegisteredParts.ToolBinding),
+				(3, 16, CoreMod.RegisteredParts.ToolRod)
+			};
+
+			Tool_Hammer = new SlotConfiguration[] {
+				(0,  7, CoreMod.RegisteredParts.ToolHammerHead),
+				(1, 13, CoreMod.RegisteredParts.ToolHammerHead),
+				(2, 12, CoreMod.RegisteredParts.ToolBinding),
+				(3, 16, CoreMod.RegisteredParts.ToolRod)
+			};
+		}
 
 		public readonly int slot;
 		public readonly int position;

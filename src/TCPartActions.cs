@@ -4,7 +4,6 @@ using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 using TerrariansConstructLib;
-using TerrariansConstructLib.ID;
 using TerrariansConstructLib.Items;
 
 namespace TerrariansConstruct {
@@ -12,7 +11,7 @@ namespace TerrariansConstruct {
 	/// A collection of action builders for base Terrarians' Construct materials
 	/// </summary>
 	public static class TCPartActions {
-		public static readonly ItemPartActionsBuilder Copper = new ItemPartActionsBuilder()
+		public static readonly ItemPartActionsBuilder Copper = new ItemPartActionsBuilder(isReadonly: true)
 			.WithOnGenericHotkeyUsage((part, player, item) => {
 				var tc = item.ModItem as BaseTCItem;
 
@@ -24,15 +23,15 @@ namespace TerrariansConstruct {
 				}
 			});
 
-		public static readonly ItemPartActionsBuilder Wood = new ItemPartActionsBuilder()
+		public static readonly ItemPartActionsBuilder Wood = new ItemPartActionsBuilder(isReadonly: true)
 			.WithModifyWeaponKnockback((int partID, Player player, ref StatModifier knockback, ref float flat) => {
 				knockback *= 0.9f;
 			});
 
-		public static readonly ItemPartActionsBuilder Cobweb = new ItemPartActionsBuilder()
+		public static readonly ItemPartActionsBuilder Cobweb = new ItemPartActionsBuilder(isReadonly: true)
 			.WithItemDefaults((partID, item) => {
-				if (partID != MaterialPartID.WeaponBowString)
-					throw new Exception($"Cobweb is only expected to be used on {nameof(MaterialPartID)}.{nameof(MaterialPartID.WeaponBowString)} parts");
+				if (partID != CoreMod.RegisteredParts.WeaponBowString)
+					throw new Exception($"Cobweb is only expected to be used on {nameof(CoreMod)}.{nameof(CoreMod.RegisteredParts)}.{nameof(CoreMod.RegisteredParts.WeaponBowString)} parts");
 
 				//No-op, but it's here for an example
 				item.shootSpeed *= 1;
