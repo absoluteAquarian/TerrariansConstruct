@@ -55,7 +55,7 @@ namespace TerrariansConstruct {
 			RegisteredAmmo.Bullet = CoreLibMod.RegisterAmmo<TCBulletProjectile>(mod, "Bullet", AmmoID.Bullet);
 		}
 
-		// Method used by the library mod to load the ammo
+		// Method used by the library mod to load the items used by the Forge UI
 		// NOTE: this will be called before your mod's Load hook and before it's registered to ContentInstance<T>!
 		public static void RegisterTCItems(Mod mod) {
 			RegisteredItems.Sword = CoreLibMod.RegisterItem<TCSword>(mod, "Sword", "Sword",
