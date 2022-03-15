@@ -4,6 +4,11 @@
         <name>TerrariansConstructLib</name>
     </assembly>
     <members>
+        <member name="T:TerrariansConstructLib.API.CachedItemTexturesDictionary">
+            <summary>
+            A collection of textures indexed by registered item type and item parts
+            </summary>
+        </member>
         <member name="T:TerrariansConstructLib.API.Reflection.ReflectionHelper`1">
             <summary>
             Reflection helper for accessing <typeparamref name="T"/> fields with an unspecified type
@@ -310,7 +315,7 @@
             <exception cref="T:System.ArgumentOutOfRangeException"/>
             <exception cref="T:System.ArgumentNullException"/>
         </member>
-        <member name="M:TerrariansConstructLib.CoreLibMod.RegisterItem(Terraria.ModLoader.Mod,System.String,System.String,System.String,System.Int32[])">
+        <member name="M:TerrariansConstructLib.CoreLibMod.RegisterItem(Terraria.ModLoader.Mod,System.String,System.String,System.String,System.String,System.Int32[])">
             <summary>
             Registers a name and valid <seealso cref="T:TerrariansConstructLib.Items.ItemPart"/> IDs for an item
             </summary>
@@ -319,6 +324,7 @@
             <param name="internalName">The internal name of the weapon</param>
             <param name="name">The default item type name used by <seealso cref="P:TerrariansConstructLib.Items.BaseTCItem.RegisteredItemTypeName"/></param>
             <param name="itemInternalName">The item type that this registered item ID will be applied to.  Use the string you'd use to access the item via <seealso cref="M:Terraria.ModLoader.Mod.Find``1(System.String)"/></param>
+            <param name="partVisualsFolder">The folder where the item's part visuals is located</param>
             <param name="validPartIDs">The array of parts that comprise the weapon</param>
             <returns>The ID of the registered item</returns>
             <exception cref="T:System.Exception"/>
