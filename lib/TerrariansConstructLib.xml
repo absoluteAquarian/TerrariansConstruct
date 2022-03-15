@@ -496,10 +496,34 @@
             <param name="tooltip">The tooltip for this part.  Can be modified via <seealso cref="M:TerrariansConstructLib.Items.ItemPart.SetGlobalTooltip(TerrariansConstructLib.Materials.Material,System.Int32,System.String)"/></param>
             <param name="modifierText">The modifier text that will be assigned to all parts.  Can be modified via <seealso cref="M:TerrariansConstructLib.Items.ItemPart.SetGlobalModifierText(TerrariansConstructLib.Materials.Material,System.Int32,System.String)"/></param>
         </member>
+        <member name="T:TerrariansConstructLib.Items.BaseTCItem">
+            <summary>
+            The base item class for any items that can be created by the Terrarians' Construct Forge UI
+            </summary>
+        </member>
         <member name="P:TerrariansConstructLib.Items.BaseTCItem.VisualsFolderPath">
             <summary>
             The location of the folder for this item's visuals (item part pieces used for constructing the texture) <br/>
             Example: <c>"TerrariansConstruct/Assets/Visuals/Sword"</c>
+            </summary>
+        </member>
+        <member name="M:TerrariansConstructLib.Items.BaseTCItem.#ctor(System.Int32)">
+            <summary>
+            Creates an instance of a <see cref="T:TerrariansConstructLib.Items.BaseTCItem"/> using the data from a registered item ID
+            </summary>
+            <param name="registeredItemID">The registered item ID</param>
+            <exception cref="T:System.Exception"></exception>
+            <exception cref="T:System.ArgumentException"></exception>
+        </member>
+        <member name="P:TerrariansConstructLib.Items.BaseTCItem.RegisteredItemTypeName">
+            <summary>
+            The name for the item, used in <see cref="M:TerrariansConstructLib.Items.BaseTCItem.SetStaticDefaults"/><br/>
+            Defaults to:  <c>CoreLibMod.GetItemInternalName(registeredItemID)</c>
+            </summary>
+        </member>
+        <member name="P:TerrariansConstructLib.Items.BaseTCItem.TooltipText">
+            <summary>
+            The tooltip for the item
             </summary>
         </member>
         <member name="M:TerrariansConstructLib.Items.BaseTCItem.SafeSetStaticDefaults">
@@ -557,6 +581,38 @@
         <member name="F:TerrariansConstructLib.Materials.Material.rarity">
             <summary>
             The rarity of the material
+            </summary>
+        </member>
+        <member name="M:TerrariansConstructLib.Materials.Material.GetItemName">
+            <summary>
+            Gets the name for this material
+            </summary>
+        </member>
+        <member name="M:TerrariansConstructLib.Materials.Material.AsItem">
+            <summary>
+            Gets an instance of the item this material references
+            </summary>
+            <returns>A new <see cref="T:Terraria.Item"/> instance, or <see langword="null"/> if this material is an <seealso cref="T:TerrariansConstructLib.Materials.UnloadedMaterial"/> or <seealso cref="T:TerrariansConstructLib.Materials.UnknownMaterial"/></returns>
+        </member>
+        <member name="T:TerrariansConstructLib.Materials.UnknownMaterial">
+            <summary>
+            Represents an unknown material
+            </summary>
+        </member>
+        <member name="T:TerrariansConstructLib.Materials.UnloadedMaterial">
+            <summary>
+            Represents a material that used to be loaded, but no longer is
+            </summary>
+        </member>
+        <member name="T:TerrariansConstructLib.Projectiles.BaseTCProjectile">
+            <summary>
+            The base projectile class for any projectiles fired from Terrarians' Construct weapons
+            </summary>
+        </member>
+        <member name="P:TerrariansConstructLib.Projectiles.BaseTCProjectile.ProjectileTypeName">
+            <summary>
+            The name for the projectile, used in <see cref="M:TerrariansConstructLib.Projectiles.BaseTCProjectile.SetStaticDefaults"/><br/>
+            Defaults to: <c>"Projectile"</c>
             </summary>
         </member>
         <member name="M:TerrariansConstructLib.Projectiles.BaseTCProjectile.SafeSetStaticDefaults">

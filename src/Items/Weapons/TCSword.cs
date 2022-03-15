@@ -1,4 +1,6 @@
-﻿using TerrariansConstructLib.Items;
+﻿using Terraria.ID;
+using TerrariansConstructLib.API;
+using TerrariansConstructLib.Items;
 
 namespace TerrariansConstruct.Items.Weapons {
 	/// <summary>
@@ -12,7 +14,9 @@ namespace TerrariansConstruct.Items.Weapons {
 		public TCSword() : base(CoreMod.RegisteredItems.Sword){ }
 
 		public override void SafeSetDefaults() {
-			
+			Item.DefaultToMeleeWeapon(24, ItemUseStyleID.Swing, useTurn: true);
+			Item.width = 32;
+			Item.height = 32;
 		}
 	}
 }
