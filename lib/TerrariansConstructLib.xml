@@ -9,6 +9,12 @@
             A collection of textures indexed by registered item type and item parts
             </summary>
         </member>
+        <member name="M:TerrariansConstructLib.API.Extensions.GetSimplifiedGenericTypeName(System.Type)">
+            <summary>
+            Returns a string representing how you'd type a Type in C#, e.g. <c>Asset&lt;Texture2D&gt;</c>
+            </summary>
+            <param name="type">The type instance</param>
+        </member>
         <member name="T:TerrariansConstructLib.API.Reflection.ReflectionHelper`1">
             <summary>
             Reflection helper for accessing <typeparamref name="T"/> fields with an unspecified type
