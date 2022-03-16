@@ -94,14 +94,14 @@ namespace TerrariansConstruct.UI {
 			}
 
 			const int areaSize = 8;
-			Point tl = (Main.LocalPlayer.Center - new Vector2(areaSize)).ToPoint();
-			Rectangle area = new(tl.X, tl.Y, areaSize * 2, areaSize * 2);
+			Point tl = (Main.LocalPlayer.Center - new Vector2(areaSize / 2)).ToPoint();
+			Rectangle area = new(tl.X, tl.Y, areaSize, areaSize);
 
 			foreach (var slot in itemsToDrop) {
 				Item item = items[slot];
 
 				//Spawn a clone of the item
-				Utility.DropItem(new EntitySource_DropAsItem(item), item, area);
+				Utility.DropItem(new EntitySource_DebugCommand(), item, area);
 			}
 
 			//Add the result slot
