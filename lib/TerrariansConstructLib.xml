@@ -527,6 +527,13 @@
             <exception cref="T:System.Exception"></exception>
             <exception cref="T:System.ArgumentException"></exception>
         </member>
+        <member name="M:TerrariansConstructLib.Items.BaseTCItem.SafeIsLoadingEnabled(Terraria.ModLoader.Mod)">
+            <summary>
+            Allows you to safely request whether this item should be autoloaded
+            </summary>
+            <param name="mod">The mod adding this item</param>
+            <returns><see langword="null"/> for the default behaviour (don't autoload item), <see langword="true"/> to let the item autoload or <see langword="false"/> to prevent the item from autoloading</returns>
+        </member>
         <member name="P:TerrariansConstructLib.Items.BaseTCItem.RegisteredItemTypeName">
             <summary>
             The name for the item, used in <see cref="M:TerrariansConstructLib.Items.BaseTCItem.SetStaticDefaults"/><br/>
@@ -547,7 +554,7 @@
         <member name="M:TerrariansConstructLib.Items.BaseTCItem.SafeModifyTooltips(System.Collections.Generic.List{Terraria.ModLoader.TooltipLine})">
             <inheritdoc cref="M:TerrariansConstructLib.Items.BaseTCItem.ModifyTooltips(System.Collections.Generic.List{Terraria.ModLoader.TooltipLine})"/>
         </member>
-        <member name="M:TerrariansConstructLib.Items.BaseTCItem.Clone(TerrariansConstructLib.Items.BaseTCItem,TerrariansConstructLib.Items.BaseTCItem)">
+        <member name="M:TerrariansConstructLib.Items.BaseTCItem.Clone(Terraria.Item,TerrariansConstructLib.Items.BaseTCItem)">
             <inheritdoc cref="M:TerrariansConstructLib.Items.BaseTCItem.Clone(Terraria.Item)"/>
         </member>
         <member name="M:TerrariansConstructLib.Items.BaseTCItem.SafeModifyWeaponDamage(Terraria.Player,Terraria.ModLoader.StatModifier@,System.Single@)">
@@ -620,6 +627,13 @@
             <summary>
             The base projectile class for any projectiles fired from Terrarians' Construct weapons
             </summary>
+        </member>
+        <member name="M:TerrariansConstructLib.Projectiles.BaseTCProjectile.SafeIsLoadingEnabled(Terraria.ModLoader.Mod)">
+            <summary>
+            Allows you to safely request whether this projectile should be autoloaded
+            </summary>
+            <param name="mod">The mod adding this projectile</param>
+            <returns><see langword="null"/> for the default behaviour (don't autoload projectile), <see langword="true"/> to let the projectile autoload or <see langword="false"/> to prevent the projectile from autoloading</returns>
         </member>
         <member name="P:TerrariansConstructLib.Projectiles.BaseTCProjectile.ProjectileTypeName">
             <summary>
