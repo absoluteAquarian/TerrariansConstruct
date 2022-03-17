@@ -557,13 +557,12 @@
             <typeparam name="T">The <seealso cref="T:Terraria.ModLoader.ModRarity"/> class</typeparam>
             <param name="location">The location.  For reference, the location for all <seealso cref="T:Terraria.ID.ItemRarityID"/> IDs (except for <seealso cref="F:Terraria.ID.ItemRarityID.Quest"/>, <seealso cref="F:Terraria.ID.ItemRarityID.Expert"/> and <seealso cref="F:Terraria.ID.ItemRarityID.Master"/>) are set to the ID itself</param>
         </member>
-        <member name="M:TerrariansConstructLib.CoreLibMod.AddAllPartsOfType(Terraria.ModLoader.Mod,System.Int32,System.Int32,TerrariansConstructLib.ItemPartActionsBuilder,System.String,System.String,System.Int32[])">
+        <member name="M:TerrariansConstructLib.CoreLibMod.AddAllPartsOfType(Terraria.ModLoader.Mod,System.Int32,TerrariansConstructLib.ItemPartActionsBuilder,System.String,System.String,System.Int32[])">
             <summary>
             Registers the part items for the material, <paramref name="materialType"/>, with the given rarity, <paramref name="rarity"/>
             </summary>
             <param name="mod">The mod instance to add the part to</param>
             <param name="materialType">The item ID</param>
-            <param name="rarity">The item rarity</param>
             <param name="actions">The actions</param>
             <param name="tooltipForAllParts">The tooltip that will be assigned to all parts.  Can be modified via <seealso cref="M:TerrariansConstructLib.Items.ItemPart.SetGlobalTooltip(TerrariansConstructLib.Materials.Material,System.Int32,System.String)"/></param>
             <param name="modifierTextForAllParts">The modifier text that will be assigned to all parts.  Can be modified via <seealso cref="M:TerrariansConstructLib.Items.ItemPart.SetGlobalModifierText(TerrariansConstructLib.Materials.Material,System.Int32,System.String)"/></param>

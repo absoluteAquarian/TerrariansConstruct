@@ -7,8 +7,8 @@ namespace TerrariansConstruct {
 		private void AddParts() {
 			CoreLibMod.LogAddedParts = true;
 
-			CoreLibMod.AddAllPartsOfType(this, ItemID.CopperBar, ItemRarityID.White, TCPartActions.Copper, "[c/ff6000:Energized I]", null, RegisteredParts.WeaponBowString);
-			CoreLibMod.AddAllPartsOfType(this, ItemID.Wood, ItemRarityID.White, TCPartActions.Wood, "[c/996633:Wimpy I]", "[c/996633:-10% knockback]", RegisteredParts.WeaponBowString);
+			CoreLibMod.AddAllPartsOfType(this, ItemID.CopperBar, TCPartActions.Copper, "[c/ff6000:Energized I]", null, RegisteredParts.WeaponBowString);
+			CoreLibMod.AddAllPartsOfType(this, ItemID.Wood, TCPartActions.Wood, "[c/996633:Wimpy I]", "[c/996633:-10% knockback]", RegisteredParts.WeaponBowString);
 
 			CoreLibMod.AddPart(this, ItemID.Cobweb, ItemRarityID.White, RegisteredParts.WeaponBowString, TCPartActions.Cobweb, null, null);
 
@@ -18,8 +18,8 @@ namespace TerrariansConstruct {
 		private void AddMolds() {
 			CoreLibMod.LogAddedParts = true;
 
-			CoreLibMod.AddAllPartMoldsOfTier(this, new Material(){ type = ItemID.Wood, rarity = ItemRarityID.White }, RegisteredMoldTiers.Wood, 20, TileID.WorkBenches, 12, "Assets/Parts");
-			CoreLibMod.AddAllPartMoldsOfTier(this, new Material(){ type = ItemID.GoldBar, rarity = ItemRarityID.Blue }, RegisteredMoldTiers.Gold, 24, TileID.Anvils, 14, "Assets/Parts");
+			CoreLibMod.AddAllPartMoldsOfTier(this, Material.FromItem(ItemID.Wood), RegisteredMoldTiers.Wood, 20, TileID.WorkBenches, 12, "Assets/Parts");
+			CoreLibMod.AddAllPartMoldsOfTier(this, Material.FromItem(ItemID.GoldBar), RegisteredMoldTiers.Gold, 24, TileID.Anvils, 14, "Assets/Parts");
 
 			CoreLibMod.LogAddedParts = false;
 		}
