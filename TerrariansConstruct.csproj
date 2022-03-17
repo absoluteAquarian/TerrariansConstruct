@@ -11,17 +11,17 @@
     <PackageReference Include="tModLoader.CodeAssist" Version="0.1.*" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Assets\Parts\WeaponShortSwordGuard\" />
-    <Folder Include="Assets\Parts\WeaponBowString\" />
-    <Folder Include="Assets\Parts\WeaponBowHead\" />
-    <Folder Include="Assets\Parts\WeaponShortSwordBlade\" />
-    <Folder Include="Assets\Parts\WeaponLongSwordBlade\" />
-    <Folder Include="Assets\Parts\WeaponSwordGuard\" />
-    <Folder Include="Assets\Parts\ToolHammerHead\" />
-    <Folder Include="Assets\Parts\ToolAxeHead\" />
-    <Folder Include="Assets\Parts\ToolPickHead\" />
-    <Folder Include="Assets\Parts\ToolBinding\" />
-    <Folder Include="Assets\Parts\ToolRod\" />
+    <Folder Include="Assets\Parts\ToolAxeHead\Molds\" />
+    <Folder Include="Assets\Parts\ToolBinding\Molds\" />
+    <Folder Include="Assets\Parts\ToolHammerHead\Molds\" />
+    <Folder Include="Assets\Parts\ToolPickHead\Molds\" />
+    <Folder Include="Assets\Parts\ToolRod\Molds\" />
+    <Folder Include="Assets\Parts\WeaponBowHead\Molds\" />
+    <Folder Include="Assets\Parts\WeaponBowString\Molds\" />
+    <Folder Include="Assets\Parts\WeaponLongSwordBlade\Molds\" />
+    <Folder Include="Assets\Parts\WeaponShortSwordBlade\Molds\" />
+    <Folder Include="Assets\Parts\WeaponShortSwordGuard\Molds\" />
+    <Folder Include="Assets\Parts\WeaponSwordGuard\Molds\" />
     <Folder Include="Assets\Visuals\Hammer\" />
     <Folder Include="Assets\Visuals\Bow\" />
     <Folder Include="Assets\Visuals\Pickaxe\" />

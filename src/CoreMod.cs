@@ -1,3 +1,4 @@
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -48,7 +49,7 @@ namespace TerrariansConstruct {
 		}
 
 		private static int RegisterPart(Mod mod, string internalName, string name)
-			=> CoreLibMod.RegisterPart(mod, internalName, name, "TerrariansConstruct/Assets/Parts/" + internalName);
+			=> CoreLibMod.RegisterPart(mod, internalName, name, "Assets/Parts/" + internalName);
 
 		// Method used by the library mod to load the ammo
 		// NOTE: this will be called before your mod's Load hook and before it's registered to ContentInstance<T>!
@@ -59,13 +60,28 @@ namespace TerrariansConstruct {
 		// Method used by the library mod to load the items used by the Forge UI
 		// NOTE: this will be called before your mod's Load hook and before it's registered to ContentInstance<T>!
 		public static void RegisterTCItems(Mod mod) {
-			string visualsFolder = "TerrariansConstruct/Assets/Visuals/";
+			string visualsFolder = "Assets/Visuals/";
 
 			RegisteredItems.Sword = CoreLibMod.RegisterItem(mod, "Sword", "Sword", nameof(TCSword), visualsFolder + "Sword",
 				RegisteredParts.WeaponLongSwordBlade, RegisteredParts.WeaponSwordGuard, RegisteredParts.ToolRod);
 
 			RegisteredItems.Shortsword = CoreLibMod.RegisterItem(mod, "Shortsword", "Shortsword", nameof(TCShortsword), visualsFolder + "Shortsword",
 				RegisteredParts.WeaponShortSwordBlade, RegisteredParts.WeaponShortSwordGuard, RegisteredParts.ToolRod);
+		}
+
+		// Method used by the library mod to load the tiers used by the item part molds
+		// NOTE: this will be called before your mod's Load hook and before it's registered to ContentInstance<T>!
+		public static void RegisterTCMoldTiers(Mod mod) {
+			RegisteredMoldTiers.Wood = CoreLibMod.RegisterMoldTier(mod, "Wood", "Basic", new Color(0x99, 0x66, 0x33),
+				ItemID.Wood);
+			RegisteredMoldTiers.Gold = CoreLibMod.RegisterMoldTier(mod, "Gold", "Advanced", Color.Gold,
+				ItemID.CopperBar);
+		}
+
+		// Method used by the library mod to load the molds used for item part crafting
+		// NOTE: this will be called before your mod's Load hook and before it's registered to ContentInstance<T>!
+		public static void RegisterTCPartMolds(Mod mod) {
+			(mod as CoreMod).AddMolds();
 		}
 
 		public static class RegisteredAmmo {
@@ -98,6 +114,12 @@ namespace TerrariansConstruct {
 			public static int Axe { get; internal set; }
 			public static int Hammer { get; internal set; }
 			public static int Bow { get; internal set; }
+		}
+
+		public static class RegisteredMoldTiers {
+			public static int Wood { get; internal set; }
+
+			public static int Gold { get; internal set; }
 		}
 	}
 }
