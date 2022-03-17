@@ -73,9 +73,9 @@ namespace TerrariansConstruct {
 		// NOTE: this will be called before your mod's Load hook and before it's registered to ContentInstance<T>!
 		public static void RegisterTCMoldTiers(Mod mod) {
 			RegisteredMoldTiers.Wood = CoreLibMod.RegisterMoldTier(mod, "Wood", "Basic", new Color(0x99, 0x66, 0x33),
-				ItemID.Wood);
+				ItemRarityID.Blue);
 			RegisteredMoldTiers.Gold = CoreLibMod.RegisterMoldTier(mod, "Gold", "Advanced", Color.Gold,
-				ItemID.CopperBar);
+				ItemRarityID.Orange);
 		}
 
 		// Method used by the library mod to load the molds used for item part crafting

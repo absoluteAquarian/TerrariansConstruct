@@ -337,7 +337,7 @@
             <exception cref="T:System.ArgumentException"/>
             <exception cref="T:System.ArgumentNullException"/>
         </member>
-        <member name="M:TerrariansConstructLib.CoreLibMod.RegisterMoldTier(Terraria.ModLoader.Mod,System.String,System.String,Microsoft.Xna.Framework.Color,System.Int32[])">
+        <member name="M:TerrariansConstructLib.CoreLibMod.RegisterMoldTier(Terraria.ModLoader.Mod,System.String,System.String,Microsoft.Xna.Framework.Color,System.Int32)">
             <summary>
             Registers information for a <seealso cref="T:TerrariansConstructLib.Items.PartMold"/> tier
             </summary>
@@ -345,7 +345,7 @@
             <param name="internalName">The internal name for the mold tier</param>
             <param name="name">The display name for the mold tier used in the mold item's tooltip</param>
             <param name="tooltipColor">The color of the mold item's name</param>
-            <param name="initialValidMaterials">The initial list of valid material types (<seealso cref="F:TerrariansConstructLib.Materials.Material.type"/>).  This collection can be modified via <seealso cref="M:TerrariansConstructLib.Registry.PartMoldTierRegistry.SetAsValidMaterial(TerrariansConstructLib.Materials.Material,System.Int32)"/></param>
+            <param name="tierRarity">The rarity (<seealso cref="T:Terraria.ID.ItemRarityID"/> or <seealso cref="T:Terraria.ModLoader.ModRarity"/>) for the mold tier</param>
             <returns>The registered mold tier ID</returns>
             <exception cref="T:System.Exception"></exception>
             <exception cref="T:System.ArgumentNullException"/>
@@ -514,6 +514,48 @@
             <returns>The <seealso cref="T:TerrariansConstructLib.Items.ItemPartItem"/> item instance</returns>
             <exception cref="T:System.Exception"/>
             <exception cref="T:System.ArgumentException"/>
+        </member>
+        <member name="M:TerrariansConstructLib.CoreLibMod.GetMoldTierRarityType(System.Int32)">
+            <summary>
+            Gets the item rarity ID associated with the mold tier
+            </summary>
+            <param name="moldTier">The mold tier</param>
+        </member>
+        <member name="M:TerrariansConstructLib.CoreLibMod.GetRaritiesBelowOrAt(System.Int32)">
+            <summary>
+            Returns an enumeration of item rarity IDs which are considered at the same or below the "rarity" for mold tier materials
+            </summary>
+            <param name="rarity">The item rarity</param>
+        </member>
+        <member name="M:TerrariansConstructLib.CoreLibMod.TryGetRarityLocation(System.Int32,System.Single@)">
+            <summary>
+            Attempts to get the rarity location for mold tier materials
+            </summary>
+            <param name="rarity">The item rarity ID</param>
+            <param name="location">The location.  For reference, the location for all <seealso cref="T:Terraria.ID.ItemRarityID"/> IDs (except for <seealso cref="F:Terraria.ID.ItemRarityID.Quest"/>, <seealso cref="F:Terraria.ID.ItemRarityID.Expert"/> and <seealso cref="F:Terraria.ID.ItemRarityID.Master"/>) are set to the ID itself</param>
+            <returns><see langword="true"/> if the rarity has been registered to the <seealso cref="T:TerrariansConstructLib.Rarities.RarityClassification"/> collection, <see langword="false"/> otherwise</returns>
+        </member>
+        <member name="M:TerrariansConstructLib.CoreLibMod.TryGetRarityLocation``1(System.Single@)">
+            <summary>
+            Attempts to get the rarity location for mold tier materials
+            </summary>
+            <typeparam name="T">The <seealso cref="T:Terraria.ModLoader.ModRarity"/> class</typeparam>
+            <param name="location">The location.  For reference, the location for all <seealso cref="T:Terraria.ID.ItemRarityID"/> IDs (except for <seealso cref="F:Terraria.ID.ItemRarityID.Quest"/>, <seealso cref="F:Terraria.ID.ItemRarityID.Expert"/> and <seealso cref="F:Terraria.ID.ItemRarityID.Master"/>) are set to the ID itself</param>
+            <returns><see langword="true"/> if the rarity has been registered to the <seealso cref="T:TerrariansConstructLib.Rarities.RarityClassification"/> collection, <see langword="false"/> otherwise</returns>
+        </member>
+        <member name="M:TerrariansConstructLib.CoreLibMod.SetRarityLocation(System.Int32,System.Single)">
+            <summary>
+            Sets the rarity location for an item rarity ID in regard to mold tier materials
+            </summary>
+            <param name="rarity">The item rarity ID</param>
+            <param name="location">The location.  For reference, the location for all <seealso cref="T:Terraria.ID.ItemRarityID"/> IDs (except for <seealso cref="F:Terraria.ID.ItemRarityID.Quest"/>, <seealso cref="F:Terraria.ID.ItemRarityID.Expert"/> and <seealso cref="F:Terraria.ID.ItemRarityID.Master"/>) are set to the ID itself</param>
+        </member>
+        <member name="M:TerrariansConstructLib.CoreLibMod.SetRarityLocation``1(System.Single)">
+            <summary>
+            Sets the rarity location for an item rarity ID in regard to mold tier materials
+            </summary>
+            <typeparam name="T">The <seealso cref="T:Terraria.ModLoader.ModRarity"/> class</typeparam>
+            <param name="location">The location.  For reference, the location for all <seealso cref="T:Terraria.ID.ItemRarityID"/> IDs (except for <seealso cref="F:Terraria.ID.ItemRarityID.Quest"/>, <seealso cref="F:Terraria.ID.ItemRarityID.Expert"/> and <seealso cref="F:Terraria.ID.ItemRarityID.Master"/>) are set to the ID itself</param>
         </member>
         <member name="M:TerrariansConstructLib.CoreLibMod.AddAllPartsOfType(Terraria.ModLoader.Mod,System.Int32,System.Int32,TerrariansConstructLib.ItemPartActionsBuilder,System.String,System.String,System.Int32[])">
             <summary>
@@ -754,6 +796,12 @@
         </member>
         <member name="M:TerrariansConstructLib.Projectiles.BaseTCProjectile.SafeAI">
             <inheritdoc cref="M:TerrariansConstructLib.Projectiles.BaseTCProjectile.AI"/>
+        </member>
+        <member name="T:TerrariansConstructLib.Rarities.RarityClassification">
+            <summary>
+            This type allows customization of where a rarity would be located compared to other rarities for <seealso cref="T:TerrariansConstructLib.Items.PartMold"/> tiers.<br/>
+            Mold tiers set to a certain rarity can use any material at that rarity or below.
+            </summary>
         </member>
         <member name="T:TerrariansConstructLib.Registry.PartActions">
             <summary>
