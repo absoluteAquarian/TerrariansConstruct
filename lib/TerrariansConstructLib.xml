@@ -294,13 +294,15 @@
             <param name="method">The name of the method</param>
             <exception cref="T:System.ArgumentException"/>
         </member>
-        <member name="M:TerrariansConstructLib.CoreLibMod.RegisterPart(Terraria.ModLoader.Mod,System.String,System.String,System.String)">
+        <member name="M:TerrariansConstructLib.CoreLibMod.RegisterPart(Terraria.ModLoader.Mod,System.String,System.String,System.Int32,System.Boolean,System.String)">
             <summary>
             Registers a part definition
             </summary>
             <param name="mod">The mod that the part belongs to</param>
             <param name="internalName">The internal name of the part</param>
             <param name="name">The name of the part</param>
+            <param name="materialCost">How much material is required to craft this part, multiplied by 2</param>
+            <param name="hasComplexMold">Whether the part can be made with the complex mold</param>
             <param name="assetFolderPath">The path to the folder containing the part's textures</param>
             <returns>The ID of the registered part</returns>
             <exception cref="T:System.Exception"/>
@@ -335,19 +337,6 @@
             <returns>The ID of the registered item</returns>
             <exception cref="T:System.Exception"/>
             <exception cref="T:System.ArgumentException"/>
-            <exception cref="T:System.ArgumentNullException"/>
-        </member>
-        <member name="M:TerrariansConstructLib.CoreLibMod.RegisterMoldTier(Terraria.ModLoader.Mod,System.String,System.String,Microsoft.Xna.Framework.Color,System.Int32)">
-            <summary>
-            Registers information for a <seealso cref="T:TerrariansConstructLib.Items.PartMold"/> tier
-            </summary>
-            <param name="mod">The mod that the mold tier belongs to</param>
-            <param name="internalName">The internal name for the mold tier</param>
-            <param name="name">The display name for the mold tier used in the mold item's tooltip</param>
-            <param name="tooltipColor">The color of the mold item's name</param>
-            <param name="tierRarity">The rarity (<seealso cref="T:Terraria.ID.ItemRarityID"/> or <seealso cref="T:Terraria.ModLoader.ModRarity"/>) for the mold tier</param>
-            <returns>The registered mold tier ID</returns>
-            <exception cref="T:System.Exception"></exception>
             <exception cref="T:System.ArgumentNullException"/>
         </member>
         <member name="M:TerrariansConstructLib.CoreLibMod.GetKnownMaterials">
@@ -403,20 +392,16 @@
             <param name="partID">The part ID</param>
             <param name="tooltip">The new modifier text</param>
         </member>
-        <member name="M:TerrariansConstructLib.CoreLibMod.TryGetMoldCost(TerrariansConstructLib.Materials.Material,System.Int32,System.Int32,System.Int32@)">
+        <member name="M:TerrariansConstructLib.CoreLibMod.GetMoldCost(System.Int32)">
             <summary>
-            Gets the global material cost of an <seealso cref="T:TerrariansConstructLib.Items.PartMold"/>
+            Gets the material cost of an <seealso cref="T:TerrariansConstructLib.Items.PartMold"/>
             </summary>
-            <param name="material">The material for the part that would be created by the item part mold</param>
             <param name="partID">The part ID</param>
-            <param name="moldTier">The item part mold tier</param>
-            <param name="materialCost">The material cost for the item part mold</param>
         </member>
-        <member name="M:TerrariansConstructLib.CoreLibMod.SetMoldCost(TerrariansConstructLib.Materials.Material,System.Int32,System.Int32)">
+        <member name="M:TerrariansConstructLib.CoreLibMod.SetMoldCost(System.Int32,System.Int32)">
             <summary>
-            Sets the global material cost for item part molds using material, <paramref name="material"/>, and the part ID, <paramref name="partID"/>, to <paramref name="materialCost"/>
+            Sets the material cost for item part molds using the part ID, <paramref name="partID"/>, to <paramref name="materialCost"/>
             </summary>
-            <param name="material"></param>
             <param name="partID">The part ID</param>
             <param name="materialCost">The new global material cost.  The displayed material cost is this value divided by 2</param>
         </member>
@@ -515,70 +500,6 @@
             <exception cref="T:System.Exception"/>
             <exception cref="T:System.ArgumentException"/>
         </member>
-        <member name="M:TerrariansConstructLib.CoreLibMod.GetMoldTierRarityType(System.Int32)">
-            <summary>
-            Gets the item rarity ID associated with the mold tier
-            </summary>
-            <param name="moldTier">The mold tier</param>
-        </member>
-        <member name="M:TerrariansConstructLib.CoreLibMod.GetRaritiesBelowOrAt(System.Int32)">
-            <summary>
-            Returns an enumeration of item rarity IDs which are considered at the same or below the "rarity" for mold tier materials
-            </summary>
-            <param name="rarity">The item rarity</param>
-        </member>
-        <member name="M:TerrariansConstructLib.CoreLibMod.TryGetRarityLocation(System.Int32,System.Single@)">
-            <summary>
-            Attempts to get the rarity location for mold tier materials
-            </summary>
-            <param name="rarity">The item rarity ID</param>
-            <param name="location">The location.  For reference, the location for all <seealso cref="T:Terraria.ID.ItemRarityID"/> IDs (except for <seealso cref="F:Terraria.ID.ItemRarityID.Quest"/>, <seealso cref="F:Terraria.ID.ItemRarityID.Expert"/> and <seealso cref="F:Terraria.ID.ItemRarityID.Master"/>) are set to the ID itself</param>
-            <returns><see langword="true"/> if the rarity has been registered to the <seealso cref="T:TerrariansConstructLib.Rarities.RarityClassification"/> collection, <see langword="false"/> otherwise</returns>
-        </member>
-        <member name="M:TerrariansConstructLib.CoreLibMod.TryGetRarityLocation``1(System.Single@)">
-            <summary>
-            Attempts to get the rarity location for mold tier materials
-            </summary>
-            <typeparam name="T">The <seealso cref="T:Terraria.ModLoader.ModRarity"/> class</typeparam>
-            <param name="location">The location.  For reference, the location for all <seealso cref="T:Terraria.ID.ItemRarityID"/> IDs (except for <seealso cref="F:Terraria.ID.ItemRarityID.Quest"/>, <seealso cref="F:Terraria.ID.ItemRarityID.Expert"/> and <seealso cref="F:Terraria.ID.ItemRarityID.Master"/>) are set to the ID itself</param>
-            <returns><see langword="true"/> if the rarity has been registered to the <seealso cref="T:TerrariansConstructLib.Rarities.RarityClassification"/> collection, <see langword="false"/> otherwise</returns>
-        </member>
-        <member name="M:TerrariansConstructLib.CoreLibMod.SetRarityLocation(System.Int32,System.Single)">
-            <summary>
-            Sets the rarity location for an item rarity ID in regard to mold tier materials
-            </summary>
-            <param name="rarity">The item rarity ID</param>
-            <param name="location">The location.  For reference, the location for all <seealso cref="T:Terraria.ID.ItemRarityID"/> IDs (except for <seealso cref="F:Terraria.ID.ItemRarityID.Quest"/>, <seealso cref="F:Terraria.ID.ItemRarityID.Expert"/> and <seealso cref="F:Terraria.ID.ItemRarityID.Master"/>) are set to the ID itself</param>
-        </member>
-        <member name="M:TerrariansConstructLib.CoreLibMod.SetRarityLocation``1(System.Single)">
-            <summary>
-            Sets the rarity location for an item rarity ID in regard to mold tier materials
-            </summary>
-            <typeparam name="T">The <seealso cref="T:Terraria.ModLoader.ModRarity"/> class</typeparam>
-            <param name="location">The location.  For reference, the location for all <seealso cref="T:Terraria.ID.ItemRarityID"/> IDs (except for <seealso cref="F:Terraria.ID.ItemRarityID.Quest"/>, <seealso cref="F:Terraria.ID.ItemRarityID.Expert"/> and <seealso cref="F:Terraria.ID.ItemRarityID.Master"/>) are set to the ID itself</param>
-        </member>
-        <member name="M:TerrariansConstructLib.CoreLibMod.AddAllPartsOfType(Terraria.ModLoader.Mod,System.Int32,TerrariansConstructLib.ItemPartActionsBuilder,System.String,System.String,System.Int32[])">
-            <summary>
-            Registers the part items for the material, <paramref name="materialType"/>, with the given rarity, <paramref name="rarity"/>
-            </summary>
-            <param name="mod">The mod instance to add the part to</param>
-            <param name="materialType">The item ID</param>
-            <param name="actions">The actions</param>
-            <param name="tooltipForAllParts">The tooltip that will be assigned to all parts.  Can be modified via <seealso cref="M:TerrariansConstructLib.Items.ItemPart.SetGlobalTooltip(TerrariansConstructLib.Materials.Material,System.Int32,System.String)"/></param>
-            <param name="modifierTextForAllParts">The modifier text that will be assigned to all parts.  Can be modified via <seealso cref="M:TerrariansConstructLib.Items.ItemPart.SetGlobalModifierText(TerrariansConstructLib.Materials.Material,System.Int32,System.String)"/></param>
-            <param name="partIDsToIgnore">The IDs to ignore when iterating to create the part items</param>
-        </member>
-        <member name="M:TerrariansConstructLib.CoreLibMod.AddAllPartsOfMaterial(Terraria.ModLoader.Mod,TerrariansConstructLib.Materials.Material,TerrariansConstructLib.ItemPartActionsBuilder,System.String,System.String,System.Int32[])">
-            <summary>
-            Registers the part items for the material, <paramref name="material"/>
-            </summary>
-            <param name="mod">The mod instance to add the part to</param>
-            <param name="material">The material instance</param>
-            <param name="actions">The actions</param>
-            <param name="tooltipForAllParts">The tooltip that will be assigned to all parts.  Can be modified via <seealso cref="M:TerrariansConstructLib.Items.ItemPart.SetGlobalTooltip(TerrariansConstructLib.Materials.Material,System.Int32,System.String)"/></param>
-            <param name="modifierTextForAllParts">The modifier text that will be assigned to all parts.  Can be modified via <seealso cref="M:TerrariansConstructLib.Items.ItemPart.SetGlobalModifierText(TerrariansConstructLib.Materials.Material,System.Int32,System.String)"/></param>
-            <param name="partIDsToIgnore">The IDs to ignore when iterating to create the part items</param>
-        </member>
         <member name="M:TerrariansConstructLib.CoreLibMod.AddPart(Terraria.ModLoader.Mod,TerrariansConstructLib.Materials.Material,System.Int32,TerrariansConstructLib.ItemPartActionsBuilder,System.String,System.String)">
             <summary>
             Registers a part item for the material, <paramref name="material"/>
@@ -602,30 +523,27 @@
             <param name="tooltip">The tooltip for this part.  Can be modified via <seealso cref="M:TerrariansConstructLib.Items.ItemPart.SetGlobalTooltip(TerrariansConstructLib.Materials.Material,System.Int32,System.String)"/></param>
             <param name="modifierText">The modifier text that will be assigned to all parts.  Can be modified via <seealso cref="M:TerrariansConstructLib.Items.ItemPart.SetGlobalModifierText(TerrariansConstructLib.Materials.Material,System.Int32,System.String)"/></param>
         </member>
-        <member name="M:TerrariansConstructLib.CoreLibMod.AddAllPartMoldsOfTier(Terraria.ModLoader.Mod,TerrariansConstructLib.Materials.Material,System.Int32,System.Int32,System.UInt16,System.Int32,System.String)">
+        <member name="M:TerrariansConstructLib.CoreLibMod.AddAllPartsOfType(Terraria.ModLoader.Mod,System.Int32,TerrariansConstructLib.ItemPartActionsBuilder,System.String,System.String,System.Int32[])">
             <summary>
-            Registers the item part molds for the mold tier, <paramref name="moldTier"/>
+            Registers the part items for the material, <paramref name="materialType"/>
             </summary>
-            <param name="mod">The mod isntance to add the item part mold to</param>
-            <param name="craftMaterial">The material instance used to craft the item part mold item</param>
-            <param name="moldTier">The item part mold tier</param>
-            <param name="craftMaterialCost">The material cost for crafting the item part mold</param>
-            <param name="craftStation">The tile used to craft the item part mold</param>
-            <param name="partMaterialCostForAllTiers">The material cost for parts created using the item part mold</param>
-            <param name="rootFolderForAssets">The folder for the molds, relative to the mod they're from</param>
+            <param name="mod">The mod instance to add the part to</param>
+            <param name="materialType">The item ID</param>
+            <param name="actions">The actions</param>
+            <param name="tooltipForAllParts">The tooltip that will be assigned to all parts.  Can be modified via <seealso cref="M:TerrariansConstructLib.Items.ItemPart.SetGlobalTooltip(TerrariansConstructLib.Materials.Material,System.Int32,System.String)"/></param>
+            <param name="modifierTextForAllParts">The modifier text that will be assigned to all parts.  Can be modified via <seealso cref="M:TerrariansConstructLib.Items.ItemPart.SetGlobalModifierText(TerrariansConstructLib.Materials.Material,System.Int32,System.String)"/></param>
+            <param name="partIDsToIgnore">The IDs to ignore when iterating to create the part items</param>
         </member>
-        <member name="M:TerrariansConstructLib.CoreLibMod.AddPartMold(Terraria.ModLoader.Mod,TerrariansConstructLib.Materials.Material,System.Int32,System.Int32,System.Int32,System.UInt16,System.Int32,System.String)">
+        <member name="M:TerrariansConstructLib.CoreLibMod.AddAllPartsOfMaterial(Terraria.ModLoader.Mod,TerrariansConstructLib.Materials.Material,TerrariansConstructLib.ItemPartActionsBuilder,System.String,System.String,System.Int32[])">
             <summary>
-            Registers an item part mold
+            Registers the part items for the material, <paramref name="material"/>
             </summary>
-            <param name="mod">The mod isntance to add the item part mold to</param>
-            <param name="craftMaterial">The material instance used to craft the item part mold item</param>
-            <param name="partID">The part ID</param>
-            <param name="moldTier">The item part mold tier</param>
-            <param name="craftMaterialCost">The material cost for crafting the item part mold</param>
-            <param name="craftStation">The tile used to craft the item part mold</param>
-            <param name="partMaterialCost">The material cost for parts created using the item part mold</param>
-            <param name="rootFolderForAssets">The folder for the molds, relative to the mod they're from</param>
+            <param name="mod">The mod instance to add the part to</param>
+            <param name="material">The material instance</param>
+            <param name="actions">The actions</param>
+            <param name="tooltipForAllParts">The tooltip that will be assigned to all parts.  Can be modified via <seealso cref="M:TerrariansConstructLib.Items.ItemPart.SetGlobalTooltip(TerrariansConstructLib.Materials.Material,System.Int32,System.String)"/></param>
+            <param name="modifierTextForAllParts">The modifier text that will be assigned to all parts.  Can be modified via <seealso cref="M:TerrariansConstructLib.Items.ItemPart.SetGlobalModifierText(TerrariansConstructLib.Materials.Material,System.Int32,System.String)"/></param>
+            <param name="partIDsToIgnore">The IDs to ignore when iterating to create the part items</param>
         </member>
         <member name="T:TerrariansConstructLib.Items.BaseTCItem">
             <summary>
@@ -795,12 +713,6 @@
         </member>
         <member name="M:TerrariansConstructLib.Projectiles.BaseTCProjectile.SafeAI">
             <inheritdoc cref="M:TerrariansConstructLib.Projectiles.BaseTCProjectile.AI"/>
-        </member>
-        <member name="T:TerrariansConstructLib.Rarities.RarityClassification">
-            <summary>
-            This type allows customization of where a rarity would be located compared to other rarities for <seealso cref="T:TerrariansConstructLib.Items.PartMold"/> tiers.<br/>
-            Mold tiers set to a certain rarity can use any material at that rarity or below.
-            </summary>
         </member>
         <member name="T:TerrariansConstructLib.Registry.PartActions">
             <summary>
