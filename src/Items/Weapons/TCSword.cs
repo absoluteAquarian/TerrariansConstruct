@@ -10,16 +10,16 @@ namespace TerrariansConstruct.Items.Weapons {
 	public class TCSword : BaseTCItem {
 		public override int PartsCount => 3;
 
-		public override string VisualsFolderPath => "TerrariansConstruct/Assets/Visuals/Sword";
-
 		public override bool? SafeIsLoadingEnabled(Mod mod) => true;
 
 		public TCSword() : base(CoreMod.RegisteredItems.Sword){ }
 
 		public override void SafeSetDefaults() {
-			Item.DefaultToMeleeWeapon(24, ItemUseStyleID.Swing, useTurn: true);
+			//useTime/useAnimation are overridden anyway
+			Item.DefaultToMeleeWeapon(0, ItemUseStyleID.Swing, useTurn: true);
 			Item.width = 32;
 			Item.height = 32;
+			Item.UseSound = SoundID.Item1;
 		}
 	}
 }

@@ -1,0 +1,17 @@
+﻿Mods: {
+	TerrariansConstruct: {
+		ModifierText: {
+			Common: {
+				Knockback: "{0:+#;-#;+0}% knockback"
+				Damage: "{0:+#;-#;+0}% damage"
+				MiningSpeed: "{0:+#;-#;+0}% mining speed"
+				ProjectileSpeed: "{0:+#;-#;+0}% velocity"
+			}
+		}
+
+		PartTooltips: {
+			Copper: "[c/ff6000:Energized I]"
+			Wood: "[c/996633:Wimpy I]"
+		}
+	}
+}

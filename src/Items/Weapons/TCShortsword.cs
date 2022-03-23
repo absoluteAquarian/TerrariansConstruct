@@ -10,16 +10,16 @@ namespace TerrariansConstruct.Items.Weapons {
 	public class TCShortsword : BaseTCItem {
 		public override int PartsCount => 3;
 
-		public override string VisualsFolderPath => "TerrariansConstruct/Assets/Visuals/Shortsword";
-
 		public override bool? SafeIsLoadingEnabled(Mod mod) => true;
 
 		public TCShortsword() : base(CoreMod.RegisteredItems.Shortsword) { }
 
 		public override void SafeSetDefaults() {
-			Item.DefaultToMeleeWeapon(16, ItemUseStyleID.Thrust, useTurn: true);
+			//useTime/useAnimation are overridden anyway
+			Item.DefaultToMeleeWeapon(0, ItemUseStyleID.Rapier, useTurn: true);
 			Item.width = 32;
 			Item.height = 32;
+			Item.UseSound = SoundID.Item1;
 		}
 	}
 }

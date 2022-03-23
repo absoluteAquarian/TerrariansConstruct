@@ -15,6 +15,11 @@
             </summary>
             <param name="type">The type instance</param>
         </member>
+        <member name="T:TerrariansConstructLib.API.ModifierText">
+            <summary>
+            Represents a line of text for a part's modifier
+            </summary>
+        </member>
         <member name="T:TerrariansConstructLib.API.Reflection.ReflectionHelper`1">
             <summary>
             Reflection helper for accessing <typeparamref name="T"/> fields with an unspecified type
@@ -294,7 +299,105 @@
             <param name="method">The name of the method</param>
             <exception cref="T:System.ArgumentException"/>
         </member>
-        <member name="M:TerrariansConstructLib.CoreLibMod.RegisterPart(Terraria.ModLoader.Mod,System.String,System.String,System.Int32,System.Boolean,System.String)">
+        <member name="T:TerrariansConstructLib.API.Stats.ExtraPartStats">
+            <summary>
+            An object representing any additional stats for an item part (e.g. Tool Binding)<br/>
+            </summary>
+        </member>
+        <member name="M:TerrariansConstructLib.API.Stats.ExtraPartStats.With(System.String,Terraria.ModLoader.StatModifier)">
+            <summary>
+            Sets the stat with the given identifier.  Calling this method more than once for the same identifier will throw an exception
+            </summary>
+            <param name="identifier">The name of the stat</param>
+            <param name="stat">The stat value</param>
+            <exception cref="T:System.ArgumentException"></exception>
+        </member>
+        <member name="M:TerrariansConstructLib.API.Stats.ExtraPartStats.With(TerrariansConstructLib.API.Stats.ExtraPartStats)">
+            <summary>
+            Combines this object's stats with another object's stats<br/>
+            If <paramref name="other"/> has a modifier with the same identifier, the two stats are combined
+            </summary>
+            <param name="other">The other <see cref="T:TerrariansConstructLib.API.Stats.ExtraPartStats"/> object</param>
+            <returns>A new <see cref="T:TerrariansConstructLib.API.Stats.ExtraPartStats"/> instance containing the stats of both</returns>
+        </member>
+        <member name="M:TerrariansConstructLib.API.Stats.ExtraPartStats.Get(System.String)">
+            <summary>
+            Gets the stat with the given identifier
+            </summary>
+            <param name="identifier">The name of the stat</param>
+            <returns>The value of the stat if it's defined, <seealso cref="F:Terraria.ModLoader.StatModifier.One"/> otherwise</returns>
+        </member>
+        <member name="T:TerrariansConstructLib.API.Stats.HandlePartStats">
+            <summary>
+            An object representing the handle stats for an item part (e.g. Tool Rod)
+            </summary>
+        </member>
+        <member name="F:TerrariansConstructLib.API.Stats.HandlePartStats.miningSpeed">
+            <summary>
+            The modifier for the mining use speed
+            </summary>
+        </member>
+        <member name="F:TerrariansConstructLib.API.Stats.HandlePartStats.attackSpeed">
+            <summary>
+            The modifier for the attack use speed
+            </summary>
+        </member>
+        <member name="F:TerrariansConstructLib.API.Stats.HandlePartStats.attackDamage">
+            <summary>
+            The modifier for the attack damage.  The <seealso cref="P:Terraria.ModLoader.StatModifier.Additive"/> property is considered a flat increase, whereas the <seealso cref="P:Terraria.ModLoader.StatModifier.Multiplicative"/> is treated as normal.
+            </summary>
+        </member>
+        <member name="F:TerrariansConstructLib.API.Stats.HandlePartStats.attackKnockback">
+            <summary>
+            The modifier for the attack knocckback.  The <seealso cref="P:Terraria.ModLoader.StatModifier.Additive"/> property is considered a flat increase, whereas the <seealso cref="P:Terraria.ModLoader.StatModifier.Multiplicative"/> is treated as normal.
+            </summary>
+        </member>
+        <member name="F:TerrariansConstructLib.API.Stats.HandlePartStats.durability">
+            <summary>
+            The modifier for the item's durability.  The <seealso cref="P:Terraria.ModLoader.StatModifier.Additive"/> property is considered a flat increase, whereas the <seealso cref="P:Terraria.ModLoader.StatModifier.Multiplicative"/> is treated as normal.
+            </summary>
+        </member>
+        <member name="T:TerrariansConstructLib.API.Stats.HeadPartStats">
+            <summary>
+            An object representing the head stats for an item part (e.g. Sword Blade or Pickaxe Head)
+            </summary>
+        </member>
+        <member name="F:TerrariansConstructLib.API.Stats.HeadPartStats.damage">
+            <summary>
+            The damage stat for the part
+            </summary>
+        </member>
+        <member name="F:TerrariansConstructLib.API.Stats.HeadPartStats.knockback">
+            <summary>
+            The knockback stat for the part
+            </summary>
+        </member>
+        <member name="F:TerrariansConstructLib.API.Stats.HeadPartStats.crit">
+            <summary>
+            The crit stat for the part
+            </summary>
+        </member>
+        <member name="F:TerrariansConstructLib.API.Stats.HeadPartStats.useSpeed">
+            <summary>
+            The use speed stat for the part, measured in ticks per use
+            </summary>
+        </member>
+        <member name="F:TerrariansConstructLib.API.Stats.HeadPartStats.toolPower">
+            <summary>
+            The tool power for the part
+            </summary>
+        </member>
+        <member name="F:TerrariansConstructLib.API.Stats.HeadPartStats.durability">
+            <summary>
+            The durability for the part
+            </summary>
+        </member>
+        <member name="T:TerrariansConstructLib.API.Stats.StatType">
+            <summary>
+            Which type of stats an item part ID should use
+            </summary>
+        </member>
+        <member name="M:TerrariansConstructLib.CoreLibMod.RegisterPart(Terraria.ModLoader.Mod,System.String,System.String,System.Int32,System.Boolean,System.String,TerrariansConstructLib.API.Stats.StatType)">
             <summary>
             Registers a part definition
             </summary>
@@ -302,8 +405,9 @@
             <param name="internalName">The internal name of the part</param>
             <param name="name">The name of the part</param>
             <param name="materialCost">How much material is required to craft this part, multiplied by 2</param>
-            <param name="hasComplexMold">Whether the part can be made with the complex mold</param>
+            <param name="hasSimpleMold">Whether the part can be made with the simple mold</param>
             <param name="assetFolderPath">The path to the folder containing the part's textures</param>
+            <param name="type">Which type of stats the part should use</param>
             <returns>The ID of the registered part</returns>
             <exception cref="T:System.Exception"/>
             <exception cref="T:System.ArgumentNullException"/>
@@ -316,7 +420,6 @@
             <param name="name">The name of the constructed ammo type</param>
             <param name="ammoID">The <seealso cref="T:Terraria.ID.ItemID"/>/<seealso cref="T:Terraria.ID.AmmoID"/> for the constructed ammo ID</param>
             <param name="projectileInternalName">The projectile that this constructed ammo will shoot.  Use the string you'd use to access the projectile via <seealso cref="M:Terraria.ModLoader.Mod.Find``1(System.String)"/></param>
-            <typeparam name="T">The <see langword="class"/> of the <seealso cref="T:TerrariansConstructLib.Projectiles.BaseTCProjectile"/> to spawn when using the ammo</typeparam>
             <returns>The ID of the registered constructed ammo type</returns>
             <remarks>Note: The returned ID does not correlate with <seealso cref="T:Terraria.ID.AmmoID"/> nor <seealso cref="T:Terraria.ID.ItemID"/></remarks>
             <exception cref="T:System.Exception"/>
@@ -327,7 +430,6 @@
             <summary>
             Registers a name and valid <seealso cref="T:TerrariansConstructLib.Items.ItemPart"/> IDs for an item
             </summary>
-            <typeparam name="T">The <see langword="class"/> of the <seealso cref="T:TerrariansConstructLib.Items.BaseTCItem"/> associated with this registered item type</typeparam>
             <param name="mod">The mod that the weapon belongs to</param>
             <param name="internalName">The internal name of the weapon</param>
             <param name="name">The default item type name used by <seealso cref="P:TerrariansConstructLib.Items.BaseTCItem.RegisteredItemTypeName"/></param>
@@ -339,10 +441,27 @@
             <exception cref="T:System.ArgumentException"/>
             <exception cref="T:System.ArgumentNullException"/>
         </member>
+        <member name="M:TerrariansConstructLib.CoreLibMod.RegisterMaterialStats(TerrariansConstructLib.Materials.Material,System.Int32,TerrariansConstructLib.API.Stats.IPartStats[])">
+            <summary>
+            Registers item part stats for a certain material
+            </summary>
+            <param name="material">The material for the item part stats</param>
+            <param name="worth">How much material is needed to create one Shard part</param>
+            <param name="stats">The stats for the material</param>
+            <exception cref="T:System.Exception"></exception>
+        </member>
         <member name="M:TerrariansConstructLib.CoreLibMod.GetKnownMaterials">
             <summary>
             Gets an enumeration of <seealso cref="T:TerrariansConstructLib.Materials.Material"/> instances that were used to create item parts
             </summary>
+        </member>
+        <member name="M:TerrariansConstructLib.CoreLibMod.SetPartAsAxeToolPart(System.Int32,System.Boolean)">
+            <summary>
+            Flags or clears a part ID as being an axe part
+            </summary>
+            <param name="partID">The part ID</param>
+            <param name="isAxe">Whether the part is an axe part</param>
+            <exception cref="T:System.ArgumentException"></exception>
         </member>
         <member name="M:TerrariansConstructLib.CoreLibMod.GetPartName(System.Int32)">
             <summary>
@@ -383,6 +502,15 @@
             <param name="material">The material</param>
             <param name="partID">The part ID</param>
             <returns>The global modifier text</returns>
+        </member>
+        <member name="M:TerrariansConstructLib.CoreLibMod.GetPartModifierStatOrDefault(TerrariansConstructLib.Materials.Material,System.Int32,Terraria.ModLoader.StatModifier)">
+            <summary>
+            Gets the global modifier text's stat of an <seealso cref="T:TerrariansConstructLib.Items.ItemPart"/>, or a default value if there is none
+            </summary>
+            <param name="material">The material</param>
+            <param name="partID">The part ID</param>
+            <param name="defaultValue">The value to use if the part does not have a global modifier text instance</param>
+            <returns>The global modifier stat, or the default value if it's not defined</returns>
         </member>
         <member name="M:TerrariansConstructLib.CoreLibMod.SetGlobalPartModifierText(TerrariansConstructLib.Materials.Material,System.Int32,System.String)">
             <summary>
@@ -455,6 +583,14 @@
             <returns>A clone of the valid part IDs for the registered item</returns>
             <exception cref="T:System.Exception"/>
         </member>
+        <member name="M:TerrariansConstructLib.CoreLibMod.GetItemType(System.Int32)">
+            <summary>
+            Converts a registered Terrarians' Contruct item ID into its tModLoader item ID
+            </summary>
+            <param name="registeredItemID">The registered item ID</param>
+            <returns>The tModLoader item ID</returns>
+            <exception cref="T:System.Exception"/>
+        </member>
         <member name="M:TerrariansConstructLib.CoreLibMod.FindItem(System.Int32[])">
             <summary>
             Attempts to find a registered item whose valid part IDs are set to the same values as <paramref name="partIDs"/>
@@ -500,7 +636,7 @@
             <exception cref="T:System.Exception"/>
             <exception cref="T:System.ArgumentException"/>
         </member>
-        <member name="M:TerrariansConstructLib.CoreLibMod.AddPart(Terraria.ModLoader.Mod,TerrariansConstructLib.Materials.Material,System.Int32,TerrariansConstructLib.ItemPartActionsBuilder,System.String,System.String)">
+        <member name="M:TerrariansConstructLib.CoreLibMod.AddPart(Terraria.ModLoader.Mod,TerrariansConstructLib.Materials.Material,System.Int32,TerrariansConstructLib.ItemPartActionsBuilder,System.String,System.String,System.Nullable{Terraria.ModLoader.StatModifier})">
             <summary>
             Registers a part item for the material, <paramref name="material"/>
             </summary>
@@ -509,51 +645,42 @@
             <param name="partID">The part ID</param>
             <param name="actions">The actions</param>
             <param name="tooltip">The tooltip for this part.  Can be modified via <seealso cref="M:TerrariansConstructLib.Items.ItemPart.SetGlobalTooltip(TerrariansConstructLib.Materials.Material,System.Int32,System.String)"/></param>
-            <param name="modifierText">The modifier text that will be assigned to all parts.  Can be modified via <seealso cref="M:TerrariansConstructLib.Items.ItemPart.SetGlobalModifierText(TerrariansConstructLib.Materials.Material,System.Int32,System.String)"/></param>
+            <param name="modifierTextLangKey">The lang key for the <see cref="T:TerrariansConstructLib.API.ModifierText"/>.  If <see langword="null"/>, the item part will have no modifier text.</param>
+            <param name="modifierStat">The <seealso cref="T:Terraria.ModLoader.StatModifier"/> for the modifier text.  If <paramref name="modifierTextLangKey"/> is <see langword="null"/>, this parameter is ignored.  Defaults to <seealso cref="F:Terraria.ModLoader.StatModifier.One"/></param>
         </member>
-        <member name="M:TerrariansConstructLib.CoreLibMod.AddPart(Terraria.ModLoader.Mod,System.Int32,System.Int32,System.Int32,TerrariansConstructLib.ItemPartActionsBuilder,System.String,System.String)">
+        <member name="F:TerrariansConstructLib.DataStructures.TileDestructionContext.pickaxe">
             <summary>
-            Registers a part item for the material, <paramref name="materialType"/>, with the given rarity, <paramref name="rarity"/>
+            <see langword="true"/> if a tile was destroyed by a pickaxe
             </summary>
-            <param name="mod">The mod instance to add the part to</param>
-            <param name="materialType">The item ID</param>
-            <param name="rarity">The item rarity</param>
-            <param name="partID">The part ID</param>
-            <param name="actions">The actions</param>
-            <param name="tooltip">The tooltip for this part.  Can be modified via <seealso cref="M:TerrariansConstructLib.Items.ItemPart.SetGlobalTooltip(TerrariansConstructLib.Materials.Material,System.Int32,System.String)"/></param>
-            <param name="modifierText">The modifier text that will be assigned to all parts.  Can be modified via <seealso cref="M:TerrariansConstructLib.Items.ItemPart.SetGlobalModifierText(TerrariansConstructLib.Materials.Material,System.Int32,System.String)"/></param>
         </member>
-        <member name="M:TerrariansConstructLib.CoreLibMod.AddAllPartsOfType(Terraria.ModLoader.Mod,System.Int32,TerrariansConstructLib.ItemPartActionsBuilder,System.String,System.String,System.Int32[])">
+        <member name="F:TerrariansConstructLib.DataStructures.TileDestructionContext.axe">
             <summary>
-            Registers the part items for the material, <paramref name="materialType"/>
+            <see langword="true"/> if a tile was destroyed by an axe
             </summary>
-            <param name="mod">The mod instance to add the part to</param>
-            <param name="materialType">The item ID</param>
-            <param name="actions">The actions</param>
-            <param name="tooltipForAllParts">The tooltip that will be assigned to all parts.  Can be modified via <seealso cref="M:TerrariansConstructLib.Items.ItemPart.SetGlobalTooltip(TerrariansConstructLib.Materials.Material,System.Int32,System.String)"/></param>
-            <param name="modifierTextForAllParts">The modifier text that will be assigned to all parts.  Can be modified via <seealso cref="M:TerrariansConstructLib.Items.ItemPart.SetGlobalModifierText(TerrariansConstructLib.Materials.Material,System.Int32,System.String)"/></param>
-            <param name="partIDsToIgnore">The IDs to ignore when iterating to create the part items</param>
         </member>
-        <member name="M:TerrariansConstructLib.CoreLibMod.AddAllPartsOfMaterial(Terraria.ModLoader.Mod,TerrariansConstructLib.Materials.Material,TerrariansConstructLib.ItemPartActionsBuilder,System.String,System.String,System.Int32[])">
+        <member name="F:TerrariansConstructLib.DataStructures.TileDestructionContext.hammer">
             <summary>
-            Registers the part items for the material, <paramref name="material"/>
+            <see langword="true"/> if a tile was destroyed by a hammer
             </summary>
-            <param name="mod">The mod instance to add the part to</param>
-            <param name="material">The material instance</param>
-            <param name="actions">The actions</param>
-            <param name="tooltipForAllParts">The tooltip that will be assigned to all parts.  Can be modified via <seealso cref="M:TerrariansConstructLib.Items.ItemPart.SetGlobalTooltip(TerrariansConstructLib.Materials.Material,System.Int32,System.String)"/></param>
-            <param name="modifierTextForAllParts">The modifier text that will be assigned to all parts.  Can be modified via <seealso cref="M:TerrariansConstructLib.Items.ItemPart.SetGlobalModifierText(TerrariansConstructLib.Materials.Material,System.Int32,System.String)"/></param>
-            <param name="partIDsToIgnore">The IDs to ignore when iterating to create the part items</param>
+        </member>
+        <member name="F:TerrariansConstructLib.DataStructures.TileDestructionContext.hammerWall">
+            <summary>
+            <see langword="true"/> if a wall was destroyed by a hammer
+            </summary>
+        </member>
+        <member name="F:TerrariansConstructLib.DataStructures.TileDestructionContext.damage">
+            <summary>
+            The calculated damage used to destroy the tile
+            </summary>
         </member>
         <member name="T:TerrariansConstructLib.Items.BaseTCItem">
             <summary>
             The base item class for any items that can be created by the Terrarians' Construct Forge UI
             </summary>
         </member>
-        <member name="P:TerrariansConstructLib.Items.BaseTCItem.VisualsFolderPath">
+        <member name="P:TerrariansConstructLib.Items.BaseTCItem.CurrentDurability">
             <summary>
-            The location of the folder for this item's visuals (item part pieces used for constructing the texture) <br/>
-            Example: <c>"TerrariansConstruct/Assets/Visuals/Sword"</c>
+            The current durability for the item
             </summary>
         </member>
         <member name="M:TerrariansConstructLib.Items.BaseTCItem.#ctor(System.Int32)">
@@ -609,6 +736,112 @@
         <member name="M:TerrariansConstructLib.Items.BaseTCItem.SafeUseItem(Terraria.Player)">
             <inheritdoc cref="M:TerrariansConstructLib.Items.BaseTCItem.UseItem(Terraria.Player)"/>
         </member>
+        <member name="M:TerrariansConstructLib.Items.BaseTCItem.SafeOnTileDestroyed(Terraria.Player,System.Int32,System.Int32,TerrariansConstructLib.DataStructures.TileDestructionContext)">
+            <summary>
+            Allows you to customize what happens when this tool destroys a tile.  This method is called clientside.
+            </summary>
+            <param name="player">The player doing the mining</param>
+            <param name="x">The tile X-coordinate</param>
+            <param name="y">The tile Y-coordinate</param>
+            <param name="context">The context.  Contains information about what tool type was used to destroy the tile and how much damage was dealt to destroy the tile</param>
+        </member>
+        <member name="T:TerrariansConstructLib.Items.ItemPart.PartItemFunc">
+            <summary>
+            <see langword="int"/> <paramref name="partID"/>,
+            <see cref="T:Terraria.Item"/> <paramref name="item"/>
+            </summary>
+        </member>
+        <member name="T:TerrariansConstructLib.Items.ItemPart.PartPlayerFunc">
+            <summary>
+            <see langword="int"/> <paramref name="partID"/>,
+            <see cref="T:Terraria.Player"/> <paramref name="player"/>,
+            <see cref="T:Terraria.Item"/> <paramref name="item"/>
+            </summary>
+        </member>
+        <member name="T:TerrariansConstructLib.Items.ItemPart.PartProjectileFunc">
+            <summary>
+            <see langword="int"/> <paramref name="partID"/>,
+            <see cref="T:Terraria.Projectile"/> <paramref name="projectile"/>
+            </summary>
+        </member>
+        <member name="T:TerrariansConstructLib.Items.ItemPart.PartProjectileSpawnFunc">
+            <summary>
+            <see langword="int"/> <paramref name="partID"/>,
+            <see cref="T:Terraria.Projectile"/> <paramref name="projectile"/>,
+            <see cref="T:Terraria.DataStructures.IEntitySource"/> <paramref name="source"/>,
+            <see langword="float"/> <paramref name="X"/>,
+            <see langword="float"/> <paramref name="Y"/>,
+            <see langword="float"/> <paramref name="SpeedX"/>,
+            <see langword="float"/> <paramref name="SpeedY"/>,
+            <see langword="int"/> <paramref name="Type"/>,
+            <see langword="int"/> <paramref name="Damage"/>,
+            <see langword="float"/> <paramref name="KnockBack"/>,
+            <see langword="int"/> <paramref name="Owner"/>,
+            <see langword="float"/> <paramref name="ai0"/>,
+            <see langword="float"/> <paramref name="ai1"/>
+            </summary>
+        </member>
+        <member name="T:TerrariansConstructLib.Items.ItemPart.PartProjectileHitNPCFunc">
+            <summary>
+            <see langword="int"/> <paramref name="partID"/>,
+            <see cref="T:Terraria.Projectile"/> <paramref name="projectile"/>,
+            <see cref="T:Terraria.NPC"/> <paramref name="target"/>,
+            <see langword="int"/> <paramref name="damage"/>,
+            <see langword="float"/> <paramref name="knockback"/>,
+            <see langword="bool"/> <paramref name="crit"/>
+            </summary>
+        </member>
+        <member name="T:TerrariansConstructLib.Items.ItemPart.PartProjectileHitPlayerFunc">
+            <summary>
+            <see langword="int"/> <paramref name="partID"/>,
+            <see cref="T:Terraria.Projectile"/> <paramref name="projectile"/>,
+            <see cref="T:Terraria.Player"/> <paramref name="target"/>,
+            <see langword="int"/> <paramref name="damage"/>,
+            <see langword="bool"/> <paramref name="crit"/>
+            </summary>
+        </member>
+        <member name="T:TerrariansConstructLib.Items.ItemPart.PartModifyWeaponDamageFunc">
+            <summary>
+            <see langword="int"/> <paramref name="partID"/>,
+            <see cref="T:Terraria.Player"/> <paramref name="player"/>,
+            <see cref="T:Terraria.ModLoader.StatModifier"/> <paramref name="damage"/>,
+            <see langword="ref float"/> <paramref name="flat"/>
+            </summary>
+        </member>
+        <member name="T:TerrariansConstructLib.Items.ItemPart.PartModifyWeaponKnockbackFunc">
+            <summary>
+            <see langword="int"/> <paramref name="partID"/>,
+            <see cref="T:Terraria.Player"/> <paramref name="player"/>,
+            <see cref="T:Terraria.ModLoader.StatModifier"/> <paramref name="knockback"/>,
+            <see langword="ref float"/> <paramref name="flat"/>
+            </summary>
+        </member>
+        <member name="T:TerrariansConstructLib.Items.ItemPart.PartModifyWeaponCritFunc">
+            <summary>
+            <see langword="int"/> <paramref name="partID"/>,
+            <see cref="T:Terraria.Player"/> <paramref name="player"/>,
+            <see langword="ref int"/> <paramref name="crit"/>
+            </summary>
+        </member>
+        <member name="T:TerrariansConstructLib.Items.ItemPart.PartToolPowerFunc">
+            <summary>
+            <see langword="int"/> <paramref name="partID"/>,
+            <see cref="T:Terraria.Player"/> <paramref name="player"/>,
+            <see cref="T:Terraria.Item"/> <paramref name="item"/>,
+            <see cref="T:TerrariansConstructLib.DataStructures.TileDestructionContext"/> <paramref name="context"/>,
+            <see langword="ref int"/> <paramref name="power"/>
+            </summary>
+        </member>
+        <member name="T:TerrariansConstructLib.Items.ItemPart.PartTileDestructionFunc">
+            <summary>
+            <see langword="int"/> <paramref name="partID"/>,
+            <see cref="T:Terraria.Player"/> <paramref name="player"/>,
+            <see cref="T:Terraria.Item"/> <paramref name="item"/>,
+            <see langword="int"/> <paramref name="x"/>
+            <see langword="int"/> <paramref name="y"/>
+            <see cref="T:TerrariansConstructLib.DataStructures.TileDestructionContext"/> <paramref name="context"/>
+            </summary>
+        </member>
         <member name="M:TerrariansConstructLib.Items.ItemPart.SetGlobalTooltip(TerrariansConstructLib.Materials.Material,System.Int32,System.String)">
             <summary>
             Sets the global tooltip for item parts using the material, <paramref name="material"/>, and the part ID, <paramref name="partID"/>, to <paramref name="tooltip"/>
@@ -617,13 +850,12 @@
             <param name="partID">The part ID</param>
             <param name="tooltip">The new global tooltip</param>
         </member>
-        <member name="M:TerrariansConstructLib.Items.ItemPart.SetGlobalModifierText(TerrariansConstructLib.Materials.Material,System.Int32,System.String)">
+        <member name="M:TerrariansConstructLib.Items.ItemPart.GetGlobalModifierText(TerrariansConstructLib.Materials.Material,System.Int32)">
             <summary>
-            Sets the global modifier text for item parts using the material, <paramref name="material"/>, and the part ID, <paramref name="partID"/>, to <paramref name="modifierText"/>
+            Gets the global modifier text for item parts using the material, <paramref name="material"/>, and the part ID, <paramref name="partID"/>
             </summary>
             <param name="material">The material</param>
             <param name="partID">The part ID</param>
-            <param name="modifierText">The new global modifier text</param>
         </member>
         <member name="F:TerrariansConstructLib.Items.ItemPart.material">
             <summary>
@@ -650,14 +882,9 @@
             Represents an instance of an item part mold
             </summary>
         </member>
-        <member name="F:TerrariansConstructLib.Materials.Material.type">
+        <member name="P:TerrariansConstructLib.Materials.Material.Type">
             <summary>
             The ID of the item used as the material
-            </summary>
-        </member>
-        <member name="F:TerrariansConstructLib.Materials.Material.rarity">
-            <summary>
-            The rarity of the material
             </summary>
         </member>
         <member name="M:TerrariansConstructLib.Materials.Material.GetItemName">
@@ -718,6 +945,32 @@
             <summary>
             A collection of action builders
             </summary>
+        </member>
+        <member name="T:TerrariansConstructLib.Stats.ItemStat">
+            <summary>
+            An object for displaying stat modifiers in item tooltips
+            </summary>
+        </member>
+        <member name="T:TerrariansConstructLib.Stats.ItemStatCollection">
+            <summary>
+            A collection of stat modifiers used for formatting tooltips
+            </summary>
+        </member>
+        <member name="M:TerrariansConstructLib.Stats.ItemStatCollection.AddStats(System.String,System.String)">
+            <summary>
+            Adds the stat information to the internal dictionary
+            </summary>
+            <param name="baseName">The base name for the stat modifier keys</param>
+            <param name="baseLangKey">The base lang key used for the stat modifier keys</param>
+            <remarks>The two entries added are intended to be used with <see cref="M:TerrariansConstructLib.Stats.ItemStatCollection.Format(System.String,Terraria.ModLoader.StatModifier)"/></remarks>
+        </member>
+        <member name="M:TerrariansConstructLib.Stats.ItemStatCollection.AddStat(System.String,System.String)">
+            <summary>
+            Adds the stat information to the internal dictionary
+            </summary>
+            <param name="name">The name for the stat modifier key</param>
+            <param name="langKey">The lang key used for the stat modifier key</param>
+            <remarks>The entry added is intended to be used with <see cref="M:TerrariansConstructLib.Stats.ItemStatCollection.Format(System.String,System.Single)"/></remarks>
         </member>
         <member name="M:TerrariansConstructLib.Utility.DropItem(Terraria.DataStructures.IEntitySource,Terraria.Item,Microsoft.Xna.Framework.Rectangle)">
             <summary>
