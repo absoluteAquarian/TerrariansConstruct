@@ -6,17 +6,14 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.GameContent.UI.Elements;
-using Terraria.UI;
 using TerrariansConstructLib;
 using TerrariansConstructLib.API.UI;
 using TerrariansConstructLib.Items;
 using TerrariansConstructLib.Registry;
 
 namespace TerrariansConstruct.UI {
-	internal class ForgeUIToolsPage : UIElement {
+	internal class ForgeUIToolsPage : ForgeUIPage {
 		public UIText createWeapon;
-
-		private List<TCUIItemSlot> slots;
 
 		private ForgeUISlotConfiguration[] currentConfiguration;
 

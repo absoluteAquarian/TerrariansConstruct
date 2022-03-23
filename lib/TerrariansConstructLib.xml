@@ -736,6 +736,12 @@
         <member name="M:TerrariansConstructLib.Items.BaseTCItem.SafeUseItem(Terraria.Player)">
             <inheritdoc cref="M:TerrariansConstructLib.Items.BaseTCItem.UseItem(Terraria.Player)"/>
         </member>
+        <member name="M:TerrariansConstructLib.Items.BaseTCItem.SafeOnHitNPC(Terraria.Player,Terraria.NPC,System.Int32,System.Single,System.Boolean)">
+            <inheritdoc cref="M:TerrariansConstructLib.Items.BaseTCItem.OnHitNPC(Terraria.Player,Terraria.NPC,System.Int32,System.Single,System.Boolean)"/>
+        </member>
+        <member name="M:TerrariansConstructLib.Items.BaseTCItem.SafeOnHitPvp(Terraria.Player,Terraria.Player,System.Int32,System.Boolean)">
+            <inheritdoc cref="M:TerrariansConstructLib.Items.BaseTCItem.OnHitPvp(Terraria.Player,Terraria.Player,System.Int32,System.Boolean)"/>
+        </member>
         <member name="M:TerrariansConstructLib.Items.BaseTCItem.SafeOnTileDestroyed(Terraria.Player,System.Int32,System.Int32,TerrariansConstructLib.DataStructures.TileDestructionContext)">
             <summary>
             Allows you to customize what happens when this tool destroys a tile.  This method is called clientside.
@@ -840,6 +846,27 @@
             <see langword="int"/> <paramref name="x"/>
             <see langword="int"/> <paramref name="y"/>
             <see cref="T:TerrariansConstructLib.DataStructures.TileDestructionContext"/> <paramref name="context"/>
+            </summary>
+        </member>
+        <member name="T:TerrariansConstructLib.Items.ItemPart.PartItemHitNPCFunc">
+            <summary>
+            <see langword="int"/> <paramref name="partID"/>,
+            <see cref="T:Terraria.Item"/> <paramref name="item"/>,
+            <see cref="T:Terraria.Player"/> <paramref name="owner"/>,
+            <see cref="T:Terraria.NPC"/> <paramref name="target"/>,
+            <see langword="int"/> <paramref name="damage"/>,
+            <see langword="float"/> <paramref name="knockback"/>,
+            <see langword="bool"/> <paramref name="crit"/>
+            </summary>
+        </member>
+        <member name="T:TerrariansConstructLib.Items.ItemPart.PartItemHitPlayerFunc">
+            <summary>
+            <see langword="int"/> <paramref name="partID"/>,
+            <see cref="T:Terraria.Item"/> <paramref name="item"/>,
+            <see cref="T:Terraria.Player"/> <paramref name="owner"/>,
+            <see cref="T:Terraria.Player"/> <paramref name="target"/>,
+            <see langword="int"/> <paramref name="damage"/>,
+            <see langword="bool"/> <paramref name="crit"/>
             </summary>
         </member>
         <member name="M:TerrariansConstructLib.Items.ItemPart.SetGlobalTooltip(TerrariansConstructLib.Materials.Material,System.Int32,System.String)">

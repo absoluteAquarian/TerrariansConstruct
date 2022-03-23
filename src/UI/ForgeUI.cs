@@ -6,18 +6,21 @@ namespace TerrariansConstruct.UI {
 	internal class ForgeUI : UIState {
 		private UIDragablePanel panel;
 		
+		//public ForgeUIMoldsPage pageMolds;
 		//public ForgeUIPartsPage pageParts;
 		public ForgeUIToolsPage pageTools;
 		//public ForgeUIModifiersPage pageModifiers;
 
-		public UIElement currentPage;
+		public ForgeUIPage currentPage;
 
 		public override void OnInitialize() {
 			//Make the panel
-			panel = new(true, "Parts", "Tools", "Modifiers");
+			panel = new(true, "Molds", "Parts", "Tools", "Modifiers");
 
-			panel.menus["tools"].OnClick += (evt, e) => {
+			panel.menus["Tools"].OnClick += (evt, e) => {
 				if (!object.ReferenceEquals(currentPage, pageTools)) {
+					currentPage.DropAllItems();
+
 					currentPage.Remove();
 
 					panel.Append(pageTools);
@@ -45,6 +48,8 @@ namespace TerrariansConstruct.UI {
 			};
 			header.Top.Set(10, 0);
 			panel.Append(header);
+
+			currentPage = pageTools;
 		}
 	}
 }
