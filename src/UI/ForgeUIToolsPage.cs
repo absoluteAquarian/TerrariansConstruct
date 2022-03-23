@@ -18,7 +18,7 @@ namespace TerrariansConstruct.UI {
 
 		private List<TCUIItemSlot> slots;
 
-		private SlotConfiguration[] currentConfiguration;
+		private ForgeUISlotConfiguration[] currentConfiguration;
 
 		public override void OnInitialize() {
 			//Make the rest of the text
@@ -29,9 +29,37 @@ namespace TerrariansConstruct.UI {
 			Append(createWeapon);
 
 			slots = new();
+
+			//Weapon choices list
+			UIList list = new();
+			list.SetPadding(0);
+			list.Width.Set(220, 0f);
+			list.Height.Set(0, 0.9f);
+			list.Left.Set(20, 0);
+			list.Top.Set(0, 0.05f);
+			Append(list);
+
+			UIScrollbar scroll = new();
+			scroll.Width.Set(20, 0);
+			scroll.Height.Set(0, 0.825f);
+			scroll.Left.Set(0, 0.95f);
+			scroll.Top.Set(0, 0.1f);
+
+			list.SetScrollbar(scroll);
+			list.Append(scroll);
+			list.ListPadding = 10;
+
+			for (int i = 0; i < ItemRegistry.Count; i++) {
+				var option = new ForgeUIToolsOption(i);
+				option.Height.Set(32, 0f);
+				option.Width.Set(0, 0.8f);
+				option.Left.Set(10, 0f);
+
+				list.Add(option);
+			}
 		}
 
-		public void ConfigureSlots(SlotConfiguration[] configurations) {
+		public void ConfigureSlots(ForgeUISlotConfiguration[] configurations) {
 			int[] parts = configurations.Select(s => s.partID).ToArray();
 
 			if (!CoreLibMod.TryFindItem(parts, out int registeredItemID)) {
@@ -39,7 +67,7 @@ namespace TerrariansConstruct.UI {
 					string.Join(", ", parts.Select(PartRegistry.IDToIdentifier)));
 
 				//Default to the sword slots
-				ConfigureSlots(SlotConfiguration.Weapon_Sword);
+				ConfigureSlots(ForgeUISlotConfiguration.Get(CoreMod.RegisteredItems.Sword));
 			}
 
 			Item[] items = slots.Where((s, i) => i < slots.Count - 1).Select(s => s.StoredItem).ToArray();
@@ -98,7 +126,7 @@ namespace TerrariansConstruct.UI {
 			createWeapon.SetText("Crafting: " + CoreLibMod.GetItemName(registeredItemID));
 		}
 
-		internal void OnItemPartChanged(Item item, SlotConfiguration configuration) {
+		internal void OnItemPartChanged(Item item, ForgeUISlotConfiguration configuration) {
 			// If all of the items are valid, display the new constructed item, otherwise clear its slot
 			if (!CheckIfResultIsValid())
 				slots[^1].SetItem(new Item());

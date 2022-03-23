@@ -8,6 +8,7 @@ using TerrariansConstruct.Projectiles;
 using TerrariansConstruct.UI;
 using TerrariansConstructLib;
 using TerrariansConstructLib.API.Stats;
+using TerrariansConstructLib.API.UI;
 using TerrariansConstructLib.Materials;
 
 namespace TerrariansConstruct {
@@ -29,8 +30,42 @@ namespace TerrariansConstruct {
 		}
 
 		public override void PostSetupContent() {
-			// Now that the part types are created, we can use them here
-			SlotConfiguration.Initialize();
+			//   0  1  2  3  4
+			//   5  6  7  8  9
+			//  10 11 12 13 14
+			//  15 16 17 18 19
+			//  20 21 22 23 24
+
+			ForgeUISlotConfiguration.Register(RegisteredItems.Sword,
+				(0,  4, RegisteredParts.WeaponLongSwordBlade),
+				(1, 12, RegisteredParts.WeaponSwordGuard),
+				(2, 20, RegisteredParts.ToolRod));
+
+			ForgeUISlotConfiguration.Register(RegisteredItems.Shortsword,
+				(0,  4, RegisteredParts.WeaponShortSwordBlade),
+				(1, 12, RegisteredParts.WeaponShortSwordGuard),
+				(2, 20, RegisteredParts.ToolRod));
+
+			ForgeUISlotConfiguration.Register(RegisteredItems.Bow,
+				(0,  7, RegisteredParts.WeaponBowHead),
+				(1, 13, RegisteredParts.WeaponBowHead),
+				(2, 16, RegisteredParts.WeaponBowString));
+
+			ForgeUISlotConfiguration.Register(RegisteredItems.Pickaxe,
+				(0, 12, RegisteredParts.ToolBinding),
+				(1,  7, RegisteredParts.ToolPickHead),
+				(2, 13, RegisteredParts.ToolPickHead),
+				(3, 16, RegisteredParts.ToolRod));
+
+			ForgeUISlotConfiguration.Register(RegisteredItems.Axe,
+				(0, 12, RegisteredParts.ToolBinding),
+				(1,  8, RegisteredParts.ToolAxeHead),
+				(2, 16, RegisteredParts.ToolRod));
+
+			ForgeUISlotConfiguration.Register(RegisteredItems.Hammer,
+				(0, 12, RegisteredParts.ToolBinding),
+				(1,  8, RegisteredParts.ToolHammerHead),
+				(2, 16, RegisteredParts.ToolRod));
 		}
 
 		// Method used by the library mod to load the parts

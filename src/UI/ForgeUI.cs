@@ -16,6 +16,18 @@ namespace TerrariansConstruct.UI {
 			//Make the panel
 			panel = new(true, "Parts", "Tools", "Modifiers");
 
+			panel.menus["tools"].OnClick += (evt, e) => {
+				if (!object.ReferenceEquals(currentPage, pageTools)) {
+					currentPage.Remove();
+
+					panel.Append(pageTools);
+
+					pageTools.ConfigureSlots(ForgeUISlotConfiguration.Get(CoreMod.RegisteredItems.Sword));
+
+					currentPage = pageTools;
+				}
+			};
+
 			panel.Width.Set(600, 0);
 			panel.Height.Set(400, 0);
 
