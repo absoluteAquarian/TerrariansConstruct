@@ -2,7 +2,6 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 using TerrariansConstructLib.API;
-using TerrariansConstructLib.DataStructures;
 using TerrariansConstructLib.Items;
 
 namespace TerrariansConstruct.Items.Tools {
@@ -17,13 +16,9 @@ namespace TerrariansConstruct.Items.Tools {
 			//useTime/useAnimation are overridden anyway
 			Item.DefaultToMeleeWeapon(0, ItemUseStyleID.Swing, useTurn: true);
 			Item.pick = GetToolPower();
-			Item.width = 32;
-			Item.height = 32;
+			Item.width = 36;
+			Item.height = 36;
 			Item.UseSound = SoundID.Item1;
-		}
-
-		public override void SafeOnTileDestroyed(Player player, int x, int y, TileDestructionContext context) {
-			
 		}
 	}
 }
