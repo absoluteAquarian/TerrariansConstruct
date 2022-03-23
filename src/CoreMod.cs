@@ -110,18 +110,18 @@ namespace TerrariansConstruct {
 
 		// Method used by the library mod to load the items used by the Forge UI
 		// NOTE: this will be called before your mod's Load hook and before it's registered to ContentInstance<T>!
-		public static void RegisterTCMaterials() {
-			RegisteredMaterials.CopperBar = CoreLibMod.RegisterMaterialStats(RegisteredMaterials.CopperBar, 1,
+		public static void RegisterTCMaterials(Mod mod) {
+			RegisteredMaterials.CopperBar = CoreLibMod.RegisterMaterialStats(ItemID.CopperBar, 1,
 				new HeadPartStats(7, 2.1f, 0, 20, 35, 300),
 				new HandlePartStats(),
 				new ExtraPartStats()
 					.With(CoreLibMod.KnownStatModifiers.ExtraDurability, StatModifier.One));
 
-			RegisteredMaterials.Wood = CoreLibMod.RegisterMaterialStats(RegisteredMaterials.Wood, 1,
+			RegisteredMaterials.Wood = CoreLibMod.RegisterMaterialStats(ItemID.Wood, 1,
 				new HeadPartStats(5, 1f, 0, 28, 28, 180),
 				new HandlePartStats(attackKnockback: new StatModifier(1, 0.9f), durability: new StatModifier(1f, 1.05f)));
 
-			RegisteredMaterials.Cobweb = CoreLibMod.RegisterMaterialStats(RegisteredMaterials.Cobweb, 8,
+			RegisteredMaterials.Cobweb = CoreLibMod.RegisterMaterialStats(ItemID.Cobweb, 8,
 				new ExtraPartStats()
 					.With(CoreLibMod.KnownStatModifiers.BowDrawSpeed, StatModifier.One)
 					.With(CoreLibMod.KnownStatModifiers.BowArrowSpeed, StatModifier.One));

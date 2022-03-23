@@ -43,7 +43,7 @@
             <param name="field">The name of the field</param>
             <param name="instance">The instance.  If the field is <see langword="static"/>, pass <see langword="null"/> for this parameter.</param>
             <param name="obj">The boxed value to set the field to</param>
-            <exception cref="T:System.Exception"></exception>
+            <exception cref="T:System.Exception"/>
         </member>
         <member name="M:TerrariansConstructLib.API.Reflection.ReflectionHelper`1.CreateGetAccessor(System.String,System.String@)">
             <summary>
@@ -310,7 +310,7 @@
             </summary>
             <param name="identifier">The name of the stat</param>
             <param name="stat">The stat value</param>
-            <exception cref="T:System.ArgumentException"></exception>
+            <exception cref="T:System.ArgumentException"/>
         </member>
         <member name="M:TerrariansConstructLib.API.Stats.ExtraPartStats.With(TerrariansConstructLib.API.Stats.ExtraPartStats)">
             <summary>
@@ -441,14 +441,15 @@
             <exception cref="T:System.ArgumentException"/>
             <exception cref="T:System.ArgumentNullException"/>
         </member>
-        <member name="M:TerrariansConstructLib.CoreLibMod.RegisterMaterialStats(TerrariansConstructLib.Materials.Material,System.Int32,TerrariansConstructLib.API.Stats.IPartStats[])">
+        <member name="M:TerrariansConstructLib.CoreLibMod.RegisterMaterialStats(System.Int32,System.Int32,TerrariansConstructLib.API.Stats.IPartStats[])">
             <summary>
             Registers item part stats for a certain material
             </summary>
             <param name="material">The material for the item part stats</param>
             <param name="worth">How much material is needed to create one Shard part</param>
             <param name="stats">The stats for the material</param>
-            <exception cref="T:System.Exception"></exception>
+            <exception cref="T:System.Exception"/>
+            <exception cref="T:System.ArgumentException"/>
         </member>
         <member name="M:TerrariansConstructLib.CoreLibMod.GetKnownMaterials">
             <summary>
@@ -461,7 +462,7 @@
             </summary>
             <param name="partID">The part ID</param>
             <param name="isAxe">Whether the part is an axe part</param>
-            <exception cref="T:System.ArgumentException"></exception>
+            <exception cref="T:System.ArgumentException"/>
         </member>
         <member name="M:TerrariansConstructLib.CoreLibMod.GetPartName(System.Int32)">
             <summary>
@@ -688,8 +689,8 @@
             Creates an instance of a <see cref="T:TerrariansConstructLib.Items.BaseTCItem"/> using the data from a registered item ID
             </summary>
             <param name="registeredItemID">The registered item ID</param>
-            <exception cref="T:System.Exception"></exception>
-            <exception cref="T:System.ArgumentException"></exception>
+            <exception cref="T:System.Exception"/>
+            <exception cref="T:System.ArgumentException"/>
         </member>
         <member name="M:TerrariansConstructLib.Items.BaseTCItem.SafeIsLoadingEnabled(Terraria.ModLoader.Mod)">
             <summary>
