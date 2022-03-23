@@ -1,5 +1,10 @@
 ﻿Mods: {
 	TerrariansConstruct: {
+		Loading: {
+			Parts: "Adding part items"
+			ForgeUI: "Initializing Forge UI"
+		}
+		
 		ModifierText: {
 			Common: {
 				Knockback: "{0:+#;-#;+0}% knockback"

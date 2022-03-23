@@ -1,5 +1,6 @@
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.UI;
 using TerrariansConstruct.Items.Tools;
@@ -19,9 +20,13 @@ namespace TerrariansConstruct {
 		public static CoreMod Instance => ModContent.GetInstance<CoreMod>();
 
 		public override void Load() {
+			CoreLibMod.SetLoadingSubProgressText(Language.GetTextValue("Mods.TerrariansConstruct.Loading.Parts"));
+
 			AddParts();
 
 			if (!Main.dedServ) {
+				CoreLibMod.SetLoadingSubProgressText(Language.GetTextValue("Mods.TerrariansConstruct.Loading.ForgeUI"));
+
 				forgeUIInterface = new();
 				forgeUI = new();
 
