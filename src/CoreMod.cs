@@ -40,6 +40,7 @@ namespace TerrariansConstruct {
 			//  10 11 12 13 14
 			//  15 16 17 18 19
 			//  20 21 22 23 24
+			CoreLibMod.SetLoadingSubProgressText(Language.GetTextValue("Mods.TerrariansConstruct.Loading.SlotConfigurations"));
 
 			ForgeUISlotConfiguration.Register(RegisteredItems.Sword,
 				(0,  4, RegisteredParts.WeaponLongSwordBlade),
@@ -71,6 +72,8 @@ namespace TerrariansConstruct {
 				(0, 12, RegisteredParts.ToolBinding),
 				(1,  8, RegisteredParts.ToolHammerHead),
 				(2, 16, RegisteredParts.ToolRod));
+
+			CoreLibMod.SetLoadingSubProgressText("");
 		}
 
 		// Method used by the library mod to load the parts
