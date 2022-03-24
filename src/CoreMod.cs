@@ -44,6 +44,7 @@ namespace TerrariansConstruct {
 			//  20 21 22 23 24
 			CoreLibMod.SetLoadingSubProgressText(Language.GetTextValue("Mods.TerrariansConstruct.Loading.SlotConfigurations"));
 
+			// TODO: move these to the RegisterItem calls
 			ForgeUISlotConfiguration.Register(RegisteredItems.Sword,
 				(0,  4, RegisteredParts.WeaponLongSwordBlade),
 				(1, 12, RegisteredParts.WeaponSwordGuard),
@@ -54,17 +55,13 @@ namespace TerrariansConstruct {
 				(1, 12, RegisteredParts.WeaponShortSwordGuard),
 				(2, 20, RegisteredParts.ToolRod));
 
-			ForgeUISlotConfiguration.Register(RegisteredItems.Bow,
-				(0,  7, RegisteredParts.WeaponBowHead),
-				(1, 13, RegisteredParts.WeaponBowHead),
-				(2, 16, RegisteredParts.WeaponBowString));
-
 			ForgeUISlotConfiguration.Register(RegisteredItems.Pickaxe,
 				(0, 12, RegisteredParts.ToolBinding),
 				(1,  7, RegisteredParts.ToolPickHead),
 				(2, 13, RegisteredParts.ToolPickHead),
 				(3, 16, RegisteredParts.ToolRod));
 
+			/*
 			ForgeUISlotConfiguration.Register(RegisteredItems.Axe,
 				(0, 12, RegisteredParts.ToolBinding),
 				(1,  8, RegisteredParts.ToolAxeHead),
@@ -74,6 +71,12 @@ namespace TerrariansConstruct {
 				(0, 12, RegisteredParts.ToolBinding),
 				(1,  8, RegisteredParts.ToolHammerHead),
 				(2, 16, RegisteredParts.ToolRod));
+
+			ForgeUISlotConfiguration.Register(RegisteredItems.Bow,
+				(0,  7, RegisteredParts.WeaponBowHead),
+				(1, 13, RegisteredParts.WeaponBowHead),
+				(2, 16, RegisteredParts.WeaponBowString));
+			*/
 
 			CoreLibMod.SetLoadingSubProgressText("");
 		}
