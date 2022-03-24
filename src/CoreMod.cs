@@ -20,6 +20,8 @@ namespace TerrariansConstruct {
 		public static CoreMod Instance => ModContent.GetInstance<CoreMod>();
 
 		public override void Load() {
+			Utility.ForceLoadModHJsonLocalization(this);
+
 			CoreLibMod.SetLoadingSubProgressText(Language.GetTextValue("Mods.TerrariansConstruct.Loading.Parts"));
 
 			AddParts();

@@ -1008,5 +1008,11 @@
             <param name="item">The item instance</param>
             <param name="rectangle">The area where the item will spawn</param>
         </member>
+        <member name="M:TerrariansConstructLib.Utility.ForceLoadModHJsonLocalization(Terraria.ModLoader.Mod)">
+            <summary>
+            Force's the localization for the given mod, <paramref name="mod"/>, to be loaded for use with <seealso cref="T:Terraria.Localization.Language"/>
+            </summary>
+            <param name="mod">The mod instance</param>
+        </member>
     </members>
 </doc>
