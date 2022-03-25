@@ -497,9 +497,19 @@
             The use speed stat for the part, measured in ticks per use
             </summary>
         </member>
-        <member name="F:TerrariansConstructLib.API.Stats.HeadPartStats.toolPower">
+        <member name="F:TerrariansConstructLib.API.Stats.HeadPartStats.pickPower">
             <summary>
-            The tool power for the part
+            The pickaxe power for the part
+            </summary>
+        </member>
+        <member name="F:TerrariansConstructLib.API.Stats.HeadPartStats.axePower">
+            <summary>
+            The axe power for the part, multiplied by 5
+            </summary>
+        </member>
+        <member name="F:TerrariansConstructLib.API.Stats.HeadPartStats.hammerPower">
+            <summary>
+            The hammer power for the part
             </summary>
         </member>
         <member name="F:TerrariansConstructLib.API.Stats.HeadPartStats.durability">
@@ -541,7 +551,7 @@
             <exception cref="T:System.ArgumentOutOfRangeException"/>
             <exception cref="T:System.ArgumentNullException"/>
         </member>
-        <member name="M:TerrariansConstructLib.CoreLibMod.RegisterItem(Terraria.ModLoader.Mod,System.String,System.String,System.String,System.String,System.Single,System.Int32[])">
+        <member name="M:TerrariansConstructLib.CoreLibMod.RegisterItem(Terraria.ModLoader.Mod,System.String,System.String,System.String,System.String,System.Single,TerrariansConstructLib.API.UI.ForgeUISlotConfiguration[])">
             <summary>
             Registers a name and valid <seealso cref="T:TerrariansConstructLib.Items.ItemPart"/> IDs for an item
             </summary>
@@ -551,7 +561,23 @@
             <param name="itemInternalName">The item type that this registered item ID will be applied to.  Use the string you'd use to access the item via <seealso cref="M:Terraria.ModLoader.Mod.Find``1(System.String)"/></param>
             <param name="partVisualsFolder">The folder where the item's part visuals is located, relative to the mod they're from</param>
             <param name="useSpeedMultiplier">A modifier applied to the base use speed generated from the item's parts</param>
-            <param name="validPartIDs">The array of parts that comprise the weapon</param>
+            <param name="configuration">The array of parts that comprise the weapon and their slot contexts in the Forge UI</param>
+            <returns>The ID of the registered item</returns>
+            <exception cref="T:System.Exception"/>
+            <exception cref="T:System.ArgumentException"/>
+            <exception cref="T:System.ArgumentNullException"/>
+        </member>
+        <member name="M:TerrariansConstructLib.CoreLibMod.RegisterItem(Terraria.ModLoader.Mod,System.String,System.String,System.String,System.String,System.Single,System.ValueTuple{System.Int32,System.Int32,System.Int32}[])">
+            <summary>
+            Registers a name and valid <seealso cref="T:TerrariansConstructLib.Items.ItemPart"/> IDs for an item
+            </summary>
+            <param name="mod">The mod that the weapon belongs to</param>
+            <param name="internalName">The internal name of the weapon</param>
+            <param name="name">The default item type name used by <seealso cref="P:TerrariansConstructLib.Items.BaseTCItem.RegisteredItemTypeName"/></param>
+            <param name="itemInternalName">The item type that this registered item ID will be applied to.  Use the string you'd use to access the item via <seealso cref="M:Terraria.ModLoader.Mod.Find``1(System.String)"/></param>
+            <param name="partVisualsFolder">The folder where the item's part visuals is located, relative to the mod they're from</param>
+            <param name="useSpeedMultiplier">A modifier applied to the base use speed generated from the item's parts</param>
+            <param name="configuration">The array of parts that comprise the weapon and their slot contexts in the Forge UI</param>
             <returns>The ID of the registered item</returns>
             <exception cref="T:System.Exception"/>
             <exception cref="T:System.ArgumentException"/>

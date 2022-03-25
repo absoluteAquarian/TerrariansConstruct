@@ -3,7 +3,6 @@
 		Loading: {
 			Parts: "Adding part items"
 			ForgeUI: "Initializing Forge UI"
-			SlotConfigurations: "Initializing Forge UI slot configurations"
 		}
 		
 		ModifierText: {

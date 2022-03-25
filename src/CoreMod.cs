@@ -35,49 +35,6 @@ namespace TerrariansConstruct {
 
 				forgeUI.Activate();
 			}
-		}
-
-		public override void PostSetupContent() {
-			//   0  1  2  3  4
-			//   5  6  7  8  9
-			//  10 11 12 13 14
-			//  15 16 17 18 19
-			//  20 21 22 23 24
-			CoreLibMod.SetLoadingSubProgressText(Language.GetTextValue("Mods.TerrariansConstruct.Loading.SlotConfigurations"));
-
-			// TODO: move these to the RegisterItem calls
-			ForgeUISlotConfiguration.Register(RegisteredItems.Sword,
-				(0,  4, RegisteredParts.WeaponLongSwordBlade),
-				(1, 12, RegisteredParts.WeaponSwordGuard),
-				(2, 20, RegisteredParts.ToolRod));
-
-			ForgeUISlotConfiguration.Register(RegisteredItems.Shortsword,
-				(0,  4, RegisteredParts.WeaponShortSwordBlade),
-				(1, 12, RegisteredParts.WeaponShortSwordGuard),
-				(2, 20, RegisteredParts.ToolRod));
-
-			ForgeUISlotConfiguration.Register(RegisteredItems.Pickaxe,
-				(0, 12, RegisteredParts.ToolBinding),
-				(1,  7, RegisteredParts.ToolPickHead),
-				(2, 13, RegisteredParts.ToolPickHead),
-				(3, 16, RegisteredParts.ToolRod));
-
-			/*
-			ForgeUISlotConfiguration.Register(RegisteredItems.Axe,
-				(0, 12, RegisteredParts.ToolBinding),
-				(1,  8, RegisteredParts.ToolAxeHead),
-				(2, 16, RegisteredParts.ToolRod));
-
-			ForgeUISlotConfiguration.Register(RegisteredItems.Hammer,
-				(0, 12, RegisteredParts.ToolBinding),
-				(1,  8, RegisteredParts.ToolHammerHead),
-				(2, 16, RegisteredParts.ToolRod));
-
-			ForgeUISlotConfiguration.Register(RegisteredItems.Bow,
-				(0,  7, RegisteredParts.WeaponBowHead),
-				(1, 13, RegisteredParts.WeaponBowHead),
-				(2, 16, RegisteredParts.WeaponBowString));
-			*/
 
 			CoreLibMod.SetLoadingSubProgressText("");
 		}
@@ -116,27 +73,60 @@ namespace TerrariansConstruct {
 		public static void RegisterTCItems(Mod mod) {
 			string visualsFolder = "Assets/Visuals/";
 
+			//Forge UI Slots:
+			//   0  1  2  3  4
+			//   5  6  7  8  9
+			//  10 11 12 13 14
+			//  15 16 17 18 19
+			//  20 21 22 23 24
+
 			RegisteredItems.Sword = CoreLibMod.RegisterItem(mod, "Sword", "Sword", nameof(TCSword), visualsFolder + "Sword", 1f,
-				RegisteredParts.WeaponLongSwordBlade, RegisteredParts.WeaponSwordGuard, RegisteredParts.ToolRod);
+				(0,  4, RegisteredParts.WeaponLongSwordBlade),
+				(1, 12, RegisteredParts.WeaponSwordGuard),
+				(2, 20, RegisteredParts.ToolRod));
 
 			RegisteredItems.Shortsword = CoreLibMod.RegisterItem(mod, "Shortsword", "Shortsword", nameof(TCShortsword), visualsFolder + "Shortsword", 0.65f,
-				RegisteredParts.WeaponShortSwordBlade, RegisteredParts.WeaponShortSwordGuard, RegisteredParts.ToolRod);
+				(0,  4, RegisteredParts.WeaponShortSwordBlade),
+				(1, 12, RegisteredParts.WeaponShortSwordGuard),
+				(2, 20, RegisteredParts.ToolRod));
 
 			RegisteredItems.Pickaxe = CoreLibMod.RegisterItem(mod, "Pickaxe", "Pickaxe", nameof(TCPickaxe), visualsFolder + "Pickaxe", 0.8f,
-				RegisteredParts.ToolBinding, RegisteredParts.ToolPickHead, RegisteredParts.ToolPickHead, RegisteredParts.ToolRod);
+				(0, 12, RegisteredParts.ToolBinding),
+				(1,  7, RegisteredParts.ToolPickHead),
+				(2, 13, RegisteredParts.ToolPickHead),
+				(3, 16, RegisteredParts.ToolRod));
+
+			/*
+			ForgeUISlotConfiguration.Register(RegisteredItems.Axe,
+				(0, 12, RegisteredParts.ToolBinding),
+				(1,  8, RegisteredParts.ToolAxeHead),
+				(2, 16, RegisteredParts.ToolRod));
+
+			ForgeUISlotConfiguration.Register(RegisteredItems.Hammer,
+				(0, 12, RegisteredParts.ToolBinding),
+				(1,  8, RegisteredParts.ToolHammerHead),
+				(2, 16, RegisteredParts.ToolRod));
+
+			ForgeUISlotConfiguration.Register(RegisteredItems.Bow,
+				(0,  7, RegisteredParts.WeaponBowHead),
+				(1, 13, RegisteredParts.WeaponBowHead),
+				(2, 16, RegisteredParts.WeaponBowString));
+			*/
 		}
 
 		// Method used by the library mod to load the items used by the Forge UI
 		// NOTE: this will be called before your mod's Load hook and before it's registered to ContentInstance<T>!
 		public static void RegisterTCMaterials(Mod mod) {
+			//head part: damage, knockback, crit, useSpeed, pickaxe power, axe power, hammer power, durability
+
 			RegisteredMaterials.CopperBar = CoreLibMod.RegisterMaterialStats(ItemID.CopperBar, 1, new CopperAbility(),
-				new HeadPartStats(7, 2.1f, 0, 20, 35, 300),
+				new HeadPartStats(7, 2.1f, 0, 20, 35, 35, 35, 300),
 				new HandlePartStats(),
 				new ExtraPartStats()
 					.With(CoreLibMod.KnownStatModifiers.ExtraDurability, StatModifier.One));
 
 			RegisteredMaterials.Wood = CoreLibMod.RegisterMaterialStats(ItemID.Wood, 1, null,
-				new HeadPartStats(5, 1f, 0, 28, 28, 180),
+				new HeadPartStats(5, 1f, 0, 28, 28, 28, 28, 180),
 				new HandlePartStats(attackKnockback: new StatModifier(1, 0.9f), durability: new StatModifier(1f, 1.05f)));
 
 			RegisteredMaterials.Cobweb = CoreLibMod.RegisterMaterialStats(ItemID.Cobweb, 8, null,

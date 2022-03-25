@@ -1,7 +1,7 @@
 ﻿using Terraria.GameContent.UI.Elements;
 using Terraria.UI;
 using TerrariansConstructLib;
-using TerrariansConstructLib.API.UI;
+using TerrariansConstructLib.Registry;
 
 namespace TerrariansConstruct.UI {
 	internal class ForgeUIToolsOption : UIElement {
@@ -11,8 +11,14 @@ namespace TerrariansConstruct.UI {
 			this.registeredItemID = registeredItemID;
 
 			OnClick += (evt, e) => {
-				if (object.ReferenceEquals(CoreMod.forgeUI.currentPage, CoreMod.forgeUI.pageTools))
-					CoreMod.forgeUI.pageTools.ConfigureSlots(ForgeUISlotConfiguration.Get((e as ForgeUIToolsOption)!.registeredItemID));
+				if (object.ReferenceEquals(CoreMod.forgeUI.currentPage, CoreMod.forgeUI.pageTools)) {
+					if (ItemRegistry.TryGetConfiguration((e as ForgeUIToolsOption)!.registeredItemID, out var configuration))
+						CoreMod.forgeUI.pageTools.ConfigureSlots(configuration.ToArray());
+					else {
+						ItemRegistry.TryGetConfiguration(CoreMod.RegisteredItems.Sword, out configuration);
+						CoreMod.forgeUI.pageTools.ConfigureSlots(configuration.ToArray());
+					}
+				}
 			};
 
 			UIText text = new(CoreLibMod.GetItemName(registeredItemID), 0.8f);

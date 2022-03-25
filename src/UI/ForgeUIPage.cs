@@ -10,6 +10,8 @@ namespace TerrariansConstruct.UI {
 	internal class ForgeUIPage : UIElement {
 		protected List<TCUIItemSlot> slots;
 
+		internal ForgeUI parentUI;
+
 		internal virtual void DropAllItems() {
 			const int areaSize = 8;
 			Point tl = (Main.LocalPlayer.Center - new Vector2(areaSize / 2)).ToPoint();

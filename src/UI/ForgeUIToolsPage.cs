@@ -64,7 +64,8 @@ namespace TerrariansConstruct.UI {
 					string.Join(", ", parts.Select(PartRegistry.IDToIdentifier)));
 
 				//Default to the sword slots
-				ConfigureSlots(ForgeUISlotConfiguration.Get(CoreMod.RegisteredItems.Sword));
+				ItemRegistry.TryGetConfiguration(CoreMod.RegisteredItems.Sword, out var configuration);
+				ConfigureSlots(configuration.ToArray());
 			}
 
 			Item[] items = slots.Where((s, i) => i < slots.Count - 1).Select(s => s.StoredItem).ToArray();
@@ -147,8 +148,7 @@ namespace TerrariansConstruct.UI {
 					if (partObjs.Length != tc.PartsCount)
 						throw new Exception("Configuration slots length did not match registered item's PartsCount property");
 
-					for (int i = 0; i < tc.PartsCount; i++)
-						tc[i] = partObjs[i].Clone();
+					tc.InitializeWithParts(partObjs);
 				}
 
 				if (display is null)
