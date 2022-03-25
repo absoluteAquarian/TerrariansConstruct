@@ -3,6 +3,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.UI;
+using TerrariansConstruct.Abilities;
 using TerrariansConstruct.Items.Tools;
 using TerrariansConstruct.Items.Weapons;
 using TerrariansConstruct.Projectiles;
@@ -128,17 +129,17 @@ namespace TerrariansConstruct {
 		// Method used by the library mod to load the items used by the Forge UI
 		// NOTE: this will be called before your mod's Load hook and before it's registered to ContentInstance<T>!
 		public static void RegisterTCMaterials(Mod mod) {
-			RegisteredMaterials.CopperBar = CoreLibMod.RegisterMaterialStats(ItemID.CopperBar, 1,
+			RegisteredMaterials.CopperBar = CoreLibMod.RegisterMaterialStats(ItemID.CopperBar, 1, new CopperAbility(),
 				new HeadPartStats(7, 2.1f, 0, 20, 35, 300),
 				new HandlePartStats(),
 				new ExtraPartStats()
 					.With(CoreLibMod.KnownStatModifiers.ExtraDurability, StatModifier.One));
 
-			RegisteredMaterials.Wood = CoreLibMod.RegisterMaterialStats(ItemID.Wood, 1,
+			RegisteredMaterials.Wood = CoreLibMod.RegisterMaterialStats(ItemID.Wood, 1, null,
 				new HeadPartStats(5, 1f, 0, 28, 28, 180),
 				new HandlePartStats(attackKnockback: new StatModifier(1, 0.9f), durability: new StatModifier(1f, 1.05f)));
 
-			RegisteredMaterials.Cobweb = CoreLibMod.RegisterMaterialStats(ItemID.Cobweb, 8,
+			RegisteredMaterials.Cobweb = CoreLibMod.RegisterMaterialStats(ItemID.Cobweb, 8, null,
 				new ExtraPartStats()
 					.With(CoreLibMod.KnownStatModifiers.BowDrawSpeed, StatModifier.One)
 					.With(CoreLibMod.KnownStatModifiers.BowArrowSpeed, StatModifier.One));

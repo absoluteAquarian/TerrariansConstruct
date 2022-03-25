@@ -19,6 +19,7 @@
     <PackageReference Include="tModLoader.CodeAssist" Version="0.1.*" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Assets\Buffs\" />
     <Folder Include="Assets\Parts\ItemCraftLeftover\Molds\" />
     <Folder Include="Assets\Parts\ToolAxeHead\Molds\" />
     <Folder Include="Assets\Parts\ToolBinding\Molds\" />

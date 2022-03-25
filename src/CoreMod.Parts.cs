@@ -8,10 +8,10 @@ namespace TerrariansConstruct {
 	partial class CoreMod {
 		private void AddParts() {
 			string copperTooltip = Language.GetTextValue("Mods.TerrariansConstruct.PartTooltips.Copper");
-			AddShardPart(RegisteredMaterials.CopperBar, TCPartActions.Copper, copperTooltip);
-			AddHeadParts(RegisteredMaterials.CopperBar, TCPartActions.Copper, copperTooltip);
-			AddHandleParts(RegisteredMaterials.CopperBar, TCPartActions.Copper, copperTooltip);
-			AddExtraParts(RegisteredMaterials.CopperBar, TCPartActions.Copper, copperTooltip, null, null,
+			AddShardPart(RegisteredMaterials.CopperBar, PartActions.NoActions, copperTooltip);
+			AddHeadParts(RegisteredMaterials.CopperBar, PartActions.NoActions, copperTooltip);
+			AddHandleParts(RegisteredMaterials.CopperBar, PartActions.NoActions, copperTooltip);
+			AddExtraParts(RegisteredMaterials.CopperBar, PartActions.NoActions, copperTooltip, null, null,
 				RegisteredParts.ToolBinding,
 				RegisteredParts.WeaponSwordGuard,
 				RegisteredParts.WeaponShortSwordGuard);
@@ -19,10 +19,10 @@ namespace TerrariansConstruct {
 			string woodTooltip = Language.GetTextValue("Mods.TerrariansConstruct.PartTooltips.Wood");
 			string woodModifierText = "Mods.TerrariansConstruct.ModifierText.Common.Knockback";
 			StatModifier woodModifier = new(1f, 0.9f);
-			AddShardPart(RegisteredMaterials.Wood, PartActions.NoActions, woodTooltip, woodModifierText, woodModifier);
-			AddHeadParts(RegisteredMaterials.Wood, PartActions.NoActions, woodTooltip, woodModifierText, woodModifier);
-			AddHandleParts(RegisteredMaterials.Wood, PartActions.NoActions, woodTooltip, woodModifierText, woodModifier);
-			AddExtraParts(RegisteredMaterials.Wood, PartActions.NoActions, woodTooltip, woodModifierText, woodModifier,
+			AddShardPart(RegisteredMaterials.Wood, TCPartActions.Wood, woodTooltip, woodModifierText, woodModifier);
+			AddHeadParts(RegisteredMaterials.Wood, TCPartActions.Wood, woodTooltip, woodModifierText, woodModifier);
+			AddHandleParts(RegisteredMaterials.Wood, TCPartActions.Wood, woodTooltip, woodModifierText, woodModifier);
+			AddExtraParts(RegisteredMaterials.Wood, TCPartActions.Wood, woodTooltip, woodModifierText, woodModifier,
 				RegisteredParts.ToolBinding,
 				RegisteredParts.WeaponSwordGuard,
 				RegisteredParts.WeaponShortSwordGuard);

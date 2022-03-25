@@ -1,0 +1,69 @@
+﻿This document contains information about every material stat, plus other information probably
+
+==== MATERIALS ====
+Wood (ID: 9)
+    Material worth: 1
+
+    Modifier:  Wimpy I
+    Stats:
+        -10% knockback
+            - multiplicative
+        1/800 chance to regenerate 1% durability every game tick
+            - stacks per part
+
+    Head Stats:
+        Base damage: 5
+        Base knockback: 1
+        Base crit: 0%
+        Base use speed: 28 ticks
+        Base tool power: 28%
+        Base durability (head): 180
+
+    Handle Stats:
+        Knockback Modifier: 0.9x
+        Durability Modifier: 1.05x
+
+    Extra Stats:
+        n/a
+
+Copper Bar (ID: 20)
+    Material worth: 1
+
+    Modifier: Energized I
+    Stats:
+        Movement "charges" the item, faster movement = faster charging
+        Press the "Activate Tool Ability" hotkey once the item is "charged" to get a brief boost to mining and attack speed
+
+    Head Stats:
+        Base damage: 7
+        Base knockback: 2.1
+        Base crit: 0%
+        Base use speed: 20 ticks
+        Base tool power: 35%
+        Base durability (head): 300
+
+    Handle Stats:
+        n/a
+
+    Extra Stats:
+        Base durability: +0
+        Durability modifier: 1x
+
+Cobweb (ID: 150)
+    Material worth: 0.125
+
+    Modifier:  n/a
+    Stats:
+        n/a
+
+    Head Stats:
+        n/a
+
+    Handle stats:
+        n/a
+
+    Extra stats:
+        Base bow draw speed: +0
+        Bow draw speed modifier: 1x
+        Base arrow speed: +0
+        Arrow speed modifier: 1x
