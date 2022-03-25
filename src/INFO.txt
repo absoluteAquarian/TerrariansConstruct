@@ -8,7 +8,7 @@ Wood (ID: 9)
     Stats:
         -10% knockback
             - multiplicative
-        1/800 chance to regenerate 1% durability every game tick
+        1/5000 chance to regenerate 1% durability every game tick
             - stacks per part
 
     Head Stats:
