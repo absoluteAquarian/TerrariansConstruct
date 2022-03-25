@@ -33,7 +33,6 @@
     <Folder Include="Assets\Parts\WeaponSwordGuard\Molds\" />
     <Folder Include="Assets\Visuals\Hammer\" />
     <Folder Include="Assets\Visuals\Bow\" />
-    <Folder Include="Assets\Visuals\Pickaxe\" />
     <Folder Include="Assets\Visuals\Axe\" />
     <Folder Include="Assets\Visuals\Shortsword\WeaponShortSwordGuard\" />
     <Folder Include="Assets\Visuals\Shortsword\WeaponShortSwordBlade\" />

@@ -95,6 +95,10 @@ namespace TerrariansConstruct {
 			RegisteredParts.WeaponBowHead =         RegisterPart(mod, 9,     nameof(RegisteredParts.WeaponBowHead),         "Bow Head",         StatType.Head);
 			RegisteredParts.WeaponBowString =       RegisterPart(mod, 5 * 2, nameof(RegisteredParts.WeaponBowString),       "String",           StatType.Extra);
 			RegisteredParts.WeaponShortSwordGuard = RegisterPart(mod, 3 * 2, nameof(RegisteredParts.WeaponShortSwordGuard), "Shortsword Guard", StatType.Extra);
+
+			CoreLibMod.SetToolPartFlags(RegisteredParts.ToolPickHead, isPick: true);
+			CoreLibMod.SetToolPartFlags(RegisteredParts.ToolAxeHead, isAxe: true);
+			CoreLibMod.SetToolPartFlags(RegisteredParts.ToolHammerHead, isHammer: true);
 		}
 
 		private static int RegisterPart(Mod mod, int materialCost, string internalName, string name, StatType type)
@@ -111,13 +115,13 @@ namespace TerrariansConstruct {
 		public static void RegisterTCItems(Mod mod) {
 			string visualsFolder = "Assets/Visuals/";
 
-			RegisteredItems.Sword = CoreLibMod.RegisterItem(mod, "Sword", "Sword", nameof(TCSword), visualsFolder + "Sword",
+			RegisteredItems.Sword = CoreLibMod.RegisterItem(mod, "Sword", "Sword", nameof(TCSword), visualsFolder + "Sword", 1f,
 				RegisteredParts.WeaponLongSwordBlade, RegisteredParts.WeaponSwordGuard, RegisteredParts.ToolRod);
 
-			RegisteredItems.Shortsword = CoreLibMod.RegisterItem(mod, "Shortsword", "Shortsword", nameof(TCShortsword), visualsFolder + "Shortsword",
+			RegisteredItems.Shortsword = CoreLibMod.RegisterItem(mod, "Shortsword", "Shortsword", nameof(TCShortsword), visualsFolder + "Shortsword", 0.65f,
 				RegisteredParts.WeaponShortSwordBlade, RegisteredParts.WeaponShortSwordGuard, RegisteredParts.ToolRod);
 
-			RegisteredItems.Pickaxe = CoreLibMod.RegisterItem(mod, "Pickaxe", "Pickaxe", nameof(TCPickaxe), visualsFolder + "Pickaxe",
+			RegisteredItems.Pickaxe = CoreLibMod.RegisterItem(mod, "Pickaxe", "Pickaxe", nameof(TCPickaxe), visualsFolder + "Pickaxe", 0.8f,
 				RegisteredParts.ToolBinding, RegisteredParts.ToolPickHead, RegisteredParts.ToolPickHead, RegisteredParts.ToolRod);
 		}
 

@@ -10,15 +10,18 @@ namespace TerrariansConstruct.Items.Tools {
 
 		public override bool? SafeIsLoadingEnabled(Mod mod) => true;
 
-		public TCPickaxe(int registeredItemID) : base(registeredItemID) { }
+		public TCPickaxe() : base(CoreMod.RegisteredItems.Pickaxe) { }
 
 		public override void SafeSetDefaults() {
 			//useTime/useAnimation are overridden anyway
 			Item.DefaultToMeleeWeapon(0, ItemUseStyleID.Swing, useTurn: true);
-			Item.pick = GetToolPower();
 			Item.width = 36;
 			Item.height = 36;
 			Item.UseSound = SoundID.Item1;
+		}
+
+		public override void OnInitializedWithParts() {
+			Item.pick = GetPickaxePower();
 		}
 	}
 }

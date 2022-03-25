@@ -20,6 +20,12 @@
             Represents a line of text for a part's modifier
             </summary>
         </member>
+        <member name="P:TerrariansConstructLib.API.ModifierText.LangKeyIsLiteral">
+            <summary>
+            Whether the lang key should be treated as a formatted language key (<see langword="false"/>) or a string literal (<see langword="true"/>)<br/>
+            Defaults to <see langword="false"/>
+            </summary>
+        </member>
         <member name="T:TerrariansConstructLib.API.Reflection.ReflectionHelper`1">
             <summary>
             Reflection helper for accessing <typeparamref name="T"/> fields with an unspecified type
@@ -426,7 +432,7 @@
             <exception cref="T:System.ArgumentOutOfRangeException"/>
             <exception cref="T:System.ArgumentNullException"/>
         </member>
-        <member name="M:TerrariansConstructLib.CoreLibMod.RegisterItem(Terraria.ModLoader.Mod,System.String,System.String,System.String,System.String,System.Int32[])">
+        <member name="M:TerrariansConstructLib.CoreLibMod.RegisterItem(Terraria.ModLoader.Mod,System.String,System.String,System.String,System.String,System.Single,System.Int32[])">
             <summary>
             Registers a name and valid <seealso cref="T:TerrariansConstructLib.Items.ItemPart"/> IDs for an item
             </summary>
@@ -435,6 +441,7 @@
             <param name="name">The default item type name used by <seealso cref="P:TerrariansConstructLib.Items.BaseTCItem.RegisteredItemTypeName"/></param>
             <param name="itemInternalName">The item type that this registered item ID will be applied to.  Use the string you'd use to access the item via <seealso cref="M:Terraria.ModLoader.Mod.Find``1(System.String)"/></param>
             <param name="partVisualsFolder">The folder where the item's part visuals is located, relative to the mod they're from</param>
+            <param name="useSpeedMultiplier">A modifier applied to the base use speed generated from the item's parts</param>
             <param name="validPartIDs">The array of parts that comprise the weapon</param>
             <returns>The ID of the registered item</returns>
             <exception cref="T:System.Exception"/>
@@ -456,12 +463,14 @@
             Gets an enumeration of <seealso cref="T:TerrariansConstructLib.Materials.Material"/> instances that were used to create item parts
             </summary>
         </member>
-        <member name="M:TerrariansConstructLib.CoreLibMod.SetPartAsAxeToolPart(System.Int32,System.Boolean)">
+        <member name="M:TerrariansConstructLib.CoreLibMod.SetToolPartFlags(System.Int32,System.Boolean,System.Boolean,System.Boolean)">
             <summary>
-            Flags or clears a part ID as being an axe part
+            Flags or clears a part ID as being certain tool types
             </summary>
             <param name="partID">The part ID</param>
-            <param name="isAxe">Whether the part is an axe part</param>
+            <param name="isAxe">Whether the part is an axe head part</param>
+            <param name="isPick">Whether the part is a pickaxe head part</param>
+            <param name="isHammer">Whetehr the part is a hammer head part</param>
             <exception cref="T:System.ArgumentException"/>
         </member>
         <member name="M:TerrariansConstructLib.CoreLibMod.GetPartName(System.Int32)">
@@ -713,6 +722,11 @@
         <member name="M:TerrariansConstructLib.Items.BaseTCItem.SafeSetStaticDefaults">
             <inheritdoc cref="M:TerrariansConstructLib.Items.BaseTCItem.SetStaticDefaults"/>
         </member>
+        <member name="M:TerrariansConstructLib.Items.BaseTCItem.OnInitializedWithParts">
+            <summary>
+            Called after setting the parts on the item.  Use this hook to initialize fields in the item such as <seealso cref="F:Terraria.Item.pick"/>
+            </summary>
+        </member>
         <member name="M:TerrariansConstructLib.Items.BaseTCItem.SafeSetDefaults">
             <inheritdoc cref="M:TerrariansConstructLib.Items.BaseTCItem.SetDefaults"/>
         </member>
@@ -730,6 +744,9 @@
         </member>
         <member name="M:TerrariansConstructLib.Items.BaseTCItem.SafeModifyWeaponCrit(Terraria.Player,System.Int32@)">
             <inheritdoc cref="M:TerrariansConstructLib.Items.BaseTCItem.ModifyWeaponCrit(Terraria.Player,System.Int32@)"/>
+        </member>
+        <member name="M:TerrariansConstructLib.Items.BaseTCItem.SafeUseSpeedMultiplier(Terraria.Player)">
+            <inheritdoc cref="M:TerrariansConstructLib.Items.BaseTCItem.UseSpeedMultiplier(Terraria.Player)"/>
         </member>
         <member name="M:TerrariansConstructLib.Items.BaseTCItem.SafeHoldItem(Terraria.Player)">
             <inheritdoc cref="M:TerrariansConstructLib.Items.BaseTCItem.HoldItem(Terraria.Player)"/>
@@ -751,6 +768,12 @@
             <param name="x">The tile X-coordinate</param>
             <param name="y">The tile Y-coordinate</param>
             <param name="context">The context.  Contains information about what tool type was used to destroy the tile and how much damage was dealt to destroy the tile</param>
+        </member>
+        <member name="M:TerrariansConstructLib.Items.BaseTCItem.GetBaseMiningSpeed">
+            <summary>
+            Gets the base mining speed for the item
+            </summary>
+            <returns>Zero if the item isn't a mining tool, the base mining speed otherwise</returns>
         </member>
         <member name="T:TerrariansConstructLib.Items.ItemPart.PartItemFunc">
             <summary>
@@ -968,6 +991,12 @@
         </member>
         <member name="M:TerrariansConstructLib.Projectiles.BaseTCProjectile.SafeAI">
             <inheritdoc cref="M:TerrariansConstructLib.Projectiles.BaseTCProjectile.AI"/>
+        </member>
+        <member name="M:TerrariansConstructLib.Projectiles.BaseTCProjectile.SafePreDraw(Microsoft.Xna.Framework.Color@)">
+            <summary>
+            This hook runs immediately before the projectile is drawn
+            </summary>
+            <param name="lightColor">The color of the light at the projectile's center</param>
         </member>
         <member name="T:TerrariansConstructLib.Registry.PartActions">
             <summary>
