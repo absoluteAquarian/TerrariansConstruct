@@ -11,6 +11,8 @@ using TerrariansConstructLib;
 
 namespace TerrariansConstruct.Tiles {
 	internal class ForgeTile : ModTile {
+		public override string Texture => "TerrariansConstruct/Assets/Tiles/ForgeTile";
+
 		public override void SetStaticDefaults() {
 			uint width = 3;
 			uint height = 2;
@@ -59,6 +61,32 @@ namespace TerrariansConstruct.Tiles {
 			Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, width * 16, height * 16, ModContent.ItemType<ForgeItem>());
 
 			ModContent.GetInstance<ForgeEntity>().Kill(teX, teY);
+		}
+
+		public override void MouseOver(int i, int j) {
+			Tile tile = Main.tile[i, j];
+			Point16 pos = new Point16(i, j) - tile.TileCoord();
+
+			if (Utility.TryGetTileEntity(pos, out ForgeEntity? entity) && entity is not null) {
+				Player player = Main.LocalPlayer;
+
+				player.mouseInterface = true;
+				player.noThrow = 2;
+				player.cursorItemIconEnabled = true;
+				player.cursorItemIconID = ModContent.ItemType<ForgeItem>();
+			}
+		}
+
+		public override bool RightClick(int i, int j) {
+			Tile tile = Main.tile[i, j];
+			Point16 pos = new Point16(i, j) - tile.TileCoord();
+
+			if (Utility.TryGetTileEntity(pos, out ForgeEntity? entity) && entity is not null) {
+				CoreMod.forgeUI.Show(Main.myPlayer, entity);
+				return true;
+			}
+
+			return false;
 		}
 	}
 }

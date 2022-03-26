@@ -20,6 +20,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Assets\Buffs\" />
+    <Folder Include="Assets\Items\" />
+    <Folder Include="Assets\Tiles\" />
     <Folder Include="Assets\Parts\ItemCraftLeftover\Molds\" />
     <Folder Include="Assets\Parts\ToolAxeHead\Molds\" />
     <Folder Include="Assets\Parts\ToolBinding\Molds\" />

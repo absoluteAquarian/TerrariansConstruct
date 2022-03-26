@@ -10,7 +10,6 @@ using TerrariansConstruct.Projectiles;
 using TerrariansConstruct.UI;
 using TerrariansConstructLib;
 using TerrariansConstructLib.API.Stats;
-using TerrariansConstructLib.API.UI;
 using TerrariansConstructLib.Materials;
 
 namespace TerrariansConstruct {
@@ -19,6 +18,8 @@ namespace TerrariansConstruct {
 		internal static ForgeUI forgeUI;
 
 		public static CoreMod Instance => ModContent.GetInstance<CoreMod>();
+
+		public const string RecipeGroup_AnyWorkbench = "TerrariansConstruct:AnyWorkbench";
 
 		public override void Load() {
 			Utility.ForceLoadModHJsonLocalization(this);
@@ -37,6 +38,51 @@ namespace TerrariansConstruct {
 			}
 
 			CoreLibMod.SetLoadingSubProgressText("");
+		}
+
+		public override void AddRecipeGroups() {
+			CoreLibMod.RegisterRecipeGroup(RecipeGroup_AnyWorkbench, ItemID.WorkBench,
+				ItemID.WorkBench,
+				ItemID.BambooWorkbench,
+				ItemID.BlueDungeonWorkBench,
+				ItemID.BoneWorkBench,
+				ItemID.BorealWoodWorkBench,
+				ItemID.CactusWorkBench,
+				ItemID.CrystalWorkbench,
+				ItemID.DynastyWorkBench,
+				ItemID.EbonwoodWorkBench,
+				ItemID.FleshWorkBench,
+				ItemID.FrozenWorkBench,
+				ItemID.GlassWorkBench,
+				ItemID.GoldenWorkbench,
+				ItemID.GothicWorkBench,
+				ItemID.GraniteWorkBench,
+				ItemID.GreenDungeonWorkBench,
+				ItemID.HoneyWorkBench,
+				ItemID.LesionWorkbench,
+				ItemID.LihzahrdWorkBench,
+				ItemID.LivingWoodWorkBench,
+				ItemID.MarbleWorkBench,
+				ItemID.MartianWorkBench,
+				ItemID.MeteoriteWorkBench,
+				ItemID.MushroomWorkBench,
+				ItemID.NebulaWorkbench,
+				ItemID.ObsidianWorkBench,
+				ItemID.PalmWoodWorkBench,
+				ItemID.PearlwoodWorkBench,
+				ItemID.PinkDungeonWorkBench,
+				ItemID.PumpkinWorkBench,
+				ItemID.RichMahoganyWorkBench,
+				ItemID.SandstoneWorkbench,
+				ItemID.ShadewoodWorkBench,
+				ItemID.SkywareWorkbench,
+				ItemID.SlimeWorkBench,
+				ItemID.SolarWorkbench,
+				ItemID.SpiderWorkbench,
+				ItemID.SpookyWorkBench,
+				ItemID.StardustWorkbench,
+				ItemID.SteampunkWorkBench,
+				ItemID.VortexWorkbench);
 		}
 
 		// Method used by the library mod to load the parts

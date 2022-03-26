@@ -52,6 +52,8 @@ namespace TerrariansConstruct.UI {
 				}
 			};
 
+			// TODO: don't drop items when switching pages nor when leaving the UI
+
 			panel.Width.Set(600, 0);
 			panel.Height.Set(400, 0);
 
