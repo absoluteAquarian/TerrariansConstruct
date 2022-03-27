@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
@@ -21,12 +22,40 @@ namespace TerrariansConstruct {
 
 		public const string RecipeGroup_AnyWorkbench = "TerrariansConstruct:AnyWorkbench";
 
+		internal static Dictionary<ushort, int> oreTileToOreItem;
+		internal static bool disableOreTracking;
+
 		public override void Load() {
 			Utility.ForceLoadModHJsonLocalization(this);
 
 			CoreLibMod.SetLoadingSubProgressText(Language.GetTextValue("Mods.TerrariansConstruct.Loading.Parts"));
 
 			AddParts();
+
+			oreTileToOreItem = new() {
+				[TileID.Copper] = ItemID.CopperOre,
+				[TileID.Iron] = ItemID.IronOre,
+				[TileID.Silver] = ItemID.SilverOre,
+				[TileID.Gold] = ItemID.GoldOre,
+				[TileID.Tin] = ItemID.TinOre,
+				[TileID.Lead] = ItemID.LeadOre,
+				[TileID.Tungsten] = ItemID.TungstenOre,
+				[TileID.Platinum] = ItemID.PlatinumOre,
+				[TileID.Demonite] = ItemID.DemoniteOre,
+				[TileID.Crimtane] = ItemID.CrimtaneOre,
+				[TileID.Meteorite] = ItemID.Meteorite,
+				[TileID.Hellstone] = ItemID.Hellstone,
+				[TileID.Cobalt] = ItemID.CobaltOre,
+				[TileID.Mythril] = ItemID.MythrilOre,
+				[TileID.Adamantite] = ItemID.AdamantiteOre,
+				[TileID.Palladium] = ItemID.PalladiumOre,
+				[TileID.Orichalcum] = ItemID.OrichalcumOre,
+				[TileID.Titanium] = ItemID.TitaniumOre,
+				[TileID.Chlorophyte] = ItemID.ChlorophyteOre,
+				[TileID.LunarOre] = ItemID.LunarOre
+			};
+
+			disableOreTracking = false;
 
 			if (!Main.dedServ) {
 				CoreLibMod.SetLoadingSubProgressText(Language.GetTextValue("Mods.TerrariansConstruct.Loading.ForgeUI"));
@@ -38,6 +67,13 @@ namespace TerrariansConstruct {
 			}
 
 			CoreLibMod.SetLoadingSubProgressText("");
+		}
+
+		public override void Unload() {
+			forgeUI = null!;
+			forgeUIInterface = null!;
+
+			oreTileToOreItem = null!;
 		}
 
 		public override void AddRecipeGroups() {
@@ -168,8 +204,7 @@ namespace TerrariansConstruct {
 			RegisteredMaterials.CopperBar = CoreLibMod.RegisterMaterialStats(ItemID.CopperBar, 1, new CopperAbility(),
 				new HeadPartStats(7, 2.1f, pickPower: 35, axePower: 35, hammerPower: 35, durability: 300),
 				new HandlePartStats(),
-				new ExtraPartStats()
-					.With(CoreLibMod.KnownStatModifiers.ExtraDurability, StatModifier.One));
+				new ExtraPartStats());
 
 			RegisteredMaterials.Wood = CoreLibMod.RegisterMaterialStats(ItemID.Wood, 1, null,
 				new HeadPartStats(5, 1f, useSpeed: 28, pickPower: 28, axePower: 28, hammerPower: 28, durability: 180),
@@ -183,6 +218,11 @@ namespace TerrariansConstruct {
 						RegisteredParts.WeaponBowString)
 					.SetValidPartIDs(CoreLibMod.KnownStatModifiers.BowArrowSpeed,
 						RegisteredParts.WeaponBowString));
+
+			RegisteredMaterials.GoldBar = CoreLibMod.RegisterMaterialStats(ItemID.GoldBar, 1, new GoldAbility(),
+				new HeadPartStats(13, 6.5f, 7, useSpeed: 16, pickPower: 55, axePower: 55, hammerPower: 55, durability: 1500),
+				new HandlePartStats(miningSpeed: 1.1f, attackSpeed: new StatModifier(1f, 1.08f), durability: new StatModifier(-100, 0.9f)),
+				new ExtraPartStats());
 		}
 
 		public static class RegisteredAmmo {
@@ -223,6 +263,21 @@ namespace TerrariansConstruct {
 			public static Material CopperBar { get; internal set; }
 			public static Material Wood { get; internal set; }
 			public static Material Cobweb { get; internal set; }
+			public static Material GoldBar { get; internal set; }
+			public static Material IronBar { get; internal set; }
+			public static Material LeadBar { get; internal set; }
+			public static Material PlatinumBar { get; internal set; }
+			public static Material SilverBar { get; internal set; }
+			public static Material StoneBlock { get; internal set; }
+			public static Material TinBar { get; internal set; }
+			public static Material TungstenBar { get; internal set; }
+			public static Material Cloud { get; internal set; }
+			public static Material LeafBlock { get; internal set; }
+			public static Material RainCloud { get; internal set; }
+			public static Material Rope { get; internal set; }
+			public static Material Silk { get; internal set; }
+			public static Material SnowCloud { get; internal set; }
+			public static Material Vine { get; internal set; }
 		}
 	}
 }

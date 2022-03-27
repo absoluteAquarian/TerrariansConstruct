@@ -3,14 +3,16 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.ObjectData;
+using TerrariansConstruct.Systems;
 using TerrariansConstruct.TileEntities;
 using TerrariansConstructLib;
 
 namespace TerrariansConstruct {
 	public enum MessageType {
 		OpenForgeUI,
-		CloseForgeUI
+		CloseForgeUI,
+		SendOrePlacement,
+		SendOreRemoval
 	}
 
 	public static class NetHelper {
@@ -20,6 +22,7 @@ namespace TerrariansConstruct {
 
 			int forgeEntityID;
 			int forgeEntityPlayer;
+			short x, y;
 			switch (msg) {
 				case MessageType.OpenForgeUI:
 					forgeEntityID = reader.ReadUInt16();
@@ -42,6 +45,32 @@ namespace TerrariansConstruct {
 						packet.Send(ignoreClient: whoAmI);
 					} else
 						CoreMod.forgeUI.Hide(forgeEntityPlayer);
+					break;
+				case MessageType.SendOrePlacement:
+					x = reader.ReadInt16();
+					y = reader.ReadInt16();
+
+					OrePlacementTracker.tilesPlacedByPlayers.Add(new(x, y));
+
+					if (Main.netMode == NetmodeID.Server) {
+						var packet = GetPacket(msg);
+						packet.Write(x);
+						packet.Write(y);
+						packet.Send(ignoreClient: whoAmI);
+					}
+					break;
+				case MessageType.SendOreRemoval:
+					x = reader.ReadInt16();
+					y = reader.ReadInt16();
+
+					OrePlacementTracker.tilesPlacedByPlayers.Remove(new(x, y));
+
+					if (Main.netMode == NetmodeID.Server) {
+						var packet = GetPacket(msg);
+						packet.Write(x);
+						packet.Write(y);
+						packet.Send(ignoreClient: whoAmI);
+					}
 					break;
 			}
 		}
@@ -73,6 +102,28 @@ namespace TerrariansConstruct {
 				return;
 
 			NetMessage.SendData(MessageID.TileEntitySharing, number: id, number2: location.X, number3: location.Y);
+		}
+
+		public static void SendOrePlaced(int x, int y) {
+			OrePlacementTracker.tilesPlacedByPlayers.Add(new(x, y));
+
+			if (Main.netMode == NetmodeID.MultiplayerClient) {
+				var packet = GetPacket(MessageType.SendOrePlacement);
+				packet.Write(x);
+				packet.Write(y);
+				packet.Send(ignoreClient: Main.myPlayer);
+			}
+		}
+
+		public static void SendOreRemoval(int x, int y) {
+			OrePlacementTracker.tilesPlacedByPlayers.Remove(new(x, y));
+
+			if (Main.netMode == NetmodeID.MultiplayerClient) {
+				var packet = GetPacket(MessageType.SendOreRemoval);
+				packet.Write(x);
+				packet.Write(y);
+				packet.Send(ignoreClient: Main.myPlayer);
+			}
 		}
 	}
 }

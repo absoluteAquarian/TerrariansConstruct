@@ -16,7 +16,9 @@ Wood (ID: 9)
         Base knockback: 1
         Base crit: 0%
         Base use speed: 28 ticks
-        Base tool power: 28%
+        Base picaxe power: 28%
+        Base axe power: 28%
+        Base hammer power: 28%
         Base durability (head): 180
 
     Handle Stats:
@@ -39,7 +41,9 @@ Copper Bar (ID: 20)
         Base knockback: 2.1
         Base crit: 0%
         Base use speed: 20 ticks
-        Base tool power: 35%
+        Base pickaxe power: 35%
+        Base axe power: 35%
+        Base hammer power: 35%
         Base durability (head): 300
 
     Handle Stats:
@@ -67,3 +71,29 @@ Cobweb (ID: 150)
         Bow draw speed modifier: 1x
         Base arrow speed: +0
         Arrow speed modifier: 1x
+
+Gold Bar (ID: 19)
+    Material worth: 1
+
+    Modifier: n/a
+    Stats:
+        n/a
+
+    Head stats:
+        Base damage: 14
+        Base knockback: 2.1
+        Base crit: 7%
+        Base use speed: 16 ticks
+        Base pickaxe power: 55%
+        Base axe power: 55%
+        Base hammer power: 55%
+        Base durability (head): 1500
+
+    Handle stats:
+        Mining speed modifier: 1.1x
+        Attack speed modifier: 1.08x
+        Base durability (handle): -100
+        Durability modifier: 0.9x
+
+    Extra stats:
+        n/a

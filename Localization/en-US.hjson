@@ -11,12 +11,16 @@
 				Damage: "{0:+#;-#;+0}% damage"
 				MiningSpeed: "{0:+#;-#;+0}% mining speed"
 				ProjectileSpeed: "{0:+#;-#;+0}% velocity"
+				Durability: "{0:+#;-#;+0}x durability"
+				DurabilityAdd: "{0:+#;-#;+0} base durability"
+				AttackSpeed: "{0:+#;-#;+0}% attack speed"
 			}
 		}
 
 		PartTooltips: {
 			Copper: "[c/ff6000:Energized I]"
 			Wood: "[c/996633:Ecological]"
+			Gold: "[c/dddd00:Lucky I]"
 		}
 	}
 }

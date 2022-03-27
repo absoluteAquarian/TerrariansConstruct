@@ -1,54 +1,90 @@
 ﻿using Terraria.Localization;
-using Terraria.ModLoader;
 using TerrariansConstructLib;
+using TerrariansConstructLib.API;
+using TerrariansConstructLib.API.Stats;
 using TerrariansConstructLib.Materials;
 using TerrariansConstructLib.Registry;
 
 namespace TerrariansConstruct {
 	partial class CoreMod {
 		private void AddParts() {
+			// === COPPER ===
 			string copperTooltip = Language.GetTextValue("Mods.TerrariansConstruct.PartTooltips.Copper");
 			AddShardPart(RegisteredMaterials.CopperBar, PartActions.NoActions, copperTooltip);
 			AddHeadParts(RegisteredMaterials.CopperBar, PartActions.NoActions, copperTooltip);
 			AddHandleParts(RegisteredMaterials.CopperBar, PartActions.NoActions, copperTooltip);
-			AddExtraParts(RegisteredMaterials.CopperBar, PartActions.NoActions, copperTooltip, null, null,
-				RegisteredParts.ToolBinding,
-				RegisteredParts.WeaponSwordGuard,
-				RegisteredParts.WeaponShortSwordGuard);
+			AddExtraParts(RegisteredMaterials.CopperBar, PartActions.NoActions, copperTooltip,
+				new[] {
+					RegisteredParts.ToolBinding,
+					RegisteredParts.WeaponSwordGuard,
+					RegisteredParts.WeaponShortSwordGuard
+				},
+				null);
 
+			// === WOOD ===
 			string woodTooltip = Language.GetTextValue("Mods.TerrariansConstruct.PartTooltips.Wood");
-			string woodModifierText = "Mods.TerrariansConstruct.ModifierText.Common.Knockback";
-			StatModifier woodModifier = new(1f, 0.9f);
-			AddShardPart(RegisteredMaterials.Wood, TCPartActions.Wood, woodTooltip, woodModifierText, woodModifier);
-			AddHeadParts(RegisteredMaterials.Wood, TCPartActions.Wood, woodTooltip, woodModifierText, woodModifier);
-			AddHandleParts(RegisteredMaterials.Wood, TCPartActions.Wood, woodTooltip, woodModifierText, woodModifier);
-			AddExtraParts(RegisteredMaterials.Wood, TCPartActions.Wood, woodTooltip, woodModifierText, woodModifier,
-				RegisteredParts.ToolBinding,
-				RegisteredParts.WeaponSwordGuard,
-				RegisteredParts.WeaponShortSwordGuard);
+			HandlePartStats woodHandleStats = RegisteredMaterials.Wood.GetStat<HandlePartStats>(StatType.Handle)!;
 
+			ModifierText.CreationContext[] woodModifierTexts = new ModifierText.CreationContext[] {
+				new("Mods.TerrariansConstruct.ModifierText.Common.Knockback", woodHandleStats.attackKnockback),
+				new("Mods.TerrariansConstruct.ModifierText.Common.Durability", woodHandleStats.durability)
+			};
+			AddShardPart(RegisteredMaterials.Wood, TCPartActions.Wood, woodTooltip, woodModifierTexts);
+			AddHeadParts(RegisteredMaterials.Wood, TCPartActions.Wood, woodTooltip, woodModifierTexts);
+			AddHandleParts(RegisteredMaterials.Wood, TCPartActions.Wood, woodTooltip, woodModifierTexts);
+			AddExtraParts(RegisteredMaterials.Wood, TCPartActions.Wood, woodTooltip,
+				new[] {
+					RegisteredParts.ToolBinding,
+					RegisteredParts.WeaponSwordGuard,
+					RegisteredParts.WeaponShortSwordGuard
+				},
+				woodModifierTexts);
+
+			// === COBWEB ===
 			CoreLibMod.AddPart(this, RegisteredMaterials.Cobweb, RegisteredParts.WeaponBowString, PartActions.NoActions, null, null);
+
+			// === GOLD ===
+			string goldTooltip = Language.GetTextValue("Mods.TerrariansConstruct.PartTooltips.Gold");
+			HandlePartStats goldHandleStats = RegisteredMaterials.GoldBar.GetStat<HandlePartStats>(StatType.Handle)!;
+
+			ModifierText.CreationContext[] goldModifierTexts = new ModifierText.CreationContext[] {
+				new("Mods.TerrariansConstruct.ModifierText.Common.MiningSpeed", new(1f, goldHandleStats.miningSpeed)),
+				new("Mods.TerrariansConstruct.ModifierText.Common.AttackSpeed", goldHandleStats.attackSpeed),
+				new("Mods.TerrariansConstruct.ModifierText.Common.Durability", goldHandleStats.durability, useMultiplicativeOnly: true),
+				new("Mods.TerrariansConstruct.ModifierText.Common.DurabilityAdd", goldHandleStats.durability, useAdditiveOnly: true)
+			};
+
+			AddShardPart(RegisteredMaterials.GoldBar, PartActions.NoActions, goldTooltip, goldModifierTexts);
+			AddHeadParts(RegisteredMaterials.GoldBar, PartActions.NoActions, goldTooltip, goldModifierTexts);
+			AddHandleParts(RegisteredMaterials.GoldBar, PartActions.NoActions, goldTooltip, goldModifierTexts);
+			AddExtraParts(RegisteredMaterials.GoldBar, PartActions.NoActions, goldTooltip,
+				new[] {
+					RegisteredParts.ToolBinding,
+					RegisteredParts.WeaponSwordGuard,
+					RegisteredParts.WeaponShortSwordGuard
+				},
+				goldModifierTexts);
 		}
 
-		private void AddShardPart(Material material, ItemPartActionsBuilder commonActions, string? commonTooltip, string? modifierTextLangKey = null, StatModifier? modifierStat = null)
-			=> CoreLibMod.AddPart(this, material, CoreLibMod.RegisteredParts.Shard, commonActions, commonTooltip, modifierTextLangKey, modifierStat);
+		private void AddShardPart(Material material, ItemPartActionsBuilder commonActions, string? commonTooltip, params ModifierText.CreationContext[]? modifierText)
+			=> CoreLibMod.AddPart(this, material, CoreLibMod.RegisteredParts.Shard, commonActions, commonTooltip, modifierText);
 
-		private void AddHeadParts(Material material, ItemPartActionsBuilder commonActions, string? commonTooltip, string? modifierTextLangKey = null, StatModifier? modifierStat = null) {
-			CoreLibMod.AddPart(this, material, RegisteredParts.ToolPickHead, commonActions, commonTooltip, modifierTextLangKey, modifierStat);
-			CoreLibMod.AddPart(this, material, RegisteredParts.ToolAxeHead, commonActions, commonTooltip, modifierTextLangKey, modifierStat);
-			CoreLibMod.AddPart(this, material, RegisteredParts.ToolHammerHead, commonActions, commonTooltip, modifierTextLangKey, modifierStat);
-			CoreLibMod.AddPart(this, material, RegisteredParts.WeaponLongSwordBlade, commonActions, commonTooltip, modifierTextLangKey, modifierStat);
-			CoreLibMod.AddPart(this, material, RegisteredParts.WeaponShortSwordBlade, commonActions, commonTooltip, modifierTextLangKey, modifierStat);
-			CoreLibMod.AddPart(this, material, RegisteredParts.WeaponBowHead, commonActions, commonTooltip, modifierTextLangKey, modifierStat);
+		private void AddHeadParts(Material material, ItemPartActionsBuilder commonActions, string? commonTooltip, params ModifierText.CreationContext[]? modifierText) {
+			CoreLibMod.AddPart(this, material, RegisteredParts.ToolPickHead, commonActions, commonTooltip,  modifierText);
+			CoreLibMod.AddPart(this, material, RegisteredParts.ToolAxeHead, commonActions, commonTooltip,  modifierText);
+			CoreLibMod.AddPart(this, material, RegisteredParts.ToolHammerHead, commonActions, commonTooltip,  modifierText);
+			CoreLibMod.AddPart(this, material, RegisteredParts.WeaponLongSwordBlade, commonActions, commonTooltip,  modifierText);
+			CoreLibMod.AddPart(this, material, RegisteredParts.WeaponShortSwordBlade, commonActions, commonTooltip,  modifierText);
+			CoreLibMod.AddPart(this, material, RegisteredParts.WeaponBowHead, commonActions, commonTooltip,  modifierText);
 		}
 
-		private void AddHandleParts(Material material, ItemPartActionsBuilder commonActions, string? commonTooltip, string? modifierTextLangKey = null, StatModifier? modifierStat = null) {
-			CoreLibMod.AddPart(this, material, RegisteredParts.ToolRod, commonActions, commonTooltip, modifierTextLangKey, modifierStat);
+		private void AddHandleParts(Material material, ItemPartActionsBuilder commonActions, string? commonTooltip, params ModifierText.CreationContext[]? modifierText) {
+			CoreLibMod.AddPart(this, material, RegisteredParts.ToolRod, commonActions, commonTooltip,  modifierText);
 		}
 
-		private void AddExtraParts(Material material, ItemPartActionsBuilder commonActions, string? commonTooltip, string? modifierTextLangKey, StatModifier? modifierStat, params int[] parts) {
+		private void AddExtraParts(Material material, ItemPartActionsBuilder commonActions, string? commonTooltip, int[] parts, params ModifierText.CreationContext[]? modifierText) {
 			for (int i = 0; i < parts.Length; i++)
-				CoreLibMod.AddPart(this, material, parts[i], commonActions, commonTooltip, modifierTextLangKey, modifierStat);
+				CoreLibMod.AddPart(this, material, parts[i], commonActions, commonTooltip, modifierText);
 		}
 	}
 }

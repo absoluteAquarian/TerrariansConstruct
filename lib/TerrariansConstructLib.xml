@@ -97,6 +97,16 @@
             <param name="item">The item instance</param>
             <param name="multiplier">The multiplier</param>
         </member>
+        <member name="M:TerrariansConstructLib.Abilities.BaseAbility.OnTileDestroyed(Terraria.Player,TerrariansConstructLib.Items.BaseTCItem,System.Int32,System.Int32,TerrariansConstructLib.DataStructures.TileDestructionContext)">
+            <summary>
+            This hook runs after the player has destroyed a tile using a <see cref="T:TerrariansConstructLib.Items.BaseTCItem"/> item
+            </summary>
+            <param name="player">The player doing the mining</param>
+            <param name="item">The item used to destroy the tile</param>
+            <param name="x">The tile X-coordinate</param>
+            <param name="y">The tile Y-coordinate</param>
+            <param name="context">The context.  Contains information about what tool type was used to destroy the tile and how much damage was dealt to destroy the tile</param>
+        </member>
         <member name="M:TerrariansConstructLib.Abilities.BaseAbility.SaveData(Terraria.ModLoader.IO.TagCompound)">
             <summary>
             Allows you to save custom data for this ability.<br/>
@@ -649,15 +659,6 @@
             <param name="partID">The part ID</param>
             <returns>The global modifier text</returns>
         </member>
-        <member name="M:TerrariansConstructLib.CoreLibMod.GetPartModifierStatOrDefault(TerrariansConstructLib.Materials.Material,System.Int32,Terraria.ModLoader.StatModifier)">
-            <summary>
-            Gets the global modifier text's stat of an <seealso cref="T:TerrariansConstructLib.Items.ItemPart"/>, or a default value if there is none
-            </summary>
-            <param name="material">The material</param>
-            <param name="partID">The part ID</param>
-            <param name="defaultValue">The value to use if the part does not have a global modifier text instance</param>
-            <returns>The global modifier stat, or the default value if it's not defined</returns>
-        </member>
         <member name="M:TerrariansConstructLib.CoreLibMod.SetGlobalPartModifierText(TerrariansConstructLib.Materials.Material,System.Int32,System.String)">
             <summary>
             Sets the global modifier text of an <seealso cref="T:TerrariansConstructLib.Items.ItemPart"/>
@@ -782,7 +783,7 @@
             <exception cref="T:System.Exception"/>
             <exception cref="T:System.ArgumentException"/>
         </member>
-        <member name="M:TerrariansConstructLib.CoreLibMod.AddPart(Terraria.ModLoader.Mod,TerrariansConstructLib.Materials.Material,System.Int32,TerrariansConstructLib.ItemPartActionsBuilder,System.String,System.String,System.Nullable{Terraria.ModLoader.StatModifier})">
+        <member name="M:TerrariansConstructLib.CoreLibMod.AddPart(Terraria.ModLoader.Mod,TerrariansConstructLib.Materials.Material,System.Int32,TerrariansConstructLib.ItemPartActionsBuilder,System.String,TerrariansConstructLib.API.ModifierText.CreationContext[])">
             <summary>
             Registers a part item for the material, <paramref name="material"/>
             </summary>
@@ -791,8 +792,7 @@
             <param name="partID">The part ID</param>
             <param name="actions">The actions</param>
             <param name="tooltip">The tooltip for this part.  Can be modified via <seealso cref="M:TerrariansConstructLib.Items.ItemPart.SetGlobalTooltip(TerrariansConstructLib.Materials.Material,System.Int32,System.String)"/></param>
-            <param name="modifierTextLangKey">The lang key for the <see cref="T:TerrariansConstructLib.API.ModifierText"/>.  If <see langword="null"/>, the item part will have no modifier text.</param>
-            <param name="modifierStat">The <seealso cref="T:Terraria.ModLoader.StatModifier"/> for the modifier text.  If <paramref name="modifierTextLangKey"/> is <see langword="null"/>, this parameter is ignored.  Defaults to <seealso cref="F:Terraria.ModLoader.StatModifier.One"/></param>
+            <param name="modifierText">A collection of creation contexts for this part's modifier text.  If <see langword="null"/>, the part will have no modifier text.</param>
         </member>
         <member name="F:TerrariansConstructLib.DataStructures.TileDestructionContext.pickaxe">
             <summary>
@@ -817,6 +817,11 @@
         <member name="F:TerrariansConstructLib.DataStructures.TileDestructionContext.damage">
             <summary>
             The calculated damage used to destroy the tile
+            </summary>
+        </member>
+        <member name="F:TerrariansConstructLib.DataStructures.TileDestructionContext.type">
+            <summary>
+            The ID of the tile that was destroyed
             </summary>
         </member>
         <member name="T:TerrariansConstructLib.Items.BaseTCItem">
