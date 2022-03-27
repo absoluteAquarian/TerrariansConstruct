@@ -107,6 +107,11 @@
             <param name="y">The tile Y-coordinate</param>
             <param name="context">The context.  Contains information about what tool type was used to destroy the tile and how much damage was dealt to destroy the tile</param>
         </member>
+        <member name="M:TerrariansConstructLib.Abilities.BaseAbility.CanLoseDurability(Terraria.Player,TerrariansConstructLib.Items.BaseTCItem)">
+            <summary>
+            Return false in this hook to prevent the <paramref name="item"/> from losing durability
+            </summary>
+        </member>
         <member name="M:TerrariansConstructLib.Abilities.BaseAbility.SaveData(Terraria.ModLoader.IO.TagCompound)">
             <summary>
             Allows you to save custom data for this ability.<br/>
@@ -143,6 +148,27 @@
             <summary>
             Whether the lang key should be treated as a formatted language key (<see langword="false"/>) or a string literal (<see langword="true"/>)<br/>
             Defaults to <see langword="false"/>
+            </summary>
+        </member>
+        <member name="T:TerrariansConstructLib.API.Numbers.Roman">
+            <summary>
+            A helper class for converting positive, non-zero integers into their Roman number equivalents, using various formats<br/>
+            Only numbers &gt; 0 and &lt;= 3999 are supported
+            </summary>
+        </member>
+        <member name="F:TerrariansConstructLib.API.Numbers.RomanFormat.SubtractiveConventional">
+            <summary>
+            Subtractive format.  IX = 9, XLIX = 49, CMXCIX = 999
+            </summary>
+        </member>
+        <member name="F:TerrariansConstructLib.API.Numbers.RomanFormat.SubtractiveNonConventional">
+            <summary>
+            Subtractive format.  IX = 9, IL = 49, IM = 999
+            </summary>
+        </member>
+        <member name="F:TerrariansConstructLib.API.Numbers.RomanFormat.Additive">
+            <summary>
+            Additive format.  XVIIII = 9, XXXXVIIII = 49, DCCCCXXXXVIIII = 999
             </summary>
         </member>
         <member name="T:TerrariansConstructLib.API.Reflection.ReflectionHelper`1">
@@ -531,6 +557,32 @@
             <summary>
             Which type of stats an item part ID should use
             </summary>
+        </member>
+        <member name="T:TerrariansConstructLib.API.Modifiers.BaseModifier">
+            <summary>
+            The base class for a modifier that can be applied to a Terrarians' Construct item
+            </summary>
+        </member>
+        <member name="P:TerrariansConstructLib.API.Modifiers.BaseModifier.MaxTier">
+            <summary>
+            The highest tier that can be obtained from this modifier<br/>
+            Making this property return <c>1</c> will prevent the roman numeral from appearing beside its name
+            </summary>
+        </member>
+        <member name="P:TerrariansConstructLib.API.Modifiers.BaseModifier.TooltipColor">
+            <summary>
+            The colour for the modifier's name when in a tooltip
+            </summary>
+        </member>
+        <member name="M:TerrariansConstructLib.API.Modifiers.BaseModifier.CanAcceptItemsForUpgrade(System.Int32,System.Int32[],System.Int32[],System.Int32@,System.Int32@)">
+            <summary>
+            Return whether the item types defined in <paramref name="items"/> can be used to upgrade this modifier at the current tier, <paramref name="currentTier"/>
+            </summary>
+            <param name="currentTier">The current tier of the modifier</param>
+            <param name="items">The item IDs that are in the Forge UI slots, starting with the topmost slot and moving clockwise</param>
+            <param name="stacks">The item stacks for the items in <paramref name="items"/></param>
+            <param name="upgradeCurrent">The current progress toward the next tier.  Once <paramref name="currentTier"/> surpasses <paramref name="upgradeTarget"/>, the modifier is upgraded to the next tier</param>
+            <param name="upgradeTarget">The target progress needed to upgrade the modifier to the next tier</param>
         </member>
         <member name="M:TerrariansConstructLib.CoreLibMod.RegisterPart(Terraria.ModLoader.Mod,System.String,System.String,System.Int32,System.Boolean,System.String,TerrariansConstructLib.API.Stats.StatType)">
             <summary>
@@ -1043,6 +1095,13 @@
             <see cref="T:Terraria.Item"/> <paramref name="item"/>,
             <see cref="T:Terraria.Player"/> <paramref name="player"/>,
             <see langword="ref float"/> <paramref name="multiplier"/>
+            </summary>
+        </member>
+        <member name="T:TerrariansConstructLib.Items.ItemPart.PartCanLoseDurability">
+            <summary>
+            <see langword="int"/> <paramref name="partID"/>,
+            <see cref="T:Terraria.Player"/> <paramref name="player"/>,
+            <see cref="T:Terraria.Item"/> <paramref name="item"/>
             </summary>
         </member>
         <member name="M:TerrariansConstructLib.Items.ItemPart.SetGlobalTooltip(TerrariansConstructLib.Materials.Material,System.Int32,System.String)">

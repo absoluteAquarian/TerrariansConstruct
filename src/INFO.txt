@@ -4,7 +4,7 @@
 Wood (ID: 9)
     Material worth: 1
 
-    Modifier:  Wimpy I
+    Modifier:  Ecological
     Stats:
         -10% knockback
             - multiplicative
@@ -31,7 +31,7 @@ Wood (ID: 9)
 Copper Bar (ID: 20)
     Material worth: 1
 
-    Modifier: Energized I
+    Modifier: Energized
     Stats:
         Movement "charges" the item, faster movement = faster charging
         Press the "Activate Tool Ability" hotkey once the item is "charged" to get a brief boost to mining and attack speed
@@ -75,9 +75,9 @@ Cobweb (ID: 150)
 Gold Bar (ID: 19)
     Material worth: 1
 
-    Modifier: n/a
+    Modifier: Lucky
     Stats:
-        n/a
+        Naturally-placed ores have a slight chance to have their ores be duplicated when mined
 
     Head stats:
         Base damage: 14
@@ -94,6 +94,31 @@ Gold Bar (ID: 19)
         Attack speed modifier: 1.08x
         Base durability (handle): -100
         Durability modifier: 0.9x
+
+    Extra stats:
+        n/a
+
+Iron Bar (ID: 22)
+    Material worth: 1
+
+    Modifier: Stiff
+    Stats:
+        n/a
+
+    Head stats:
+        Base damage: 10
+        Base knockback: 3.3
+        Base crit: 0%
+        Base use speed: 22 ticks
+        Base pickaxe power: 40%
+        Base axe power: 40%
+        Base hammer power: 40%
+        Base durability (head): 650
+
+    Handle Stats:
+        Mining speed modifier: 0.95x
+        Attack speed modifier: 0.95x
+        Attack knockback modifier: 1.4x
 
     Extra stats:
         n/a

@@ -64,6 +64,26 @@ namespace TerrariansConstruct {
 					RegisteredParts.WeaponShortSwordGuard
 				},
 				goldModifierTexts);
+
+			// === IRON ===
+			string ironTooltip = Language.GetTextValue("Mods.TerrariansConstruct.PartTooltips.Iron");
+			HandlePartStats ironHandleStats = RegisteredMaterials.IronBar.GetStat<HandlePartStats>(StatType.Handle)!;
+
+			ModifierText.CreationContext[] ironModifierTexts = new ModifierText.CreationContext[] {
+				new("Mods.TerrariansConstruct.ModifierText.Common.MiningSpeed", new(1f, ironHandleStats.miningSpeed)),
+				new("Mods.TerrariansConstruct.ModifierText.Common.AttackSpeed", ironHandleStats.attackSpeed),
+				new("Mods.TerrariansConstruct.ModifierText.Common.Knockback", ironHandleStats.attackKnockback),
+			};
+			AddShardPart(RegisteredMaterials.IronBar, PartActions.NoActions, ironTooltip, ironModifierTexts);
+			AddHeadParts(RegisteredMaterials.IronBar, PartActions.NoActions, ironTooltip, ironModifierTexts);
+			AddHandleParts(RegisteredMaterials.IronBar, PartActions.NoActions, ironTooltip, ironModifierTexts);
+			AddExtraParts(RegisteredMaterials.IronBar, PartActions.NoActions, ironTooltip,
+				new[] {
+					RegisteredParts.ToolBinding,
+					RegisteredParts.WeaponSwordGuard,
+					RegisteredParts.WeaponShortSwordGuard
+				},
+				ironModifierTexts);
 		}
 
 		private void AddShardPart(Material material, ItemPartActionsBuilder commonActions, string? commonTooltip, params ModifierText.CreationContext[]? modifierText)

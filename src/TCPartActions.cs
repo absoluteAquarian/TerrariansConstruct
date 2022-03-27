@@ -16,6 +16,7 @@ namespace TerrariansConstruct {
 				int max = tc.GetMaxDurability();
 
 				tc.TryIncreaseDurability(Math.Max(1, max / 100));
-			});
+			})
+			.MarkAsReadonly();
 	}
 }

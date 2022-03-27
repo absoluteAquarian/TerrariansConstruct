@@ -18,9 +18,10 @@
 		}
 
 		PartTooltips: {
-			Copper: "[c/ff6000:Energized I]"
-			Wood: "[c/996633:Ecological]"
-			Gold: "[c/dddd00:Lucky I]"
+			Copper: "[c/ff6000:Energized]"
+			Wood: "[c/996633:Ecological {R}]"
+			Gold: "[c/dddd00:Lucky]"
+			Iron: "[c/bbbb99:Stiff]"
 		}
 	}
 }
