@@ -52,20 +52,11 @@ namespace TerrariansConstruct {
 			return packet;
 		}
 
-		public static int PlaceTileEntity<T>(int x, int y, int tileType, int style, int alternate = 0) where T : ModTileEntity {
+		public static int PlaceTileEntity<T>(int x, int y, uint width, uint height) where T : ModTileEntity {
 			var entity = ModContent.GetInstance<T>();
 
 			if (Main.netMode == NetmodeID.MultiplayerClient) {
-				int width = 1, height = 1;
-				if (TileObjectData.GetTileData(tileType, style, alternate) is TileObjectData obj) {
-					width = obj.Width;
-					height = obj.Height;
-
-					x -= obj.Origin.X;
-					y -= obj.Origin.Y;
-				}
-
-				NetMessage.SendTileSquare(Main.myPlayer, x, y, width, height);
+				NetMessage.SendTileSquare(Main.myPlayer, x, y, (int)width, (int)height);
 				NetMessage.SendData(MessageID.TileEntityPlacement, number: x, number2: y, number3: entity.Type);
 
 				return -1;

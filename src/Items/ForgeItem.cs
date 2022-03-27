@@ -7,7 +7,7 @@ namespace TerrariansConstruct.Items {
 		public override string Texture => "TerrariansConstruct/Assets/Items/ForgeItem";
 
 		public override void SetStaticDefaults() {
-			DisplayName.SetDefault("Forge");
+			DisplayName.SetDefault("Tinker Table");
 			Tooltip.SetDefault("The crafting station for creating Terrarians' Construct item parts and constructed items.\n" +
 				"Right click once placed to open the Forge UI, where said crafting is performed.");
 		}

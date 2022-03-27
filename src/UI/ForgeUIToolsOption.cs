@@ -1,4 +1,5 @@
-﻿using Terraria.GameContent.UI.Elements;
+﻿using Terraria.GameContent;
+using Terraria.GameContent.UI.Elements;
 using Terraria.UI;
 using TerrariansConstructLib;
 using TerrariansConstructLib.Registry;
@@ -10,7 +11,14 @@ namespace TerrariansConstruct.UI {
 		public ForgeUIToolsOption(int registeredItemID) {
 			this.registeredItemID = registeredItemID;
 
-			OnClick += (evt, e) => {
+			SetPadding(0);
+
+			UIPanel panel = new();
+			panel.Width.Set(0, 1f);
+			panel.Height.Set(0, 1f);
+			Append(panel);
+
+			panel.OnClick += (evt, e) => {
 				if (object.ReferenceEquals(CoreMod.forgeUI.currentPage, CoreMod.forgeUI.pageTools)) {
 					if (ItemRegistry.TryGetConfiguration((e as ForgeUIToolsOption)!.registeredItemID, out var configuration))
 						CoreMod.forgeUI.pageTools.ConfigureSlots(configuration.ToArray());
@@ -21,8 +29,16 @@ namespace TerrariansConstruct.UI {
 				}
 			};
 
-			UIText text = new(CoreLibMod.GetItemName(registeredItemID), 0.8f);
-			Append(text);
+			UIText text = new(CoreLibMod.GetItemName(registeredItemID));
+			text.Left.Set(40, 0f);
+			panel.Append(text);
+
+			//Get the dummy texture
+			int type = CoreLibMod.GetItemType(registeredItemID);
+
+			UIImage image = new(TextureAssets.Item[type]);
+			image.Left.Set(8, 0f);
+
 		}
 	}
 }

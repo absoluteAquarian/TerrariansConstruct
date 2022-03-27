@@ -13,10 +13,10 @@ namespace TerrariansConstruct.Tiles {
 	internal class ForgeTile : ModTile {
 		public override string Texture => "TerrariansConstruct/Assets/Tiles/ForgeTile";
 
+		public const uint width = 3, height = 2;
+
 		public override void SetStaticDefaults() {
-			uint width = 3;
-			uint height = 2;
-			string mapName = "Forge";
+			string mapName = "Thnker Table";
 
 			Main.tileNoAttach[Type] = true;
 			Main.tileFrameImportant[Type] = true;
@@ -48,19 +48,9 @@ namespace TerrariansConstruct.Tiles {
 		}
 
 		public override void KillMultiTile(int i, int j, int frameX, int frameY) {
-			int width = 1, height = 1;
-			int teX = i, teY = j;
-			if (TileObjectData.GetTileData(Type, 0, 0) is TileObjectData obj) {
-				width = obj.Width;
-				height = obj.Height;
+			Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, (int)width * 16, (int)height * 16, ModContent.ItemType<ForgeItem>());
 
-				teX -= obj.Origin.X;
-				teY -= obj.Origin.Y;
-			}
-
-			Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, width * 16, height * 16, ModContent.ItemType<ForgeItem>());
-
-			ModContent.GetInstance<ForgeEntity>().Kill(teX, teY);
+			ModContent.GetInstance<ForgeEntity>().Kill(i, j);
 		}
 
 		public override void MouseOver(int i, int j) {

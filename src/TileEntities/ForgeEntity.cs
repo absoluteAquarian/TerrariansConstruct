@@ -19,7 +19,7 @@ namespace TerrariansConstruct.TileEntities {
 		}
 
 		public override int Hook_AfterPlacement(int i, int j, int type, int style, int direction, int alternate)
-			=> NetHelper.PlaceTileEntity<ForgeEntity>(i, j, ModContent.TileType<ForgeTile>(), style, alternate);
+			=> NetHelper.PlaceTileEntity<ForgeEntity>(i - (int)ForgeTile.width / 2, j - (int)ForgeTile.height + 1, ForgeTile.width, ForgeTile.height);
 
 		public override void NetSend(BinaryWriter writer) {
 			writer.Write((ushort)viewingPlayer);

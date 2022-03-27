@@ -13,6 +13,10 @@ namespace TerrariansConstruct.UI {
 			//Don't drop any items
 		}
 
+		public override void OnInitialize() {
+			slots = new();
+		}
+
 		public void UpdateSlots() {
 			foreach (var s in slots)
 				s.Remove();

@@ -16,7 +16,7 @@
 
 		PartTooltips: {
 			Copper: "[c/ff6000:Energized I]"
-			Wood: "[c/996633:Wimpy I]"
+			Wood: "[c/996633:Ecological]"
 		}
 	}
 }

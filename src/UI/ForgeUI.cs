@@ -1,9 +1,16 @@
-﻿using Terraria;
+﻿using Microsoft.Xna.Framework.Graphics;
+using System;
+using System.Linq;
+using Terraria;
+using Terraria.Audio;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ID;
 using Terraria.UI;
 using TerrariansConstruct.TileEntities;
+using TerrariansConstructLib;
 using TerrariansConstructLib.API.UI;
+using TerrariansConstructLib.Items;
+using TerrariansConstructLib.Materials;
 using TerrariansConstructLib.Registry;
 
 namespace TerrariansConstruct.UI {
@@ -73,13 +80,6 @@ namespace TerrariansConstruct.UI {
 			pageTools.Width.Set(0, 1f);
 			pageTools.Height.Set(0, 1f);
 
-			//Make the header text
-			UIText header = new("Weapons Forge", 1, true) {
-				HAlign = 0.5f
-			};
-			header.Top.Set(10, 0);
-			panel.Append(header);
-
 			currentPage = pageTools;
 			panel.viewArea.Append(pageTools);
 		}
@@ -90,6 +90,10 @@ namespace TerrariansConstruct.UI {
 			
 			this.entity = entity;
 			this.entity.viewingPlayer = openingPlayer;
+
+			CoreMod.forgeUIInterface.SetState(this);
+
+			SoundEngine.PlaySound(SoundID.MenuOpen);
 
 			if (Main.netMode == NetmodeID.MultiplayerClient && openingPlayer == Main.myPlayer) {
 				var packet = NetHelper.GetPacket(MessageType.OpenForgeUI);
@@ -105,6 +109,10 @@ namespace TerrariansConstruct.UI {
 
 			entity.viewingPlayer = -1;
 
+			CoreMod.forgeUIInterface.SetState(null);
+
+			SoundEngine.PlaySound(SoundID.MenuClose);
+
 			if (Main.netMode != NetmodeID.Server && closingPlayer == Main.myPlayer)
 				currentPage?.DropAllItems();
 
@@ -115,6 +123,17 @@ namespace TerrariansConstruct.UI {
 			}
 
 			entity = null!;
+		}
+
+		public static Texture2D GetToolOptionTexture(int registeredItemID) {
+			int[] partIDs = CoreLibMod.GetItemValidPartIDs(registeredItemID);
+
+			if (partIDs.Length >= (int)ColorMaterialType.Count)
+				throw new Exception($"Registered item \"{CoreLibMod.GetItemName(registeredItemID)}\" has too many parts ({partIDs.Length}).  Report this to the Terrarians' Construct devs");
+
+			ItemPart[] parts = partIDs.Select((p, i) => (p, i + ColorMaterial.StaticBaseType)).Select(t => new ItemPart() { partID = t.p, material = Material.FromItem(t.Item2) }).ToArray();
+
+			return CoreLibMod.ItemTextures.Get(registeredItemID, parts);
 		}
 	}
 }

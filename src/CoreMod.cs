@@ -166,19 +166,23 @@ namespace TerrariansConstruct {
 			//head part: damage, knockback, crit, useSpeed, pickaxe power, axe power, hammer power, durability
 
 			RegisteredMaterials.CopperBar = CoreLibMod.RegisterMaterialStats(ItemID.CopperBar, 1, new CopperAbility(),
-				new HeadPartStats(7, 2.1f, 0, 20, 35, 35, 35, 300),
+				new HeadPartStats(7, 2.1f, pickPower: 35, axePower: 35, hammerPower: 35, durability: 300),
 				new HandlePartStats(),
 				new ExtraPartStats()
 					.With(CoreLibMod.KnownStatModifiers.ExtraDurability, StatModifier.One));
 
 			RegisteredMaterials.Wood = CoreLibMod.RegisterMaterialStats(ItemID.Wood, 1, null,
-				new HeadPartStats(5, 1f, 0, 28, 28, 28, 28, 180),
+				new HeadPartStats(5, 1f, useSpeed: 28, pickPower: 28, axePower: 28, hammerPower: 28, durability: 180),
 				new HandlePartStats(attackKnockback: new StatModifier(1, 0.9f), durability: new StatModifier(1f, 1.05f)));
 
 			RegisteredMaterials.Cobweb = CoreLibMod.RegisterMaterialStats(ItemID.Cobweb, 8, null,
 				new ExtraPartStats()
 					.With(CoreLibMod.KnownStatModifiers.BowDrawSpeed, StatModifier.One)
-					.With(CoreLibMod.KnownStatModifiers.BowArrowSpeed, StatModifier.One));
+					.With(CoreLibMod.KnownStatModifiers.BowArrowSpeed, StatModifier.One)
+					.SetValidPartIDs(CoreLibMod.KnownStatModifiers.BowDrawSpeed,
+						RegisteredParts.WeaponBowString)
+					.SetValidPartIDs(CoreLibMod.KnownStatModifiers.BowArrowSpeed,
+						RegisteredParts.WeaponBowString));
 		}
 
 		public static class RegisteredAmmo {
