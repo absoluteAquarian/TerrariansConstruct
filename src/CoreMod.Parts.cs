@@ -48,8 +48,8 @@ namespace TerrariansConstruct {
 			HandlePartStats goldHandleStats = RegisteredMaterials.GoldBar.GetStat<HandlePartStats>(StatType.Handle)!;
 
 			ModifierText.CreationContext[] goldModifierTexts = new ModifierText.CreationContext[] {
-				new("Mods.TerrariansConstruct.ModifierText.Common.MiningSpeed", new(1f, goldHandleStats.miningSpeed)),
-				new("Mods.TerrariansConstruct.ModifierText.Common.AttackSpeed", goldHandleStats.attackSpeed),
+				new("Mods.TerrariansConstruct.ModifierText.Common.MiningSpeed", new(1f, goldHandleStats.miningSpeed), positiveValueIsGoodModifier : false),
+				new("Mods.TerrariansConstruct.ModifierText.Common.AttackSpeed", goldHandleStats.attackSpeed, positiveValueIsGoodModifier: false),
 				new("Mods.TerrariansConstruct.ModifierText.Common.Durability", goldHandleStats.durability, useMultiplicativeOnly: true),
 				new("Mods.TerrariansConstruct.ModifierText.Common.DurabilityAdd", goldHandleStats.durability, useAdditiveOnly: true)
 			};
@@ -70,8 +70,8 @@ namespace TerrariansConstruct {
 			HandlePartStats ironHandleStats = RegisteredMaterials.IronBar.GetStat<HandlePartStats>(StatType.Handle)!;
 
 			ModifierText.CreationContext[] ironModifierTexts = new ModifierText.CreationContext[] {
-				new("Mods.TerrariansConstruct.ModifierText.Common.MiningSpeed", new(1f, ironHandleStats.miningSpeed)),
-				new("Mods.TerrariansConstruct.ModifierText.Common.AttackSpeed", ironHandleStats.attackSpeed),
+				new("Mods.TerrariansConstruct.ModifierText.Common.MiningSpeed", new(1f, ironHandleStats.miningSpeed), positiveValueIsGoodModifier: false),
+				new("Mods.TerrariansConstruct.ModifierText.Common.AttackSpeed", ironHandleStats.attackSpeed, positiveValueIsGoodModifier: false),
 				new("Mods.TerrariansConstruct.ModifierText.Common.Knockback", ironHandleStats.attackKnockback),
 			};
 			AddShardPart(RegisteredMaterials.IronBar, PartActions.NoActions, ironTooltip, ironModifierTexts);
