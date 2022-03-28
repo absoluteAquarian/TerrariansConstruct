@@ -1,7 +1,10 @@
-﻿using Terraria.GameContent;
+﻿using System.Linq;
+using Terraria.GameContent;
 using Terraria.GameContent.UI.Elements;
 using Terraria.UI;
 using TerrariansConstructLib;
+using TerrariansConstructLib.Items;
+using TerrariansConstructLib.Materials;
 using TerrariansConstructLib.Registry;
 
 namespace TerrariansConstruct.UI {
@@ -34,11 +37,13 @@ namespace TerrariansConstruct.UI {
 			panel.Append(text);
 
 			//Get the dummy texture
-			int type = CoreLibMod.GetItemType(registeredItemID);
+			var texture = CoreLibMod.ItemTextures.Get(registeredItemID, CoreLibMod.GetItemValidPartIDs(registeredItemID)
+				.Select((p, i) => new ItemPart() { partID = p, material = new ColorMaterial((ColorMaterialType)i) })
+				.ToArray());
 
-			UIImage image = new(TextureAssets.Item[type]);
+			UIImage image = new(texture);
 			image.Left.Set(8, 0f);
-
+			panel.Append(image);
 		}
 	}
 }
