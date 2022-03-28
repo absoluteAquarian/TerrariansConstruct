@@ -10,16 +10,7 @@ namespace TerrariansConstruct {
 		private void AddParts() {
 			// === COPPER ===
 			string copperTooltip = Language.GetTextValue("Mods.TerrariansConstruct.PartTooltips.Copper");
-			AddShardPart(RegisteredMaterials.CopperBar, PartActions.NoActions, copperTooltip);
-			AddHeadParts(RegisteredMaterials.CopperBar, PartActions.NoActions, copperTooltip);
-			AddHandleParts(RegisteredMaterials.CopperBar, PartActions.NoActions, copperTooltip);
-			AddExtraParts(RegisteredMaterials.CopperBar, PartActions.NoActions, copperTooltip,
-				new[] {
-					RegisteredParts.ToolBinding,
-					RegisteredParts.WeaponSwordGuard,
-					RegisteredParts.WeaponShortSwordGuard
-				},
-				null);
+			AddAllTypicalParts(RegisteredMaterials.CopperBar, PartActions.NoActions, copperTooltip, null);
 
 			// === WOOD ===
 			string woodTooltip = Language.GetTextValue("Mods.TerrariansConstruct.PartTooltips.Wood");
@@ -30,16 +21,7 @@ namespace TerrariansConstruct {
 				new("Mods.TerrariansConstruct.ModifierText.Common.Durability", woodHandleStats.durability, useMultiplicativeOnly: true),
 				new("Mods.TerrariansConstruct.ModifierText.Common.DurabilityAdd", woodHandleStats.durability, useAdditiveOnly: true)
 			};
-			AddShardPart(RegisteredMaterials.Wood, TCPartActions.Wood, woodTooltip, woodModifierTexts);
-			AddHeadParts(RegisteredMaterials.Wood, TCPartActions.Wood, woodTooltip, woodModifierTexts);
-			AddHandleParts(RegisteredMaterials.Wood, TCPartActions.Wood, woodTooltip, woodModifierTexts);
-			AddExtraParts(RegisteredMaterials.Wood, TCPartActions.Wood, woodTooltip,
-				new[] {
-					RegisteredParts.ToolBinding,
-					RegisteredParts.WeaponSwordGuard,
-					RegisteredParts.WeaponShortSwordGuard
-				},
-				woodModifierTexts);
+			AddAllTypicalParts(RegisteredMaterials.Wood, TCPartActions.Wood, woodTooltip, woodModifierTexts);
 
 			// === COBWEB ===
 			CoreLibMod.AddPart(this, RegisteredMaterials.Cobweb, RegisteredParts.WeaponBowString, PartActions.NoActions, null, null);
@@ -53,16 +35,7 @@ namespace TerrariansConstruct {
 				new("Mods.TerrariansConstruct.ModifierText.Common.DurabilityAdd", goldHandleStats.durability, useAdditiveOnly: true)
 			};
 
-			AddShardPart(RegisteredMaterials.GoldBar, PartActions.NoActions, goldTooltip, goldModifierTexts);
-			AddHeadParts(RegisteredMaterials.GoldBar, PartActions.NoActions, goldTooltip, goldModifierTexts);
-			AddHandleParts(RegisteredMaterials.GoldBar, PartActions.NoActions, goldTooltip, goldModifierTexts);
-			AddExtraParts(RegisteredMaterials.GoldBar, PartActions.NoActions, goldTooltip,
-				new[] {
-					RegisteredParts.ToolBinding,
-					RegisteredParts.WeaponSwordGuard,
-					RegisteredParts.WeaponShortSwordGuard
-				},
-				goldModifierTexts);
+			AddAllTypicalParts(RegisteredMaterials.GoldBar, PartActions.NoActions, goldTooltip, goldModifierTexts);
 
 			// === IRON ===
 			string ironTooltip = Language.GetTextValue("Mods.TerrariansConstruct.PartTooltips.Iron");
@@ -73,42 +46,14 @@ namespace TerrariansConstruct {
 				new("Mods.TerrariansConstruct.ModifierText.Common.AttackSpeed", ironHandleStats.attackSpeed, positiveValueIsGoodModifier: false),
 				new("Mods.TerrariansConstruct.ModifierText.Common.Knockback", ironHandleStats.attackKnockback),
 			};
-			AddShardPart(RegisteredMaterials.IronBar, PartActions.NoActions, ironTooltip, ironModifierTexts);
-			AddHeadParts(RegisteredMaterials.IronBar, PartActions.NoActions, ironTooltip, ironModifierTexts);
-			AddHandleParts(RegisteredMaterials.IronBar, PartActions.NoActions, ironTooltip, ironModifierTexts);
-			AddExtraParts(RegisteredMaterials.IronBar, PartActions.NoActions, ironTooltip,
-				new[] {
-					RegisteredParts.ToolBinding,
-					RegisteredParts.WeaponSwordGuard,
-					RegisteredParts.WeaponShortSwordGuard
-				},
-				ironModifierTexts);
+			AddAllTypicalParts(RegisteredMaterials.IronBar, PartActions.NoActions, ironTooltip, ironModifierTexts);
 
 			// === LEAD ===
 			string leadTooltip = Language.GetTextValue("Mods.TerrariansConstruct.PartTooltips.Lead");
-
-			AddShardPart(RegisteredMaterials.LeadBar, TCPartActions.Lead, leadTooltip, null);
-			AddHeadParts(RegisteredMaterials.LeadBar, TCPartActions.Lead, leadTooltip, null);
-			AddHandleParts(RegisteredMaterials.LeadBar, TCPartActions.Lead, leadTooltip, null);
-			AddExtraParts(RegisteredMaterials.LeadBar, TCPartActions.Lead, leadTooltip,
-				new[] {
-					RegisteredParts.ToolBinding,
-					RegisteredParts.WeaponSwordGuard,
-					RegisteredParts.WeaponShortSwordGuard
-				},
-				null);
+			AddAllTypicalParts(RegisteredMaterials.LeadBar, TCPartActions.Lead, leadTooltip, null);
 
 			// === PLATINUM ===
-			AddShardPart(RegisteredMaterials.LeadBar, PartActions.NoActions, null, null);
-			AddHeadParts(RegisteredMaterials.LeadBar, PartActions.NoActions, null, null);
-			AddHandleParts(RegisteredMaterials.LeadBar, PartActions.NoActions, null, null);
-			AddExtraParts(RegisteredMaterials.LeadBar, PartActions.NoActions, null,
-				new[] {
-					RegisteredParts.ToolBinding,
-					RegisteredParts.WeaponSwordGuard,
-					RegisteredParts.WeaponShortSwordGuard
-				},
-				null);
+			AddAllTypicalParts(RegisteredMaterials.PlatinumBar, PartActions.NoActions, null, null);
 		}
 
 		private void AddShardPart(Material material, ItemPartActionsBuilder commonActions, string? commonTooltip, params ModifierText.CreationContext[]? modifierText)
@@ -130,6 +75,19 @@ namespace TerrariansConstruct {
 		private void AddExtraParts(Material material, ItemPartActionsBuilder commonActions, string? commonTooltip, int[] parts, params ModifierText.CreationContext[]? modifierText) {
 			for (int i = 0; i < parts.Length; i++)
 				CoreLibMod.AddPart(this, material, parts[i], commonActions, commonTooltip, modifierText);
+		}
+
+		private void AddAllTypicalParts(Material material, ItemPartActionsBuilder commonActions, string? commonTooltip, params ModifierText.CreationContext[]? modifierText) {
+			AddShardPart(material, commonActions, commonTooltip, modifierText);
+			AddHeadParts(material, commonActions, commonTooltip, modifierText);
+			AddHandleParts(material, commonActions, commonTooltip, modifierText);
+			AddExtraParts(material, commonActions, commonTooltip,
+				new[] {
+					RegisteredParts.ToolBinding,
+					RegisteredParts.WeaponSwordGuard,
+					RegisteredParts.WeaponShortSwordGuard
+				},
+				modifierText);
 		}
 	}
 }
