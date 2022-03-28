@@ -88,10 +88,10 @@ namespace TerrariansConstruct {
 			// === LEAD ===
 			string leadTooltip = Language.GetTextValue("Mods.TerrariansConstruct.PartTooltips.Lead");
 
-			AddShardPart(RegisteredMaterials.IronBar, TCPartActions.Lead, leadTooltip, null);
-			AddHeadParts(RegisteredMaterials.IronBar, TCPartActions.Lead, leadTooltip, null);
-			AddHandleParts(RegisteredMaterials.IronBar, TCPartActions.Lead, leadTooltip, null);
-			AddExtraParts(RegisteredMaterials.IronBar, TCPartActions.Lead, leadTooltip,
+			AddShardPart(RegisteredMaterials.LeadBar, TCPartActions.Lead, leadTooltip, null);
+			AddHeadParts(RegisteredMaterials.LeadBar, TCPartActions.Lead, leadTooltip, null);
+			AddHandleParts(RegisteredMaterials.LeadBar, TCPartActions.Lead, leadTooltip, null);
+			AddExtraParts(RegisteredMaterials.LeadBar, TCPartActions.Lead, leadTooltip,
 				new[] {
 					RegisteredParts.ToolBinding,
 					RegisteredParts.WeaponSwordGuard,
