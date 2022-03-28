@@ -20,7 +20,7 @@ namespace TerrariansConstruct {
 			})
 			.MarkAsReadonly();
 
-		public const int LeadPoisonChance = 300;
+		public const int LeadPoisonChance = 25;
 		public const int LeadPoisonTime = 10 * 60;
 
 		public static readonly ItemPartActionsBuilder Lead = new ItemPartActionsBuilder()

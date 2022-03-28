@@ -202,11 +202,16 @@ namespace TerrariansConstruct {
 			//head part: damage, knockback, crit, useSpeed, pickaxe power, axe power, hammer power, durability
 
 			RegisteredMaterials.CopperBar = CoreLibMod.RegisterMaterialStats(ItemID.CopperBar, 1, new CopperAbility(),
-				new HeadPartStats(7, 2.1f, pickPower: 35, axePower: 35, hammerPower: 35, durability: 300));
+				new HeadPartStats(7, 2.1f, pickPower: 35, axePower: 35, hammerPower: 35, durability: 300),
+				new HandlePartStats(),
+				new ExtraPartStats()
+					.With(CoreLibMod.KnownStatModifiers.ExtraDurability, new StatModifier(50, 1f)));
 
 			RegisteredMaterials.Wood = CoreLibMod.RegisterMaterialStats(ItemID.Wood, 1, null,
 				new HeadPartStats(5, 1f, useSpeed: 28, pickPower: 28, axePower: 28, hammerPower: 28, durability: 180),
-				new HandlePartStats(attackKnockback: new StatModifier(1, 0.9f), durability: new StatModifier(1f, 1.05f)));
+				new HandlePartStats(attackKnockback: new StatModifier(1, 0.9f), durability: new StatModifier(0, 1.05f)),
+				new ExtraPartStats()
+					.With(CoreLibMod.KnownStatModifiers.ExtraDurability, new StatModifier(30, 1f)));
 
 			RegisteredMaterials.Cobweb = CoreLibMod.RegisterMaterialStats(ItemID.Cobweb, 8, null,
 				new ExtraPartStats()
@@ -219,14 +224,27 @@ namespace TerrariansConstruct {
 
 			RegisteredMaterials.GoldBar = CoreLibMod.RegisterMaterialStats(ItemID.GoldBar, 1, new GoldAbility(),
 				new HeadPartStats(13, 6.5f, 7, useSpeed: 16, pickPower: 55, axePower: 55, hammerPower: 55, durability: 1500),
-				new HandlePartStats(miningSpeed: 1.1f, attackSpeed: new StatModifier(1f, 1.08f), durability: new StatModifier(-100, 0.9f)));
+				new HandlePartStats(durability: new StatModifier(-100, 0.9f)),
+				new ExtraPartStats()
+					.With(CoreLibMod.KnownStatModifiers.ExtraDurability, new StatModifier(-10, 1f)));
 
 			RegisteredMaterials.IronBar = CoreLibMod.RegisterMaterialStats(ItemID.IronBar, 1, null,
 				new HeadPartStats(10, 3.3f, 0, useSpeed: 22, pickPower: 40, axePower: 40, hammerPower: 40, durability: 650),
-				new HandlePartStats(miningSpeed: 0.95f, attackSpeed: new StatModifier(1f, 0.95f), attackKnockback: new StatModifier(1f, 1.4f)));
+				new HandlePartStats(miningSpeed: 0.95f, attackSpeed: new StatModifier(1f, 0.95f), attackKnockback: new StatModifier(1f, 1.4f)),
+				new ExtraPartStats()
+					.With(CoreLibMod.KnownStatModifiers.ExtraDurability, new StatModifier(45, 1f)));
 
 			RegisteredMaterials.LeadBar = CoreLibMod.RegisterMaterialStats(ItemID.LeadBar, 1, null,
-				new HeadPartStats(11, 2.9f, 0, useSpeed: 20, pickPower: 43, axePower: 43, hammerPower: 43, durability: 700));
+				new HeadPartStats(11, 2.9f, 0, useSpeed: 20, pickPower: 43, axePower: 43, hammerPower: 43, durability: 700),
+				new HandlePartStats(),
+				new ExtraPartStats()
+					.With(CoreLibMod.KnownStatModifiers.ExtraDurability, new StatModifier(50, 1f)));
+
+			RegisteredMaterials.PlatinumBar = CoreLibMod.RegisterMaterialStats(ItemID.PlatinumBar, 1, null,
+				new HeadPartStats(15, 6f, 0, useSpeed: 19, pickPower: 59, axePower: 59, hammerPower: 59, durability: 1300),
+				new HandlePartStats(),
+				new ExtraPartStats()
+					.With(CoreLibMod.KnownStatModifiers.ExtraDurability, new StatModifier(100, 1f)));
 		}
 
 		public static class RegisteredAmmo {

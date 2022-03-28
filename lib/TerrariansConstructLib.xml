@@ -150,6 +150,23 @@
             Defaults to <see langword="false"/>
             </summary>
         </member>
+        <member name="M:TerrariansConstructLib.API.ModifierText.CreationContext.#ctor(System.String,System.Nullable{Terraria.ModLoader.StatModifier},System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            Creates a context for initializing <see cref="T:TerrariansConstructLib.API.ModifierText"/> instances
+            </summary>
+            <param name="langKey">The language key.  Use <see langword="null"/> for no text</param>
+            <param name="stat">The stat used when displaying the text</param>
+            <param name="useMultiplicativeOnly">Whether only the <see cref="P:Terraria.ModLoader.StatModifier.Multiplicative"/> property should be used when displaying the text</param>
+            <param name="useAdditiveOnly">
+            Whether only the <see cref="P:Terraria.ModLoader.StatModifier.Additive"/> property should be used when displaying the text<br/>
+            This parameter has lower precedence than <paramref name="useMultiplicativeOnly"/>
+            </param>
+            <param name="positiveValueIsGoodModifier">Whether resulting stats &gt; 1 should be considered positive stats.  Defaults to <see langword="true"/></param>
+            <param name="treatAdditiveAsMultiplier">
+            Whether the <see cref="P:Terraria.ModLoader.StatModifier.Additive"/> property of <paramref name="stat"/> should be considered a flat value or multiplier<br/>
+            This paramter has lower precedence than <paramref name="useMultiplicativeOnly"/>
+            </param>
+        </member>
         <member name="T:TerrariansConstructLib.API.Numbers.Roman">
             <summary>
             A helper class for converting positive, non-zero integers into their Roman number equivalents, using various formats<br/>
@@ -471,12 +488,13 @@
             <param name="other">The other <see cref="T:TerrariansConstructLib.API.Stats.ExtraPartStats"/> object</param>
             <returns>A new <see cref="T:TerrariansConstructLib.API.Stats.ExtraPartStats"/> instance containing the stats of both</returns>
         </member>
-        <member name="M:TerrariansConstructLib.API.Stats.ExtraPartStats.Get(System.String)">
+        <member name="M:TerrariansConstructLib.API.Stats.ExtraPartStats.Get(System.String,System.Nullable{Terraria.ModLoader.StatModifier})">
             <summary>
             Gets the stat with the given identifier
             </summary>
             <param name="identifier">The name of the stat</param>
-            <returns>The value of the stat if it's defined, <seealso cref="F:Terraria.ModLoader.StatModifier.One"/> otherwise</returns>
+            <param name="defaultValueIfMissing">The default value that should be returned if the stat isn't present</param>
+            <returns>The value of the stat if it's defined or <paramref name="defaultValueIfMissing"/> if it's not <see langword="null"/>, <see cref="F:Terraria.ModLoader.StatModifier.One"/> otherwise</returns>
         </member>
         <member name="T:TerrariansConstructLib.API.Stats.HandlePartStats">
             <summary>

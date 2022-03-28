@@ -27,7 +27,8 @@ namespace TerrariansConstruct {
 
 			ModifierText.CreationContext[] woodModifierTexts = new ModifierText.CreationContext[] {
 				new("Mods.TerrariansConstruct.ModifierText.Common.Knockback", woodHandleStats.attackKnockback),
-				new("Mods.TerrariansConstruct.ModifierText.Common.Durability", woodHandleStats.durability)
+				new("Mods.TerrariansConstruct.ModifierText.Common.Durability", woodHandleStats.durability, useMultiplicativeOnly: true),
+				new("Mods.TerrariansConstruct.ModifierText.Common.DurabilityAdd", woodHandleStats.durability, useAdditiveOnly: true)
 			};
 			AddShardPart(RegisteredMaterials.Wood, TCPartActions.Wood, woodTooltip, woodModifierTexts);
 			AddHeadParts(RegisteredMaterials.Wood, TCPartActions.Wood, woodTooltip, woodModifierTexts);
@@ -48,8 +49,6 @@ namespace TerrariansConstruct {
 			HandlePartStats goldHandleStats = RegisteredMaterials.GoldBar.GetStat<HandlePartStats>(StatType.Handle)!;
 
 			ModifierText.CreationContext[] goldModifierTexts = new ModifierText.CreationContext[] {
-				new("Mods.TerrariansConstruct.ModifierText.Common.MiningSpeed", new(1f, goldHandleStats.miningSpeed), positiveValueIsGoodModifier : false),
-				new("Mods.TerrariansConstruct.ModifierText.Common.AttackSpeed", goldHandleStats.attackSpeed, positiveValueIsGoodModifier: false),
 				new("Mods.TerrariansConstruct.ModifierText.Common.Durability", goldHandleStats.durability, useMultiplicativeOnly: true),
 				new("Mods.TerrariansConstruct.ModifierText.Common.DurabilityAdd", goldHandleStats.durability, useAdditiveOnly: true)
 			};
@@ -92,6 +91,18 @@ namespace TerrariansConstruct {
 			AddHeadParts(RegisteredMaterials.LeadBar, TCPartActions.Lead, leadTooltip, null);
 			AddHandleParts(RegisteredMaterials.LeadBar, TCPartActions.Lead, leadTooltip, null);
 			AddExtraParts(RegisteredMaterials.LeadBar, TCPartActions.Lead, leadTooltip,
+				new[] {
+					RegisteredParts.ToolBinding,
+					RegisteredParts.WeaponSwordGuard,
+					RegisteredParts.WeaponShortSwordGuard
+				},
+				null);
+
+			// === PLATINUM ===
+			AddShardPart(RegisteredMaterials.LeadBar, PartActions.NoActions, null, null);
+			AddHeadParts(RegisteredMaterials.LeadBar, PartActions.NoActions, null, null);
+			AddHandleParts(RegisteredMaterials.LeadBar, PartActions.NoActions, null, null);
+			AddExtraParts(RegisteredMaterials.LeadBar, PartActions.NoActions, null,
 				new[] {
 					RegisteredParts.ToolBinding,
 					RegisteredParts.WeaponSwordGuard,

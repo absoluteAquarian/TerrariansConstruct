@@ -26,7 +26,7 @@ Wood (ID: 9)
         Durability Modifier: 1.05x
 
     Extra Stats:
-        n/a
+        Base durability (extra): 30
 
 Copper Bar (ID: 20)
     Material worth: 1
@@ -50,8 +50,7 @@ Copper Bar (ID: 20)
         n/a
 
     Extra Stats:
-        Base durability: +0
-        Durability modifier: 1x
+        Base durability: 50
 
 Cobweb (ID: 150)
     Material worth: 0.125
@@ -90,13 +89,11 @@ Gold Bar (ID: 19)
         Base durability (head): 1500
 
     Handle stats:
-        Mining speed modifier: 1.1x
-        Attack speed modifier: 1.08x
         Base durability (handle): -100
         Durability modifier: 0.9x
 
     Extra stats:
-        n/a
+        Base durability (extra): -10
 
 Iron Bar (ID: 22)
     Material worth: 1
@@ -121,14 +118,14 @@ Iron Bar (ID: 22)
         Attack knockback modifier: 1.4x
 
     Extra stats:
-        n/a
+        Base durability (extra): 45
 
 Lead Bar (ID: 704)
     Material worth: 1
 
     Modifier: Poisonous
     Stats:
-        1/300 chance to inflict the Poisoned debuff when hitting something
+        1/25 chance to inflict the Poisoned debuff when hitting something
             - Effect is calculated individually per-part
 
     Head stats:
@@ -145,4 +142,27 @@ Lead Bar (ID: 704)
         n/a
 
     Extra stats:
+        Base durability (extra): 50
+
+Platinum Bar (ID: 706)
+    Material worth: 1
+
+    Modifier: n/a
+    Stats:
         n/a
+
+    Head stats:
+        Base damage: 15
+        Base knockback: 6
+        Base crit: 0%
+        Base use speed: 19 ticks
+        Base pickaxe power: 59%
+        Base axe power: 59%
+        base hammer power: 59%
+        Base durability (head): 1300
+
+    Handle stats:
+        n/a
+
+    Extra stats:
+        Base durability (extra): 100
