@@ -11,7 +11,7 @@
 				Damage: "{0:+#;-#;+0}% damage"
 				MiningSpeed: "{0:+#;-#;+0}% mining speed"
 				ProjectileSpeed: "{0:+#;-#;+0}% velocity"
-				Durability: "{0:+#;-#;+0}x durability"
+				Durability: "{0:+#;-#;+0}% durability"
 				DurabilityAdd: "{0:+#;-#;+0} base durability"
 				AttackSpeed: "{0:+#;-#;+0}% attack speed"
 			}
