@@ -39,7 +39,6 @@
     <Folder Include="Assets\Visuals\Shortsword\WeaponShortSwordGuard\" />
     <Folder Include="Assets\Visuals\Shortsword\WeaponShortSwordBlade\" />
     <Folder Include="Assets\Visuals\Shortsword\ToolRod\" />
-    <Folder Include="Assets\Visuals\Sword\WeaponLongSwordBlade\" />
     <Folder Include="Assets\Visuals\Sword\WeaponSwordGuard\" />
     <Folder Include="Assets\Visuals\Sword\ToolRod\" />
     <Folder Include="lib\" />
