@@ -1,5 +1,6 @@
 ﻿using System;
 using Terraria;
+using Terraria.ID;
 using TerrariansConstructLib;
 using TerrariansConstructLib.Items;
 
@@ -16,6 +17,28 @@ namespace TerrariansConstruct {
 				int max = tc.GetMaxDurability();
 
 				tc.TryIncreaseDurability(Math.Max(1, max / 100));
+			})
+			.MarkAsReadonly();
+
+		public const int LeadPoisonChance = 300;
+		public const int LeadPoisonTime = 10 * 60;
+
+		public static readonly ItemPartActionsBuilder Lead = new ItemPartActionsBuilder()
+			.WithOnItemHitNPC((partID, item, owner, target, damage, knockback, crit) => {
+				if (Main.rand.NextBool(LeadPoisonChance))
+					target.AddBuff(BuffID.Poisoned, crit ? LeadPoisonTime * 2 : LeadPoisonTime);
+			})
+			.WithOnItemHitPlayer((partID, item, owner, target, damage, crit) => {
+				if (Main.rand.NextBool(LeadPoisonChance))
+					target.AddBuff(BuffID.Poisoned, crit ? LeadPoisonTime / 3 * 2 : LeadPoisonTime / 3);
+			})
+			.WithOnProjectileHitNPC((partID, projectile, target, damage, knockback, crit) => {
+				if (Main.rand.NextBool(LeadPoisonChance))
+					target.AddBuff(BuffID.Poisoned, crit ? LeadPoisonTime * 2 : LeadPoisonTime);
+			})
+			.WithOnProjectileHitPlayer((partID, projectile, target, damage, crit) => {
+				if (Main.rand.NextBool(LeadPoisonChance))
+					target.AddBuff(BuffID.Poisoned, crit ? LeadPoisonTime / 3 * 2 : LeadPoisonTime / 3);
 			})
 			.MarkAsReadonly();
 	}

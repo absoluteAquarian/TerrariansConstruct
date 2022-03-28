@@ -84,6 +84,20 @@ namespace TerrariansConstruct {
 					RegisteredParts.WeaponShortSwordGuard
 				},
 				ironModifierTexts);
+
+			// === LEAD ===
+			string leadTooltip = Language.GetTextValue("Mods.TerrariansConstruct.PartTooltips.Lead");
+
+			AddShardPart(RegisteredMaterials.IronBar, TCPartActions.Lead, leadTooltip, null);
+			AddHeadParts(RegisteredMaterials.IronBar, TCPartActions.Lead, leadTooltip, null);
+			AddHandleParts(RegisteredMaterials.IronBar, TCPartActions.Lead, leadTooltip, null);
+			AddExtraParts(RegisteredMaterials.IronBar, TCPartActions.Lead, leadTooltip,
+				new[] {
+					RegisteredParts.ToolBinding,
+					RegisteredParts.WeaponSwordGuard,
+					RegisteredParts.WeaponShortSwordGuard
+				},
+				null);
 		}
 
 		private void AddShardPart(Material material, ItemPartActionsBuilder commonActions, string? commonTooltip, params ModifierText.CreationContext[]? modifierText)

@@ -122,3 +122,27 @@ Iron Bar (ID: 22)
 
     Extra stats:
         n/a
+
+Lead Bar (ID: 704)
+    Material worth: 1
+
+    Modifier: Poisonous
+    Stats:
+        1/300 chance to inflict the Poisoned debuff when hitting something
+            - Effect is calculated individually per-part
+
+    Head stats:
+        Base damage: 11
+        Base knockback: 2.9
+        Base crit: 0%
+        Base use speed: 20 ticks
+        Base pickaxe power: 43%
+        Base axe power: 43%
+        Base hammer power: 43%
+        Base durability (head): 700
+
+    Handle stats:
+        n/a
+
+    Extra stats:
+        n/a

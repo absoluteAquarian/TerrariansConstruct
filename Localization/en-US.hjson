@@ -22,6 +22,7 @@
 			Wood: "[c/996633:Ecological {R}]"
 			Gold: "[c/dddd00:Lucky]"
 			Iron: "[c/bbbb99:Stiff]"
+			Lead: "[c/237500:Poisonous {R}]"
 		}
 	}
 }

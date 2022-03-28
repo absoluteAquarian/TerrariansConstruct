@@ -876,6 +876,63 @@
             The ID of the tile that was destroyed
             </summary>
         </member>
+        <member name="M:TerrariansConstructLib.ItemPartActionsBuilder.WithItemDefaults(TerrariansConstructLib.Items.ItemPart.PartItemFunc)">
+            <inheritdoc cref="T:TerrariansConstructLib.Items.ItemPart.PartItemFunc"/>
+        </member>
+        <member name="M:TerrariansConstructLib.ItemPartActionsBuilder.WithProjectileDefaults(TerrariansConstructLib.Items.ItemPart.PartProjectileFunc)">
+            <inheritdoc cref="T:TerrariansConstructLib.Items.ItemPart.PartProjectileFunc"/>
+        </member>
+        <member name="M:TerrariansConstructLib.ItemPartActionsBuilder.WithOnUse(TerrariansConstructLib.Items.ItemPart.PartPlayerFunc)">
+            <inheritdoc cref="T:TerrariansConstructLib.Items.ItemPart.PartPlayerFunc"/>
+        </member>
+        <member name="M:TerrariansConstructLib.ItemPartActionsBuilder.WithOnHold(TerrariansConstructLib.Items.ItemPart.PartPlayerFunc)">
+            <inheritdoc cref="T:TerrariansConstructLib.Items.ItemPart.PartPlayerFunc"/>
+        </member>
+        <member name="M:TerrariansConstructLib.ItemPartActionsBuilder.WithOnGenericHotkeyUsage(TerrariansConstructLib.Items.ItemPart.PartPlayerFunc)">
+            <inheritdoc cref="T:TerrariansConstructLib.Items.ItemPart.PartPlayerFunc"/>
+        </member>
+        <member name="M:TerrariansConstructLib.ItemPartActionsBuilder.WithOnProjectileSpawn(TerrariansConstructLib.Items.ItemPart.PartProjectileSpawnFunc)">
+            <inheritdoc cref="T:TerrariansConstructLib.Items.ItemPart.PartProjectileSpawnFunc"/>
+        </member>
+        <member name="M:TerrariansConstructLib.ItemPartActionsBuilder.WithOnProjectileHitNPC(TerrariansConstructLib.Items.ItemPart.PartProjectileHitNPCFunc)">
+            <inheritdoc cref="T:TerrariansConstructLib.Items.ItemPart.PartProjectileHitNPCFunc"/>
+        </member>
+        <member name="M:TerrariansConstructLib.ItemPartActionsBuilder.WithOnProjectileHitPlayer(TerrariansConstructLib.Items.ItemPart.PartProjectileHitPlayerFunc)">
+            <inheritdoc cref="T:TerrariansConstructLib.Items.ItemPart.PartProjectileHitPlayerFunc"/>
+        </member>
+        <member name="M:TerrariansConstructLib.ItemPartActionsBuilder.WithModifyWeaponDamage(TerrariansConstructLib.Items.ItemPart.PartModifyWeaponDamageFunc)">
+            <inheritdoc cref="T:TerrariansConstructLib.Items.ItemPart.PartModifyWeaponDamageFunc"/>
+        </member>
+        <member name="M:TerrariansConstructLib.ItemPartActionsBuilder.WithModifyWeaponKnockback(TerrariansConstructLib.Items.ItemPart.PartModifyWeaponKnockbackFunc)">
+            <inheritdoc cref="T:TerrariansConstructLib.Items.ItemPart.PartModifyWeaponKnockbackFunc"/>
+        </member>
+        <member name="M:TerrariansConstructLib.ItemPartActionsBuilder.WithModifyWeaponCrit(TerrariansConstructLib.Items.ItemPart.PartModifyWeaponCritFunc)">
+            <inheritdoc cref="T:TerrariansConstructLib.Items.ItemPart.PartModifyWeaponCritFunc"/>
+        </member>
+        <member name="M:TerrariansConstructLib.ItemPartActionsBuilder.WithAI(TerrariansConstructLib.Items.ItemPart.PartProjectileFunc)">
+            <inheritdoc cref="T:TerrariansConstructLib.Items.ItemPart.PartProjectileFunc"/>
+        </member>
+        <member name="M:TerrariansConstructLib.ItemPartActionsBuilder.WithModifyToolPower(TerrariansConstructLib.Items.ItemPart.PartToolPowerFunc)">
+            <inheritdoc cref="T:TerrariansConstructLib.Items.ItemPart.PartToolPowerFunc"/>
+        </member>
+        <member name="M:TerrariansConstructLib.ItemPartActionsBuilder.WithOnTileDestroyed(TerrariansConstructLib.Items.ItemPart.PartTileDestructionFunc)">
+            <inheritdoc cref="T:TerrariansConstructLib.Items.ItemPart.PartTileDestructionFunc"/>
+        </member>
+        <member name="M:TerrariansConstructLib.ItemPartActionsBuilder.WithOnItemHitNPC(TerrariansConstructLib.Items.ItemPart.PartItemHitNPCFunc)">
+            <inheritdoc cref="T:TerrariansConstructLib.Items.ItemPart.PartItemHitNPCFunc"/>
+        </member>
+        <member name="M:TerrariansConstructLib.ItemPartActionsBuilder.WithOnItemHitPlayer(TerrariansConstructLib.Items.ItemPart.PartItemHitPlayerFunc)">
+            <inheritdoc cref="T:TerrariansConstructLib.Items.ItemPart.PartItemHitPlayerFunc"/>
+        </member>
+        <member name="M:TerrariansConstructLib.ItemPartActionsBuilder.WithUseSpeedMultiplier(TerrariansConstructLib.Items.ItemPart.PartItemUseSpeedMultiplier)">
+            <inheritdoc cref="T:TerrariansConstructLib.Items.ItemPart.PartItemUseSpeedMultiplier"/>
+        </member>
+        <member name="M:TerrariansConstructLib.ItemPartActionsBuilder.WithOnUpdateInventory(TerrariansConstructLib.Items.ItemPart.PartPlayerFunc)">
+            <inheritdoc cref="T:TerrariansConstructLib.Items.ItemPart.PartPlayerFunc"/>
+        </member>
+        <member name="M:TerrariansConstructLib.ItemPartActionsBuilder.WithCanLoseDurability(TerrariansConstructLib.Items.ItemPart.PartCanLoseDurability)">
+            <inheritdoc cref="T:TerrariansConstructLib.Items.ItemPart.PartCanLoseDurability"/>
+        </member>
         <member name="T:TerrariansConstructLib.Items.BaseTCItem">
             <summary>
             The base item class for any items that can be created by the Terrarians' Construct Forge UI
@@ -973,135 +1030,135 @@
         </member>
         <member name="T:TerrariansConstructLib.Items.ItemPart.PartItemFunc">
             <summary>
-            <see langword="int"/> <paramref name="partID"/>,
-            <see cref="T:Terraria.Item"/> <paramref name="item"/>
+            <see langword="int"/>&#160;<paramref name="partID"/>,
+            <see cref="T:Terraria.Item"/>&#160;<paramref name="item"/>
             </summary>
         </member>
         <member name="T:TerrariansConstructLib.Items.ItemPart.PartPlayerFunc">
             <summary>
-            <see langword="int"/> <paramref name="partID"/>,
-            <see cref="T:Terraria.Player"/> <paramref name="player"/>,
-            <see cref="T:Terraria.Item"/> <paramref name="item"/>
+            <see langword="int"/>&#160;<paramref name="partID"/>,
+            <see cref="T:Terraria.Player"/>&#160;<paramref name="player"/>,
+            <see cref="T:Terraria.Item"/>&#160;<paramref name="item"/>
             </summary>
         </member>
         <member name="T:TerrariansConstructLib.Items.ItemPart.PartProjectileFunc">
             <summary>
-            <see langword="int"/> <paramref name="partID"/>,
-            <see cref="T:Terraria.Projectile"/> <paramref name="projectile"/>
+            <see langword="int"/>&#160;<paramref name="partID"/>,
+            <see cref="T:Terraria.Projectile"/>&#160;<paramref name="projectile"/>
             </summary>
         </member>
         <member name="T:TerrariansConstructLib.Items.ItemPart.PartProjectileSpawnFunc">
             <summary>
-            <see langword="int"/> <paramref name="partID"/>,
-            <see cref="T:Terraria.Projectile"/> <paramref name="projectile"/>,
-            <see cref="T:Terraria.DataStructures.IEntitySource"/> <paramref name="source"/>,
-            <see langword="float"/> <paramref name="X"/>,
-            <see langword="float"/> <paramref name="Y"/>,
-            <see langword="float"/> <paramref name="SpeedX"/>,
-            <see langword="float"/> <paramref name="SpeedY"/>,
-            <see langword="int"/> <paramref name="Type"/>,
-            <see langword="int"/> <paramref name="Damage"/>,
-            <see langword="float"/> <paramref name="KnockBack"/>,
-            <see langword="int"/> <paramref name="Owner"/>,
-            <see langword="float"/> <paramref name="ai0"/>,
-            <see langword="float"/> <paramref name="ai1"/>
+            <see langword="int"/>&#160;<paramref name="partID"/>,
+            <see cref="T:Terraria.Projectile"/>&#160;<paramref name="projectile"/>,
+            <see cref="T:Terraria.DataStructures.IEntitySource"/>&#160;<paramref name="source"/>,
+            <see langword="float"/>&#160;<paramref name="X"/>,
+            <see langword="float"/>&#160;<paramref name="Y"/>,
+            <see langword="float"/>&#160;<paramref name="SpeedX"/>,
+            <see langword="float"/>&#160;<paramref name="SpeedY"/>,
+            <see langword="int"/>&#160;<paramref name="Type"/>,
+            <see langword="int"/>&#160;<paramref name="Damage"/>,
+            <see langword="float"/>&#160;<paramref name="KnockBack"/>,
+            <see langword="int"/>&#160;<paramref name="Owner"/>,
+            <see langword="float"/>&#160;<paramref name="ai0"/>,
+            <see langword="float"/>&#160;<paramref name="ai1"/>
             </summary>
         </member>
         <member name="T:TerrariansConstructLib.Items.ItemPart.PartProjectileHitNPCFunc">
             <summary>
-            <see langword="int"/> <paramref name="partID"/>,
-            <see cref="T:Terraria.Projectile"/> <paramref name="projectile"/>,
-            <see cref="T:Terraria.NPC"/> <paramref name="target"/>,
-            <see langword="int"/> <paramref name="damage"/>,
-            <see langword="float"/> <paramref name="knockback"/>,
-            <see langword="bool"/> <paramref name="crit"/>
+            <see langword="int"/>&#160;<paramref name="partID"/>,
+            <see cref="T:Terraria.Projectile"/>&#160;<paramref name="projectile"/>,
+            <see cref="T:Terraria.NPC"/>&#160;<paramref name="target"/>,
+            <see langword="int"/>&#160;<paramref name="damage"/>,
+            <see langword="float"/>&#160;<paramref name="knockback"/>,
+            <see langword="bool"/>&#160;<paramref name="crit"/>
             </summary>
         </member>
         <member name="T:TerrariansConstructLib.Items.ItemPart.PartProjectileHitPlayerFunc">
             <summary>
-            <see langword="int"/> <paramref name="partID"/>,
-            <see cref="T:Terraria.Projectile"/> <paramref name="projectile"/>,
-            <see cref="T:Terraria.Player"/> <paramref name="target"/>,
-            <see langword="int"/> <paramref name="damage"/>,
-            <see langword="bool"/> <paramref name="crit"/>
+            <see langword="int"/>&#160;<paramref name="partID"/>,
+            <see cref="T:Terraria.Projectile"/>&#160;<paramref name="projectile"/>,
+            <see cref="T:Terraria.Player"/>&#160;<paramref name="target"/>,
+            <see langword="int"/>&#160;<paramref name="damage"/>,
+            <see langword="bool"/>&#160;<paramref name="crit"/>
             </summary>
         </member>
         <member name="T:TerrariansConstructLib.Items.ItemPart.PartModifyWeaponDamageFunc">
             <summary>
-            <see langword="int"/> <paramref name="partID"/>,
-            <see cref="T:Terraria.Player"/> <paramref name="player"/>,
-            <see cref="T:Terraria.ModLoader.StatModifier"/> <paramref name="damage"/>,
-            <see langword="ref float"/> <paramref name="flat"/>
+            <see langword="int"/>&#160;<paramref name="partID"/>,
+            <see cref="T:Terraria.Player"/>&#160;<paramref name="player"/>,
+            <see cref="T:Terraria.ModLoader.StatModifier"/>&#160;<paramref name="damage"/>,
+            <see langword="ref float"/>&#160;<paramref name="flat"/>
             </summary>
         </member>
         <member name="T:TerrariansConstructLib.Items.ItemPart.PartModifyWeaponKnockbackFunc">
             <summary>
-            <see langword="int"/> <paramref name="partID"/>,
-            <see cref="T:Terraria.Player"/> <paramref name="player"/>,
-            <see cref="T:Terraria.ModLoader.StatModifier"/> <paramref name="knockback"/>,
-            <see langword="ref float"/> <paramref name="flat"/>
+            <see langword="int"/>&#160;<paramref name="partID"/>,
+            <see cref="T:Terraria.Player"/>&#160;<paramref name="player"/>,
+            <see cref="T:Terraria.ModLoader.StatModifier"/>&#160;<paramref name="knockback"/>,
+            <see langword="ref float"/>&#160;<paramref name="flat"/>
             </summary>
         </member>
         <member name="T:TerrariansConstructLib.Items.ItemPart.PartModifyWeaponCritFunc">
             <summary>
-            <see langword="int"/> <paramref name="partID"/>,
-            <see cref="T:Terraria.Player"/> <paramref name="player"/>,
-            <see langword="ref int"/> <paramref name="crit"/>
+            <see langword="int"/>&#160;<paramref name="partID"/>,
+            <see cref="T:Terraria.Player"/>&#160;<paramref name="player"/>,
+            <see langword="ref int"/>&#160;<paramref name="crit"/>
             </summary>
         </member>
         <member name="T:TerrariansConstructLib.Items.ItemPart.PartToolPowerFunc">
             <summary>
-            <see langword="int"/> <paramref name="partID"/>,
-            <see cref="T:Terraria.Player"/> <paramref name="player"/>,
-            <see cref="T:Terraria.Item"/> <paramref name="item"/>,
-            <see cref="T:TerrariansConstructLib.DataStructures.TileDestructionContext"/> <paramref name="context"/>,
-            <see langword="ref int"/> <paramref name="power"/>
+            <see langword="int"/>&#160;<paramref name="partID"/>,
+            <see cref="T:Terraria.Player"/>&#160;<paramref name="player"/>,
+            <see cref="T:Terraria.Item"/>&#160;<paramref name="item"/>,
+            <see cref="T:TerrariansConstructLib.DataStructures.TileDestructionContext"/>&#160;<paramref name="context"/>,
+            <see langword="ref int"/>&#160;<paramref name="power"/>
             </summary>
         </member>
         <member name="T:TerrariansConstructLib.Items.ItemPart.PartTileDestructionFunc">
             <summary>
-            <see langword="int"/> <paramref name="partID"/>,
-            <see cref="T:Terraria.Player"/> <paramref name="player"/>,
-            <see cref="T:Terraria.Item"/> <paramref name="item"/>,
-            <see langword="int"/> <paramref name="x"/>
-            <see langword="int"/> <paramref name="y"/>
-            <see cref="T:TerrariansConstructLib.DataStructures.TileDestructionContext"/> <paramref name="context"/>
+            <see langword="int"/>&#160;<paramref name="partID"/>,
+            <see cref="T:Terraria.Player"/>&#160;<paramref name="player"/>,
+            <see cref="T:Terraria.Item"/>&#160;<paramref name="item"/>,
+            <see langword="int"/>&#160;<paramref name="x"/>
+            <see langword="int"/>&#160;<paramref name="y"/>
+            <see cref="T:TerrariansConstructLib.DataStructures.TileDestructionContext"/>&#160;<paramref name="context"/>
             </summary>
         </member>
         <member name="T:TerrariansConstructLib.Items.ItemPart.PartItemHitNPCFunc">
             <summary>
-            <see langword="int"/> <paramref name="partID"/>,
-            <see cref="T:Terraria.Item"/> <paramref name="item"/>,
-            <see cref="T:Terraria.Player"/> <paramref name="owner"/>,
-            <see cref="T:Terraria.NPC"/> <paramref name="target"/>,
-            <see langword="int"/> <paramref name="damage"/>,
-            <see langword="float"/> <paramref name="knockback"/>,
-            <see langword="bool"/> <paramref name="crit"/>
+            <see langword="int"/>&#160;<paramref name="partID"/>,
+            <see cref="T:Terraria.Item"/>&#160;<paramref name="item"/>,
+            <see cref="T:Terraria.Player"/>&#160;<paramref name="owner"/>,
+            <see cref="T:Terraria.NPC"/>&#160;<paramref name="target"/>,
+            <see langword="int"/>&#160;<paramref name="damage"/>,
+            <see langword="float"/>&#160;<paramref name="knockback"/>,
+            <see langword="bool"/>&#160;<paramref name="crit"/>
             </summary>
         </member>
         <member name="T:TerrariansConstructLib.Items.ItemPart.PartItemHitPlayerFunc">
             <summary>
-            <see langword="int"/> <paramref name="partID"/>,
-            <see cref="T:Terraria.Item"/> <paramref name="item"/>,
-            <see cref="T:Terraria.Player"/> <paramref name="owner"/>,
-            <see cref="T:Terraria.Player"/> <paramref name="target"/>,
-            <see langword="int"/> <paramref name="damage"/>,
-            <see langword="bool"/> <paramref name="crit"/>
+            <see langword="int"/>&#160;<paramref name="partID"/>,
+            <see cref="T:Terraria.Item"/>&#160;<paramref name="item"/>,
+            <see cref="T:Terraria.Player"/>&#160;<paramref name="owner"/>,
+            <see cref="T:Terraria.Player"/>&#160;<paramref name="target"/>,
+            <see langword="int"/>&#160;<paramref name="damage"/>,
+            <see langword="bool"/>&#160;<paramref name="crit"/>
             </summary>
         </member>
         <member name="T:TerrariansConstructLib.Items.ItemPart.PartItemUseSpeedMultiplier">
             <summary>
-            <see langword="int"/> <paramref name="partID"/>,
-            <see cref="T:Terraria.Item"/> <paramref name="item"/>,
-            <see cref="T:Terraria.Player"/> <paramref name="player"/>,
-            <see langword="ref float"/> <paramref name="multiplier"/>
+            <see langword="int"/>&#160;<paramref name="partID"/>,
+            <see cref="T:Terraria.Item"/>&#160;<paramref name="item"/>,
+            <see cref="T:Terraria.Player"/>&#160;<paramref name="player"/>,
+            <see langword="ref float"/>&#160;<paramref name="multiplier"/>
             </summary>
         </member>
         <member name="T:TerrariansConstructLib.Items.ItemPart.PartCanLoseDurability">
             <summary>
-            <see langword="int"/> <paramref name="partID"/>,
-            <see cref="T:Terraria.Player"/> <paramref name="player"/>,
-            <see cref="T:Terraria.Item"/> <paramref name="item"/>
+            <see langword="int"/>&#160;<paramref name="partID"/>,
+            <see cref="T:Terraria.Player"/>&#160;<paramref name="player"/>,
+            <see cref="T:Terraria.Item"/>&#160;<paramref name="item"/>
             </summary>
         </member>
         <member name="M:TerrariansConstructLib.Items.ItemPart.SetGlobalTooltip(TerrariansConstructLib.Materials.Material,System.Int32,System.String)">

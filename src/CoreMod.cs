@@ -224,6 +224,9 @@ namespace TerrariansConstruct {
 			RegisteredMaterials.IronBar = CoreLibMod.RegisterMaterialStats(ItemID.IronBar, 1, null,
 				new HeadPartStats(10, 3.3f, 0, useSpeed: 22, pickPower: 40, axePower: 40, hammerPower: 40, durability: 650),
 				new HandlePartStats(miningSpeed: 0.95f, attackSpeed: new StatModifier(1f, 0.95f), attackKnockback: new StatModifier(1f, 1.4f)));
+
+			RegisteredMaterials.LeadBar = CoreLibMod.RegisterMaterialStats(ItemID.LeadBar, 1, null,
+				new HeadPartStats(11, 2.9f, 0, useSpeed: 20, pickPower: 43, axePower: 43, hammerPower: 43, durability: 700));
 		}
 
 		public static class RegisteredAmmo {
