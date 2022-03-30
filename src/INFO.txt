@@ -7,9 +7,8 @@ Wood (ID: 9)
     Modifier:  Ecological
     Stats:
         -10% knockback
-            - multiplicative
         1/5000 chance to regenerate 1% durability every game tick
-            - stacks per part
+        Effects stack per part
 
     Head Stats:
         Base damage: 5
@@ -86,7 +85,7 @@ Gold Bar (ID: 19)
         Base pickaxe power: 55%
         Base axe power: 55%
         Base hammer power: 55%
-        Base durability (head): 1500
+        Base durability (head): 1200
 
     Handle stats:
         Base durability (handle): -100
@@ -113,8 +112,8 @@ Iron Bar (ID: 22)
         Base durability (head): 650
 
     Handle Stats:
-        Mining speed modifier: 0.95x
-        Attack speed modifier: 0.95x
+        Mining speed modifier: 1.05x
+        Attack speed modifier: 1.05x
         Attack knockback modifier: 1.4x
 
     Extra stats:
@@ -126,7 +125,7 @@ Lead Bar (ID: 704)
     Modifier: Poisonous
     Stats:
         1/25 chance to inflict the Poisoned debuff when hitting something
-            - Effect is calculated individually per-part
+        Effect is calculated individually per-part
 
     Head stats:
         Base damage: 11
@@ -159,10 +158,63 @@ Platinum Bar (ID: 706)
         Base pickaxe power: 59%
         Base axe power: 59%
         base hammer power: 59%
-        Base durability (head): 1300
+        Base durability (head): 1100
 
     Handle stats:
         n/a
 
     Extra stats:
         Base durability (extra): 100
+
+Silver Bar (ID: 21)
+    Material worth: 1
+
+    Modifier: Holy
+    Stats:
+        +50% damage and +40% knockback against zombies, skeletons and demon eyes
+        One additional point of durability is lost per part when hitting monsters of these types
+        Damage and knockback stack per level, multiplicatively
+
+    Head stats:
+        Base damage: 11
+        Base knockback: 4
+        Base crit: 2%
+        Base use speed: 21 ticks
+        Base pickaxe power: 45%
+        Base axe power: 45%
+        Base hammer power: 45%
+        Base durability (head): 950
+    
+    Handle stats:
+        Damage modifier: 0.9x
+        Knockback modifier: 0.95x
+    
+    Extra stats:
+        Base durability (extra): 80
+
+Stone Block (ID: 3)
+    Material worth: 1
+
+    Modifier: Crumbling
+    Stats:
+        1/150 chance to activate
+        When activated, lose 4 additional points of durability once, then have 8% faster mining speed until 20 to 50 tiles are mined
+        Does not stack
+
+    Head stats:
+        Base damage: 6
+        Base knockback: 1.5
+        Base crit: -3%
+        Base use speed: 26 ticks
+        Base pickaxe power: 30%
+        Base axe power: 30%
+        Base hammer power: 30%
+        Base durability (head): 250
+
+    Handle stats:
+        Base durability (handle): -25
+        Durability modifier: 0.85x
+
+    Extra stats:
+        Base durability (extra): -10
+        Durability modifier: 0.95x

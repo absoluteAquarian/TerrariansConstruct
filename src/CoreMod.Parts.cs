@@ -10,6 +10,7 @@ namespace TerrariansConstruct {
 		private void AddParts() {
 			// === COPPER ===
 			string copperTooltip = Language.GetTextValue("Mods.TerrariansConstruct.PartTooltips.Copper");
+
 			AddAllTypicalParts(RegisteredMaterials.CopperBar, PartActions.NoActions, copperTooltip, null);
 
 			// === WOOD ===
@@ -21,6 +22,7 @@ namespace TerrariansConstruct {
 				new("Mods.TerrariansConstruct.ModifierText.Common.Durability", woodHandleStats.durability, useMultiplicativeOnly: true),
 				new("Mods.TerrariansConstruct.ModifierText.Common.DurabilityAdd", woodHandleStats.durability, useAdditiveOnly: true)
 			};
+
 			AddAllTypicalParts(RegisteredMaterials.Wood, TCPartActions.Wood, woodTooltip, woodModifierTexts);
 
 			// === COBWEB ===
@@ -44,16 +46,40 @@ namespace TerrariansConstruct {
 			ModifierText.CreationContext[] ironModifierTexts = new ModifierText.CreationContext[] {
 				new("Mods.TerrariansConstruct.ModifierText.Common.MiningSpeed", new(1f, ironHandleStats.miningSpeed), positiveValueIsGoodModifier: false),
 				new("Mods.TerrariansConstruct.ModifierText.Common.AttackSpeed", ironHandleStats.attackSpeed, positiveValueIsGoodModifier: false),
-				new("Mods.TerrariansConstruct.ModifierText.Common.Knockback", ironHandleStats.attackKnockback),
+				new("Mods.TerrariansConstruct.ModifierText.Common.Knockback", ironHandleStats.attackKnockback)
 			};
+
 			AddAllTypicalParts(RegisteredMaterials.IronBar, PartActions.NoActions, ironTooltip, ironModifierTexts);
 
 			// === LEAD ===
 			string leadTooltip = Language.GetTextValue("Mods.TerrariansConstruct.PartTooltips.Lead");
+
 			AddAllTypicalParts(RegisteredMaterials.LeadBar, TCPartActions.Lead, leadTooltip, null);
 
 			// === PLATINUM ===
 			AddAllTypicalParts(RegisteredMaterials.PlatinumBar, PartActions.NoActions, null, null);
+
+			// === SILVER ===
+			string silverTooltip = Language.GetTextValue("Mods.TerrariansConstruct.PartTooltips.Silver");
+			HandlePartStats silverHandleStats = RegisteredMaterials.SilverBar.GetStat<HandlePartStats>(StatType.Handle)!;
+
+			ModifierText.CreationContext[] silverModifierTexts = new ModifierText.CreationContext[] {
+				new("Mods.TerrariansConstruct.ModifierText.Common.Damage", silverHandleStats.attackDamage, useMultiplicativeOnly: true),
+				new("Mods.TerrariansConstruct.ModifierText.Common.Knockback", silverHandleStats.attackKnockback, useMultiplicativeOnly: true)
+			};
+
+			AddAllTypicalParts(RegisteredMaterials.SilverBar, PartActions.NoActions, silverTooltip, silverModifierTexts);
+
+			// === STONE ===
+			string stoneTooltip = Language.GetTextValue("Mods.TerrariansConstruct.PartTooltips.Stone");
+			HandlePartStats stoneHandleStats = RegisteredMaterials.StoneBlock.GetStat<HandlePartStats>(StatType.Handle)!;
+
+			ModifierText.CreationContext[] stoneModifierTexts = new ModifierText.CreationContext[] {
+				new("Mods.TerrariansConstruct.ModifierText.Common.Durability", stoneHandleStats.durability, useMultiplicativeOnly: true),
+				new("Mods.TerrariansConstruct.ModifierText.Common.DurabilityAdd", stoneHandleStats.durability, useAdditiveOnly: true)
+			};
+
+			AddAllTypicalParts(RegisteredMaterials.StoneBlock, PartActions.NoActions, stoneTooltip, stoneModifierTexts);
 		}
 
 		private void AddShardPart(Material material, ItemPartActionsBuilder commonActions, string? commonTooltip, params ModifierText.CreationContext[]? modifierText)

@@ -2,6 +2,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Utilities;
 using TerrariansConstructLib.API;
 
 namespace TerrariansConstruct.Items {
@@ -18,7 +19,7 @@ namespace TerrariansConstruct.Items {
 		}
 
 		public override void SetDefaults() {
-			Item.DefaultToMeleeWeapon(19, ItemUseStyleID.Swing, useTurn: true);
+			Item.DefaultToMeleeWeapon(16, ItemUseStyleID.Swing, useTurn: true);
 			Item.pick = 20;
 			Item.axe = 3;
 			Item.noUseGraphic = true;
@@ -26,6 +27,8 @@ namespace TerrariansConstruct.Items {
 			Item.damage = 8;
 			Item.knockBack = 1.4f;
 			Item.rare = ItemRarityID.Blue;
+			Item.UseSound = SoundID.Item1;
+			Item.tileBoost = -3;
 		}
 
 		public override void AddRecipes() {
@@ -39,9 +42,6 @@ namespace TerrariansConstruct.Items {
 			Item.TurnToAir();
 		}
 
-		public override void UseItemHitbox(Player player, ref Rectangle hitbox, ref bool noHitbox) {
-			hitbox.Width = 20;
-			hitbox.Height = 20;
-		}
+		public override bool? PrefixChance(int pre, UnifiedRandom rand) => pre == 0;
 	}
 }

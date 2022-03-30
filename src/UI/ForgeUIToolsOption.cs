@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using Terraria.GameContent;
 using Terraria.GameContent.UI.Elements;
 using Terraria.UI;
 using TerrariansConstructLib;
@@ -23,7 +22,7 @@ namespace TerrariansConstruct.UI {
 
 			panel.OnClick += (evt, e) => {
 				if (object.ReferenceEquals(CoreMod.forgeUI.currentPage, CoreMod.forgeUI.pageTools)) {
-					if (ItemRegistry.TryGetConfiguration((e as ForgeUIToolsOption)!.registeredItemID, out var configuration))
+					if (ItemRegistry.TryGetConfiguration((e.Parent as ForgeUIToolsOption)!.registeredItemID, out var configuration))
 						CoreMod.forgeUI.pageTools.ConfigureSlots(configuration.ToArray());
 					else {
 						ItemRegistry.TryGetConfiguration(CoreMod.RegisteredItems.Sword, out configuration);

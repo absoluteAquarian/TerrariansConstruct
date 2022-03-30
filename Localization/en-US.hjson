@@ -23,6 +23,8 @@
 			Gold: "[c/dddd00:Lucky]"
 			Iron: "[c/bbbb99:Stiff]"
 			Lead: "[c/237500:Poisonous {R}]"
+			Silver: "[c/99b4cc:Holy {R}]"
+			Stone: "[c/a0a0a0:Crumbling]"
 		}
 	}
 }

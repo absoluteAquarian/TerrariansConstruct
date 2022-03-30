@@ -107,10 +107,48 @@
             <param name="y">The tile Y-coordinate</param>
             <param name="context">The context.  Contains information about what tool type was used to destroy the tile and how much damage was dealt to destroy the tile</param>
         </member>
-        <member name="M:TerrariansConstructLib.Abilities.BaseAbility.CanLoseDurability(Terraria.Player,TerrariansConstructLib.Items.BaseTCItem)">
+        <member name="M:TerrariansConstructLib.Abilities.BaseAbility.CanLoseDurability(Terraria.Player,TerrariansConstructLib.Items.BaseTCItem,TerrariansConstructLib.API.Sources.IDurabilityModificationSource)">
             <summary>
             Return false in this hook to prevent the <paramref name="item"/> from losing durability
             </summary>
+        </member>
+        <member name="M:TerrariansConstructLib.Abilities.BaseAbility.ModifyHitNPC(Terraria.Player,Terraria.NPC,TerrariansConstructLib.Items.BaseTCItem,System.Int32@,System.Single@,System.Boolean@)">
+            <summary>
+            This hook runs in <see cref="M:TerrariansConstructLib.Items.BaseTCItem.ModifyHitNPC(Terraria.Player,Terraria.NPC,System.Int32@,System.Single@,System.Boolean@)"/>
+            </summary>
+            <param name="player">The player</param>
+            <param name="target">The target</param>
+            <param name="item">The item doing the hitting</param>
+            <param name="damage">The damage</param>
+            <param name="knockBack">The knockback</param>
+            <param name="crit">If set to <see langword="true"/> [crit]</param>
+        </member>
+        <member name="M:TerrariansConstructLib.Abilities.BaseAbility.OnHitNPC(Terraria.Player,Terraria.NPC,TerrariansConstructLib.Items.BaseTCItem,System.Int32,System.Single,System.Boolean)">
+            <summary>
+            This hook runs in <see cref="M:TerrariansConstructLib.Items.BaseTCItem.OnHitNPC(Terraria.Player,Terraria.NPC,System.Int32,System.Single,System.Boolean)"/>
+            </summary>
+            <param name="player">The player</param>
+            <param name="target">The target</param>
+            <param name="item">The item that hit the target</param>
+            <param name="damage">The damage</param>
+            <param name="knockBack">The knockback</param>
+            <param name="crit">If set to <see langword="true"/> [crit]</param>
+        </member>
+        <member name="M:TerrariansConstructLib.Abilities.BaseAbility.PreModifyDurability(Terraria.Player,TerrariansConstructLib.Items.BaseTCItem,TerrariansConstructLib.API.Sources.IDurabilityModificationSource,System.Int32@)">
+            <summary>
+            This hook runs before durability is added to or subtracted from the <paramref name="item"/>
+            </summary>
+            <param name="player">The player</param>
+            <param name="item">The item</param>
+            <param name="source">The modification source</param>
+            <param name="amount">The amount to modify the durability by.  If the value is &lt; 0, then the modification was a durability removal, otherwise it's a durability addition</param>
+        </member>
+        <member name="M:TerrariansConstructLib.Abilities.BaseAbility.UseItem(Terraria.Player,TerrariansConstructLib.Items.BaseTCItem)">
+            <summary>
+            This hook runs in <see cref="M:TerrariansConstructLib.Items.BaseTCItem.UseItem(Terraria.Player)"/>
+            </summary>
+            <param name="player">The player</param>
+            <param name="item">The item</param>
         </member>
         <member name="M:TerrariansConstructLib.Abilities.BaseAbility.SaveData(Terraria.ModLoader.IO.TagCompound)">
             <summary>
@@ -951,6 +989,12 @@
         <member name="M:TerrariansConstructLib.ItemPartActionsBuilder.WithCanLoseDurability(TerrariansConstructLib.Items.ItemPart.PartCanLoseDurability)">
             <inheritdoc cref="T:TerrariansConstructLib.Items.ItemPart.PartCanLoseDurability"/>
         </member>
+        <member name="M:TerrariansConstructLib.ItemPartActionsBuilder.WithModifyHitNPC(TerrariansConstructLib.Items.ItemPart.PartModifyHitNPCFunc)">
+            <inheritdoc cref="T:TerrariansConstructLib.Items.ItemPart.PartModifyHitNPCFunc"/>
+        </member>
+        <member name="M:TerrariansConstructLib.ItemPartActionsBuilder.WithPreModifyDurability(TerrariansConstructLib.Items.ItemPart.PartPreModifyDurability)">
+            <inheritdoc cref="T:TerrariansConstructLib.Items.ItemPart.PartPreModifyDurability"/>
+        </member>
         <member name="T:TerrariansConstructLib.Items.BaseTCItem">
             <summary>
             The base item class for any items that can be created by the Terrarians' Construct Forge UI
@@ -1030,6 +1074,9 @@
         </member>
         <member name="M:TerrariansConstructLib.Items.BaseTCItem.SafeOnHitPvp(Terraria.Player,Terraria.Player,System.Int32,System.Boolean)">
             <inheritdoc cref="M:TerrariansConstructLib.Items.BaseTCItem.OnHitPvp(Terraria.Player,Terraria.Player,System.Int32,System.Boolean)"/>
+        </member>
+        <member name="M:TerrariansConstructLib.Items.BaseTCItem.SafeModifyHitNPC(Terraria.Player,Terraria.NPC,System.Int32@,System.Single@,System.Boolean@)">
+            <inheritdoc cref="M:TerrariansConstructLib.Items.BaseTCItem.ModifyHitNPC(Terraria.Player,Terraria.NPC,System.Int32@,System.Single@,System.Boolean@)"/>
         </member>
         <member name="M:TerrariansConstructLib.Items.BaseTCItem.SafeOnTileDestroyed(Terraria.Player,System.Int32,System.Int32,TerrariansConstructLib.DataStructures.TileDestructionContext)">
             <summary>
@@ -1176,7 +1223,27 @@
             <summary>
             <see langword="int"/>&#160;<paramref name="partID"/>,
             <see cref="T:Terraria.Player"/>&#160;<paramref name="player"/>,
-            <see cref="T:Terraria.Item"/>&#160;<paramref name="item"/>
+            <see cref="T:Terraria.Item"/>&#160;<paramref name="item"/>,
+            <see cref="T:TerrariansConstructLib.API.Sources.IDurabilityModificationSource"/>&#160;<paramref name="source"/>
+            </summary>
+        </member>
+        <member name="T:TerrariansConstructLib.Items.ItemPart.PartModifyHitNPCFunc">
+            <summary>
+            <see langword="int"/>&#160;<paramref name="partID"/>,
+            <see cref="T:Terraria.Player"/>&#160;<paramref name="player"/>,
+            <see cref="T:Terraria.NPC"/>&#160;<paramref name="target"/>,
+            <see langword="ref int"/>&#160;<paramref name="damage"/>,
+            <see langword="ref float"/>&#160;<paramref name="knockBack"/>,
+            <see langword="ref bool"/>&#160;<paramref name="crit"/>
+            </summary>
+        </member>
+        <member name="T:TerrariansConstructLib.Items.ItemPart.PartPreModifyDurability">
+            <summary>
+            <see langword="int"/>&#160;<paramref name="partID"/>,
+            <see cref="T:Terraria.Player"/>&#160;<paramref name="player"/>,
+            <see cref="T:Terraria.Item"/>&#160;<paramref name="item"/>,
+            <see cref="T:TerrariansConstructLib.API.Sources.IDurabilityModificationSource"/>&#160;<paramref name="source"/>,
+            <see langword="ref int"/>&#160;<paramref name="amount"/>
             </summary>
         </member>
         <member name="M:TerrariansConstructLib.Items.ItemPart.SetGlobalTooltip(TerrariansConstructLib.Materials.Material,System.Int32,System.String)">
@@ -1203,6 +1270,9 @@
             <summary>
             The part type associated with this item part
             </summary>
+        </member>
+        <member name="P:TerrariansConstructLib.Items.ItemPart.PreModifyDurability">
+            <remarks>If the <c>amount</c> parameter is &lt; 0, then the modification was a durability removal, otherwise it's a durability addition</remarks>
         </member>
         <member name="T:TerrariansConstructLib.Items.ItemPartItem">
             <summary>

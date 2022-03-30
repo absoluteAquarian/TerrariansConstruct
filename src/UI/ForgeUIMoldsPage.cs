@@ -18,8 +18,10 @@ namespace TerrariansConstruct.UI {
 		}
 
 		public void UpdateSlots() {
+			slots ??= new();
+
 			foreach (var s in slots)
-				s.Remove();
+				s?.Remove();
 
 			RemoveAllChildren();
 

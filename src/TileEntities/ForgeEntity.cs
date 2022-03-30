@@ -21,6 +21,11 @@ namespace TerrariansConstruct.TileEntities {
 		public override int Hook_AfterPlacement(int i, int j, int type, int style, int direction, int alternate)
 			=> NetHelper.PlaceTileEntity<ForgeEntity>(i - (int)ForgeTile.width / 2, j - (int)ForgeTile.height + 1, ForgeTile.width, ForgeTile.height);
 
+		public override void OnKill() {
+			if (CoreMod.forgeUI.entity == this)
+				CoreMod.forgeUI.Hide(Main.myPlayer);
+		}
+
 		public override void NetSend(BinaryWriter writer) {
 			writer.Write((ushort)viewingPlayer);
 
@@ -46,6 +51,11 @@ namespace TerrariansConstruct.TileEntities {
 
 		public override void SaveData(TagCompound tag) {
 			tag["molds"] = molds.Select(m => ItemIO.Save(m.Item)).ToList();
+		}
+
+		public override void LoadData(TagCompound tag) {
+			if (tag.GetList<TagCompound>("molds") is var list)
+				molds = list.Select(t => (ItemIO.Load(t).ModItem as PartMold)!).ToList();
 		}
 	}
 }

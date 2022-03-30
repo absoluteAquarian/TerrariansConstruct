@@ -29,11 +29,7 @@ namespace TerrariansConstruct.Abilities {
 				//Spawn another item
 				Item.NewItem(new EntitySource_TileBreak(x, y), x * 16, y * 16, 16, 16, itemType);
 
-				const int sizeX = 6 * 16;
-				const int sizeY = 10 * 16;
-				Point tl = (player.Center + new Vector2(-sizeX / 2f, -sizeY / 2f)).ToPoint();
-				Rectangle area = new(tl.X, tl.Y, sizeX, sizeY);
-				CombatText.NewText(area, Color.Goldenrod, "Lucky!");
+				DisplayMessageAbovePlayer(player, Color.Goldenrod, "Lucky!");
 			}
 		}
 	}

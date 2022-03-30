@@ -2,6 +2,7 @@
 using Terraria;
 using Terraria.ID;
 using TerrariansConstructLib;
+using TerrariansConstructLib.API.Sources;
 using TerrariansConstructLib.Items;
 
 namespace TerrariansConstruct {
@@ -16,7 +17,8 @@ namespace TerrariansConstruct {
 
 				int max = tc.GetMaxDurability();
 
-				tc.TryIncreaseDurability(Math.Max(1, max / 100));
+				if (tc.HasPartOfType(partID, out int index))
+					tc.TryIncreaseDurability(player, Math.Max(1, max / 100), new DurabilityModificationSource_Regen(tc[index]));
 			})
 			.MarkAsReadonly();
 

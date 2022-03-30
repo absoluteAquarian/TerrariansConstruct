@@ -92,6 +92,7 @@ namespace TerrariansConstruct.UI {
 			this.entity.viewingPlayer = openingPlayer;
 
 			CoreMod.forgeUIInterface.SetState(this);
+			Main.playerInventory = true;
 
 			SoundEngine.PlaySound(SoundID.MenuOpen);
 
