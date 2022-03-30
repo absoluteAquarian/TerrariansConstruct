@@ -202,6 +202,7 @@ namespace TerrariansConstruct {
 		// Method used by the library mod to load the items used by the Forge UI
 		// NOTE: this will be called before your mod's Load hook and before it's registered to ContentInstance<T>!
 		public static void RegisterTCMaterials(Mod mod) {
+			// TODO: json/hjson/txt file for stats perhaps?
 			//head part: damage, knockback, crit, useSpeed, pickaxe power, axe power, hammer power, durability
 
 			RegisteredMaterials.CopperBar = CoreLibMod.RegisterMaterialStats(ItemID.CopperBar, 1, new CopperAbility(),
