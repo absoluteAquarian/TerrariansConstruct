@@ -1,6 +1,7 @@
 ﻿using Mono.Cecil.Cil;
 using MonoMod.Cil;
 using System;
+using System.Reflection;
 using Terraria;
 using Terraria.Localization;
 using Terraria.ModLoader;
@@ -16,32 +17,38 @@ namespace TerrariansConstruct.API.Edits {
 
 			CoreLibMod.SetLoadingSubProgressText(Language.GetTextValue("Mods.TerrariansConstructLib.Loading.EditsLoader.ILEdits"));
 
+			IL.Terraria.Main.DrawInterface_40_InteractItemIcon += Patch_Main_DrawInterface_40_InteractItemIcon;
 			IL.Terraria.Player.ItemCheck_GetMeleeHitbox += Patch_Player_ItemCheck_GetMeleeHitbox;
-			IL.Terraria.UI.ItemSlot.Draw_SpriteBatch_ItemArray_int_int_Vector2_Color += Patch_ItemSlot_Draw;
 
 			ILHelper.LogILEdits = false;
 		}
 
-		private static void Patch_ItemSlot_Draw(ILContext il) {
+		private static void Patch_Main_DrawInterface_40_InteractItemIcon(ILContext il) {
+			FieldInfo Main_cursorScale = typeof(Main).GetField("cursorScale", BindingFlags.Public | BindingFlags.Static)!;
+
+			ILHelper.EnsureAreNotNull((Main_cursorScale, typeof(Main).FullName + "::cursorScale"));
+
 			ILCursor c = new(il);
 
 			int patchNum = 1;
 
 			ILHelper.CompleteLog(CoreMod.Instance, c, beforeEdit: true);
 
-			if (!c.TryGotoNext(MoveType.After, i => i.MatchLdloc(32),
-				i => i.MatchLdloc(2),
-				i => i.MatchMul(),
-				i => i.MatchStloc(32)))
+			if (!c.TryGotoNext(MoveType.After, i => i.MatchLdcR4(1f),
+				i => i.MatchStloc(6),
+				i => i.MatchLdsfld(Main_cursorScale),
+				i => i.MatchStloc(6)))
 				goto bad_il;
 
-			// TODO: hand icon isn't drawing at a smaller scale... why?
-			c.Emit(OpCodes.Ldloc, 31);
-			c.Emit(OpCodes.Ldloc_1);
-			c.Emit(OpCodes.Ldarg_2);
-			c.EmitDelegate<Func<Item, int, float>>((item, context) => item.type == ModContent.ItemType<ZAHANDO>() && context == ItemSlot.Context.MouseItem ? 0.25f : 1f);
-			c.Emit(OpCodes.Mul);
-			c.Emit(OpCodes.Stloc, 31);
+			c.Emit(OpCodes.Ldloc_0);
+			c.Emit(OpCodes.Ldloc, 6);
+			c.EmitDelegate<Func<int, float, float>>((num, num2) => {
+				if (num == ModContent.ItemType<ZAHANDO>())
+					num2 *= 0.45f;
+
+				return num2;
+			});
+			c.Emit(OpCodes.Stloc, 6);
 
 			ILHelper.UpdateInstructionOffsets(c);
 
