@@ -16,7 +16,7 @@ namespace TerrariansConstruct.Tiles {
 		public const uint width = 3, height = 2;
 
 		public override void SetStaticDefaults() {
-			string mapName = "Thnker Table";
+			string mapName = "Tinker Table";
 
 			Main.tileNoAttach[Type] = true;
 			Main.tileFrameImportant[Type] = true;
