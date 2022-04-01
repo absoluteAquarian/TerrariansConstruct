@@ -23,7 +23,7 @@ namespace TerrariansConstruct {
 				new("Mods.TerrariansConstruct.ModifierText.Common.DurabilityAdd", woodHandleStats.durability, useAdditiveOnly: true)
 			};
 
-			AddAllTypicalParts(RegisteredMaterials.Wood, TCPartActions.Wood, woodTooltip, woodModifierTexts);
+			AddAllTypicalParts(RegisteredMaterials.Wood, PartActions.NoActions, woodTooltip, woodModifierTexts);
 
 			// === COBWEB ===
 			CoreLibMod.AddPart(this, RegisteredMaterials.Cobweb, RegisteredParts.WeaponBowString, PartActions.NoActions, null, null);
@@ -54,7 +54,7 @@ namespace TerrariansConstruct {
 			// === LEAD ===
 			string leadTooltip = Language.GetTextValue("Mods.TerrariansConstruct.PartTooltips.Lead");
 
-			AddAllTypicalParts(RegisteredMaterials.LeadBar, TCPartActions.Lead, leadTooltip, null);
+			AddAllTypicalParts(RegisteredMaterials.LeadBar, PartActions.NoActions, leadTooltip, null);
 
 			// === PLATINUM ===
 			AddAllTypicalParts(RegisteredMaterials.PlatinumBar, PartActions.NoActions, null, null);

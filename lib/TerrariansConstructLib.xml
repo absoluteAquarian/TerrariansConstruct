@@ -97,6 +97,15 @@
             <param name="item">The item instance</param>
             <param name="multiplier">The multiplier</param>
         </member>
+        <member name="M:TerrariansConstructLib.Abilities.BaseAbility.ModifyToolPower(Terraria.Player,TerrariansConstructLib.Items.BaseTCItem,TerrariansConstructLib.DataStructures.TileDestructionContext,System.Int32@)">
+            <summary>
+            This hook runs before the mining tool, <paramref name="item"/>, hits a tile
+            </summary>
+            <param name="player">The player</param>
+            <param name="item">The item doing the mining</param>
+            <param name="context">The context.  Contains information about what tool type was used to hit the tile and the intended damage</param>
+            <param name="power">The effective tool power</param>
+        </member>
         <member name="M:TerrariansConstructLib.Abilities.BaseAbility.OnTileDestroyed(Terraria.Player,TerrariansConstructLib.Items.BaseTCItem,System.Int32,System.Int32,TerrariansConstructLib.DataStructures.TileDestructionContext)">
             <summary>
             This hook runs after the player has destroyed a tile using a <see cref="T:TerrariansConstructLib.Items.BaseTCItem"/> item
@@ -134,6 +143,35 @@
             <param name="knockBack">The knockback</param>
             <param name="crit">If set to <see langword="true"/> [crit]</param>
         </member>
+        <member name="M:TerrariansConstructLib.Abilities.BaseAbility.OnHitPlayer(Terraria.Player,Terraria.Player,TerrariansConstructLib.Items.BaseTCItem,System.Int32,System.Boolean)">
+            <summary>
+            This hook runs in <see cref="M:TerrariansConstructLib.Items.BaseTCItem.OnHitPvp(Terraria.Player,Terraria.Player,System.Int32,System.Boolean)"/>
+            </summary>
+            <param name="owner">The player</param>
+            <param name="target">The target</param>
+            <param name="item">The item that hit the target</param>
+            <param name="damage">The damage</param>
+            <param name="crit">If set to <see langword="true"/> [crit]</param>
+        </member>
+        <member name="M:TerrariansConstructLib.Abilities.BaseAbility.OnHitPlayerWithProjectile(TerrariansConstructLib.Projectiles.BaseTCProjectile,Terraria.Player,System.Int32,System.Boolean)">
+            <summary>
+            This hook runs in <see cref="M:TerrariansConstructLib.Projectiles.BaseTCProjectile.OnHitPlayer(Terraria.Player,System.Int32,System.Boolean)"/>
+            </summary>
+            <param name="projectile">The projectile</param>
+            <param name="target">The target</param>
+            <param name="damage">The damage</param>
+            <param name="crit">If set to <see langword="true"/> [crit]</param>
+        </member>
+        <member name="M:TerrariansConstructLib.Abilities.BaseAbility.OnHitNPCWithProjectile(TerrariansConstructLib.Projectiles.BaseTCProjectile,Terraria.NPC,System.Int32,System.Single,System.Boolean)">
+            <summary>
+            This hook rusn in <see cref="M:TerrariansConstructLib.Projectiles.BaseTCProjectile.OnHitNPC(Terraria.NPC,System.Int32,System.Single,System.Boolean)"/>
+            </summary>
+            <param name="projectile">The projectile</param>
+            <param name="target">The target</param>
+            <param name="damage">The damage</param>
+            <param name="knockBack">The knockback</param>
+            <param name="crit">If set to <see langword="true"/> [crit]</param>
+        </member>
         <member name="M:TerrariansConstructLib.Abilities.BaseAbility.PreModifyDurability(Terraria.Player,TerrariansConstructLib.Items.BaseTCItem,TerrariansConstructLib.API.Sources.IDurabilityModificationSource,System.Int32@)">
             <summary>
             This hook runs before durability is added to or subtracted from the <paramref name="item"/>
@@ -142,6 +180,32 @@
             <param name="item">The item</param>
             <param name="source">The modification source</param>
             <param name="amount">The amount to modify the durability by.  If the value is &lt; 0, then the modification was a durability removal, otherwise it's a durability addition</param>
+        </member>
+        <member name="M:TerrariansConstructLib.Abilities.BaseAbility.OnProjectileSpawn(TerrariansConstructLib.Projectiles.BaseTCProjectile,Terraria.DataStructures.IEntitySource,System.Single,System.Single,System.Single,System.Single,System.Int32,System.Int32,System.Single,System.Int32,System.Single,System.Single)">
+            <summary>
+            This hook runs when a <see cref="T:TerrariansConstructLib.Projectiles.BaseTCProjectile"/> projectile is spawned which has a part with this ability
+            </summary>
+            <param name="projectile">The spawned projectile</param>
+            <param name="source">The spawn source</param>
+            <param name="X">The X-position</param>
+            <param name="Y">The Y-position</param>
+            <param name="SpeedX">The X-velocity</param>
+            <param name="SpeedY">The Y-velocity</param>
+            <param name="Type">The ID of the projectile spawned</param>
+            <param name="Damage">The damage assigned to the projectile</param>
+            <param name="KnockBack">The knockback assigned to the projectile</param>
+            <param name="Owner">The projectile's owner</param>
+            <param name="ai0"></param>
+            <param name="ai1"></param>
+        </member>
+        <member name="M:TerrariansConstructLib.Abilities.BaseAbility.ModifyWeaponDamage(Terraria.Player,TerrariansConstructLib.Items.BaseTCItem,Terraria.ModLoader.StatModifier@,System.Single@)">
+            <inheritdoc cref="M:TerrariansConstructLib.Items.BaseTCItem.ModifyWeaponDamage(Terraria.Player,Terraria.ModLoader.StatModifier@,System.Single@)"/>
+        </member>
+        <member name="M:TerrariansConstructLib.Abilities.BaseAbility.ModifyWeaponKnockback(Terraria.Player,TerrariansConstructLib.Items.BaseTCItem,Terraria.ModLoader.StatModifier@,System.Single@)">
+            <inheritdoc cref="M:TerrariansConstructLib.Items.BaseTCItem.ModifyWeaponKnockback(Terraria.Player,Terraria.ModLoader.StatModifier@,System.Single@)"/>
+        </member>
+        <member name="M:TerrariansConstructLib.Abilities.BaseAbility.ModifyWeaponCrit(Terraria.Player,TerrariansConstructLib.Items.BaseTCItem,System.Int32@)">
+            <inheritdoc cref="M:TerrariansConstructLib.Items.BaseTCItem.ModifyWeaponCrit(Terraria.Player,System.Int32@)"/>
         </member>
         <member name="M:TerrariansConstructLib.Abilities.BaseAbility.UseItem(Terraria.Player,TerrariansConstructLib.Items.BaseTCItem)">
             <summary>

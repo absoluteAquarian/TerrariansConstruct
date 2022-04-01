@@ -212,7 +212,7 @@ namespace TerrariansConstruct {
 				new ExtraPartStats()
 					.With(CoreLibMod.KnownStatModifiers.ExtraDurability, new StatModifier(50, 1f)));
 
-			RegisteredMaterials.Wood = CoreLibMod.RegisterMaterialStats(ItemID.Wood, 1, null,
+			RegisteredMaterials.Wood = CoreLibMod.RegisterMaterialStats(ItemID.Wood, 1, new WoodAbility(),
 				new HeadPartStats(5, 1f, useSpeed: 28, pickPower: 28, axePower: 28, hammerPower: 28, durability: 180, toolRange: -2),
 				new HandlePartStats(attackKnockback: new StatModifier(0, 0.9f), durability: new StatModifier(0, 1.05f)),
 				new ExtraPartStats()
@@ -240,7 +240,7 @@ namespace TerrariansConstruct {
 				new ExtraPartStats()
 					.With(CoreLibMod.KnownStatModifiers.ExtraDurability, new StatModifier(45, 1f)));
 
-			RegisteredMaterials.LeadBar = CoreLibMod.RegisterMaterialStats(ItemID.LeadBar, 1, null,
+			RegisteredMaterials.LeadBar = CoreLibMod.RegisterMaterialStats(ItemID.LeadBar, 1, new LeadAbility(),
 				new HeadPartStats(11, 2.9f, 0, useSpeed: 20, pickPower: 43, axePower: 43, hammerPower: 43, durability: 700),
 				new HandlePartStats(),
 				new ExtraPartStats()
