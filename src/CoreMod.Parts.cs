@@ -80,6 +80,12 @@ namespace TerrariansConstruct {
 			};
 
 			AddAllTypicalParts(RegisteredMaterials.StoneBlock, PartActions.NoActions, stoneTooltip, stoneModifierTexts);
+
+			// === TIN ===
+			AddAllTypicalParts(RegisteredMaterials.TinBar, PartActions.NoActions, null, null);
+
+			// === TUNGSTEN ===
+			AddAllTypicalParts(RegisteredMaterials.TungstenBar, PartActions.NoActions, null, null);
 		}
 
 		private void AddShardPart(Material material, ItemPartActionsBuilder commonActions, string? commonTooltip, params ModifierText.CreationContext[]? modifierText)

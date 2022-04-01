@@ -609,6 +609,11 @@
             The durability for the part
             </summary>
         </member>
+        <member name="F:TerrariansConstructLib.API.Stats.HeadPartStats.toolRange">
+            <summary>
+            The tool range modifier
+            </summary>
+        </member>
         <member name="T:TerrariansConstructLib.API.Stats.StatType">
             <summary>
             Which type of stats an item part ID should use

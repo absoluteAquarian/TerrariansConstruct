@@ -203,16 +203,17 @@ namespace TerrariansConstruct {
 		// NOTE: this will be called before your mod's Load hook and before it's registered to ContentInstance<T>!
 		public static void RegisterTCMaterials(Mod mod) {
 			// TODO: json/hjson/txt file for stats perhaps?
-			//head part: damage, knockback, crit, useSpeed, pickaxe power, axe power, hammer power, durability
+			//head part: damage, knockback, crit, useSpeed, pickaxe power, axe power, hammer power, durability, tool range
 
+			// First sprite set
 			RegisteredMaterials.CopperBar = CoreLibMod.RegisterMaterialStats(ItemID.CopperBar, 1, new CopperAbility(),
-				new HeadPartStats(7, 2.1f, pickPower: 35, axePower: 35, hammerPower: 35, durability: 300),
+				new HeadPartStats(7, 2.1f, pickPower: 35, axePower: 35, hammerPower: 35, durability: 300, toolRange: -1),
 				new HandlePartStats(),
 				new ExtraPartStats()
 					.With(CoreLibMod.KnownStatModifiers.ExtraDurability, new StatModifier(50, 1f)));
 
 			RegisteredMaterials.Wood = CoreLibMod.RegisterMaterialStats(ItemID.Wood, 1, null,
-				new HeadPartStats(5, 1f, useSpeed: 28, pickPower: 28, axePower: 28, hammerPower: 28, durability: 180),
+				new HeadPartStats(5, 1f, useSpeed: 28, pickPower: 28, axePower: 28, hammerPower: 28, durability: 180, toolRange: -2),
 				new HandlePartStats(attackKnockback: new StatModifier(0, 0.9f), durability: new StatModifier(0, 1.05f)),
 				new ExtraPartStats()
 					.With(CoreLibMod.KnownStatModifiers.ExtraDurability, new StatModifier(30, 1f)));
@@ -226,6 +227,7 @@ namespace TerrariansConstruct {
 					.SetValidPartIDs(CoreLibMod.KnownStatModifiers.BowArrowSpeed,
 						RegisteredParts.WeaponBowString));
 
+			// Second sprite set
 			RegisteredMaterials.GoldBar = CoreLibMod.RegisterMaterialStats(ItemID.GoldBar, 1, new GoldAbility(),
 				new HeadPartStats(13, 6.5f, 7, useSpeed: 16, pickPower: 55, axePower: 55, hammerPower: 55, durability: 1200),
 				new HandlePartStats(durability: new StatModifier(-100, 0.9f)),
@@ -257,10 +259,25 @@ namespace TerrariansConstruct {
 					.With(CoreLibMod.KnownStatModifiers.ExtraDurability, new StatModifier(80, 1f)));
 
 			RegisteredMaterials.StoneBlock = CoreLibMod.RegisterMaterialStats(ItemID.StoneBlock, 1, new StoneAbility(),
-				new HeadPartStats(6, 1.5f, -3, useSpeed: 26, pickPower: 30, axePower: 30, hammerPower: 30, durability: 250),
+				new HeadPartStats(6, 1.5f, -3, useSpeed: 26, pickPower: 30, axePower: 30, hammerPower: 30, durability: 250, toolRange: -1),
 				new HandlePartStats(durability: new StatModifier(-25, 0.85f)),
 				new ExtraPartStats()
 					.With(CoreLibMod.KnownStatModifiers.ExtraDurability, new StatModifier(-10, 0.95f)));
+
+			RegisteredMaterials.TinBar = CoreLibMod.RegisterMaterialStats(ItemID.TinBar, 1, null,
+				new HeadPartStats(9, 2.3f, 0, useSpeed: 22, pickPower: 35, axePower: 35, hammerPower: 35, durability: 350, toolRange: -1),
+				new HandlePartStats(),
+				new ExtraPartStats()
+					.With(CoreLibMod.KnownStatModifiers.ExtraDurability, new StatModifier(55, 1f)));
+
+			RegisteredMaterials.TungstenBar = CoreLibMod.RegisterMaterialStats(ItemID.TungstenBar, 1, null,
+				new HeadPartStats(12, 3.9f, 0, useSpeed: 20, pickPower: 50, axePower: 50, hammerPower: 50, durability: 1050),
+				new HandlePartStats(),
+				new ExtraPartStats()
+					.With(CoreLibMod.KnownStatModifiers.ExtraDurability, new StatModifier(90, 1f)));
+
+			// Third sprite set
+
 		}
 
 		public static class RegisteredAmmo {
@@ -298,9 +315,12 @@ namespace TerrariansConstruct {
 		}
 
 		public static class RegisteredMaterials {
+			// First sprite set
 			public static Material CopperBar { get; internal set; }
 			public static Material Wood { get; internal set; }
 			public static Material Cobweb { get; internal set; }
+			
+			// Second sprite set
 			public static Material GoldBar { get; internal set; }
 			public static Material IronBar { get; internal set; }
 			public static Material LeadBar { get; internal set; }
@@ -316,6 +336,27 @@ namespace TerrariansConstruct {
 			public static Material Silk { get; internal set; }
 			public static Material SnowCloud { get; internal set; }
 			public static Material Vine { get; internal set; }
+
+			// Third sprite set
+			public static Material AshBlock { get; internal set; }
+			public static Material BlueBrick { get; internal set; }
+			public static Material BorealWood { get; internal set; }
+			public static Material CandyCaneBlock { get; internal set; }
+			public static Material Chain { get; internal set; }
+			public static Material Cactus { get; internal set; }
+			public static Material DirtBlock { get; internal set; }
+			public static Material Ebonwood { get; internal set; }
+			public static Material Glass { get; internal set; }
+			public static Material GraniteBlock { get; internal set; }
+			public static Material GreenBrick { get; internal set; }
+			public static Material GreenCandyCaneBlock { get; internal set; }
+			public static Material HellstoneBar { get; internal set; }
+			public static Material MarbleBlock { get; internal set; }
+			public static Material Obsidian { get; internal set; }
+			public static Material PickBrick { get; internal set; }
+			public static Material PalmWood { get; internal set; }
+			public static Material RichMahogany { get; internal set; }
+			public static Material Shadewood { get; internal set; }
 		}
 	}
 }

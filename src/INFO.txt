@@ -7,8 +7,9 @@ Wood (ID: 9)
     Modifier:  Ecological
     Stats:
         -10% knockback
-        1/5000 chance to regenerate 1% durability every game tick
-        Effects stack per part
+        1/800 chance to regenerate 1-5 durability every game tick
+            Chance is increased to the sum of the tier numbers at and below the current tier
+            E.g. tier II would give a (2 + 1)/800 = 3/800 chance
 
     Head Stats:
         Base damage: 5
@@ -19,6 +20,7 @@ Wood (ID: 9)
         Base axe power: 28%
         Base hammer power: 28%
         Base durability (head): 180
+        -2 tool range
 
     Handle Stats:
         Knockback Modifier: 0.9x
@@ -44,6 +46,7 @@ Copper Bar (ID: 20)
         Base axe power: 35%
         Base hammer power: 35%
         Base durability (head): 300
+        -1 tool range
 
     Handle Stats:
         n/a
@@ -125,7 +128,7 @@ Lead Bar (ID: 704)
     Modifier: Poisonous
     Stats:
         1/25 chance to inflict the Poisoned debuff when hitting something
-        Effect is calculated individually per-part
+            Chance increases by 2 per tier, up to a maximum chance of 25/25
 
     Head stats:
         Base damage: 11
@@ -174,6 +177,8 @@ Silver Bar (ID: 21)
         +50% damage and +40% knockback against zombies, skeletons and demon eyes
         One additional point of durability is lost per part when hitting monsters of these types
         Damage and knockback stack per level, multiplicatively
+        Rolls an additional crit chance against monsters of those types
+            +10% crit chance per tier, additively
 
     Head stats:
         Base damage: 11
@@ -210,6 +215,7 @@ Stone Block (ID: 3)
         Base axe power: 30%
         Base hammer power: 30%
         Base durability (head): 250
+        -1 tool range
 
     Handle stats:
         Base durability (handle): -25
@@ -218,3 +224,50 @@ Stone Block (ID: 3)
     Extra stats:
         Base durability (extra): -10
         Durability modifier: 0.95x
+
+Tin Bar (ID: 703)
+    Material worth: 1
+
+    Modifier: n/a
+    Stats:
+        n/a
+
+    Head stats:
+        Base damage: 9
+        Base knockback: 2.3
+        Base crit: 0%
+        Base use speed: 22 ticks
+        Base pickaxe power: 35%
+        Base axe power: 35%
+        Base hammer power: 35%
+        Base durability (head): 350
+        -1 tool range
+
+    Handle stats:
+        n/a
+
+    Extra stats:
+        Base druability (extra): 55
+
+Tungsten Bar (ID: 705)
+    Material worth: 1
+
+    Modifier: n/a
+    Stats:
+        n/a
+
+    Head stats:
+        Base damage: 12
+        Base knockback: 3.9
+        Base crit: 0%
+        Base use speed: 20 ticks
+        Base pickaxe power: 50%
+        Base axe power: 50%
+        Base hammer power: 50%
+        Base durability (head): 1050
+
+    Handle stats:
+        n/a
+
+    Extra stats:
+        Base druability (extra): 90

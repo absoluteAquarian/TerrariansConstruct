@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using System;
+using Terraria;
 using Terraria.ID;
 using TerrariansConstructLib.Abilities;
 using TerrariansConstructLib.API.Sources;
@@ -20,13 +21,23 @@ namespace TerrariansConstruct.Abilities {
 				|| npcType == NPCID.Retinazer || npcType == NPCID.Spazmatism
 				|| npcType == NPCID.SkeletronPrime || npcType == NPCID.PrimeCannon || npcType == NPCID.PrimeLaser || npcType == NPCID.PrimeSaw || npcType == NPCID.PrimeVice;
 
+		private int critCheck;
+		public override void OnUpdate(Player player, bool counterWasReset) {
+			critCheck = -1;
+		}
+
 		public override void ModifyHitNPC(Player player, NPC target, BaseTCItem item, ref int damage, ref float knockBack, ref bool crit) {
 			if (CountsForIncreasedDamage(target.type)) {
 				damage = (int)(damage * 1.5f);
 				knockBack *= 1.1f;
 
-				if (!crit && Main.rand.NextBool(10, 100))
-					crit = true;
+				if (!crit && critCheck != target.whoAmI) {
+					critCheck = target.whoAmI;
+
+					int tier = Math.Max(GetTierFromItem(item), 10);
+					if (Main.rand.NextBool(tier * 10, 100))
+						crit = true;
+				}
 			}
 		}
 
