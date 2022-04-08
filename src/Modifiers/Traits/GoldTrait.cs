@@ -3,13 +3,17 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
 using TerrariansConstruct.Systems;
-using TerrariansConstructLib.Abilities;
 using TerrariansConstructLib.DataStructures;
 using TerrariansConstructLib.Items;
+using TerrariansConstructLib.Modifiers;
 
-namespace TerrariansConstruct.Abilities {
-	internal sealed class GoldAbility : BaseAbility {
+namespace TerrariansConstruct.Modifiers.Traits {
+	internal sealed class GoldTrait : BaseTrait {
 		public override bool IsSingleton => true;
+
+		public override Color TooltipColor => new(0xdd, 0xdd, 0x00);
+
+		public override string LangKey => "Mods.TerrariansConstruct.PartTooltips.Gold";
 
 		//All this ability does is track tile destructions
 		public override bool ShouldUpdateCounter(Player player) => false;

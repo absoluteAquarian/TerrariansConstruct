@@ -4,27 +4,19 @@
 			Parts: "Adding part items"
 			ForgeUI: "Initializing Forge UI"
 		}
-		
-		ModifierText: {
-			Common: {
-				Knockback: "{0:+#;-#;+0}% knockback"
-				Damage: "{0:+#;-#;+0}% damage"
-				MiningSpeed: "{0:+#;-#;+0}% mining speed"
-				ProjectileSpeed: "{0:+#;-#;+0}% velocity"
-				Durability: "{0:+#;-#;+0}% durability"
-				DurabilityAdd: "{0:+#;-#;+0} base durability"
-				AttackSpeed: "{0:+#;-#;+0}% attack speed"
-			}
-		}
 
 		PartTooltips: {
-			Copper: "[c/ff6000:Energized]"
-			Wood: "[c/996633:Ecological {R}]"
-			Gold: "[c/dddd00:Lucky]"
-			Iron: "[c/bbbb99:Stiff]"
-			Lead: "[c/237500:Poisonous {R}]"
-			Silver: "[c/99b4cc:Holy {R}]"
-			Stone: "[c/a0a0a0:Crumbling]"
+			Copper: "Energized"
+			Wood: "Ecological {R}"
+			Gold: "Lucky"
+			Iron: "Stiff"
+			Lead: "Poisonous {R}"
+			Silver: "Holy {R}"
+			Stone: "Crumbling"
+		}
+
+		Modifiers: {
+			Spiky: "Spiky {R}"
 		}
 	}
 }

@@ -1,19 +1,23 @@
-﻿using Terraria;
-using TerrariansConstructLib.Abilities;
+﻿using Microsoft.Xna.Framework;
+using Terraria;
 using TerrariansConstructLib.API.Sources;
 using TerrariansConstructLib.Items;
+using TerrariansConstructLib.Modifiers;
 
-namespace TerrariansConstruct.Abilities {
-	internal class WoodAbility : BaseAbility {
+namespace TerrariansConstruct.Modifiers.Traits {
+	internal class WoodTrait : BaseTrait {
 		public override bool IsSingleton => true;
+
+		public override Color TooltipColor => new(0x99, 0x66, 0x33);
+
+		public override string LangKey => "Mods.TerrariansConstruct.PartTooltips.Wood";
 
 		public override bool ShouldUpdateCounter(Player player) => false;
 
 		public override double GetExpectedCounterTarget(Player player) => 1f;
 
 		public override void OnUpdateInventory(Player player, BaseTCItem item) {
-			int tier = GetTierFromItem<WoodAbility>(item);
-			int chance = tier * (tier + 1) / 2;  //Sum from 1 to N
+			int chance = Tier * (Tier + 1) / 2;  //Sum from 1 to N
 			
 			if (!Main.rand.NextBool(chance, 800))
 				return;

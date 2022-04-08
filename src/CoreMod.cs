@@ -4,10 +4,11 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.UI;
-using TerrariansConstruct.Abilities;
 using TerrariansConstruct.API.Edits;
 using TerrariansConstruct.Items.Tools;
 using TerrariansConstruct.Items.Weapons;
+using TerrariansConstruct.Modifiers.ForgeModifiers;
+using TerrariansConstruct.Modifiers.Traits;
 using TerrariansConstruct.Projectiles;
 using TerrariansConstruct.UI;
 using TerrariansConstructLib;
@@ -206,13 +207,13 @@ namespace TerrariansConstruct {
 			//head part: damage, knockback, crit, useSpeed, pickaxe power, axe power, hammer power, durability, tool range
 
 			// First sprite set
-			RegisteredMaterials.CopperBar = CoreLibMod.RegisterMaterialStats(ItemID.CopperBar, 1, new CopperAbility(),
+			RegisteredMaterials.CopperBar = CoreLibMod.RegisterMaterialStats(ItemID.CopperBar, 1, new CopperTrait(),
 				new HeadPartStats(7, 2.1f, pickPower: 35, axePower: 35, hammerPower: 35, durability: 300, toolRange: -1),
 				new HandlePartStats(),
 				new ExtraPartStats()
 					.With(CoreLibMod.KnownStatModifiers.ExtraDurability, new StatModifier(50, 1f)));
 
-			RegisteredMaterials.Wood = CoreLibMod.RegisterMaterialStats(ItemID.Wood, 1, new WoodAbility(),
+			RegisteredMaterials.Wood = CoreLibMod.RegisterMaterialStats(ItemID.Wood, 1, new WoodTrait(),
 				new HeadPartStats(5, 1f, useSpeed: 28, pickPower: 28, axePower: 28, hammerPower: 28, durability: 180, toolRange: -2),
 				new HandlePartStats(attackKnockback: new StatModifier(0, 0.9f), durability: new StatModifier(0, 1.05f)),
 				new ExtraPartStats()
@@ -228,19 +229,19 @@ namespace TerrariansConstruct {
 						RegisteredParts.WeaponBowString));
 
 			// Second sprite set
-			RegisteredMaterials.GoldBar = CoreLibMod.RegisterMaterialStats(ItemID.GoldBar, 1, new GoldAbility(),
+			RegisteredMaterials.GoldBar = CoreLibMod.RegisterMaterialStats(ItemID.GoldBar, 1, new GoldTrait(),
 				new HeadPartStats(13, 6.5f, 7, useSpeed: 16, pickPower: 55, axePower: 55, hammerPower: 55, durability: 1200),
 				new HandlePartStats(durability: new StatModifier(-100, 0.9f)),
 				new ExtraPartStats()
 					.With(CoreLibMod.KnownStatModifiers.ExtraDurability, new StatModifier(-10, 1f)));
 
-			RegisteredMaterials.IronBar = CoreLibMod.RegisterMaterialStats(ItemID.IronBar, 1, null,
+			RegisteredMaterials.IronBar = CoreLibMod.RegisterMaterialStats(ItemID.IronBar, 1, new IronTrait(),
 				new HeadPartStats(10, 3.3f, 0, useSpeed: 22, pickPower: 40, axePower: 40, hammerPower: 40, durability: 650),
 				new HandlePartStats(miningSpeed: 1.05f, attackSpeed: new StatModifier(1f, 1.05f), attackKnockback: new StatModifier(1f, 1.4f)),
 				new ExtraPartStats()
 					.With(CoreLibMod.KnownStatModifiers.ExtraDurability, new StatModifier(45, 1f)));
 
-			RegisteredMaterials.LeadBar = CoreLibMod.RegisterMaterialStats(ItemID.LeadBar, 1, new LeadAbility(),
+			RegisteredMaterials.LeadBar = CoreLibMod.RegisterMaterialStats(ItemID.LeadBar, 1, new LeadTrait(),
 				new HeadPartStats(11, 2.9f, 0, useSpeed: 20, pickPower: 43, axePower: 43, hammerPower: 43, durability: 700),
 				new HandlePartStats(),
 				new ExtraPartStats()
@@ -252,13 +253,13 @@ namespace TerrariansConstruct {
 				new ExtraPartStats()
 					.With(CoreLibMod.KnownStatModifiers.ExtraDurability, new StatModifier(100, 1f)));
 
-			RegisteredMaterials.SilverBar = CoreLibMod.RegisterMaterialStats(ItemID.SilverBar, 1, new SilverAbility(),
+			RegisteredMaterials.SilverBar = CoreLibMod.RegisterMaterialStats(ItemID.SilverBar, 1, new SilverTrait(),
 				new HeadPartStats(11, 4f, 2, useSpeed: 21, pickPower: 45, axePower: 45, hammerPower: 45, durability: 950),
 				new HandlePartStats(attackDamage: new StatModifier(0, 0.9f), attackKnockback: new StatModifier(0, 0.95f)),
 				new ExtraPartStats()
 					.With(CoreLibMod.KnownStatModifiers.ExtraDurability, new StatModifier(80, 1f)));
 
-			RegisteredMaterials.StoneBlock = CoreLibMod.RegisterMaterialStats(ItemID.StoneBlock, 1, new StoneAbility(),
+			RegisteredMaterials.StoneBlock = CoreLibMod.RegisterMaterialStats(ItemID.StoneBlock, 1, new StoneTrait(),
 				new HeadPartStats(6, 1.5f, -3, useSpeed: 26, pickPower: 30, axePower: 30, hammerPower: 30, durability: 250, toolRange: -1),
 				new HandlePartStats(durability: new StatModifier(-25, 0.85f)),
 				new ExtraPartStats()
@@ -277,7 +278,10 @@ namespace TerrariansConstruct {
 					.With(CoreLibMod.KnownStatModifiers.ExtraDurability, new StatModifier(90, 1f)));
 
 			// Third sprite set
+		}
 
+		public static void RegisterTCModifiers(Mod mod) {
+			CoreLibMod.RegisterModifier(RegisteredModifiers.Spiky, new SpikyModifier());
 		}
 
 		public static class RegisteredAmmo {
@@ -357,6 +361,10 @@ namespace TerrariansConstruct {
 			public static Material PalmWood { get; internal set; }
 			public static Material RichMahogany { get; internal set; }
 			public static Material Shadewood { get; internal set; }
+		}
+
+		public static class RegisteredModifiers {
+			public const string Spiky = "TerrariansConstruct:Spiky";
 		}
 	}
 }

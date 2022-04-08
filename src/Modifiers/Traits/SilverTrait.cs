@@ -1,12 +1,17 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 using Terraria;
 using Terraria.ID;
-using TerrariansConstructLib.Abilities;
 using TerrariansConstructLib.API.Sources;
 using TerrariansConstructLib.Items;
+using TerrariansConstructLib.Modifiers;
 
-namespace TerrariansConstruct.Abilities {
-	internal sealed class SilverAbility : BaseAbility {
+namespace TerrariansConstruct.Modifiers.Traits {
+	internal sealed class SilverTrait : BaseTrait {
+		public override Color TooltipColor => new(0x99, 0xb4, 0xcc);
+
+		public override string LangKey => "Mods.TerrariansConstruct.PartTooltips.Silver";
+
 		//All this ability does is make certain NPCs take more damage
 		public override bool ShouldUpdateCounter(Player player) => false;
 
@@ -34,7 +39,7 @@ namespace TerrariansConstruct.Abilities {
 				if (!crit && critCheck != target.whoAmI) {
 					critCheck = target.whoAmI;
 
-					int tier = Math.Max(GetTierFromItem(item), 10);
+					int tier = Math.Max(Tier, 10);
 					if (Main.rand.NextBool(tier * 10, 100))
 						crit = true;
 				}

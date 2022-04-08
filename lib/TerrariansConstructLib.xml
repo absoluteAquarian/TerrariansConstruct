@@ -4,232 +4,6 @@
         <name>TerrariansConstructLib</name>
     </assembly>
     <members>
-        <member name="T:TerrariansConstructLib.Abilities.BaseAbility">
-            <summary>
-            The base class for any abilities (passive or not) that are activated via item parts
-            </summary>
-        </member>
-        <member name="P:TerrariansConstructLib.Abilities.BaseAbility.IsSingleton">
-            <summary>
-            Whether this ability is considered a singleton (only one instance exists on an item at any given moment)<br/>
-            Defaults to <see langword="false"/>, which indicates that an instance is stored per item part
-            </summary>
-        </member>
-        <member name="M:TerrariansConstructLib.Abilities.BaseAbility.Clone">
-            <summary>
-            This hook is called when cloning instances of this ability
-            </summary>
-        </member>
-        <member name="P:TerrariansConstructLib.Abilities.BaseAbility.CounterIncrements">
-            <summary>
-            Whether the <see cref="F:TerrariansConstructLib.Abilities.BaseAbility.Counter"/> automatically increments (<see langword="true"/>) or decrements (<see langword="false"/>)<br/>
-            This property is ignored if <see cref="M:TerrariansConstructLib.Abilities.BaseAbility.ShouldUpdateCounter(Terraria.Player)"/> returns <see langword="false"/><br/>
-            This property defaults to <see langword="true"/>
-            </summary>
-        </member>
-        <member name="M:TerrariansConstructLib.Abilities.BaseAbility.ShouldUpdateCounter(Terraria.Player)">
-            <summary>
-            Whether <see cref="F:TerrariansConstructLib.Abilities.BaseAbility.Counter"/> should be automatically modified by 1 per tick.<br/>
-            If your ability's counter isn't time-based (say, an ability whose counter is increased more the faster you move), return <see langword="false"/> in this hook<br/>
-            Defaults to <see langword="false"/>
-            </summary>
-            <param name="player">The player</param>
-        </member>
-        <member name="M:TerrariansConstructLib.Abilities.BaseAbility.GetExpectedCounterTarget(Terraria.Player)">
-            <summary>
-            Gets the expected target value that the counter will step toward
-            </summary>
-            <param name="player">The player</param>
-        </member>
-        <member name="M:TerrariansConstructLib.Abilities.BaseAbility.GetCounterValueOnTargetReached(Terraria.Player)">
-            <summary>
-            Gets the value used when resetting <see cref="F:TerrariansConstructLib.Abilities.BaseAbility.Counter"/>
-            </summary>
-            <param name="player"></param>
-            <returns></returns>
-        </member>
-        <member name="M:TerrariansConstructLib.Abilities.BaseAbility.OnCounterTargetReached(Terraria.Player)">
-            <summary>
-            This hook runs when <see cref="F:TerrariansConstructLib.Abilities.BaseAbility.Counter"/> reaches the value returned by <see cref="M:TerrariansConstructLib.Abilities.BaseAbility.GetExpectedCounterTarget(Terraria.Player)"/><br/>
-            If <see cref="P:TerrariansConstructLib.Abilities.BaseAbility.CounterIncrements"/> is <see langword="true"/>, <see cref="F:TerrariansConstructLib.Abilities.BaseAbility.Counter"/> must be greater than the aforementioned value, otherwise it must be less than the value.
-            </summary>
-            <param name="player">The player</param>
-        </member>
-        <member name="M:TerrariansConstructLib.Abilities.BaseAbility.CanResetCounter(Terraria.Player)">
-            <summary>
-            Whether <see cref="F:TerrariansConstructLib.Abilities.BaseAbility.Counter"/> can be reset once it reaches the value returned by <see cref="M:TerrariansConstructLib.Abilities.BaseAbility.GetExpectedCounterTarget(Terraria.Player)"/><br/>
-            Return <see langword="false"/> to prevent <see cref="F:TerrariansConstructLib.Abilities.BaseAbility.Counter"/> from resetting, which might be useful for abilities which are put in a "wait for activation" state.
-            </summary>
-            <param name="player">The player</param>
-        </member>
-        <member name="M:TerrariansConstructLib.Abilities.BaseAbility.OnHoldItem(Terraria.Player,TerrariansConstructLib.Items.BaseTCItem)">
-            <summary>
-            This hook runs every game tick while the player is holding the item this ability is tied to
-            </summary>
-            <param name="player">The player</param>
-            <param name="item">The item being held</param>
-        </member>
-        <member name="M:TerrariansConstructLib.Abilities.BaseAbility.OnUpdateInventory(Terraria.Player,TerrariansConstructLib.Items.BaseTCItem)">
-            <summary>
-            This hook runs every game tick while the player has the item this ability is tied to in their inventory
-            </summary>
-            <param name="player">The player</param>
-            <param name="item">The item instance</param>
-        </member>
-        <member name="M:TerrariansConstructLib.Abilities.BaseAbility.OnUpdate(Terraria.Player,System.Boolean)">
-            <summary>
-            Perform update tasks in this hook.  This hook is called in <see cref="M:Terraria.ModLoader.ModPlayer.PostUpdateMiscEffects"/>
-            </summary>
-            <param name="player">The player</param>
-            <param name="counterWasReset">Whether <see cref="F:TerrariansConstructLib.Abilities.BaseAbility.Counter"/> was reset in this game tick</param>
-        </member>
-        <member name="M:TerrariansConstructLib.Abilities.BaseAbility.OnAbilityHotkeyPressed(Terraria.Player)">
-            <summary>
-            This hook runs when the ability hotkey is pressed
-            </summary>
-            <param name="player">The player</param>
-        </member>
-        <member name="M:TerrariansConstructLib.Abilities.BaseAbility.UseSpeedMultiplier(Terraria.Player,TerrariansConstructLib.Items.BaseTCItem,System.Single@)">
-            <summary>
-            This hook runs in <see cref="M:TerrariansConstructLib.Items.BaseTCItem.UseSpeedMultiplier(Terraria.Player)"/>
-            </summary>
-            <param name="player">The player</param>
-            <param name="item">The item instance</param>
-            <param name="multiplier">The multiplier</param>
-        </member>
-        <member name="M:TerrariansConstructLib.Abilities.BaseAbility.ModifyToolPower(Terraria.Player,TerrariansConstructLib.Items.BaseTCItem,TerrariansConstructLib.DataStructures.TileDestructionContext,System.Int32@)">
-            <summary>
-            This hook runs before the mining tool, <paramref name="item"/>, hits a tile
-            </summary>
-            <param name="player">The player</param>
-            <param name="item">The item doing the mining</param>
-            <param name="context">The context.  Contains information about what tool type was used to hit the tile and the intended damage</param>
-            <param name="power">The effective tool power</param>
-        </member>
-        <member name="M:TerrariansConstructLib.Abilities.BaseAbility.OnTileDestroyed(Terraria.Player,TerrariansConstructLib.Items.BaseTCItem,System.Int32,System.Int32,TerrariansConstructLib.DataStructures.TileDestructionContext)">
-            <summary>
-            This hook runs after the player has destroyed a tile using a <see cref="T:TerrariansConstructLib.Items.BaseTCItem"/> item
-            </summary>
-            <param name="player">The player doing the mining</param>
-            <param name="item">The item used to destroy the tile</param>
-            <param name="x">The tile X-coordinate</param>
-            <param name="y">The tile Y-coordinate</param>
-            <param name="context">The context.  Contains information about what tool type was used to destroy the tile and how much damage was dealt to destroy the tile</param>
-        </member>
-        <member name="M:TerrariansConstructLib.Abilities.BaseAbility.CanLoseDurability(Terraria.Player,TerrariansConstructLib.Items.BaseTCItem,TerrariansConstructLib.API.Sources.IDurabilityModificationSource)">
-            <summary>
-            Return false in this hook to prevent the <paramref name="item"/> from losing durability
-            </summary>
-        </member>
-        <member name="M:TerrariansConstructLib.Abilities.BaseAbility.ModifyHitNPC(Terraria.Player,Terraria.NPC,TerrariansConstructLib.Items.BaseTCItem,System.Int32@,System.Single@,System.Boolean@)">
-            <summary>
-            This hook runs in <see cref="M:TerrariansConstructLib.Items.BaseTCItem.ModifyHitNPC(Terraria.Player,Terraria.NPC,System.Int32@,System.Single@,System.Boolean@)"/>
-            </summary>
-            <param name="player">The player</param>
-            <param name="target">The target</param>
-            <param name="item">The item doing the hitting</param>
-            <param name="damage">The damage</param>
-            <param name="knockBack">The knockback</param>
-            <param name="crit">If set to <see langword="true"/> [crit]</param>
-        </member>
-        <member name="M:TerrariansConstructLib.Abilities.BaseAbility.OnHitNPC(Terraria.Player,Terraria.NPC,TerrariansConstructLib.Items.BaseTCItem,System.Int32,System.Single,System.Boolean)">
-            <summary>
-            This hook runs in <see cref="M:TerrariansConstructLib.Items.BaseTCItem.OnHitNPC(Terraria.Player,Terraria.NPC,System.Int32,System.Single,System.Boolean)"/>
-            </summary>
-            <param name="player">The player</param>
-            <param name="target">The target</param>
-            <param name="item">The item that hit the target</param>
-            <param name="damage">The damage</param>
-            <param name="knockBack">The knockback</param>
-            <param name="crit">If set to <see langword="true"/> [crit]</param>
-        </member>
-        <member name="M:TerrariansConstructLib.Abilities.BaseAbility.OnHitPlayer(Terraria.Player,Terraria.Player,TerrariansConstructLib.Items.BaseTCItem,System.Int32,System.Boolean)">
-            <summary>
-            This hook runs in <see cref="M:TerrariansConstructLib.Items.BaseTCItem.OnHitPvp(Terraria.Player,Terraria.Player,System.Int32,System.Boolean)"/>
-            </summary>
-            <param name="owner">The player</param>
-            <param name="target">The target</param>
-            <param name="item">The item that hit the target</param>
-            <param name="damage">The damage</param>
-            <param name="crit">If set to <see langword="true"/> [crit]</param>
-        </member>
-        <member name="M:TerrariansConstructLib.Abilities.BaseAbility.OnHitPlayerWithProjectile(TerrariansConstructLib.Projectiles.BaseTCProjectile,Terraria.Player,System.Int32,System.Boolean)">
-            <summary>
-            This hook runs in <see cref="M:TerrariansConstructLib.Projectiles.BaseTCProjectile.OnHitPlayer(Terraria.Player,System.Int32,System.Boolean)"/>
-            </summary>
-            <param name="projectile">The projectile</param>
-            <param name="target">The target</param>
-            <param name="damage">The damage</param>
-            <param name="crit">If set to <see langword="true"/> [crit]</param>
-        </member>
-        <member name="M:TerrariansConstructLib.Abilities.BaseAbility.OnHitNPCWithProjectile(TerrariansConstructLib.Projectiles.BaseTCProjectile,Terraria.NPC,System.Int32,System.Single,System.Boolean)">
-            <summary>
-            This hook rusn in <see cref="M:TerrariansConstructLib.Projectiles.BaseTCProjectile.OnHitNPC(Terraria.NPC,System.Int32,System.Single,System.Boolean)"/>
-            </summary>
-            <param name="projectile">The projectile</param>
-            <param name="target">The target</param>
-            <param name="damage">The damage</param>
-            <param name="knockBack">The knockback</param>
-            <param name="crit">If set to <see langword="true"/> [crit]</param>
-        </member>
-        <member name="M:TerrariansConstructLib.Abilities.BaseAbility.PreModifyDurability(Terraria.Player,TerrariansConstructLib.Items.BaseTCItem,TerrariansConstructLib.API.Sources.IDurabilityModificationSource,System.Int32@)">
-            <summary>
-            This hook runs before durability is added to or subtracted from the <paramref name="item"/>
-            </summary>
-            <param name="player">The player</param>
-            <param name="item">The item</param>
-            <param name="source">The modification source</param>
-            <param name="amount">The amount to modify the durability by.  If the value is &lt; 0, then the modification was a durability removal, otherwise it's a durability addition</param>
-        </member>
-        <member name="M:TerrariansConstructLib.Abilities.BaseAbility.OnProjectileSpawn(TerrariansConstructLib.Projectiles.BaseTCProjectile,Terraria.DataStructures.IEntitySource,System.Single,System.Single,System.Single,System.Single,System.Int32,System.Int32,System.Single,System.Int32,System.Single,System.Single)">
-            <summary>
-            This hook runs when a <see cref="T:TerrariansConstructLib.Projectiles.BaseTCProjectile"/> projectile is spawned which has a part with this ability
-            </summary>
-            <param name="projectile">The spawned projectile</param>
-            <param name="source">The spawn source</param>
-            <param name="X">The X-position</param>
-            <param name="Y">The Y-position</param>
-            <param name="SpeedX">The X-velocity</param>
-            <param name="SpeedY">The Y-velocity</param>
-            <param name="Type">The ID of the projectile spawned</param>
-            <param name="Damage">The damage assigned to the projectile</param>
-            <param name="KnockBack">The knockback assigned to the projectile</param>
-            <param name="Owner">The projectile's owner</param>
-            <param name="ai0"></param>
-            <param name="ai1"></param>
-        </member>
-        <member name="M:TerrariansConstructLib.Abilities.BaseAbility.ModifyWeaponDamage(Terraria.Player,TerrariansConstructLib.Items.BaseTCItem,Terraria.ModLoader.StatModifier@,System.Single@)">
-            <inheritdoc cref="M:TerrariansConstructLib.Items.BaseTCItem.ModifyWeaponDamage(Terraria.Player,Terraria.ModLoader.StatModifier@,System.Single@)"/>
-        </member>
-        <member name="M:TerrariansConstructLib.Abilities.BaseAbility.ModifyWeaponKnockback(Terraria.Player,TerrariansConstructLib.Items.BaseTCItem,Terraria.ModLoader.StatModifier@,System.Single@)">
-            <inheritdoc cref="M:TerrariansConstructLib.Items.BaseTCItem.ModifyWeaponKnockback(Terraria.Player,Terraria.ModLoader.StatModifier@,System.Single@)"/>
-        </member>
-        <member name="M:TerrariansConstructLib.Abilities.BaseAbility.ModifyWeaponCrit(Terraria.Player,TerrariansConstructLib.Items.BaseTCItem,System.Int32@)">
-            <inheritdoc cref="M:TerrariansConstructLib.Items.BaseTCItem.ModifyWeaponCrit(Terraria.Player,System.Int32@)"/>
-        </member>
-        <member name="M:TerrariansConstructLib.Abilities.BaseAbility.UseItem(Terraria.Player,TerrariansConstructLib.Items.BaseTCItem)">
-            <summary>
-            This hook runs in <see cref="M:TerrariansConstructLib.Items.BaseTCItem.UseItem(Terraria.Player)"/>
-            </summary>
-            <param name="player">The player</param>
-            <param name="item">The item</param>
-        </member>
-        <member name="M:TerrariansConstructLib.Abilities.BaseAbility.SaveData(Terraria.ModLoader.IO.TagCompound)">
-            <summary>
-            Allows you to save custom data for this ability.<br/>
-            <br/>
-            <b>NOTE:</b> The provided tag is always empty by default, and is provided as an argument only for the sake of convenience and optimization.<br/>
-            <b>NOTE:</b> Try to only save data that isn't default values.
-            </summary>
-            <param name="tag">The TagCompound to save data into. Note that this is always empty by default, and is provided as an argument only for the sake of convenience and optimization.</param>
-        </member>
-        <member name="M:TerrariansConstructLib.Abilities.BaseAbility.LoadData(Terraria.ModLoader.IO.TagCompound)">
-            <summary>
-            Allows you to load custom data that you have saved for this item.<br/>
-            <b>Try to write defensive loading code that won't crash if something's missing.</b>
-            </summary>
-            <param name="tag">The TagCompound to load data from.</param>
-        </member>
         <member name="T:TerrariansConstructLib.API.CachedItemTexturesDictionary">
             <summary>
             A collection of textures indexed by registered item type and item parts
@@ -240,34 +14,6 @@
             Returns a string representing how you'd type a Type in C#, e.g. <c>Asset&lt;Texture2D&gt;</c>
             </summary>
             <param name="type">The type instance</param>
-        </member>
-        <member name="T:TerrariansConstructLib.API.ModifierText">
-            <summary>
-            Represents a line of text for a part's modifier
-            </summary>
-        </member>
-        <member name="P:TerrariansConstructLib.API.ModifierText.LangKeyIsLiteral">
-            <summary>
-            Whether the lang key should be treated as a formatted language key (<see langword="false"/>) or a string literal (<see langword="true"/>)<br/>
-            Defaults to <see langword="false"/>
-            </summary>
-        </member>
-        <member name="M:TerrariansConstructLib.API.ModifierText.CreationContext.#ctor(System.String,System.Nullable{Terraria.ModLoader.StatModifier},System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
-            <summary>
-            Creates a context for initializing <see cref="T:TerrariansConstructLib.API.ModifierText"/> instances
-            </summary>
-            <param name="langKey">The language key.  Use <see langword="null"/> for no text</param>
-            <param name="stat">The stat used when displaying the text</param>
-            <param name="useMultiplicativeOnly">Whether only the <see cref="P:Terraria.ModLoader.StatModifier.Multiplicative"/> property should be used when displaying the text</param>
-            <param name="useAdditiveOnly">
-            Whether only the <see cref="P:Terraria.ModLoader.StatModifier.Additive"/> property should be used when displaying the text<br/>
-            This parameter has lower precedence than <paramref name="useMultiplicativeOnly"/>
-            </param>
-            <param name="positiveValueIsGoodModifier">Whether resulting stats &gt; 1 should be considered positive stats.  Defaults to <see langword="true"/></param>
-            <param name="treatAdditiveAsMultiplier">
-            Whether the <see cref="P:Terraria.ModLoader.StatModifier.Additive"/> property of <paramref name="stat"/> should be considered a flat value or multiplier<br/>
-            This paramter has lower precedence than <paramref name="useMultiplicativeOnly"/>
-            </param>
         </member>
         <member name="T:TerrariansConstructLib.API.Numbers.Roman">
             <summary>
@@ -683,32 +429,6 @@
             Which type of stats an item part ID should use
             </summary>
         </member>
-        <member name="T:TerrariansConstructLib.API.Modifiers.BaseModifier">
-            <summary>
-            The base class for a modifier that can be applied to a Terrarians' Construct item
-            </summary>
-        </member>
-        <member name="P:TerrariansConstructLib.API.Modifiers.BaseModifier.MaxTier">
-            <summary>
-            The highest tier that can be obtained from this modifier<br/>
-            Making this property return <c>1</c> will prevent the roman numeral from appearing beside its name
-            </summary>
-        </member>
-        <member name="P:TerrariansConstructLib.API.Modifiers.BaseModifier.TooltipColor">
-            <summary>
-            The colour for the modifier's name when in a tooltip
-            </summary>
-        </member>
-        <member name="M:TerrariansConstructLib.API.Modifiers.BaseModifier.CanAcceptItemsForUpgrade(System.Int32,System.Int32[],System.Int32[],System.Int32@,System.Int32@)">
-            <summary>
-            Return whether the item types defined in <paramref name="items"/> can be used to upgrade this modifier at the current tier, <paramref name="currentTier"/>
-            </summary>
-            <param name="currentTier">The current tier of the modifier</param>
-            <param name="items">The item IDs that are in the Forge UI slots, starting with the topmost slot and moving clockwise</param>
-            <param name="stacks">The item stacks for the items in <paramref name="items"/></param>
-            <param name="upgradeCurrent">The current progress toward the next tier.  Once <paramref name="currentTier"/> surpasses <paramref name="upgradeTarget"/>, the modifier is upgraded to the next tier</param>
-            <param name="upgradeTarget">The target progress needed to upgrade the modifier to the next tier</param>
-        </member>
         <member name="M:TerrariansConstructLib.CoreLibMod.RegisterPart(Terraria.ModLoader.Mod,System.String,System.String,System.Int32,System.Boolean,System.String,TerrariansConstructLib.API.Stats.StatType)">
             <summary>
             Registers a part definition
@@ -770,13 +490,13 @@
             <exception cref="T:System.ArgumentException"/>
             <exception cref="T:System.ArgumentNullException"/>
         </member>
-        <member name="M:TerrariansConstructLib.CoreLibMod.RegisterMaterialStats(System.Int32,System.Int32,TerrariansConstructLib.Abilities.BaseAbility,TerrariansConstructLib.API.Stats.IPartStats[])">
+        <member name="M:TerrariansConstructLib.CoreLibMod.RegisterMaterialStats(System.Int32,System.Int32,TerrariansConstructLib.Modifiers.BaseTrait,TerrariansConstructLib.API.Stats.IPartStats[])">
             <summary>
             Registers item part stats for a certain material
             </summary>
             <param name="material">The material for the item part stats</param>
-            <param name="worth">How much material is needed to create one Shard part</param>
-            <param name="ability">The ability instance for the material</param>
+            <param name="worth">How much material is needed to create one Shard part, times two</param>
+            <param name="trait">The trait instance for the material</param>
             <param name="stats">The stats for the material</param>
             <exception cref="T:System.Exception"/>
             <exception cref="T:System.ArgumentException"/>
@@ -812,37 +532,12 @@
             <returns>The internal name of the registered part, or throws an exception if a part of type <paramref name="id"/> does not exist</returns>
             <exception cref="T:System.Exception"/>
         </member>
-        <member name="M:TerrariansConstructLib.CoreLibMod.GetPartTooltip(TerrariansConstructLib.Materials.Material,System.Int32)">
+        <member name="M:TerrariansConstructLib.CoreLibMod.GetMaterialTooltip(TerrariansConstructLib.Materials.Material)">
             <summary>
             Gets the global tooltip of an <seealso cref="T:TerrariansConstructLib.Items.ItemPart"/>
             </summary>
             <param name="material">The material</param>
-            <param name="partID">The part ID</param>
             <returns>The global tooltip</returns>
-        </member>
-        <member name="M:TerrariansConstructLib.CoreLibMod.SetGlobalPartTooltip(TerrariansConstructLib.Materials.Material,System.Int32,System.String)">
-            <summary>
-            Sets the global tooltip of an <seealso cref="T:TerrariansConstructLib.Items.ItemPart"/>
-            </summary>
-            <param name="material">The material</param>
-            <param name="partID">The part ID</param>
-            <param name="tooltip">The new tooltip</param>
-        </member>
-        <member name="M:TerrariansConstructLib.CoreLibMod.GetPartModifierText(TerrariansConstructLib.Materials.Material,System.Int32)">
-            <summary>
-            Gets the global modifier text of an <seealso cref="T:TerrariansConstructLib.Items.ItemPart"/>
-            </summary>
-            <param name="material">The material</param>
-            <param name="partID">The part ID</param>
-            <returns>The global modifier text</returns>
-        </member>
-        <member name="M:TerrariansConstructLib.CoreLibMod.SetGlobalPartModifierText(TerrariansConstructLib.Materials.Material,System.Int32,System.String)">
-            <summary>
-            Sets the global modifier text of an <seealso cref="T:TerrariansConstructLib.Items.ItemPart"/>
-            </summary>
-            <param name="material">The material</param>
-            <param name="partID">The part ID</param>
-            <param name="tooltip">The new modifier text</param>
         </member>
         <member name="M:TerrariansConstructLib.CoreLibMod.GetMoldCost(System.Int32)">
             <summary>
@@ -960,7 +655,7 @@
             <exception cref="T:System.Exception"/>
             <exception cref="T:System.ArgumentException"/>
         </member>
-        <member name="M:TerrariansConstructLib.CoreLibMod.AddPart(Terraria.ModLoader.Mod,TerrariansConstructLib.Materials.Material,System.Int32,TerrariansConstructLib.ItemPartActionsBuilder,System.String,TerrariansConstructLib.API.ModifierText.CreationContext[])">
+        <member name="M:TerrariansConstructLib.CoreLibMod.AddPart(Terraria.ModLoader.Mod,TerrariansConstructLib.Materials.Material,System.Int32,TerrariansConstructLib.ItemPartActionsBuilder)">
             <summary>
             Registers a part item for the material, <paramref name="material"/>
             </summary>
@@ -968,8 +663,6 @@
             <param name="material">The material instance</param>
             <param name="partID">The part ID</param>
             <param name="actions">The actions</param>
-            <param name="tooltip">The tooltip for this part.  Can be modified via <seealso cref="M:TerrariansConstructLib.Items.ItemPart.SetGlobalTooltip(TerrariansConstructLib.Materials.Material,System.Int32,System.String)"/></param>
-            <param name="modifierText">A collection of creation contexts for this part's modifier text.  If <see langword="null"/>, the part will have no modifier text.</param>
         </member>
         <member name="F:TerrariansConstructLib.DataStructures.TileDestructionContext.pickaxe">
             <summary>
@@ -1315,21 +1008,6 @@
             <see langword="ref int"/>&#160;<paramref name="amount"/>
             </summary>
         </member>
-        <member name="M:TerrariansConstructLib.Items.ItemPart.SetGlobalTooltip(TerrariansConstructLib.Materials.Material,System.Int32,System.String)">
-            <summary>
-            Sets the global tooltip for item parts using the material, <paramref name="material"/>, and the part ID, <paramref name="partID"/>, to <paramref name="tooltip"/>
-            </summary>
-            <param name="material">The material</param>
-            <param name="partID">The part ID</param>
-            <param name="tooltip">The new global tooltip</param>
-        </member>
-        <member name="M:TerrariansConstructLib.Items.ItemPart.GetGlobalModifierText(TerrariansConstructLib.Materials.Material,System.Int32)">
-            <summary>
-            Gets the global modifier text for item parts using the material, <paramref name="material"/>, and the part ID, <paramref name="partID"/>
-            </summary>
-            <param name="material">The material</param>
-            <param name="partID">The part ID</param>
-        </member>
         <member name="F:TerrariansConstructLib.Items.ItemPart.material">
             <summary>
             The material used to create this item part
@@ -1383,6 +1061,312 @@
             <summary>
             Represents a material that used to be loaded, but no longer is
             </summary>
+        </member>
+        <member name="T:TerrariansConstructLib.Modifiers.BaseModifier">
+            <summary>
+            The base class for a modifier that can be applied to a Terrarians' Construct item
+            </summary>
+        </member>
+        <member name="P:TerrariansConstructLib.Modifiers.BaseModifier.MaxTier">
+            <summary>
+            The highest tier that can be obtained from this modifier<br/>
+            Making this property return <c>1</c> will prevent the roman numeral from appearing beside its name
+            </summary>
+        </member>
+        <member name="P:TerrariansConstructLib.Modifiers.BaseModifier.VisualTexture">
+            <summary>
+            The relative path for the visual texture of this modifier<br/>
+            Return <see langword="null"/> if there is no visual
+            </summary>
+        </member>
+        <member name="P:TerrariansConstructLib.Modifiers.BaseModifier.VisualIsDisplayedAboveItem">
+            <summary>
+            Whether the visual texture of this modifier is drawn above the item's texture<br/>
+            Defaults to <see langword="true"/>
+            </summary>
+        </member>
+        <member name="M:TerrariansConstructLib.Modifiers.BaseModifier.CanAcceptItemsForUpgrade(TerrariansConstructLib.API.ItemData[],System.Int32@,System.Int32@)">
+            <summary>
+            Return whether the item types defined in <paramref name="items"/> were used to increase <paramref name="upgradeCurrent"/>
+            </summary>
+            <param name="items">The items that are in the Forge UI slots, starting with the topmost slot and moving clockwise</param>
+            <param name="upgradeCurrent">The current progress toward the next tier.  Once <paramref name="upgradeCurrent"/> surpasses <paramref name="upgradeTarget"/>, the modifier is upgraded to the next tier</param>
+            <param name="upgradeTarget">The target progress needed to upgrade the modifier to the next tier</param>
+        </member>
+        <member name="M:TerrariansConstructLib.Modifiers.BaseModifier.RemoveItems(TerrariansConstructLib.API.ItemData[],System.Int32,System.Int32)">
+            <summary>
+            Removes the item of type, <paramref name="typeToRemove"/>, from <paramref name="stacks"/>
+            </summary>
+            <param name="items">The items</param>
+            <param name="typeToRemove">The type to remove from the stacks</param>
+            <param name="stackToRemove">How much of the item to remove</param>
+            <returns>Whether <paramref name="stackToRemove"/> was removed completely</returns>
+        </member>
+        <member name="M:TerrariansConstructLib.Modifiers.BaseModifier.ItemsOnlyContain(TerrariansConstructLib.API.ItemData[],System.Int32[])">
+            <summary>
+            Returns whether <paramref name="items"/> only contains item types found in <paramref name="validTypes"/><br/>
+            Empty slots are considered "valid"
+            </summary>
+            <param name="items">The items</param>
+            <param name="validTypes">The valid types</param>
+        </member>
+        <member name="T:TerrariansConstructLib.Modifiers.BaseTrait">
+            <summary>
+            The base class for a trait on a Terrarians' Construct item
+            </summary>
+        </member>
+        <member name="P:TerrariansConstructLib.Modifiers.BaseTrait.Tier">
+            <summary>
+            Gets how many "instances" of this trait's material are present on the item it's assigned to<br/>
+            This property is affected by <see cref="M:TerrariansConstructLib.Modifiers.BaseTrait.IsEquivalentForTier(System.Type,System.UInt32@)"/>
+            </summary>
+        </member>
+        <member name="P:TerrariansConstructLib.Modifiers.BaseTrait.IsSingleton">
+            <summary>
+            Whether this ability is considered a singleton (only one instance exists on an item at any given moment)<br/>
+            Defaults to <see langword="false"/>, which indicates that an instance is stored per item part
+            </summary>
+        </member>
+        <member name="P:TerrariansConstructLib.Modifiers.BaseTrait.TooltipColor">
+            <summary>
+            The colour for the modifier's name when in a tooltip
+            </summary>
+        </member>
+        <member name="P:TerrariansConstructLib.Modifiers.BaseTrait.LangKey">
+            <summary>
+            The lang key used when displaying the tooltip for the modifier
+            </summary>
+        </member>
+        <member name="M:TerrariansConstructLib.Modifiers.BaseTrait.Clone">
+            <summary>
+            This hook is called when cloning instances of this ability
+            </summary>
+        </member>
+        <member name="M:TerrariansConstructLib.Modifiers.BaseTrait.IsEquivalentForTier(System.Type,System.UInt32@)">
+            <summary>
+            Override this hook to determine when another <see cref="T:TerrariansConstructLib.Modifiers.BaseTrait"/> type can be considered equivalent when calculating tiers
+            </summary>
+            <param name="type">The type of the <see cref="T:TerrariansConstructLib.Modifiers.BaseTrait"/></param>
+            <param name="tierWorth">The worth of the tier.  Defaults to <c>1</c></param>
+            <returns><c>GetType().IsAssignableFrom(type)</c> by default</returns>
+        </member>
+        <member name="P:TerrariansConstructLib.Modifiers.BaseTrait.CounterIncrements">
+            <summary>
+            Whether the <see cref="F:TerrariansConstructLib.Modifiers.BaseTrait.Counter"/> automatically increments (<see langword="true"/>) or decrements (<see langword="false"/>)<br/>
+            This property is ignored if <see cref="M:TerrariansConstructLib.Modifiers.BaseTrait.ShouldUpdateCounter(Terraria.Player)"/> returns <see langword="false"/><br/>
+            This property defaults to <see langword="true"/>
+            </summary>
+        </member>
+        <member name="M:TerrariansConstructLib.Modifiers.BaseTrait.ShouldUpdateCounter(Terraria.Player)">
+            <summary>
+            Whether <see cref="F:TerrariansConstructLib.Modifiers.BaseTrait.Counter"/> should be automatically modified by 1 per tick.<br/>
+            If your ability's counter isn't time-based (say, an ability whose counter is increased more the faster you move), return <see langword="false"/> in this hook<br/>
+            Defaults to <see langword="false"/>
+            </summary>
+            <param name="player">The player</param>
+        </member>
+        <member name="M:TerrariansConstructLib.Modifiers.BaseTrait.GetExpectedCounterTarget(Terraria.Player)">
+            <summary>
+            Gets the expected target value that the counter will step toward
+            </summary>
+            <param name="player">The player</param>
+        </member>
+        <member name="M:TerrariansConstructLib.Modifiers.BaseTrait.GetCounterValueOnTargetReached(Terraria.Player)">
+            <summary>
+            Gets the value used when resetting <see cref="F:TerrariansConstructLib.Modifiers.BaseTrait.Counter"/>
+            </summary>
+            <param name="player"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TerrariansConstructLib.Modifiers.BaseTrait.OnCounterTargetReached(Terraria.Player)">
+            <summary>
+            This hook runs when <see cref="F:TerrariansConstructLib.Modifiers.BaseTrait.Counter"/> reaches the value returned by <see cref="M:TerrariansConstructLib.Modifiers.BaseTrait.GetExpectedCounterTarget(Terraria.Player)"/><br/>
+            If <see cref="P:TerrariansConstructLib.Modifiers.BaseTrait.CounterIncrements"/> is <see langword="true"/>, <see cref="F:TerrariansConstructLib.Modifiers.BaseTrait.Counter"/> must be greater than the aforementioned value, otherwise it must be less than the value.
+            </summary>
+            <param name="player">The player</param>
+        </member>
+        <member name="M:TerrariansConstructLib.Modifiers.BaseTrait.CanResetCounter(Terraria.Player)">
+            <summary>
+            Whether <see cref="F:TerrariansConstructLib.Modifiers.BaseTrait.Counter"/> can be reset once it reaches the value returned by <see cref="M:TerrariansConstructLib.Modifiers.BaseTrait.GetExpectedCounterTarget(Terraria.Player)"/><br/>
+            Return <see langword="false"/> to prevent <see cref="F:TerrariansConstructLib.Modifiers.BaseTrait.Counter"/> from resetting, which might be useful for abilities which are put in a "wait for activation" state.
+            </summary>
+            <param name="player">The player</param>
+        </member>
+        <member name="M:TerrariansConstructLib.Modifiers.BaseTrait.OnHoldItem(Terraria.Player,TerrariansConstructLib.Items.BaseTCItem)">
+            <summary>
+            This hook runs every game tick while the player is holding the item this ability is tied to
+            </summary>
+            <param name="player">The player</param>
+            <param name="item">The item being held</param>
+        </member>
+        <member name="M:TerrariansConstructLib.Modifiers.BaseTrait.OnUpdateInventory(Terraria.Player,TerrariansConstructLib.Items.BaseTCItem)">
+            <summary>
+            This hook runs every game tick while the player has the item this ability is tied to in their inventory
+            </summary>
+            <param name="player">The player</param>
+            <param name="item">The item instance</param>
+        </member>
+        <member name="M:TerrariansConstructLib.Modifiers.BaseTrait.OnUpdate(Terraria.Player,System.Boolean)">
+            <summary>
+            Perform update tasks in this hook.  This hook is called in <see cref="M:Terraria.ModLoader.ModPlayer.PostUpdateMiscEffects"/>
+            </summary>
+            <param name="player">The player</param>
+            <param name="counterWasReset">Whether <see cref="F:TerrariansConstructLib.Modifiers.BaseTrait.Counter"/> was reset in this game tick</param>
+        </member>
+        <member name="M:TerrariansConstructLib.Modifiers.BaseTrait.OnAbilityHotkeyPressed(Terraria.Player)">
+            <summary>
+            This hook runs when the ability hotkey is pressed
+            </summary>
+            <param name="player">The player</param>
+        </member>
+        <member name="M:TerrariansConstructLib.Modifiers.BaseTrait.UseSpeedMultiplier(Terraria.Player,TerrariansConstructLib.Items.BaseTCItem,System.Single@)">
+            <summary>
+            This hook runs in <see cref="M:TerrariansConstructLib.Items.BaseTCItem.UseSpeedMultiplier(Terraria.Player)"/>
+            </summary>
+            <param name="player">The player</param>
+            <param name="item">The item instance</param>
+            <param name="multiplier">The multiplier</param>
+        </member>
+        <member name="M:TerrariansConstructLib.Modifiers.BaseTrait.ModifyToolPower(Terraria.Player,TerrariansConstructLib.Items.BaseTCItem,TerrariansConstructLib.DataStructures.TileDestructionContext,System.Int32@)">
+            <summary>
+            This hook runs before the mining tool, <paramref name="item"/>, hits a tile
+            </summary>
+            <param name="player">The player</param>
+            <param name="item">The item doing the mining</param>
+            <param name="context">The context.  Contains information about what tool type was used to hit the tile and the intended damage</param>
+            <param name="power">The effective tool power</param>
+        </member>
+        <member name="M:TerrariansConstructLib.Modifiers.BaseTrait.OnTileDestroyed(Terraria.Player,TerrariansConstructLib.Items.BaseTCItem,System.Int32,System.Int32,TerrariansConstructLib.DataStructures.TileDestructionContext)">
+            <summary>
+            This hook runs after the player has destroyed a tile using a <see cref="T:TerrariansConstructLib.Items.BaseTCItem"/> item
+            </summary>
+            <param name="player">The player doing the mining</param>
+            <param name="item">The item used to destroy the tile</param>
+            <param name="x">The tile X-coordinate</param>
+            <param name="y">The tile Y-coordinate</param>
+            <param name="context">The context.  Contains information about what tool type was used to destroy the tile and how much damage was dealt to destroy the tile</param>
+        </member>
+        <member name="M:TerrariansConstructLib.Modifiers.BaseTrait.CanLoseDurability(Terraria.Player,TerrariansConstructLib.Items.BaseTCItem,TerrariansConstructLib.API.Sources.IDurabilityModificationSource)">
+            <summary>
+            Return false in this hook to prevent the <paramref name="item"/> from losing durability
+            </summary>
+        </member>
+        <member name="M:TerrariansConstructLib.Modifiers.BaseTrait.ModifyHitNPC(Terraria.Player,Terraria.NPC,TerrariansConstructLib.Items.BaseTCItem,System.Int32@,System.Single@,System.Boolean@)">
+            <summary>
+            This hook runs in <see cref="M:TerrariansConstructLib.Items.BaseTCItem.ModifyHitNPC(Terraria.Player,Terraria.NPC,System.Int32@,System.Single@,System.Boolean@)"/>
+            </summary>
+            <param name="player">The player</param>
+            <param name="target">The target</param>
+            <param name="item">The item doing the hitting</param>
+            <param name="damage">The damage</param>
+            <param name="knockBack">The knockback</param>
+            <param name="crit">If set to <see langword="true"/> [crit]</param>
+        </member>
+        <member name="M:TerrariansConstructLib.Modifiers.BaseTrait.OnHitNPC(Terraria.Player,Terraria.NPC,TerrariansConstructLib.Items.BaseTCItem,System.Int32,System.Single,System.Boolean)">
+            <summary>
+            This hook runs in <see cref="M:TerrariansConstructLib.Items.BaseTCItem.OnHitNPC(Terraria.Player,Terraria.NPC,System.Int32,System.Single,System.Boolean)"/>
+            </summary>
+            <param name="player">The player</param>
+            <param name="target">The target</param>
+            <param name="item">The item that hit the target</param>
+            <param name="damage">The damage</param>
+            <param name="knockBack">The knockback</param>
+            <param name="crit">If set to <see langword="true"/> [crit]</param>
+        </member>
+        <member name="M:TerrariansConstructLib.Modifiers.BaseTrait.OnHitPlayer(Terraria.Player,Terraria.Player,TerrariansConstructLib.Items.BaseTCItem,System.Int32,System.Boolean)">
+            <summary>
+            This hook runs in <see cref="M:TerrariansConstructLib.Items.BaseTCItem.OnHitPvp(Terraria.Player,Terraria.Player,System.Int32,System.Boolean)"/>
+            </summary>
+            <param name="owner">The player</param>
+            <param name="target">The target</param>
+            <param name="item">The item that hit the target</param>
+            <param name="damage">The damage</param>
+            <param name="crit">If set to <see langword="true"/> [crit]</param>
+        </member>
+        <member name="M:TerrariansConstructLib.Modifiers.BaseTrait.OnHitPlayerWithProjectile(TerrariansConstructLib.Projectiles.BaseTCProjectile,Terraria.Player,System.Int32,System.Boolean)">
+            <summary>
+            This hook runs in <see cref="M:TerrariansConstructLib.Projectiles.BaseTCProjectile.OnHitPlayer(Terraria.Player,System.Int32,System.Boolean)"/>
+            </summary>
+            <param name="projectile">The projectile</param>
+            <param name="target">The target</param>
+            <param name="damage">The damage</param>
+            <param name="crit">If set to <see langword="true"/> [crit]</param>
+        </member>
+        <member name="M:TerrariansConstructLib.Modifiers.BaseTrait.OnHitNPCWithProjectile(TerrariansConstructLib.Projectiles.BaseTCProjectile,Terraria.NPC,System.Int32,System.Single,System.Boolean)">
+            <summary>
+            This hook rusn in <see cref="M:TerrariansConstructLib.Projectiles.BaseTCProjectile.OnHitNPC(Terraria.NPC,System.Int32,System.Single,System.Boolean)"/>
+            </summary>
+            <param name="projectile">The projectile</param>
+            <param name="target">The target</param>
+            <param name="damage">The damage</param>
+            <param name="knockBack">The knockback</param>
+            <param name="crit">If set to <see langword="true"/> [crit]</param>
+        </member>
+        <member name="M:TerrariansConstructLib.Modifiers.BaseTrait.PreModifyDurability(Terraria.Player,TerrariansConstructLib.Items.BaseTCItem,TerrariansConstructLib.API.Sources.IDurabilityModificationSource,System.Int32@)">
+            <summary>
+            This hook runs before durability is added to or subtracted from the <paramref name="item"/>
+            </summary>
+            <param name="player">The player</param>
+            <param name="item">The item</param>
+            <param name="source">The modification source</param>
+            <param name="amount">The amount to modify the durability by.  If the value is &lt; 0, then the modification was a durability removal, otherwise it's a durability addition</param>
+        </member>
+        <member name="M:TerrariansConstructLib.Modifiers.BaseTrait.OnProjectileSpawn(TerrariansConstructLib.Projectiles.BaseTCProjectile,Terraria.DataStructures.IEntitySource,System.Single,System.Single,System.Single,System.Single,System.Int32,System.Int32,System.Single,System.Int32,System.Single,System.Single)">
+            <summary>
+            This hook runs when a <see cref="T:TerrariansConstructLib.Projectiles.BaseTCProjectile"/> projectile is spawned which has a part with this ability
+            </summary>
+            <param name="projectile">The spawned projectile</param>
+            <param name="source">The spawn source</param>
+            <param name="X">The X-position</param>
+            <param name="Y">The Y-position</param>
+            <param name="SpeedX">The X-velocity</param>
+            <param name="SpeedY">The Y-velocity</param>
+            <param name="Type">The ID of the projectile spawned</param>
+            <param name="Damage">The damage assigned to the projectile</param>
+            <param name="KnockBack">The knockback assigned to the projectile</param>
+            <param name="Owner">The projectile's owner</param>
+            <param name="ai0"></param>
+            <param name="ai1"></param>
+        </member>
+        <member name="M:TerrariansConstructLib.Modifiers.BaseTrait.ModifyWeaponDamage(Terraria.Player,TerrariansConstructLib.Items.BaseTCItem,Terraria.ModLoader.StatModifier@,System.Single@)">
+            <inheritdoc cref="M:TerrariansConstructLib.Items.BaseTCItem.ModifyWeaponDamage(Terraria.Player,Terraria.ModLoader.StatModifier@,System.Single@)"/>
+        </member>
+        <member name="M:TerrariansConstructLib.Modifiers.BaseTrait.ModifyWeaponKnockback(Terraria.Player,TerrariansConstructLib.Items.BaseTCItem,Terraria.ModLoader.StatModifier@,System.Single@)">
+            <inheritdoc cref="M:TerrariansConstructLib.Items.BaseTCItem.ModifyWeaponKnockback(Terraria.Player,Terraria.ModLoader.StatModifier@,System.Single@)"/>
+        </member>
+        <member name="M:TerrariansConstructLib.Modifiers.BaseTrait.ModifyWeaponCrit(Terraria.Player,TerrariansConstructLib.Items.BaseTCItem,System.Int32@)">
+            <inheritdoc cref="M:TerrariansConstructLib.Items.BaseTCItem.ModifyWeaponCrit(Terraria.Player,System.Int32@)"/>
+        </member>
+        <member name="M:TerrariansConstructLib.Modifiers.BaseTrait.UseItem(Terraria.Player,TerrariansConstructLib.Items.BaseTCItem)">
+            <summary>
+            This hook runs in <see cref="M:TerrariansConstructLib.Items.BaseTCItem.UseItem(Terraria.Player)"/>
+            </summary>
+            <param name="player">The player</param>
+            <param name="item">The item</param>
+        </member>
+        <member name="M:TerrariansConstructLib.Modifiers.BaseTrait.SaveData(Terraria.ModLoader.IO.TagCompound)">
+            <summary>
+            Allows you to save custom data for this ability.<br/>
+            <br/>
+            <b>NOTE:</b> The provided tag is always empty by default, and is provided as an argument only for the sake of convenience and optimization.<br/>
+            <b>NOTE:</b> Try to only save data that isn't default values.
+            </summary>
+            <param name="tag">The TagCompound to save data into. Note that this is always empty by default, and is provided as an argument only for the sake of convenience and optimization.</param>
+        </member>
+        <member name="M:TerrariansConstructLib.Modifiers.BaseTrait.LoadData(Terraria.ModLoader.IO.TagCompound)">
+            <summary>
+            Allows you to load custom data that you have saved for this item.<br/>
+            <b>Try to write defensive loading code that won't crash if something's missing.</b>
+            </summary>
+            <param name="tag">The TagCompound to load data from.</param>
+        </member>
+        <member name="M:TerrariansConstructLib.Modifiers.ModifierCollection.AddModifier(System.String)">
+            <summary>
+            Adds a modifier to the collection
+            </summary>
+            <param name="identifier">The identifier for the modifier</param>
+            <returns>The modifier instance</returns>
+            <exception cref="T:System.Exception"/>
         </member>
         <member name="T:TerrariansConstructLib.Projectiles.BaseTCProjectile">
             <summary>

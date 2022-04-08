@@ -1,15 +1,19 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
-using TerrariansConstructLib.Abilities;
 using TerrariansConstructLib.API.Sources;
 using TerrariansConstructLib.DataStructures;
 using TerrariansConstructLib.Items;
+using TerrariansConstructLib.Modifiers;
 
-namespace TerrariansConstruct.Abilities {
-	internal sealed class StoneAbility : BaseAbility {
+namespace TerrariansConstruct.Modifiers.Traits {
+	internal sealed class StoneTrait : BaseTrait {
 		public override bool IsSingleton => true;
 
 		public override bool CounterIncrements => false;
+
+		public override Color TooltipColor => new(0xa0, 0xa0, 0xa0);
+
+		public override string LangKey => "Mods.TerrariansConstruct.PartTooltips.Stone";
 
 		//Counter is kept track of manually
 		public override bool ShouldUpdateCounter(Player player) => false;

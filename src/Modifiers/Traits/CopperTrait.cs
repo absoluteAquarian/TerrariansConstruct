@@ -6,12 +6,16 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using TerrariansConstruct.Buffs;
-using TerrariansConstructLib.Abilities;
 using TerrariansConstructLib.Items;
+using TerrariansConstructLib.Modifiers;
 
-namespace TerrariansConstruct.Abilities {
-	internal sealed class CopperAbility : BaseAbility {
+namespace TerrariansConstruct.Modifiers.Traits {
+	internal sealed class CopperTrait : BaseTrait {
 		public override bool IsSingleton => true;
+
+		public override Color TooltipColor => new(0xff, 0x60, 0x00);
+
+		public override string LangKey => "Mods.TerrariansConstruct.PartTooltips.Copper";
 
 		public bool activated;
 
