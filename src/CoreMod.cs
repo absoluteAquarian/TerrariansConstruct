@@ -281,7 +281,7 @@ namespace TerrariansConstruct {
 		}
 
 		public static void RegisterTCModifiers(Mod mod) {
-			CoreLibMod.RegisterModifier(RegisteredModifiers.Spiky, new SpikyModifier());
+			RegisteredModifiers.Spiky = CoreLibMod.RegisterModifier("TerrariansConstruct:Spiky", new SpikyModifier());
 		}
 
 		public static class RegisteredAmmo {
@@ -364,7 +364,21 @@ namespace TerrariansConstruct {
 		}
 
 		public static class RegisteredModifiers {
-			public const string Spiky = "TerrariansConstruct:Spiky";
+			public static int Spiky { get; internal set; }
+
+			public static int Burning { get; internal set; }
+
+			public static int Hellfire { get; internal set; }
+
+			public static int Mossy { get; internal set; }
+
+			public static int Freezing { get; internal set; }
+
+			public static int Fortune { get; internal set; }
+
+			public static int Explosive { get; internal set; }
+
+			public static int Haste { get; internal set; }
 		}
 	}
 }

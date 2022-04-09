@@ -1067,6 +1067,11 @@
             The base class for a modifier that can be applied to a Terrarians' Construct item
             </summary>
         </member>
+        <member name="P:TerrariansConstructLib.Modifiers.BaseModifier.ID">
+            <summary>
+            The integer ID assigned to the instance of this modifier during registration
+            </summary>
+        </member>
         <member name="P:TerrariansConstructLib.Modifiers.BaseModifier.MaxTier">
             <summary>
             The highest tier that can be obtained from this modifier<br/>
@@ -1359,6 +1364,14 @@
             <b>Try to write defensive loading code that won't crash if something's missing.</b>
             </summary>
             <param name="tag">The TagCompound to load data from.</param>
+        </member>
+        <member name="M:TerrariansConstructLib.Modifiers.ModifierCollection.AddModifier(System.Int32)">
+            <summary>
+            Adds a modifier to the collection
+            </summary>
+            <param name="id">The ID for the modifier</param>
+            <returns>The modifier instance</returns>
+            <exception cref="T:System.Exception"/>
         </member>
         <member name="M:TerrariansConstructLib.Modifiers.ModifierCollection.AddModifier(System.String)">
             <summary>
