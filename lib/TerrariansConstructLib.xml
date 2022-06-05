@@ -1155,6 +1155,18 @@
             <param name="player">The player</param>
             <param name="item">The item</param>
         </member>
+        <member name="M:TerrariansConstructLib.Modifiers.BaseTrait.CanConsumeAmmo(TerrariansConstructLib.Items.BaseTCItem,TerrariansConstructLib.Items.BaseTCItem,Terraria.Player)">
+            <summary>
+            This hook runs in <see cref="M:TerrariansConstructLib.Items.BaseTCItem.CanConsumeAmmo(Terraria.Item,Terraria.Player)"/>
+            </summary>
+            <param name="weapon">The weapon</param>
+            <param name="ammo">The ammo potentially being consumed</param>
+            <param name="player">The player</param>
+            <returns>Whether the ammo can be consumed</returns>
+        </member>
+        <member name="M:TerrariansConstructLib.Modifiers.BaseTrait.OnPickup(Terraria.Item,Terraria.Player)">
+            <inheritdoc cref="M:Terraria.ModLoader.GlobalItem.OnPickup(Terraria.Item,Terraria.Player)"/>
+        </member>
         <member name="M:TerrariansConstructLib.Modifiers.BaseTrait.SaveData(Terraria.ModLoader.IO.TagCompound)">
             <summary>
             Allows you to save custom data for this ability.<br/>
