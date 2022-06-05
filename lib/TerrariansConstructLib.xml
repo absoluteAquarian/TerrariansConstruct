@@ -342,7 +342,7 @@
             </summary>
             <param name="identifier">The name of the stat</param>
             <param name="defaultValueIfMissing">The default value that should be returned if the stat isn't present</param>
-            <returns>The value of the stat if it's defined or <paramref name="defaultValueIfMissing"/> if it's not <see langword="null"/>, <see cref="F:Terraria.ModLoader.StatModifier.One"/> otherwise</returns>
+            <returns>The value of the stat if it's defined or <paramref name="defaultValueIfMissing"/> if it's not <see langword="null"/>, <see cref="F:Terraria.ModLoader.StatModifier.Default"/> otherwise</returns>
         </member>
         <member name="T:TerrariansConstructLib.API.Stats.HandlePartStats">
             <summary>
@@ -655,14 +655,13 @@
             <exception cref="T:System.Exception"/>
             <exception cref="T:System.ArgumentException"/>
         </member>
-        <member name="M:TerrariansConstructLib.CoreLibMod.AddPart(Terraria.ModLoader.Mod,TerrariansConstructLib.Materials.Material,System.Int32,TerrariansConstructLib.ItemPartActionsBuilder)">
+        <member name="M:TerrariansConstructLib.CoreLibMod.AddPart(Terraria.ModLoader.Mod,TerrariansConstructLib.Materials.Material,System.Int32)">
             <summary>
             Registers a part item for the material, <paramref name="material"/>
             </summary>
             <param name="mod">The mod instance to add the part to</param>
             <param name="material">The material instance</param>
             <param name="partID">The part ID</param>
-            <param name="actions">The actions</param>
         </member>
         <member name="F:TerrariansConstructLib.DataStructures.TileDestructionContext.pickaxe">
             <summary>
@@ -693,69 +692,6 @@
             <summary>
             The ID of the tile that was destroyed
             </summary>
-        </member>
-        <member name="M:TerrariansConstructLib.ItemPartActionsBuilder.WithItemDefaults(TerrariansConstructLib.Items.ItemPart.PartItemFunc)">
-            <inheritdoc cref="T:TerrariansConstructLib.Items.ItemPart.PartItemFunc"/>
-        </member>
-        <member name="M:TerrariansConstructLib.ItemPartActionsBuilder.WithProjectileDefaults(TerrariansConstructLib.Items.ItemPart.PartProjectileFunc)">
-            <inheritdoc cref="T:TerrariansConstructLib.Items.ItemPart.PartProjectileFunc"/>
-        </member>
-        <member name="M:TerrariansConstructLib.ItemPartActionsBuilder.WithOnUse(TerrariansConstructLib.Items.ItemPart.PartPlayerFunc)">
-            <inheritdoc cref="T:TerrariansConstructLib.Items.ItemPart.PartPlayerFunc"/>
-        </member>
-        <member name="M:TerrariansConstructLib.ItemPartActionsBuilder.WithOnHold(TerrariansConstructLib.Items.ItemPart.PartPlayerFunc)">
-            <inheritdoc cref="T:TerrariansConstructLib.Items.ItemPart.PartPlayerFunc"/>
-        </member>
-        <member name="M:TerrariansConstructLib.ItemPartActionsBuilder.WithOnGenericHotkeyUsage(TerrariansConstructLib.Items.ItemPart.PartPlayerFunc)">
-            <inheritdoc cref="T:TerrariansConstructLib.Items.ItemPart.PartPlayerFunc"/>
-        </member>
-        <member name="M:TerrariansConstructLib.ItemPartActionsBuilder.WithOnProjectileSpawn(TerrariansConstructLib.Items.ItemPart.PartProjectileSpawnFunc)">
-            <inheritdoc cref="T:TerrariansConstructLib.Items.ItemPart.PartProjectileSpawnFunc"/>
-        </member>
-        <member name="M:TerrariansConstructLib.ItemPartActionsBuilder.WithOnProjectileHitNPC(TerrariansConstructLib.Items.ItemPart.PartProjectileHitNPCFunc)">
-            <inheritdoc cref="T:TerrariansConstructLib.Items.ItemPart.PartProjectileHitNPCFunc"/>
-        </member>
-        <member name="M:TerrariansConstructLib.ItemPartActionsBuilder.WithOnProjectileHitPlayer(TerrariansConstructLib.Items.ItemPart.PartProjectileHitPlayerFunc)">
-            <inheritdoc cref="T:TerrariansConstructLib.Items.ItemPart.PartProjectileHitPlayerFunc"/>
-        </member>
-        <member name="M:TerrariansConstructLib.ItemPartActionsBuilder.WithModifyWeaponDamage(TerrariansConstructLib.Items.ItemPart.PartModifyWeaponDamageFunc)">
-            <inheritdoc cref="T:TerrariansConstructLib.Items.ItemPart.PartModifyWeaponDamageFunc"/>
-        </member>
-        <member name="M:TerrariansConstructLib.ItemPartActionsBuilder.WithModifyWeaponKnockback(TerrariansConstructLib.Items.ItemPart.PartModifyWeaponKnockbackFunc)">
-            <inheritdoc cref="T:TerrariansConstructLib.Items.ItemPart.PartModifyWeaponKnockbackFunc"/>
-        </member>
-        <member name="M:TerrariansConstructLib.ItemPartActionsBuilder.WithModifyWeaponCrit(TerrariansConstructLib.Items.ItemPart.PartModifyWeaponCritFunc)">
-            <inheritdoc cref="T:TerrariansConstructLib.Items.ItemPart.PartModifyWeaponCritFunc"/>
-        </member>
-        <member name="M:TerrariansConstructLib.ItemPartActionsBuilder.WithAI(TerrariansConstructLib.Items.ItemPart.PartProjectileFunc)">
-            <inheritdoc cref="T:TerrariansConstructLib.Items.ItemPart.PartProjectileFunc"/>
-        </member>
-        <member name="M:TerrariansConstructLib.ItemPartActionsBuilder.WithModifyToolPower(TerrariansConstructLib.Items.ItemPart.PartToolPowerFunc)">
-            <inheritdoc cref="T:TerrariansConstructLib.Items.ItemPart.PartToolPowerFunc"/>
-        </member>
-        <member name="M:TerrariansConstructLib.ItemPartActionsBuilder.WithOnTileDestroyed(TerrariansConstructLib.Items.ItemPart.PartTileDestructionFunc)">
-            <inheritdoc cref="T:TerrariansConstructLib.Items.ItemPart.PartTileDestructionFunc"/>
-        </member>
-        <member name="M:TerrariansConstructLib.ItemPartActionsBuilder.WithOnItemHitNPC(TerrariansConstructLib.Items.ItemPart.PartItemHitNPCFunc)">
-            <inheritdoc cref="T:TerrariansConstructLib.Items.ItemPart.PartItemHitNPCFunc"/>
-        </member>
-        <member name="M:TerrariansConstructLib.ItemPartActionsBuilder.WithOnItemHitPlayer(TerrariansConstructLib.Items.ItemPart.PartItemHitPlayerFunc)">
-            <inheritdoc cref="T:TerrariansConstructLib.Items.ItemPart.PartItemHitPlayerFunc"/>
-        </member>
-        <member name="M:TerrariansConstructLib.ItemPartActionsBuilder.WithUseSpeedMultiplier(TerrariansConstructLib.Items.ItemPart.PartItemUseSpeedMultiplier)">
-            <inheritdoc cref="T:TerrariansConstructLib.Items.ItemPart.PartItemUseSpeedMultiplier"/>
-        </member>
-        <member name="M:TerrariansConstructLib.ItemPartActionsBuilder.WithOnUpdateInventory(TerrariansConstructLib.Items.ItemPart.PartPlayerFunc)">
-            <inheritdoc cref="T:TerrariansConstructLib.Items.ItemPart.PartPlayerFunc"/>
-        </member>
-        <member name="M:TerrariansConstructLib.ItemPartActionsBuilder.WithCanLoseDurability(TerrariansConstructLib.Items.ItemPart.PartCanLoseDurability)">
-            <inheritdoc cref="T:TerrariansConstructLib.Items.ItemPart.PartCanLoseDurability"/>
-        </member>
-        <member name="M:TerrariansConstructLib.ItemPartActionsBuilder.WithModifyHitNPC(TerrariansConstructLib.Items.ItemPart.PartModifyHitNPCFunc)">
-            <inheritdoc cref="T:TerrariansConstructLib.Items.ItemPart.PartModifyHitNPCFunc"/>
-        </member>
-        <member name="M:TerrariansConstructLib.ItemPartActionsBuilder.WithPreModifyDurability(TerrariansConstructLib.Items.ItemPart.PartPreModifyDurability)">
-            <inheritdoc cref="T:TerrariansConstructLib.Items.ItemPart.PartPreModifyDurability"/>
         </member>
         <member name="T:TerrariansConstructLib.Items.BaseTCItem">
             <summary>
@@ -810,14 +746,17 @@
         <member name="M:TerrariansConstructLib.Items.BaseTCItem.Clone(Terraria.Item,TerrariansConstructLib.Items.BaseTCItem)">
             <inheritdoc cref="M:TerrariansConstructLib.Items.BaseTCItem.Clone(Terraria.Item)"/>
         </member>
-        <member name="M:TerrariansConstructLib.Items.BaseTCItem.SafeModifyWeaponDamage(Terraria.Player,Terraria.ModLoader.StatModifier@,System.Single@)">
-            <inheritdoc cref="M:TerrariansConstructLib.Items.BaseTCItem.ModifyWeaponDamage(Terraria.Player,Terraria.ModLoader.StatModifier@,System.Single@)"/>
+        <member name="M:TerrariansConstructLib.Items.BaseTCItem.SafeCanConsumeAmmo(Terraria.Item,Terraria.Player)">
+            <inheritdoc cref="M:TerrariansConstructLib.Items.BaseTCItem.CanConsumeAmmo(Terraria.Item,Terraria.Player)"/>
         </member>
-        <member name="M:TerrariansConstructLib.Items.BaseTCItem.SafeModifyWeaponKnockback(Terraria.Player,Terraria.ModLoader.StatModifier@,System.Single@)">
-            <inheritdoc cref="M:TerrariansConstructLib.Items.BaseTCItem.ModifyWeaponKnockback(Terraria.Player,Terraria.ModLoader.StatModifier@,System.Single@)"/>
+        <member name="M:TerrariansConstructLib.Items.BaseTCItem.SafeModifyWeaponDamage(Terraria.Player,Terraria.ModLoader.StatModifier@)">
+            <inheritdoc cref="M:TerrariansConstructLib.Items.BaseTCItem.ModifyWeaponDamage(Terraria.Player,Terraria.ModLoader.StatModifier@)"/>
         </member>
-        <member name="M:TerrariansConstructLib.Items.BaseTCItem.SafeModifyWeaponCrit(Terraria.Player,System.Int32@)">
-            <inheritdoc cref="M:TerrariansConstructLib.Items.BaseTCItem.ModifyWeaponCrit(Terraria.Player,System.Int32@)"/>
+        <member name="M:TerrariansConstructLib.Items.BaseTCItem.SafeModifyWeaponKnockback(Terraria.Player,Terraria.ModLoader.StatModifier@)">
+            <inheritdoc cref="M:TerrariansConstructLib.Items.BaseTCItem.ModifyWeaponKnockback(Terraria.Player,Terraria.ModLoader.StatModifier@)"/>
+        </member>
+        <member name="M:TerrariansConstructLib.Items.BaseTCItem.SafeModifyWeaponCrit(Terraria.Player,System.Single@)">
+            <inheritdoc cref="M:TerrariansConstructLib.Items.BaseTCItem.ModifyWeaponCrit(Terraria.Player,System.Single@)"/>
         </member>
         <member name="M:TerrariansConstructLib.Items.BaseTCItem.SafeUseSpeedMultiplier(Terraria.Player)">
             <inheritdoc cref="M:TerrariansConstructLib.Items.BaseTCItem.UseSpeedMultiplier(Terraria.Player)"/>
@@ -840,6 +779,9 @@
         <member name="M:TerrariansConstructLib.Items.BaseTCItem.SafeModifyHitNPC(Terraria.Player,Terraria.NPC,System.Int32@,System.Single@,System.Boolean@)">
             <inheritdoc cref="M:TerrariansConstructLib.Items.BaseTCItem.ModifyHitNPC(Terraria.Player,Terraria.NPC,System.Int32@,System.Single@,System.Boolean@)"/>
         </member>
+        <member name="M:TerrariansConstructLib.Items.BaseTCItem.SafeModifyHitPlayer(Terraria.Player,Terraria.Player,System.Int32@,System.Boolean@)">
+            <inheritdoc cref="M:TerrariansConstructLib.Items.BaseTCItem.ModifyHitPvp(Terraria.Player,Terraria.Player,System.Int32@,System.Boolean@)"/>
+        </member>
         <member name="M:TerrariansConstructLib.Items.BaseTCItem.SafeOnTileDestroyed(Terraria.Player,System.Int32,System.Int32,TerrariansConstructLib.DataStructures.TileDestructionContext)">
             <summary>
             Allows you to customize what happens when this tool destroys a tile.  This method is called clientside.
@@ -855,159 +797,6 @@
             </summary>
             <returns>Zero if the item isn't a mining tool, the base mining speed otherwise</returns>
         </member>
-        <member name="T:TerrariansConstructLib.Items.ItemPart.PartItemFunc">
-            <summary>
-            <see langword="int"/>&#160;<paramref name="partID"/>,
-            <see cref="T:Terraria.Item"/>&#160;<paramref name="item"/>
-            </summary>
-        </member>
-        <member name="T:TerrariansConstructLib.Items.ItemPart.PartPlayerFunc">
-            <summary>
-            <see langword="int"/>&#160;<paramref name="partID"/>,
-            <see cref="T:Terraria.Player"/>&#160;<paramref name="player"/>,
-            <see cref="T:Terraria.Item"/>&#160;<paramref name="item"/>
-            </summary>
-        </member>
-        <member name="T:TerrariansConstructLib.Items.ItemPart.PartProjectileFunc">
-            <summary>
-            <see langword="int"/>&#160;<paramref name="partID"/>,
-            <see cref="T:Terraria.Projectile"/>&#160;<paramref name="projectile"/>
-            </summary>
-        </member>
-        <member name="T:TerrariansConstructLib.Items.ItemPart.PartProjectileSpawnFunc">
-            <summary>
-            <see langword="int"/>&#160;<paramref name="partID"/>,
-            <see cref="T:Terraria.Projectile"/>&#160;<paramref name="projectile"/>,
-            <see cref="T:Terraria.DataStructures.IEntitySource"/>&#160;<paramref name="source"/>,
-            <see langword="float"/>&#160;<paramref name="X"/>,
-            <see langword="float"/>&#160;<paramref name="Y"/>,
-            <see langword="float"/>&#160;<paramref name="SpeedX"/>,
-            <see langword="float"/>&#160;<paramref name="SpeedY"/>,
-            <see langword="int"/>&#160;<paramref name="Type"/>,
-            <see langword="int"/>&#160;<paramref name="Damage"/>,
-            <see langword="float"/>&#160;<paramref name="KnockBack"/>,
-            <see langword="int"/>&#160;<paramref name="Owner"/>,
-            <see langword="float"/>&#160;<paramref name="ai0"/>,
-            <see langword="float"/>&#160;<paramref name="ai1"/>
-            </summary>
-        </member>
-        <member name="T:TerrariansConstructLib.Items.ItemPart.PartProjectileHitNPCFunc">
-            <summary>
-            <see langword="int"/>&#160;<paramref name="partID"/>,
-            <see cref="T:Terraria.Projectile"/>&#160;<paramref name="projectile"/>,
-            <see cref="T:Terraria.NPC"/>&#160;<paramref name="target"/>,
-            <see langword="int"/>&#160;<paramref name="damage"/>,
-            <see langword="float"/>&#160;<paramref name="knockback"/>,
-            <see langword="bool"/>&#160;<paramref name="crit"/>
-            </summary>
-        </member>
-        <member name="T:TerrariansConstructLib.Items.ItemPart.PartProjectileHitPlayerFunc">
-            <summary>
-            <see langword="int"/>&#160;<paramref name="partID"/>,
-            <see cref="T:Terraria.Projectile"/>&#160;<paramref name="projectile"/>,
-            <see cref="T:Terraria.Player"/>&#160;<paramref name="target"/>,
-            <see langword="int"/>&#160;<paramref name="damage"/>,
-            <see langword="bool"/>&#160;<paramref name="crit"/>
-            </summary>
-        </member>
-        <member name="T:TerrariansConstructLib.Items.ItemPart.PartModifyWeaponDamageFunc">
-            <summary>
-            <see langword="int"/>&#160;<paramref name="partID"/>,
-            <see cref="T:Terraria.Player"/>&#160;<paramref name="player"/>,
-            <see cref="T:Terraria.ModLoader.StatModifier"/>&#160;<paramref name="damage"/>,
-            <see langword="ref float"/>&#160;<paramref name="flat"/>
-            </summary>
-        </member>
-        <member name="T:TerrariansConstructLib.Items.ItemPart.PartModifyWeaponKnockbackFunc">
-            <summary>
-            <see langword="int"/>&#160;<paramref name="partID"/>,
-            <see cref="T:Terraria.Player"/>&#160;<paramref name="player"/>,
-            <see cref="T:Terraria.ModLoader.StatModifier"/>&#160;<paramref name="knockback"/>,
-            <see langword="ref float"/>&#160;<paramref name="flat"/>
-            </summary>
-        </member>
-        <member name="T:TerrariansConstructLib.Items.ItemPart.PartModifyWeaponCritFunc">
-            <summary>
-            <see langword="int"/>&#160;<paramref name="partID"/>,
-            <see cref="T:Terraria.Player"/>&#160;<paramref name="player"/>,
-            <see langword="ref int"/>&#160;<paramref name="crit"/>
-            </summary>
-        </member>
-        <member name="T:TerrariansConstructLib.Items.ItemPart.PartToolPowerFunc">
-            <summary>
-            <see langword="int"/>&#160;<paramref name="partID"/>,
-            <see cref="T:Terraria.Player"/>&#160;<paramref name="player"/>,
-            <see cref="T:Terraria.Item"/>&#160;<paramref name="item"/>,
-            <see cref="T:TerrariansConstructLib.DataStructures.TileDestructionContext"/>&#160;<paramref name="context"/>,
-            <see langword="ref int"/>&#160;<paramref name="power"/>
-            </summary>
-        </member>
-        <member name="T:TerrariansConstructLib.Items.ItemPart.PartTileDestructionFunc">
-            <summary>
-            <see langword="int"/>&#160;<paramref name="partID"/>,
-            <see cref="T:Terraria.Player"/>&#160;<paramref name="player"/>,
-            <see cref="T:Terraria.Item"/>&#160;<paramref name="item"/>,
-            <see langword="int"/>&#160;<paramref name="x"/>
-            <see langword="int"/>&#160;<paramref name="y"/>
-            <see cref="T:TerrariansConstructLib.DataStructures.TileDestructionContext"/>&#160;<paramref name="context"/>
-            </summary>
-        </member>
-        <member name="T:TerrariansConstructLib.Items.ItemPart.PartItemHitNPCFunc">
-            <summary>
-            <see langword="int"/>&#160;<paramref name="partID"/>,
-            <see cref="T:Terraria.Item"/>&#160;<paramref name="item"/>,
-            <see cref="T:Terraria.Player"/>&#160;<paramref name="owner"/>,
-            <see cref="T:Terraria.NPC"/>&#160;<paramref name="target"/>,
-            <see langword="int"/>&#160;<paramref name="damage"/>,
-            <see langword="float"/>&#160;<paramref name="knockback"/>,
-            <see langword="bool"/>&#160;<paramref name="crit"/>
-            </summary>
-        </member>
-        <member name="T:TerrariansConstructLib.Items.ItemPart.PartItemHitPlayerFunc">
-            <summary>
-            <see langword="int"/>&#160;<paramref name="partID"/>,
-            <see cref="T:Terraria.Item"/>&#160;<paramref name="item"/>,
-            <see cref="T:Terraria.Player"/>&#160;<paramref name="owner"/>,
-            <see cref="T:Terraria.Player"/>&#160;<paramref name="target"/>,
-            <see langword="int"/>&#160;<paramref name="damage"/>,
-            <see langword="bool"/>&#160;<paramref name="crit"/>
-            </summary>
-        </member>
-        <member name="T:TerrariansConstructLib.Items.ItemPart.PartItemUseSpeedMultiplier">
-            <summary>
-            <see langword="int"/>&#160;<paramref name="partID"/>,
-            <see cref="T:Terraria.Item"/>&#160;<paramref name="item"/>,
-            <see cref="T:Terraria.Player"/>&#160;<paramref name="player"/>,
-            <see langword="ref float"/>&#160;<paramref name="multiplier"/>
-            </summary>
-        </member>
-        <member name="T:TerrariansConstructLib.Items.ItemPart.PartCanLoseDurability">
-            <summary>
-            <see langword="int"/>&#160;<paramref name="partID"/>,
-            <see cref="T:Terraria.Player"/>&#160;<paramref name="player"/>,
-            <see cref="T:Terraria.Item"/>&#160;<paramref name="item"/>,
-            <see cref="T:TerrariansConstructLib.API.Sources.IDurabilityModificationSource"/>&#160;<paramref name="source"/>
-            </summary>
-        </member>
-        <member name="T:TerrariansConstructLib.Items.ItemPart.PartModifyHitNPCFunc">
-            <summary>
-            <see langword="int"/>&#160;<paramref name="partID"/>,
-            <see cref="T:Terraria.Player"/>&#160;<paramref name="player"/>,
-            <see cref="T:Terraria.NPC"/>&#160;<paramref name="target"/>,
-            <see langword="ref int"/>&#160;<paramref name="damage"/>,
-            <see langword="ref float"/>&#160;<paramref name="knockBack"/>,
-            <see langword="ref bool"/>&#160;<paramref name="crit"/>
-            </summary>
-        </member>
-        <member name="T:TerrariansConstructLib.Items.ItemPart.PartPreModifyDurability">
-            <summary>
-            <see langword="int"/>&#160;<paramref name="partID"/>,
-            <see cref="T:Terraria.Player"/>&#160;<paramref name="player"/>,
-            <see cref="T:Terraria.Item"/>&#160;<paramref name="item"/>,
-            <see cref="T:TerrariansConstructLib.API.Sources.IDurabilityModificationSource"/>&#160;<paramref name="source"/>,
-            <see langword="ref int"/>&#160;<paramref name="amount"/>
-            </summary>
-        </member>
         <member name="F:TerrariansConstructLib.Items.ItemPart.material">
             <summary>
             The material used to create this item part
@@ -1017,9 +806,6 @@
             <summary>
             The part type associated with this item part
             </summary>
-        </member>
-        <member name="P:TerrariansConstructLib.Items.ItemPart.PreModifyDurability">
-            <remarks>If the <c>amount</c> parameter is &lt; 0, then the modification was a durability removal, otherwise it's a durability addition</remarks>
         </member>
         <member name="T:TerrariansConstructLib.Items.ItemPartItem">
             <summary>
@@ -1100,7 +886,7 @@
         </member>
         <member name="M:TerrariansConstructLib.Modifiers.BaseModifier.RemoveItems(TerrariansConstructLib.API.ItemData[],System.Int32,System.Int32)">
             <summary>
-            Removes the item of type, <paramref name="typeToRemove"/>, from <paramref name="stacks"/>
+            Removes the item of type, <paramref name="typeToRemove"/>, from <paramref name="items"/>
             </summary>
             <param name="items">The items</param>
             <param name="typeToRemove">The type to remove from the stacks</param>
@@ -1267,6 +1053,36 @@
             <param name="knockBack">The knockback</param>
             <param name="crit">If set to <see langword="true"/> [crit]</param>
         </member>
+        <member name="M:TerrariansConstructLib.Modifiers.BaseTrait.ModifyHitNPCWithProjectile(TerrariansConstructLib.Projectiles.BaseTCProjectile,Terraria.NPC,System.Int32@,System.Single@,System.Boolean@,System.Int32@)">
+            <summary>
+            This hook runs in <see cref="M:TerrariansConstructLib.Items.BaseTCItem.ModifyHitNPC(Terraria.Player,Terraria.NPC,System.Int32@,System.Single@,System.Boolean@)"/>
+            </summary>
+            <param name="projectile">The projectile doing the hitting</param>
+            <param name="target">The target</param>
+            <param name="damage">The damage</param>
+            <param name="knockBack">The knockback</param>
+            <param name="crit">If set to <see langword="true"/> [crit]</param>
+            <param name="hitDirection">The hit direction.  -1 is to the left, 1 is to the right and 0 is neither</param>
+        </member>
+        <member name="M:TerrariansConstructLib.Modifiers.BaseTrait.ModifyHitPlayer(Terraria.Player,Terraria.Player,TerrariansConstructLib.Items.BaseTCItem,System.Int32@,System.Boolean@)">
+            <summary>
+            This hook runs in <see cref="M:TerrariansConstructLib.Items.BaseTCItem.ModifyHitPvp(Terraria.Player,Terraria.Player,System.Int32@,System.Boolean@)"/>
+            </summary>
+            <param name="owner">The player</param>
+            <param name="target">The target</param>
+            <param name="item">The item that hit the target</param>
+            <param name="damage">The damage</param>
+            <param name="crit">If set to <see langword="true"/> [crit]</param>
+        </member>
+        <member name="M:TerrariansConstructLib.Modifiers.BaseTrait.ModifyHitPlayerWithProjectile(TerrariansConstructLib.Projectiles.BaseTCProjectile,Terraria.Player,System.Int32@,System.Boolean@)">
+            <summary>
+            This hook runs in <see cref="M:TerrariansConstructLib.Projectiles.BaseTCProjectile.ModifyHitPlayer(Terraria.Player,System.Int32@,System.Boolean@)"/>
+            </summary>
+            <param name="projectile">The projectile</param>
+            <param name="target">The target</param>
+            <param name="damage">The damage</param>
+            <param name="crit">If set to <see langword="true"/> [crit]</param>
+        </member>
         <member name="M:TerrariansConstructLib.Modifiers.BaseTrait.OnHitNPC(Terraria.Player,Terraria.NPC,TerrariansConstructLib.Items.BaseTCItem,System.Int32,System.Single,System.Boolean)">
             <summary>
             This hook runs in <see cref="M:TerrariansConstructLib.Items.BaseTCItem.OnHitNPC(Terraria.Player,Terraria.NPC,System.Int32,System.Single,System.Boolean)"/>
@@ -1316,31 +1132,21 @@
             <param name="source">The modification source</param>
             <param name="amount">The amount to modify the durability by.  If the value is &lt; 0, then the modification was a durability removal, otherwise it's a durability addition</param>
         </member>
-        <member name="M:TerrariansConstructLib.Modifiers.BaseTrait.OnProjectileSpawn(TerrariansConstructLib.Projectiles.BaseTCProjectile,Terraria.DataStructures.IEntitySource,System.Single,System.Single,System.Single,System.Single,System.Int32,System.Int32,System.Single,System.Int32,System.Single,System.Single)">
+        <member name="M:TerrariansConstructLib.Modifiers.BaseTrait.OnProjectileSpawn(TerrariansConstructLib.Projectiles.BaseTCProjectile,Terraria.DataStructures.IEntitySource)">
             <summary>
             This hook runs when a <see cref="T:TerrariansConstructLib.Projectiles.BaseTCProjectile"/> projectile is spawned which has a part with this ability
             </summary>
             <param name="projectile">The spawned projectile</param>
             <param name="source">The spawn source</param>
-            <param name="X">The X-position</param>
-            <param name="Y">The Y-position</param>
-            <param name="SpeedX">The X-velocity</param>
-            <param name="SpeedY">The Y-velocity</param>
-            <param name="Type">The ID of the projectile spawned</param>
-            <param name="Damage">The damage assigned to the projectile</param>
-            <param name="KnockBack">The knockback assigned to the projectile</param>
-            <param name="Owner">The projectile's owner</param>
-            <param name="ai0"></param>
-            <param name="ai1"></param>
         </member>
-        <member name="M:TerrariansConstructLib.Modifiers.BaseTrait.ModifyWeaponDamage(Terraria.Player,TerrariansConstructLib.Items.BaseTCItem,Terraria.ModLoader.StatModifier@,System.Single@)">
-            <inheritdoc cref="M:TerrariansConstructLib.Items.BaseTCItem.ModifyWeaponDamage(Terraria.Player,Terraria.ModLoader.StatModifier@,System.Single@)"/>
+        <member name="M:TerrariansConstructLib.Modifiers.BaseTrait.ModifyWeaponDamage(Terraria.Player,TerrariansConstructLib.Items.BaseTCItem,Terraria.ModLoader.StatModifier@)">
+            <inheritdoc cref="M:TerrariansConstructLib.Items.BaseTCItem.ModifyWeaponDamage(Terraria.Player,Terraria.ModLoader.StatModifier@)"/>
         </member>
-        <member name="M:TerrariansConstructLib.Modifiers.BaseTrait.ModifyWeaponKnockback(Terraria.Player,TerrariansConstructLib.Items.BaseTCItem,Terraria.ModLoader.StatModifier@,System.Single@)">
-            <inheritdoc cref="M:TerrariansConstructLib.Items.BaseTCItem.ModifyWeaponKnockback(Terraria.Player,Terraria.ModLoader.StatModifier@,System.Single@)"/>
+        <member name="M:TerrariansConstructLib.Modifiers.BaseTrait.ModifyWeaponKnockback(Terraria.Player,TerrariansConstructLib.Items.BaseTCItem,Terraria.ModLoader.StatModifier@)">
+            <inheritdoc cref="M:TerrariansConstructLib.Items.BaseTCItem.ModifyWeaponKnockback(Terraria.Player,Terraria.ModLoader.StatModifier@)"/>
         </member>
-        <member name="M:TerrariansConstructLib.Modifiers.BaseTrait.ModifyWeaponCrit(Terraria.Player,TerrariansConstructLib.Items.BaseTCItem,System.Int32@)">
-            <inheritdoc cref="M:TerrariansConstructLib.Items.BaseTCItem.ModifyWeaponCrit(Terraria.Player,System.Int32@)"/>
+        <member name="M:TerrariansConstructLib.Modifiers.BaseTrait.ModifyWeaponCrit(Terraria.Player,TerrariansConstructLib.Items.BaseTCItem,System.Single@)">
+            <inheritdoc cref="M:TerrariansConstructLib.Items.BaseTCItem.ModifyWeaponCrit(Terraria.Player,System.Single@)"/>
         </member>
         <member name="M:TerrariansConstructLib.Modifiers.BaseTrait.UseItem(Terraria.Player,TerrariansConstructLib.Items.BaseTCItem)">
             <summary>
@@ -1402,8 +1208,8 @@
         <member name="M:TerrariansConstructLib.Projectiles.BaseTCProjectile.SafeSetStaticDefaults">
             <inheritdoc cref="M:TerrariansConstructLib.Projectiles.BaseTCProjectile.SetStaticDefaults"/>
         </member>
-        <member name="M:TerrariansConstructLib.Projectiles.BaseTCProjectile.SafeSetDefaults">
-            <inheritdoc cref="M:TerrariansConstructLib.Projectiles.BaseTCProjectile.SetDefaults"/>
+        <member name="M:TerrariansConstructLib.Projectiles.BaseTCProjectile.SafeModifyHitNPC(Terraria.NPC,System.Int32@,System.Single@,System.Boolean@,System.Int32@)">
+            <inheritdoc cref="M:TerrariansConstructLib.Projectiles.BaseTCProjectile.ModifyHitNPC(Terraria.NPC,System.Int32@,System.Single@,System.Boolean@,System.Int32@)"/>
         </member>
         <member name="M:TerrariansConstructLib.Projectiles.BaseTCProjectile.SafeOnHitNPC(Terraria.NPC,System.Int32,System.Single,System.Boolean)">
             <inheritdoc cref="M:TerrariansConstructLib.Projectiles.BaseTCProjectile.OnHitNPC(Terraria.NPC,System.Int32,System.Single,System.Boolean)"/>
@@ -1419,11 +1225,6 @@
             This hook runs immediately before the projectile is drawn
             </summary>
             <param name="lightColor">The color of the light at the projectile's center</param>
-        </member>
-        <member name="T:TerrariansConstructLib.Registry.PartActions">
-            <summary>
-            A collection of action builders
-            </summary>
         </member>
         <member name="T:TerrariansConstructLib.Stats.ItemStat">
             <summary>

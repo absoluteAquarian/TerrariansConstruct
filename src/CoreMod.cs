@@ -219,10 +219,10 @@ namespace TerrariansConstruct {
 				new ExtraPartStats()
 					.With(CoreLibMod.KnownStatModifiers.ExtraDurability, new StatModifier(30, 1f)));
 
-			RegisteredMaterials.Cobweb = CoreLibMod.RegisterMaterialStats(ItemID.Cobweb, 8, null,
+			RegisteredMaterials.Cobweb = CoreLibMod.RegisterMaterialStats(ItemID.Cobweb, 8, new CobwebTrait(),
 				new ExtraPartStats()
-					.With(CoreLibMod.KnownStatModifiers.BowDrawSpeed, StatModifier.One)
-					.With(CoreLibMod.KnownStatModifiers.BowArrowSpeed, StatModifier.One)
+					.With(CoreLibMod.KnownStatModifiers.BowDrawSpeed, StatModifier.Default)
+					.With(CoreLibMod.KnownStatModifiers.BowArrowSpeed, StatModifier.Default)
 					.SetValidPartIDs(CoreLibMod.KnownStatModifiers.BowDrawSpeed,
 						RegisteredParts.WeaponBowString)
 					.SetValidPartIDs(CoreLibMod.KnownStatModifiers.BowArrowSpeed,
@@ -247,7 +247,7 @@ namespace TerrariansConstruct {
 				new ExtraPartStats()
 					.With(CoreLibMod.KnownStatModifiers.ExtraDurability, new StatModifier(50, 1f)));
 
-			RegisteredMaterials.PlatinumBar = CoreLibMod.RegisterMaterialStats(ItemID.PlatinumBar, 1, null,
+			RegisteredMaterials.PlatinumBar = CoreLibMod.RegisterMaterialStats(ItemID.PlatinumBar, 1, new PlatinumTrait(),
 				new HeadPartStats(15, 6f, 0, useSpeed: 19, pickPower: 59, axePower: 59, hammerPower: 59, durability: 1100),
 				new HandlePartStats(),
 				new ExtraPartStats()

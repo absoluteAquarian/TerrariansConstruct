@@ -13,6 +13,8 @@
 			Lead: "Poisonous {R}"
 			Silver: "Holy {R}"
 			Stone: "Crumbling"
+			Platinum: "Ruthless {R}"
+			Cobweb: "Sticky {R}"
 		}
 
 		Modifiers: {

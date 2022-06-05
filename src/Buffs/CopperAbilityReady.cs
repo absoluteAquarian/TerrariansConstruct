@@ -1,4 +1,5 @@
 ﻿using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace TerrariansConstruct.Buffs {
@@ -9,6 +10,7 @@ namespace TerrariansConstruct.Buffs {
 			DisplayName.SetDefault("Energized I: Ready");
 			Description.SetDefault("The Copper parts in your item are ready to release their energy");
 			Main.buffNoTimeDisplay[Type] = true;
+			BuffID.Sets.TimeLeftDoesNotDecrease[Type] = true;
 		}
 	}
 }

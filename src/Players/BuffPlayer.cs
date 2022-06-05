@@ -7,7 +7,7 @@ namespace TerrariansConstruct.Players {
 		public override void PreUpdateBuffs() {
 			if (Player.HeldItem.ModItem is not BaseTCItem) {
 				Player.ClearBuff(ModContent.BuffType<CopperAbilityReady>());
-				Player.ClearBuff(ModContent.BuffType<CopperAbilityReady>());
+				Player.ClearBuff(ModContent.BuffType<CopperAbilityActive>());
 			}
 		}
 	}

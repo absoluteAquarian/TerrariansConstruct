@@ -6,65 +6,65 @@ namespace TerrariansConstruct {
 	partial class CoreMod {
 		private void AddParts() {
 			// === COPPER ===
-			AddAllTypicalParts(RegisteredMaterials.CopperBar, PartActions.NoActions);
+			AddAllTypicalParts(RegisteredMaterials.CopperBar);
 
 			// === WOOD ===
-			AddAllTypicalParts(RegisteredMaterials.Wood, PartActions.NoActions);
+			AddAllTypicalParts(RegisteredMaterials.Wood);
 
 			// === COBWEB ===
-			CoreLibMod.AddPart(this, RegisteredMaterials.Cobweb, RegisteredParts.WeaponBowString, PartActions.NoActions);
+			CoreLibMod.AddPart(this, RegisteredMaterials.Cobweb, RegisteredParts.WeaponBowString);
 
 			// === GOLD ===
-			AddAllTypicalParts(RegisteredMaterials.GoldBar, PartActions.NoActions);
+			AddAllTypicalParts(RegisteredMaterials.GoldBar);
 
 			// === IRON ===
-			AddAllTypicalParts(RegisteredMaterials.IronBar, PartActions.NoActions);
+			AddAllTypicalParts(RegisteredMaterials.IronBar);
 
 			// === LEAD ===
-			AddAllTypicalParts(RegisteredMaterials.LeadBar, PartActions.NoActions);
+			AddAllTypicalParts(RegisteredMaterials.LeadBar);
 
 			// === PLATINUM ===
-			AddAllTypicalParts(RegisteredMaterials.PlatinumBar, PartActions.NoActions);
+			AddAllTypicalParts(RegisteredMaterials.PlatinumBar);
 
 			// === SILVER ===
-			AddAllTypicalParts(RegisteredMaterials.SilverBar, PartActions.NoActions);
+			AddAllTypicalParts(RegisteredMaterials.SilverBar);
 
 			// === STONE ===
-			AddAllTypicalParts(RegisteredMaterials.StoneBlock, PartActions.NoActions);
+			AddAllTypicalParts(RegisteredMaterials.StoneBlock);
 
 			// === TIN ===
-			AddAllTypicalParts(RegisteredMaterials.TinBar, PartActions.NoActions);
+			AddAllTypicalParts(RegisteredMaterials.TinBar);
 
 			// === TUNGSTEN ===
-			AddAllTypicalParts(RegisteredMaterials.TungstenBar, PartActions.NoActions);
+			AddAllTypicalParts(RegisteredMaterials.TungstenBar);
 		}
 
-		private void AddShardPart(Material material, ItemPartActionsBuilder commonActions)
-			=> CoreLibMod.AddPart(this, material, CoreLibMod.RegisteredParts.Shard, commonActions);
+		private void AddShardPart(Material material)
+			=> CoreLibMod.AddPart(this, material, CoreLibMod.RegisteredParts.Shard);
 
-		private void AddHeadParts(Material material, ItemPartActionsBuilder commonActions) {
-			CoreLibMod.AddPart(this, material, RegisteredParts.ToolPickHead, commonActions);
-			CoreLibMod.AddPart(this, material, RegisteredParts.ToolAxeHead, commonActions);
-			CoreLibMod.AddPart(this, material, RegisteredParts.ToolHammerHead, commonActions);
-			CoreLibMod.AddPart(this, material, RegisteredParts.WeaponLongSwordBlade, commonActions);
-			CoreLibMod.AddPart(this, material, RegisteredParts.WeaponShortSwordBlade, commonActions);
-			CoreLibMod.AddPart(this, material, RegisteredParts.WeaponBowHead, commonActions);
+		private void AddHeadParts(Material material) {
+			CoreLibMod.AddPart(this, material, RegisteredParts.ToolPickHead);
+			CoreLibMod.AddPart(this, material, RegisteredParts.ToolAxeHead);
+			CoreLibMod.AddPart(this, material, RegisteredParts.ToolHammerHead);
+			CoreLibMod.AddPart(this, material, RegisteredParts.WeaponLongSwordBlade);
+			CoreLibMod.AddPart(this, material, RegisteredParts.WeaponShortSwordBlade);
+			CoreLibMod.AddPart(this, material, RegisteredParts.WeaponBowHead);
 		}
 
-		private void AddHandleParts(Material material, ItemPartActionsBuilder commonActions) {
-			CoreLibMod.AddPart(this, material, RegisteredParts.ToolRod, commonActions);
+		private void AddHandleParts(Material material) {
+			CoreLibMod.AddPart(this, material, RegisteredParts.ToolRod);
 		}
 
-		private void AddExtraParts(Material material, ItemPartActionsBuilder commonActions, int[] parts) {
+		private void AddExtraParts(Material material, int[] parts) {
 			for (int i = 0; i < parts.Length; i++)
-				CoreLibMod.AddPart(this, material, parts[i], commonActions);
+				CoreLibMod.AddPart(this, material, parts[i]);
 		}
 
-		private void AddAllTypicalParts(Material material, ItemPartActionsBuilder commonActions) {
-			AddShardPart(material, commonActions);
-			AddHeadParts(material, commonActions);
-			AddHandleParts(material, commonActions);
-			AddExtraParts(material, commonActions,
+		private void AddAllTypicalParts(Material material) {
+			AddShardPart(material);
+			AddHeadParts(material);
+			AddHandleParts(material);
+			AddExtraParts(material,
 				new[] {
 					RegisteredParts.ToolBinding,
 					RegisteredParts.WeaponSwordGuard,

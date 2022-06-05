@@ -57,9 +57,9 @@ Copper Bar (ID: 20)
 Cobweb (ID: 150)
     Material worth: 0.125
 
-    Modifier:  n/a
+    Modifier:  Sticky
     Stats:
-        n/a
+        Weapon has a 5% chance to not consume ammo per tier, capped at 20%
 
     Head Stats:
         n/a
@@ -149,9 +149,12 @@ Lead Bar (ID: 704)
 Platinum Bar (ID: 706)
     Material worth: 1
 
-    Modifier: n/a
+    Modifier: Ruthless
     Stats:
-        n/a
+        Weapon deals extra damage and knockback to targets at full health
+		Knockback bonus is capped at tier 10
+		    +20% damage and +10% knockback for NPC targets
+			+10% damage for player targets
 
     Head stats:
         Base damage: 15

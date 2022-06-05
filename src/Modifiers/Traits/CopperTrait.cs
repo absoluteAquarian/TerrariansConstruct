@@ -38,12 +38,15 @@ namespace TerrariansConstruct.Modifiers.Traits {
 			activated = tag.GetBool("activated");
 		}
 
+		public static readonly SoundStyle Item92Custom = SoundID.Item92 with { Volume = 0.7f, PitchVariance = 0.1f };
+		public static readonly SoundStyle Item93Custom = SoundID.Item93 with { Volume = 0.37f, PitchVariance = 0.18f };
+
 		public override void OnAbilityHotkeyPressed(Player player) {
 			if (IsReady) {
 				activated = true;
 
-				SoundEngine.PlaySound(SoundID.Item92.WithVolume(0.7f).WithPitchVariance(0.1f), player.Center);
-				SoundEngine.PlaySound(SoundID.Item93.WithVolume(0.37f).WithPitchVariance(0.18f), player.Center);
+				SoundEngine.PlaySound(Item92Custom, player.Center);
+				SoundEngine.PlaySound(Item93Custom, player.Center);
 			}
 		}
 
@@ -56,7 +59,7 @@ namespace TerrariansConstruct.Modifiers.Traits {
 					Counter = max;
 			}
 
-			if (IsReady)
+			if (IsReady && !player.HasBuff<CopperAbilityReady>())
 				player.AddBuff(ModContent.BuffType<CopperAbilityReady>(), 2);
 		}
 
