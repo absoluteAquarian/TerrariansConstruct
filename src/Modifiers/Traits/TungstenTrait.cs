@@ -26,6 +26,11 @@ namespace TerrariansConstruct.Modifiers.Traits {
 			}
 		}
 
+		public override void OnHoldItem(Player player, BaseTCItem item) {
+			if (player.Bottom.Y / 16d > Main.worldSurface)
+				player.pickSpeed -= (float)GetBonus(player, 0.03, Math.Min(5, Tier));
+		}
+
 		public override bool CanLoseDurability(Player player, BaseTCItem item, IDurabilityModificationSource source) {
 			if (player.Bottom.Y / 16d <= Main.worldSurface) {
 				//No bonus

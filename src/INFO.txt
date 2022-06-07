@@ -257,7 +257,7 @@ Tungsten Bar (ID: 705)
 
     Modifier: Thermal
     Stats:
-        Linear increase in mining speed the further down below the surface the player is
+        Linear increase in attack and mining speed the further down below the surface the player is
 		Chance to not use durability also increases the further down below the surface the player is, up to a maximum of 25%
 
     Head stats:

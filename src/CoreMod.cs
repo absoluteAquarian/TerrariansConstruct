@@ -278,7 +278,7 @@ namespace TerrariansConstruct {
 				new ExtraPartStats()
 					.With(CoreLibMod.KnownStatModifiers.ExtraDurability, new StatModifier(55, 1f)));
 
-			RegisteredMaterials.TungstenBar = CoreLibMod.RegisterMaterialStats(ItemID.TungstenBar, 1, null,
+			RegisteredMaterials.TungstenBar = CoreLibMod.RegisterMaterialStats(ItemID.TungstenBar, 1, new TungstenTrait(),
 				new HeadPartStats(12, 3.9f, 0, useSpeed: 20, pickPower: 50, axePower: 50, hammerPower: 50, durability: 1050),
 				new HandlePartStats(),
 				new ExtraPartStats()

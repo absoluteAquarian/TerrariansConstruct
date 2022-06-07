@@ -61,6 +61,9 @@ namespace TerrariansConstruct.Modifiers.Traits {
 
 			if (IsReady && !player.HasBuff<CopperAbilityReady>())
 				player.AddBuff(ModContent.BuffType<CopperAbilityReady>(), 2);
+
+			if (activated)
+				player.pickSpeed -= 0.2f;
 		}
 
 		public override void OnUpdateInventory(Player player, BaseTCItem item) {
