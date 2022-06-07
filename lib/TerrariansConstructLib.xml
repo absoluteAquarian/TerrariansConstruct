@@ -731,6 +731,13 @@
         <member name="M:TerrariansConstructLib.Items.BaseTCItem.SafeCanConsumeAmmo(Terraria.Item,Terraria.Player)">
             <inheritdoc cref="M:TerrariansConstructLib.Items.BaseTCItem.CanConsumeAmmo(Terraria.Item,Terraria.Player)"/>
         </member>
+        <member name="M:TerrariansConstructLib.Items.BaseTCItem.SafeCanChooseAmmo(Terraria.Item,Terraria.Player)">
+            <inheritdoc cref="M:TerrariansConstructLib.Items.BaseTCItem.CanChooseAmmo(Terraria.Item,Terraria.Player)"/>
+        </member>
+        <member name="M:TerrariansConstructLib.Items.BaseTCItem.SafeCanBeChosenAsAmmo(Terraria.Item,Terraria.Player)">
+            <inheritdoc cref="M:TerrariansConstructLib.Items.BaseTCItem.CanBeChosenAsAmmo(Terraria.Item,Terraria.Player)"/>
+            <remarks>NOTE: Terrarians' Construct disables <see langword="null"/> returns since Item.ammo and Item.useAmmo are already checked</remarks>
+        </member>
         <member name="M:TerrariansConstructLib.Items.BaseTCItem.SafeModifyWeaponDamage(Terraria.Player,Terraria.ModLoader.StatModifier@)">
             <inheritdoc cref="M:TerrariansConstructLib.Items.BaseTCItem.ModifyWeaponDamage(Terraria.Player,Terraria.ModLoader.StatModifier@)"/>
         </member>
