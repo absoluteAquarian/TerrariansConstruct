@@ -231,9 +231,10 @@ Stone Block (ID: 3)
 Tin Bar (ID: 703)
     Material worth: 1
 
-    Modifier: n/a
+    Modifier: Erosion
     Stats:
-        n/a
+        Tools break "soft" tiles faster
+        Bonus increases per tier
 
     Head stats:
         Base damage: 9

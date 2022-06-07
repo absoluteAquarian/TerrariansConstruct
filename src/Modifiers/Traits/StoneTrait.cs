@@ -28,7 +28,7 @@ namespace TerrariansConstruct.Modifiers.Traits {
 					item.TryReduceDurability(player, 4, new DurabilityModificationSource_Mining(context, x, y));
 
 					// Between 20 and 50 tiles
-					Counter = player.RollLuck(31) + 20;
+					Counter = Main.rand.Next(31) + 20;
 
 					DisplayMessageAbovePlayer(player, Color.LightGray, "-5 DURABILITY");
 				}
@@ -39,6 +39,11 @@ namespace TerrariansConstruct.Modifiers.Traits {
 		public override void UseSpeedMultiplier(Player player, BaseTCItem item, ref StatModifier multiplier) {
 			if (Counter > 0)
 				multiplier += 0.08f;
+		}
+
+		public override void OnHoldItem(Player player, BaseTCItem item) {
+			if (Counter > 0)
+				player.pickSpeed -= 0.08f;
 		}
 	}
 }

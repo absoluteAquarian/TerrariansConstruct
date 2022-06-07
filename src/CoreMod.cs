@@ -272,7 +272,7 @@ namespace TerrariansConstruct {
 				new ExtraPartStats()
 					.With(CoreLibMod.KnownStatModifiers.ExtraDurability, new StatModifier(-10, 0.95f)));
 
-			RegisteredMaterials.TinBar = CoreLibMod.RegisterMaterialStats(ItemID.TinBar, 1, null,
+			RegisteredMaterials.TinBar = CoreLibMod.RegisterMaterialStats(ItemID.TinBar, 1, new TinTrait(),
 				new HeadPartStats(9, 2.3f, 0, useSpeed: 22, pickPower: 35, axePower: 35, hammerPower: 35, durability: 350, toolRange: -1),
 				new HandlePartStats(),
 				new ExtraPartStats()
