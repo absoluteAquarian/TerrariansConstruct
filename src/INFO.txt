@@ -255,9 +255,10 @@ Tin Bar (ID: 703)
 Tungsten Bar (ID: 705)
     Material worth: 1
 
-    Modifier: n/a
+    Modifier: Thermal
     Stats:
-        n/a
+        Linear increase in mining speed the further down below the surface the player is
+		Chance to not use durability also increases the further down below the surface the player is, up to a maximum of 25%
 
     Head stats:
         Base damage: 12
