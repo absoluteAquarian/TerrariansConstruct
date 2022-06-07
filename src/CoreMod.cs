@@ -288,7 +288,7 @@ namespace TerrariansConstruct {
 		}
 
 		public static void RegisterTCModifiers(Mod mod) {
-			RegisteredModifiers.Spiky = CoreLibMod.RegisterModifier("TerrariansConstruct:Spiky", new SpikyModifier());
+			RegisteredModifiers.Spiky = CoreLibMod.RegisterModifier(mod, "TerrariansConstruct:Spiky", new SpikyModifier());
 		}
 
 		public static class RegisteredAmmo {
