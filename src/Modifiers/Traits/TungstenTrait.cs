@@ -34,7 +34,7 @@ namespace TerrariansConstruct.Modifiers.Traits {
 				//Linearly increase the bonus the further down the player is, up to a maximum of +5% per Tier up to a maximum of +25%
 				double chance = GetBonus(player, 5d, Math.Min(5, Tier));
 
-				return player.RollLuck(100) < chance;
+				return player.RollLuck(100) >= chance;
 			}
 		}
 
