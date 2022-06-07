@@ -11,7 +11,7 @@ namespace TerrariansConstruct.Modifiers.Traits {
 	internal class TungstenTrait : BaseTrait {
 		public override bool IsSingleton => true;
 
-		public override Color TooltipColor => new(0x99, 0x66, 0x33);
+		public override Color TooltipColor => new(0x8b, 0xaf, 0x8c);
 
 		public override string LangKey => "Mods.TerrariansConstruct.PartTooltips.Tungsten";
 
