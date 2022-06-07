@@ -11,6 +11,7 @@ using TerrariansConstructLib;
 using TerrariansConstructLib.API.UI;
 using TerrariansConstructLib.Items;
 using TerrariansConstructLib.Materials;
+using TerrariansConstructLib.Modifiers;
 using TerrariansConstructLib.Registry;
 
 namespace TerrariansConstruct.UI {
@@ -134,7 +135,7 @@ namespace TerrariansConstruct.UI {
 
 			ItemPart[] parts = partIDs.Select((p, i) => (p, i + ColorMaterial.StaticBaseType)).Select(t => new ItemPart() { partID = t.p, material = Material.FromItem(t.Item2) }).ToArray();
 
-			return CoreLibMod.ItemTextures.Get(registeredItemID, parts);
+			return CoreLibMod.ItemTextures.Get(registeredItemID, parts, Array.Empty<BaseTrait>());
 		}
 	}
 }

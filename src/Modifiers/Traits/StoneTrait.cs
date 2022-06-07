@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.ModLoader;
 using TerrariansConstructLib.API.Sources;
 using TerrariansConstructLib.DataStructures;
 using TerrariansConstructLib.Items;
@@ -35,7 +36,7 @@ namespace TerrariansConstruct.Modifiers.Traits {
 				Counter--;
 		}
 
-		public override void UseSpeedMultiplier(Player player, BaseTCItem item, ref float multiplier) {
+		public override void UseSpeedMultiplier(Player player, BaseTCItem item, ref StatModifier multiplier) {
 			if (Counter > 0)
 				multiplier += 0.08f;
 		}

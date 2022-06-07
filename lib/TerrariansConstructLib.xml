@@ -458,7 +458,7 @@
             <exception cref="T:System.ArgumentOutOfRangeException"/>
             <exception cref="T:System.ArgumentNullException"/>
         </member>
-        <member name="M:TerrariansConstructLib.CoreLibMod.RegisterItem(Terraria.ModLoader.Mod,System.String,System.String,System.String,System.String,System.Single,TerrariansConstructLib.API.UI.ForgeUISlotConfiguration[])">
+        <member name="M:TerrariansConstructLib.CoreLibMod.RegisterItem(Terraria.ModLoader.Mod,System.String,System.String,System.String,TerrariansConstructLib.Registry.ItemRegistry.RegistrationContext)">
             <summary>
             Registers a name and valid <seealso cref="T:TerrariansConstructLib.Items.ItemPart"/> IDs for an item
             </summary>
@@ -466,25 +466,7 @@
             <param name="internalName">The internal name of the weapon</param>
             <param name="name">The default item type name used by <seealso cref="P:TerrariansConstructLib.Items.BaseTCItem.RegisteredItemTypeName"/></param>
             <param name="itemInternalName">The item type that this registered item ID will be applied to.  Use the string you'd use to access the item via <seealso cref="M:Terraria.ModLoader.Mod.Find``1(System.String)"/></param>
-            <param name="partVisualsFolder">The folder where the item's part visuals is located, relative to the mod they're from</param>
-            <param name="useSpeedMultiplier">A modifier applied to the base use speed generated from the item's parts</param>
-            <param name="configuration">The array of parts that comprise the weapon and their slot contexts in the Forge UI</param>
-            <returns>The ID of the registered item</returns>
-            <exception cref="T:System.Exception"/>
-            <exception cref="T:System.ArgumentException"/>
-            <exception cref="T:System.ArgumentNullException"/>
-        </member>
-        <member name="M:TerrariansConstructLib.CoreLibMod.RegisterItem(Terraria.ModLoader.Mod,System.String,System.String,System.String,System.String,System.Single,System.ValueTuple{System.Int32,System.Int32,System.Int32}[])">
-            <summary>
-            Registers a name and valid <seealso cref="T:TerrariansConstructLib.Items.ItemPart"/> IDs for an item
-            </summary>
-            <param name="mod">The mod that the weapon belongs to</param>
-            <param name="internalName">The internal name of the weapon</param>
-            <param name="name">The default item type name used by <seealso cref="P:TerrariansConstructLib.Items.BaseTCItem.RegisteredItemTypeName"/></param>
-            <param name="itemInternalName">The item type that this registered item ID will be applied to.  Use the string you'd use to access the item via <seealso cref="M:Terraria.ModLoader.Mod.Find``1(System.String)"/></param>
-            <param name="partVisualsFolder">The folder where the item's part visuals is located, relative to the mod they're from</param>
-            <param name="useSpeedMultiplier">A modifier applied to the base use speed generated from the item's parts</param>
-            <param name="configuration">The array of parts that comprise the weapon and their slot contexts in the Forge UI</param>
+            <param name="context">The registration context</param>
             <returns>The ID of the registered item</returns>
             <exception cref="T:System.Exception"/>
             <exception cref="T:System.ArgumentException"/>
@@ -1010,7 +992,7 @@
             </summary>
             <param name="player">The player</param>
         </member>
-        <member name="M:TerrariansConstructLib.Modifiers.BaseTrait.UseSpeedMultiplier(Terraria.Player,TerrariansConstructLib.Items.BaseTCItem,System.Single@)">
+        <member name="M:TerrariansConstructLib.Modifiers.BaseTrait.UseSpeedMultiplier(Terraria.Player,TerrariansConstructLib.Items.BaseTCItem,Terraria.ModLoader.StatModifier@)">
             <summary>
             This hook runs in <see cref="M:TerrariansConstructLib.Items.BaseTCItem.UseSpeedMultiplier(Terraria.Player)"/>
             </summary>
@@ -1237,6 +1219,28 @@
             This hook runs immediately before the projectile is drawn
             </summary>
             <param name="lightColor">The color of the light at the projectile's center</param>
+        </member>
+        <member name="M:TerrariansConstructLib.Registry.ItemRegistry.RegistrationContext.#ctor(System.String,System.Single,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="partVisualsFolder">The folder where the item's part visuals is located, relative to the mod they're from</param>
+            <param name="useSpeedMultiplier">A modifier applied to the base use speed generated from the item's parts</param>
+            <param name="ammoConsumedPerShot"></param>
+        </member>
+        <member name="M:TerrariansConstructLib.Registry.ItemRegistry.RegistrationContext.WithConfiguration(TerrariansConstructLib.API.UI.ForgeUISlotConfiguration[])">
+            <summary>
+            
+            </summary>
+            <param name="configuration">The array of parts that comprise the weapon and their slot contexts in the Forge UI</param>
+            <returns></returns>
+        </member>
+        <member name="M:TerrariansConstructLib.Registry.ItemRegistry.RegistrationContext.WithConfiguration(System.ValueTuple{System.Int32,System.Int32,System.Int32}[])">
+            <summary>
+            
+            </summary>
+            <param name="configuration">The array of parts that comprise the weapon and their slot contexts in the Forge UI</param>
+            <returns></returns>
         </member>
         <member name="T:TerrariansConstructLib.Stats.ItemStat">
             <summary>

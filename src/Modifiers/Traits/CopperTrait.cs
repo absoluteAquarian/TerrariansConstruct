@@ -85,7 +85,7 @@ namespace TerrariansConstruct.Modifiers.Traits {
 			}
 		}
 
-		public override void UseSpeedMultiplier(Player player, BaseTCItem item, ref float multiplier) {
+		public override void UseSpeedMultiplier(Player player, BaseTCItem item, ref StatModifier multiplier) {
 			if (activated)
 				multiplier += 0.5f;
 		}

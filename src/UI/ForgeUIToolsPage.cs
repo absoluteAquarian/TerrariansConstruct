@@ -104,7 +104,7 @@ namespace TerrariansConstruct.UI {
 				Item item = items[slot];
 
 				//Spawn a clone of the item
-				Utility.DropItem(new EntitySource_DebugCommand(), item, area);
+				Utility.DropItem(new EntitySource_DebugCommand("TerrariansConstruct:ForgeUIToolsPage"), item, area);
 			}
 
 			//Add the result slot

@@ -40,7 +40,7 @@ namespace TerrariansConstruct.Modifiers.Traits {
 					critCheck = target.whoAmI;
 
 					int tier = Math.Max(Tier, 10);
-					if (Main.rand.NextBool(tier * 10, 100))
+					if (player.RollLuck(100) < tier * 10)
 						crit = true;
 				}
 			}

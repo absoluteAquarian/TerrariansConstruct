@@ -15,6 +15,7 @@
 			Stone: "Crumbling"
 			Platinum: "Ruthless {R}"
 			Cobweb: "Sticky {R}"
+			Tungsten: "Thermal {R}"
 		}
 
 		Modifiers: {

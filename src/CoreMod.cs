@@ -14,6 +14,7 @@ using TerrariansConstruct.UI;
 using TerrariansConstructLib;
 using TerrariansConstructLib.API.Stats;
 using TerrariansConstructLib.Materials;
+using TerrariansConstructLib.Registry;
 
 namespace TerrariansConstruct {
 	public partial class CoreMod : Mod {
@@ -166,21 +167,27 @@ namespace TerrariansConstruct {
 			//  15 16 17 18 19
 			//  20 21 22 23 24
 
-			RegisteredItems.Sword = CoreLibMod.RegisterItem(mod, "Sword", "Sword", nameof(TCSword), visualsFolder + "Sword", 1f,
-				(0,  4, RegisteredParts.WeaponLongSwordBlade),
-				(1, 12, RegisteredParts.WeaponSwordGuard),
-				(2, 20, RegisteredParts.ToolRod));
+			RegisteredItems.Sword = CoreLibMod.RegisterItem(mod, "Sword", "Sword", nameof(TCSword),
+				new ItemRegistry.RegistrationContext(visualsFolder + "Sword", 1f)
+					.WithConfiguration(
+						(0,  4, RegisteredParts.WeaponLongSwordBlade),
+						(1, 12, RegisteredParts.WeaponSwordGuard),
+						(2, 20, RegisteredParts.ToolRod)));
 
-			RegisteredItems.Shortsword = CoreLibMod.RegisterItem(mod, "Shortsword", "Shortsword", nameof(TCShortsword), visualsFolder + "Shortsword", 0.65f,
-				(0,  4, RegisteredParts.WeaponShortSwordBlade),
-				(1, 12, RegisteredParts.WeaponShortSwordGuard),
-				(2, 20, RegisteredParts.ToolRod));
+			RegisteredItems.Shortsword = CoreLibMod.RegisterItem(mod, "Shortsword", "Shortsword", nameof(TCShortsword),
+				new ItemRegistry.RegistrationContext(visualsFolder + "Shortsword", 0.65f)
+					.WithConfiguration(
+						(0,  4, RegisteredParts.WeaponShortSwordBlade),
+						(1, 12, RegisteredParts.WeaponShortSwordGuard),
+						(2, 20, RegisteredParts.ToolRod)));
 
-			RegisteredItems.Pickaxe = CoreLibMod.RegisterItem(mod, "Pickaxe", "Pickaxe", nameof(TCPickaxe), visualsFolder + "Pickaxe", 0.8f,
-				(0, 12, RegisteredParts.ToolBinding),
-				(1,  7, RegisteredParts.ToolPickHead),
-				(2, 13, RegisteredParts.ToolPickHead),
-				(3, 16, RegisteredParts.ToolRod));
+			RegisteredItems.Pickaxe = CoreLibMod.RegisterItem(mod, "Pickaxe", "Pickaxe", nameof(TCPickaxe),
+				new ItemRegistry.RegistrationContext(visualsFolder + "Pickaxe", 0.8f)
+					.WithConfiguration(
+						(0, 12, RegisteredParts.ToolBinding),
+						(1,  7, RegisteredParts.ToolPickHead),
+						(2, 13, RegisteredParts.ToolPickHead),
+						(3, 16, RegisteredParts.ToolRod)));
 
 			/*
 			ForgeUISlotConfiguration.Register(RegisteredItems.Axe,

@@ -6,7 +6,7 @@ namespace TerrariansConstruct.Projectiles {
 	public class TCBulletProjectile : BaseTCProjectile {
 		public override bool? SafeIsLoadingEnabled(Mod mod) => true;
 
-		public override void SafeSetDefaults() {
+		public override void SetDefaults() {
 			Projectile.CloneDefaults(ProjectileID.Bullet);
 		}
 	}

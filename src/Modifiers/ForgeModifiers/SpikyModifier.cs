@@ -61,37 +61,37 @@ namespace TerrariansConstruct.Modifiers.ForgeModifiers {
 			if (item.GetModifier<LeadTrait>() is not null)
 				return;
 
-			HitNPC(target, Math.Max(Tier, LeadTrait.LeadTierChanceMax), crit);
+			HitNPC(player, target, Math.Max(Tier, LeadTrait.LeadTierChanceMax), crit);
 		}
 
 		public override void OnHitPlayer(Player owner, Player target, BaseTCItem item, int damage, bool crit) {
 			if (item.GetModifier<LeadTrait>() is not null)
 				return;
 			
-			HitPlayer(target, Math.Max(Tier, LeadTrait.LeadTierChanceMax), crit);
+			HitPlayer(owner, target, Math.Max(Tier, LeadTrait.LeadTierChanceMax), crit);
 		}
 
 		public override void OnHitNPCWithProjectile(BaseTCProjectile projectile, NPC target, int damage, float knockBack, bool crit) {
 			if (projectile.GetModifier<LeadTrait>() is not null)
 				return;
 			
-			HitNPC(target, Math.Max(Tier, LeadTrait.LeadTierChanceMax), crit);
+			HitNPC(Main.player[projectile.Projectile.owner], target, Math.Max(Tier, LeadTrait.LeadTierChanceMax), crit);
 		}
 
 		public override void OnHitPlayerWithProjectile(BaseTCProjectile projectile, Player target, int damage, bool crit) {
 			if (projectile.GetModifier<LeadTrait>() is not null)
 				return;
 			
-			HitPlayer(target, Math.Max(Tier, LeadTrait.LeadTierChanceMax), crit);
+			HitPlayer(Main.player[projectile.Projectile.owner], target, Math.Max(Tier, LeadTrait.LeadTierChanceMax), crit);
 		}
 
-		private static void HitNPC(NPC target, int tier, bool crit) {
-			if (tier > 0 && Main.rand.NextBool(1 + (tier - 1) * 2, LeadTrait.LeadPoisonChance))
+		private static void HitNPC(Player player, NPC target, int tier, bool crit) {
+			if (tier > 0 && player.RollLuck(LeadTrait.LeadPoisonChance) < (1 + (tier - 1) * 2))
 				target.AddBuff(BuffID.Poisoned, crit ? LeadTrait.LeadPoisonTime * 2 : LeadTrait.LeadPoisonTime);
 		}
 
-		private static void HitPlayer(Player target, int tier, bool crit) {
-			if (tier > 0 && Main.rand.NextBool(1 + (tier - 1) * 2, LeadTrait.LeadPoisonChance))
+		private static void HitPlayer(Player player, Player target, int tier, bool crit) {
+			if (tier > 0 && player.RollLuck(LeadTrait.LeadPoisonChance) < (1 + (tier - 1) * 2))
 				target.AddBuff(BuffID.Poisoned, crit ? LeadTrait.LeadPoisonTime * 2 : LeadTrait.LeadPoisonTime);
 		}
 	}

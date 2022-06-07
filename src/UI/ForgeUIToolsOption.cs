@@ -36,9 +36,7 @@ namespace TerrariansConstruct.UI {
 			panel.Append(text);
 
 			//Get the dummy texture
-			var texture = CoreLibMod.ItemTextures.Get(registeredItemID, CoreLibMod.GetItemValidPartIDs(registeredItemID)
-				.Select((p, i) => new ItemPart() { partID = p, material = new ColorMaterial((ColorMaterialType)i) })
-				.ToArray());
+			var texture = ForgeUI.GetToolOptionTexture(registeredItemID);
 
 			UIImage image = new(texture);
 			image.Left.Set(8, 0f);

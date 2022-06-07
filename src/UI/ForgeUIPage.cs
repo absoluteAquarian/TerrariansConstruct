@@ -19,7 +19,7 @@ namespace TerrariansConstruct.UI {
 
 			for (int i = 0; i < slots.Count; i++) {
 				if (i < slots.Count - 1 && !slots[i].StoredItem.IsAir)
-					Utility.DropItem(new EntitySource_DebugCommand(), slots[i].StoredItem, area);
+					Utility.DropItem(new EntitySource_DebugCommand("TerrariansConstruct:ForgeUIPage"), slots[i].StoredItem, area);
 
 				slots[i].SetItem(new Item());
 			}

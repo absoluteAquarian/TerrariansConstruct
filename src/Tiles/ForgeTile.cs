@@ -43,8 +43,7 @@ namespace TerrariansConstruct.Tiles {
 
 			MineResist = 3f;
 			//Wood/dirt sound
-			SoundType = SoundID.Dig;
-			SoundStyle = 1;
+			HitSound = SoundID.Dig;
 		}
 
 		public override void KillMultiTile(int i, int j, int frameX, int frameY) {

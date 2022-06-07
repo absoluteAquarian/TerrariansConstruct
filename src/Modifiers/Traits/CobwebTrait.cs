@@ -22,7 +22,7 @@ namespace TerrariansConstruct.Modifiers.Traits {
 		public override bool CanConsumeAmmo(BaseTCItem weapon, BaseTCItem ammo, Player player) {
 			//+5% chance to not consume ammo per tier, capped at +20%
 			int chance = Math.Min(20, 5 * Tier);
-			return Main.rand.Next(100) >= chance;
+			return player.RollLuck(100) >= chance;
 		}
 	}
 }
