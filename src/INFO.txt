@@ -153,8 +153,8 @@ Platinum Bar (ID: 706)
     Stats:
         Weapon deals extra damage and knockback to targets at full health
 		Knockback bonus is capped at tier 10
-		    +20% damage and +10% knockback for NPC targets
-			+10% damage for player targets
+		    +50% damage and +10% knockback for NPC targets
+			+30% damage for player targets
 
     Head stats:
         Base damage: 15
