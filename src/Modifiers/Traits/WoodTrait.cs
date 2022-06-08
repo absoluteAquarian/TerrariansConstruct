@@ -19,7 +19,7 @@ namespace TerrariansConstruct.Modifiers.Traits {
 		public override void OnUpdateInventory(Player player, BaseTCItem item) {
 			int chance = Tier * (Tier + 1) / 2;  //Sum from 1 to N
 			
-			if (player.RollLuck(800) < chance)
+			if (player.RollLuck(800) >= chance)
 				return;
 
 			// Add 1 to 5 durability
