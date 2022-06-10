@@ -19,9 +19,9 @@ namespace TerrariansConstruct.Definitions {
 
 		public override IEnumerable<ForgeUISlotConfiguration> GetForgeSlotConfiguration()
 			=> new ForgeUISlotConfiguration[] {
-				(0,  4, CoreLibMod.PartType<WeaponLongSwordBlade>()),
+				(0,  8, CoreLibMod.PartType<WeaponLongSwordBlade>()),
 				(1, 12, CoreLibMod.PartType<WeaponSwordGuard>()),
-				(2, 20, CoreLibMod.PartType<ToolRod>())
+				(2, 16, CoreLibMod.PartType<ToolRod>())
 			};
 	}
 
@@ -30,9 +30,9 @@ namespace TerrariansConstruct.Definitions {
 
 		public override IEnumerable<ForgeUISlotConfiguration> GetForgeSlotConfiguration()
 			=> new ForgeUISlotConfiguration[] {
-				(0,  4, CoreLibMod.PartType<WeaponShortSwordBlade>()),
+				(0,  8, CoreLibMod.PartType<WeaponShortSwordBlade>()),
 				(1, 12, CoreLibMod.PartType<WeaponShortSwordGuard>()),
-				(2, 20, CoreLibMod.PartType<ToolRod>())
+				(2, 16, CoreLibMod.PartType<ToolRod>())
 			};
 
 		public override float UseSpeedMultiplier => 0.65f;
@@ -50,12 +50,18 @@ namespace TerrariansConstruct.Definitions {
 			};
 	}
 
-	/*
-	ForgeUISlotConfiguration.Register(RegisteredItems.Axe,
-		(0, 12, RegisteredParts.ToolBinding),
-		(1,  8, RegisteredParts.ToolAxeHead),
-		(2, 16, RegisteredParts.ToolRod));
+	public sealed class Axe : TCItemDefinition {
+		public override int ItemType => ModContent.ItemType<TCAxe>();
 
+		public override IEnumerable<ForgeUISlotConfiguration> GetForgeSlotConfiguration()
+			=> new ForgeUISlotConfiguration[] {
+				(0, 12, CoreLibMod.PartType<ToolBinding>()),
+				(1,  8, CoreLibMod.PartType<ToolAxeHead>()),
+				(2, 16, CoreLibMod.PartType<ToolRod>())
+			};
+	}
+
+	/*
 	ForgeUISlotConfiguration.Register(RegisteredItems.Hammer,
 		(0, 12, RegisteredParts.ToolBinding),
 		(1,  8, RegisteredParts.ToolHammerHead),

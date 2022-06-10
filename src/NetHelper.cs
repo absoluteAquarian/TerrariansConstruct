@@ -12,7 +12,9 @@ namespace TerrariansConstruct {
 		OpenForgeUI,
 		CloseForgeUI,
 		SendOrePlacement,
-		SendOreRemoval
+		SendOreRemoval,
+		RequestOrePlacements,
+		ReceiveOrePlacements
 	}
 
 	public static class NetHelper {
@@ -23,6 +25,7 @@ namespace TerrariansConstruct {
 			int forgeEntityID;
 			int forgeEntityPlayer;
 			short x, y;
+			int syncPlayer, syncCount;
 			switch (msg) {
 				case MessageType.OpenForgeUI:
 					forgeEntityID = reader.ReadUInt16();
@@ -70,6 +73,34 @@ namespace TerrariansConstruct {
 						packet.Write(x);
 						packet.Write(y);
 						packet.Send(ignoreClient: whoAmI);
+					}
+					break;
+				case MessageType.RequestOrePlacements:
+					syncPlayer = reader.ReadInt32();
+
+					if (Main.netMode == NetmodeID.Server) {
+						var packet = GetPacket(MessageType.ReceiveOrePlacements);
+						
+						packet.Write(OrePlacementTracker.tilesPlacedByPlayers.Count);
+
+						foreach (var tile in OrePlacementTracker.tilesPlacedByPlayers) {
+							packet.Write(tile.X);
+							packet.Write(tile.Y);
+						}
+
+						packet.Send(toClient: syncPlayer);
+					}
+					break;
+				case MessageType.ReceiveOrePlacements:
+					if (Main.netMode == NetmodeID.MultiplayerClient) {
+						syncCount = reader.ReadInt32();
+
+						for (int i = 0; i < syncCount; i++) {
+							x = reader.ReadInt16();
+							y = reader.ReadInt16();
+
+							OrePlacementTracker.tilesPlacedByPlayers.Add(new(x, y));
+						}
 					}
 					break;
 			}
@@ -122,6 +153,14 @@ namespace TerrariansConstruct {
 				var packet = GetPacket(MessageType.SendOreRemoval);
 				packet.Write(x);
 				packet.Write(y);
+				packet.Send(ignoreClient: Main.myPlayer);
+			}
+		}
+
+		public static void RequestOrePlacements() {
+			if (Main.netMode == NetmodeID.MultiplayerClient) {
+				var packet = GetPacket(MessageType.RequestOrePlacements);
+				packet.Write(Main.myPlayer);
 				packet.Send(ignoreClient: Main.myPlayer);
 			}
 		}
