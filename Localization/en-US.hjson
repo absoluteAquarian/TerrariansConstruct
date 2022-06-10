@@ -16,6 +16,7 @@
 			Cobweb: "Sticky {R}"
 			Tungsten: "Thermal {R}"
 			Tin: "Erosion {R}"
+			Cactus: "Thorns {R}"
 		}
 
 		Modifiers: {

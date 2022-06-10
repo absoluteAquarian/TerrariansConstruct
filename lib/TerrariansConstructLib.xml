@@ -824,6 +824,11 @@
             Defaults to <see langword="true"/>
             </summary>
         </member>
+        <member name="M:TerrariansConstructLib.Modifiers.BaseModifier.GetUpgradeTarget">
+            <summary>
+            Return the next upgrade target for the current tier here, or -1 if the tier is at the maximum
+            </summary>
+        </member>
         <member name="M:TerrariansConstructLib.Modifiers.BaseModifier.CanAcceptItemsForUpgrade(TerrariansConstructLib.API.ItemData[],System.Int32@,System.Int32@)">
             <summary>
             Return whether the item types defined in <paramref name="items"/> were used to increase <paramref name="upgradeCurrent"/>
@@ -1071,6 +1076,25 @@
             <param name="knockBack">The knockback</param>
             <param name="crit">If set to <see langword="true"/> [crit]</param>
         </member>
+        <member name="M:TerrariansConstructLib.Modifiers.BaseTrait.OnHitByNPC(Terraria.NPC,Terraria.Player,System.Int32,System.Boolean)">
+            <summary>
+            This hook runs in <see cref="M:TerrariansConstructLib.Players.ItemModifierPlayer.OnHitByNPC(Terraria.NPC,System.Int32,System.Boolean)"/>
+            </summary>
+            <param name="npc">The NPC doing the hitting</param>
+            <param name="target">The target</param>
+            <param name="damage">The damage</param>
+            <param name="crit">If set to <see langword="true"/> [crit]</param>
+        </member>
+        <member name="M:TerrariansConstructLib.Modifiers.BaseTrait.OnHitByNPCProjectile(Terraria.Projectile,Terraria.NPC,Terraria.Player,System.Int32,System.Boolean)">
+            <summary>
+            This hook runs in <see cref="M:TerrariansConstructLib.Players.ItemModifierPlayer.OnHitByProjectile(Terraria.Projectile,System.Int32,System.Boolean)"/>
+            </summary>
+            <param name="projectile">The projectile doing the hitting</param>
+            <param name="npc">The npc</param>
+            <param name="target">The target</param>
+            <param name="damage">The damage</param>
+            <param name="crit">If set to <see langword="true"/> [crit]</param>
+        </member>
         <member name="M:TerrariansConstructLib.Modifiers.BaseTrait.PreModifyDurability(Terraria.Player,TerrariansConstructLib.Items.BaseTCItem,TerrariansConstructLib.API.Sources.IDurabilityModificationSource,System.Int32@)">
             <summary>
             This hook runs before durability is added to or subtracted from the <paramref name="item"/>
@@ -1138,6 +1162,9 @@
             <param name="modifier">The modifier</param>
             <returns>The modifier instance</returns>
             <exception cref="T:System.Exception"/>
+        </member>
+        <member name="M:TerrariansConstructLib.NetHelper.HandlePacket(System.IO.BinaryReader,System.Int32)">
+            <inheritdoc cref="M:Terraria.ModLoader.Mod.HandlePacket(System.IO.BinaryReader,System.Int32)"/>
         </member>
         <member name="T:TerrariansConstructLib.Projectiles.BaseTCProjectile">
             <summary>

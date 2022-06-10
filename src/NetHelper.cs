@@ -107,7 +107,7 @@ namespace TerrariansConstruct {
 		}
 
 		public static ModPacket GetPacket(MessageType type) {
-			ModPacket packet = CoreLibMod.Instance.GetPacket();
+			ModPacket packet = CoreMod.Instance.GetPacket();
 			packet.Write((byte)type);
 			return packet;
 		}

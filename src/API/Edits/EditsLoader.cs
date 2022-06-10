@@ -6,6 +6,7 @@ using Terraria;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using TerrariansConstruct.Items;
+using TerrariansConstruct.Modifiers.Traits;
 using TerrariansConstructLib;
 using TerrariansConstructLib.API.Edits;
 
@@ -19,7 +20,19 @@ namespace TerrariansConstruct.API.Edits {
 			IL.Terraria.Main.DrawInterface_40_InteractItemIcon += Patch_Main_DrawInterface_40_InteractItemIcon;
 			IL.Terraria.Player.ItemCheck_GetMeleeHitbox += Patch_Player_ItemCheck_GetMeleeHitbox;
 
+			CoreLibMod.SetLoadingSubProgressText(Language.GetTextValue("Mods.TerrariansConstructLib.Loading.EditsLoader.Detours"));
+
+			On.Terraria.NPC.PlayerInteraction += Hook_NPC_PlayerInteraction;
+
 			ILHelper.LogILEdits = false;
+		}
+
+		private static void Hook_NPC_PlayerInteraction(On.Terraria.NPC.orig_PlayerInteraction orig, NPC self, int player) {
+			//Causes proper PlayerInteraction logic to run without clobbering possible Main.myPlayer usages in the NPCLoader hooks
+			if (CactusTrait.MyPlayerOverride is int myPlayer)
+				player = myPlayer;
+
+			orig(self, player);
 		}
 
 		private static void Patch_Main_DrawInterface_40_InteractItemIcon(ILContext il) {

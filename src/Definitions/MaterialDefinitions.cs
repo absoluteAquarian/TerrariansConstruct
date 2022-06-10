@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Terraria.ID;
 using Terraria.ModLoader;
+using TerrariansConstruct.Modifiers.ForgeModifiers;
 using TerrariansConstruct.Modifiers.Traits;
 using TerrariansConstructLib;
 using TerrariansConstructLib.API.Definitions;
@@ -134,7 +135,14 @@ namespace TerrariansConstruct.Definitions {
 	}
 
 	//Third sprite set
-	
+	public sealed class CactusMaterial : TCBaseMaterialDefinition<CactusTrait> {
+		public CactusMaterial() : base(ItemID.Cactus,
+			new HeadPartStats(5, 1.7f, pickPower: 35, axePower: 35, hammerPower: 35, durability: 220),
+			new HandlePartStats(),
+			new ExtraPartStats()
+				.With(CoreLibMod.KnownStatModifiers.ExtraDurability, new StatModifier(20, 0.95f))) { }
+	}
+
 	/*
 	public static Material AshBlock { get; internal set; }
 	public static Material BlueBrick { get; internal set; }
