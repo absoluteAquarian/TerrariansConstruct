@@ -8,7 +8,7 @@ using TerrariansConstructLib.Items;
 using TerrariansConstructLib.Modifiers;
 
 namespace TerrariansConstruct.Modifiers.Traits {
-	internal sealed class GoldTrait : BaseTrait {
+	public sealed class GoldTrait : BaseTrait {
 		public override bool IsSingleton => true;
 
 		public override Color TooltipColor => new(0xdd, 0xdd, 0x00);

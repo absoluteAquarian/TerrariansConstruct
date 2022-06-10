@@ -10,7 +10,7 @@ using TerrariansConstructLib.Items;
 using TerrariansConstructLib.Modifiers;
 
 namespace TerrariansConstruct.Modifiers.Traits {
-	internal sealed class CopperTrait : BaseTrait {
+	public sealed class CopperTrait : BaseTrait {
 		public override bool IsSingleton => true;
 
 		public override Color TooltipColor => new(0xff, 0x60, 0x00);
@@ -59,7 +59,7 @@ namespace TerrariansConstruct.Modifiers.Traits {
 					Counter = max;
 			}
 
-			if (IsReady && !player.HasBuff<CopperAbilityReady>())
+			if (IsReady)
 				player.AddBuff(ModContent.BuffType<CopperAbilityReady>(), 2);
 
 			if (activated)

@@ -6,10 +6,14 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.GameContent.UI.Elements;
+using Terraria.Localization;
+using Terraria.ModLoader;
+using Terraria.ModLoader.Config;
+using TerrariansConstruct.Definitions;
 using TerrariansConstructLib;
+using TerrariansConstructLib.API;
 using TerrariansConstructLib.API.UI;
 using TerrariansConstructLib.Items;
-using TerrariansConstructLib.Registry;
 
 namespace TerrariansConstruct.UI {
 	internal class ForgeUIToolsPage : ForgeUIPage {
@@ -46,7 +50,7 @@ namespace TerrariansConstruct.UI {
 			list.Append(scroll);
 			list.ListPadding = 10;
 
-			for (int i = 0; i < ItemRegistry.Count; i++) {
+			for (int i = 0; i < ItemDefinitionLoader.Count; i++) {
 				var option = new ForgeUIToolsOption(i);
 				option.Height.Set(32, 0f);
 				option.Width.Set(0, 0.8f);
@@ -61,11 +65,10 @@ namespace TerrariansConstruct.UI {
 
 			if (!CoreLibMod.TryFindItem(parts, out int registeredItemID)) {
 				CoreMod.Instance.Logger.Warn("Part ID sequence did not correspond to an existing item:\n" +
-					string.Join(", ", parts.Select(PartRegistry.IDToIdentifier)));
+					string.Join(", ", parts.Select(PartDefinitionLoader.GetIdentifier)));
 
 				//Default to the sword slots
-				ItemRegistry.TryGetConfiguration(CoreMod.RegisteredItems.Sword, out var configuration);
-				ConfigureSlots(configuration.ToArray());
+				ConfigureSlots(ItemDefinitionLoader.Get(CoreLibMod.ItemType<Sword>())!.GetForgeSlotConfiguration().ToArray());
 			}
 
 			Item[] items = slots.Where((s, i) => i < slots.Count - 1).Select(s => s.StoredItem).ToArray();
@@ -121,7 +124,7 @@ namespace TerrariansConstruct.UI {
 
 			currentConfiguration = configurations;
 
-			createWeapon.SetText("Crafting: " + CoreLibMod.GetItemName(registeredItemID));
+			createWeapon.SetText("Crafting: " + Lang.GetItemNameValue(ItemDefinitionLoader.Get(registeredItemID)!.ItemType));
 		}
 
 		internal void OnItemPartChanged(Item item, ForgeUISlotConfiguration configuration) {

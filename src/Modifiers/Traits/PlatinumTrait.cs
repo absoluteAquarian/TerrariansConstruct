@@ -7,7 +7,7 @@ using TerrariansConstructLib.Modifiers;
 using TerrariansConstructLib.Projectiles;
 
 namespace TerrariansConstruct.Modifiers.Traits {
-	internal sealed class PlatinumTrait : BaseTrait {
+	public sealed class PlatinumTrait : BaseTrait {
 		public override bool IsSingleton => true;
 
 		public override Color TooltipColor => new(0x99, 0xb4, 0xcc);

@@ -8,7 +8,7 @@ using TerrariansConstructLib.Items;
 using TerrariansConstructLib.Modifiers;
 
 namespace TerrariansConstruct.Modifiers.Traits {
-	internal class TungstenTrait : BaseTrait {
+	public class TungstenTrait : BaseTrait {
 		public override bool IsSingleton => true;
 
 		public override Color TooltipColor => new(0x8b, 0xaf, 0x8c);

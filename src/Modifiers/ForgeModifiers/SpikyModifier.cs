@@ -10,7 +10,7 @@ using TerrariansConstructLib.Projectiles;
 
 namespace TerrariansConstruct.Modifiers.ForgeModifiers {
 	//This modifier's logic is handled by LeadTrait if that trait is present
-	internal class SpikyModifier : BaseModifier {
+	public sealed class SpikyModifier : BaseModifier {
 		public override int MaxTier => 5;
 
 		public override string? VisualTexture => "Spiky";

@@ -1,6 +1,6 @@
 ﻿using System;
+using TerrariansConstructLib.API;
 using TerrariansConstructLib.API.UI;
-using TerrariansConstructLib.Registry;
 
 namespace TerrariansConstruct.UI {
 	//Handles drawing the material, shard and mold slots
@@ -14,7 +14,7 @@ namespace TerrariansConstruct.UI {
 			=> new(-2, scale);
 
 		public static TCUIItemMaterialSlot AsMoldSlot(int partID, float scale) {
-			if (partID < 0 || partID >= PartRegistry.Count)
+			if (partID < 0 || partID >= PartDefinitionLoader.Count)
 				throw new ArgumentException("Part ID was invalid");
 
 			return new(partID, scale);

@@ -5,7 +5,6 @@ using System.Reflection;
 using Terraria;
 using Terraria.Localization;
 using Terraria.ModLoader;
-using Terraria.UI;
 using TerrariansConstruct.Items;
 using TerrariansConstructLib;
 using TerrariansConstructLib.API.Edits;

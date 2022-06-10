@@ -9,6 +9,109 @@
             A collection of textures indexed by registered item type and item parts
             </summary>
         </member>
+        <member name="P:TerrariansConstructLib.API.Definitions.MaterialDefinition.Material">
+            <summary>
+            Return the material for the definition here.  A return value of <see langword="null"/> indicates that the material is unloaded
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:TerrariansConstructLib.API.Definitions.MaterialDefinition.MaterialWorth">
+            <summary>
+            How many items of this material definition's material item must be used to count as one "unit" for creating parts.
+            Defaults to 1
+            </summary>
+        </member>
+        <member name="P:TerrariansConstructLib.API.Definitions.MaterialDefinition.Trait">
+            <summary>
+            Return the ability trait for the definition here.  A return value of <see langword="null"/> indicates that the ability trait is unloaded
+            </summary>
+        </member>
+        <member name="P:TerrariansConstructLib.API.Definitions.MaterialDefinition.ValidParts">
+            <summary>
+            A collection of the valid part definitions that this material can be used with.
+            Defaults to no part definitions
+            </summary>
+        </member>
+        <member name="M:TerrariansConstructLib.API.Definitions.MaterialDefinition.GetTrait``1">
+            <summary>
+            Gets a clone of a registered BaseTrait's instance, or <see langword="null"/> if it does not exist
+            </summary>
+            <typeparam name="T">The trait type</typeparam>
+        </member>
+        <member name="M:TerrariansConstructLib.API.Definitions.MaterialDefinition.GetMaterialStats">
+            <summary>
+            Return the part stats for the material here.
+            </summary>
+        </member>
+        <member name="P:TerrariansConstructLib.API.Definitions.PartDefinition.StatType">
+            <summary>
+            What stat classification this part uses
+            </summary>
+        </member>
+        <member name="P:TerrariansConstructLib.API.Definitions.PartDefinition.ToolType">
+            <summary>
+            What tool classification this part falls under
+            </summary>
+        </member>
+        <member name="P:TerrariansConstructLib.API.Definitions.PartDefinition.MaterialCost">
+            <summary>
+            The required number of material items needed to make this part, times two.
+            </summary>
+        </member>
+        <member name="P:TerrariansConstructLib.API.Definitions.PartDefinition.HasWoodMold">
+            <summary>
+            Whether this part can be created via a wooden part mold.
+            Defaults to true.
+            </summary>
+        </member>
+        <member name="P:TerrariansConstructLib.API.Definitions.PartDefinition.RelativeAssetFolder">
+            <summary>
+            The relative path in any mod for this part definition's sprites.
+            Defaults to <c>"Assets/Parts/"+Name</c>
+            </summary>
+        </member>
+        <member name="P:TerrariansConstructLib.API.Definitions.PartDefinition.DisplayName">
+            <summary>
+            The publicly-visible name for this part definition.
+            Defaults to <c>Name</c>, but with the Proper Words separated by spaces (e.g. "ToolRod" becomes "Tool Rod")
+            </summary>
+        </member>
+        <member name="P:TerrariansConstructLib.API.Definitions.TCItemDefinition.ItemType">
+            <summary>
+            The item ID of the <see cref="T:TerrariansConstructLib.Items.BaseTCItem"/> item that this item definition is tied to
+            </summary>
+        </member>
+        <member name="P:TerrariansConstructLib.API.Definitions.TCItemDefinition.RelativeVisualsFolder">
+            <summary>
+            The relative path in any mod for this item definition's part and modifier sprites.
+            Defaults to <c>"Assets/Visuals/"+Name</c>
+            </summary>
+        </member>
+        <member name="P:TerrariansConstructLib.API.Definitions.TCItemDefinition.UseSpeedMultiplier">
+            <summary>
+            The use speed multiplier applied to this item definition's item after calculating the stats from its parts' materials.
+            Defaults to 1f
+            </summary>
+        </member>
+        <member name="P:TerrariansConstructLib.API.Definitions.TCItemDefinition.AmmoConsumedPerShot">
+            <summary>
+            If this item definition's item uses ammo, this property indicates how much ammo it consumes per shot.
+            Defaults to 1
+            </summary>
+        </member>
+        <member name="P:TerrariansConstructLib.API.Definitions.TCItemDefinition.HitsPerToolSwing">
+            <summary>
+            If this item definition's item is a tool, this property indicates how many tile "hits" it performs per swing.
+            Defaults to 2
+            </summary>
+        </member>
+        <member name="M:TerrariansConstructLib.API.Definitions.TCItemDefinition.GetForgeSlotConfiguration">
+            <summary>
+            Return a collection of <see cref="T:TerrariansConstructLib.API.UI.ForgeUISlotConfiguration"/> values for this item definition here.<br/>
+            A <see cref="T:TerrariansConstructLib.API.UI.ForgeUISlotConfiguration"/> value contains context for its item slot in the Forge UI
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:TerrariansConstructLib.API.Extensions.GetSimplifiedGenericTypeName(System.Type)">
             <summary>
             Returns a string representing how you'd type a Type in C#, e.g. <c>Asset&lt;Texture2D&gt;</c>
@@ -429,90 +532,15 @@
             Which type of stats an item part ID should use
             </summary>
         </member>
-        <member name="M:TerrariansConstructLib.CoreLibMod.RegisterPart(Terraria.ModLoader.Mod,System.String,System.String,System.Int32,System.Boolean,System.String,TerrariansConstructLib.API.Stats.StatType)">
+        <member name="T:TerrariansConstructLib.API.Stats.ToolType">
             <summary>
-            Registers a part definition
+            A classification for <see cref="F:TerrariansConstructLib.API.Stats.StatType.Head"/> parts
             </summary>
-            <param name="mod">The mod that the part belongs to</param>
-            <param name="internalName">The internal name of the part</param>
-            <param name="name">The name of the part</param>
-            <param name="materialCost">How much material is required to craft this part, multiplied by 2</param>
-            <param name="hasSimpleMold">Whether the part can be made with the simple mold</param>
-            <param name="assetFolderPath">The path to the folder containing the part's textures</param>
-            <param name="type">Which type of stats the part should use</param>
-            <returns>The ID of the registered part</returns>
-            <exception cref="T:System.Exception"/>
-            <exception cref="T:System.ArgumentNullException"/>
-        </member>
-        <member name="M:TerrariansConstructLib.CoreLibMod.RegisterAmmo(Terraria.ModLoader.Mod,System.String,System.Int32,System.String)">
-            <summary>
-            Registers a name and <seealso cref="T:Terraria.ID.ItemID"/>/<seealso cref="T:Terraria.ID.AmmoID"/> for the next constructed ammo type to be assigned an ID
-            </summary>
-            <param name="mod">The mod that the ammo belongs to</param>
-            <param name="name">The name of the constructed ammo type</param>
-            <param name="ammoID">The <seealso cref="T:Terraria.ID.ItemID"/>/<seealso cref="T:Terraria.ID.AmmoID"/> for the constructed ammo ID</param>
-            <param name="projectileInternalName">The projectile that this constructed ammo will shoot.  Use the string you'd use to access the projectile via <seealso cref="M:Terraria.ModLoader.Mod.Find``1(System.String)"/></param>
-            <returns>The ID of the registered constructed ammo type</returns>
-            <remarks>Note: The returned ID does not correlate with <seealso cref="T:Terraria.ID.AmmoID"/> nor <seealso cref="T:Terraria.ID.ItemID"/></remarks>
-            <exception cref="T:System.Exception"/>
-            <exception cref="T:System.ArgumentOutOfRangeException"/>
-            <exception cref="T:System.ArgumentNullException"/>
-        </member>
-        <member name="M:TerrariansConstructLib.CoreLibMod.RegisterItem(Terraria.ModLoader.Mod,System.String,System.String,System.String,TerrariansConstructLib.Registry.ItemRegistry.RegistrationContext)">
-            <summary>
-            Registers a name and valid <seealso cref="T:TerrariansConstructLib.Items.ItemPart"/> IDs for an item
-            </summary>
-            <param name="mod">The mod that the weapon belongs to</param>
-            <param name="internalName">The internal name of the weapon</param>
-            <param name="name">The default item type name used by <seealso cref="P:TerrariansConstructLib.Items.BaseTCItem.RegisteredItemTypeName"/></param>
-            <param name="itemInternalName">The item type that this registered item ID will be applied to.  Use the string you'd use to access the item via <seealso cref="M:Terraria.ModLoader.Mod.Find``1(System.String)"/></param>
-            <param name="context">The registration context</param>
-            <returns>The ID of the registered item</returns>
-            <exception cref="T:System.Exception"/>
-            <exception cref="T:System.ArgumentException"/>
-            <exception cref="T:System.ArgumentNullException"/>
-        </member>
-        <member name="M:TerrariansConstructLib.CoreLibMod.RegisterMaterialStats(System.Int32,System.Int32,TerrariansConstructLib.Modifiers.BaseTrait,TerrariansConstructLib.API.Stats.IPartStats[])">
-            <summary>
-            Registers item part stats for a certain material
-            </summary>
-            <param name="material">The material for the item part stats</param>
-            <param name="worth">How much material is needed to create one Shard part, times two</param>
-            <param name="trait">The trait instance for the material</param>
-            <param name="stats">The stats for the material</param>
-            <exception cref="T:System.Exception"/>
-            <exception cref="T:System.ArgumentException"/>
         </member>
         <member name="M:TerrariansConstructLib.CoreLibMod.GetKnownMaterials">
             <summary>
             Gets an enumeration of <seealso cref="T:TerrariansConstructLib.Materials.Material"/> instances that were used to create item parts
             </summary>
-        </member>
-        <member name="M:TerrariansConstructLib.CoreLibMod.SetToolPartFlags(System.Int32,System.Boolean,System.Boolean,System.Boolean)">
-            <summary>
-            Flags or clears a part ID as being certain tool types
-            </summary>
-            <param name="partID">The part ID</param>
-            <param name="isAxe">Whether the part is an axe head part</param>
-            <param name="isPick">Whether the part is a pickaxe head part</param>
-            <param name="isHammer">Whetehr the part is a hammer head part</param>
-            <exception cref="T:System.ArgumentException"/>
-        </member>
-        <member name="M:TerrariansConstructLib.CoreLibMod.GetPartName(System.Int32)">
-            <summary>
-            Gets the name of a registered part
-            </summary>
-            <param name="id">The ID of the part to get</param>
-            <returns>The name of the registered part, or throws an exception if a part of type <paramref name="id"/> does not exist</returns>
-            <exception cref="T:System.Exception"/>
-        </member>
-        <member name="M:TerrariansConstructLib.CoreLibMod.GetPartInternalName(System.Int32)">
-            <summary>
-            Gets the internal name of a registered part
-            </summary>
-            <param name="id">The ID of the part to get</param>
-            <returns>The internal name of the registered part, or throws an exception if a part of type <paramref name="id"/> does not exist</returns>
-            <exception cref="T:System.Exception"/>
         </member>
         <member name="M:TerrariansConstructLib.CoreLibMod.GetMaterialTooltip(TerrariansConstructLib.Materials.Material)">
             <summary>
@@ -521,68 +549,12 @@
             <param name="material">The material</param>
             <returns>The global tooltip</returns>
         </member>
-        <member name="M:TerrariansConstructLib.CoreLibMod.GetMoldCost(System.Int32)">
+        <member name="M:TerrariansConstructLib.CoreLibMod.MaterialType(TerrariansConstructLib.Materials.Material)">
             <summary>
-            Gets the material cost of an <seealso cref="T:TerrariansConstructLib.Items.PartMold"/>
+            Attempts to find the corresponding <see cref="T:TerrariansConstructLib.API.Definitions.MaterialDefinition"/> ID for the input <see cref="T:TerrariansConstructLib.Materials.Material"/>, <paramref name="material"/>
             </summary>
-            <param name="partID">The part ID</param>
-        </member>
-        <member name="M:TerrariansConstructLib.CoreLibMod.SetMoldCost(System.Int32,System.Int32)">
-            <summary>
-            Sets the material cost for item part molds using the part ID, <paramref name="partID"/>, to <paramref name="materialCost"/>
-            </summary>
-            <param name="partID">The part ID</param>
-            <param name="materialCost">The new global material cost.  The displayed material cost is this value divided by 2</param>
-        </member>
-        <member name="M:TerrariansConstructLib.CoreLibMod.GetAmmoName(System.Int32)">
-            <summary>
-            Gets the name of a registered constructed ammo type
-            </summary>
-            <param name="constructedAmmoID">The ID of the constructed ammo type to get</param>
-            <returns>The name of the registered constructed ammo type, or throws an exception if a constructed ammo type of type <paramref name="constructedAmmoID"/> does not exist</returns>
-            <exception cref="T:System.Exception"/>
-            <remarks>Note: The input ID does not correlate with <seealso cref="T:Terraria.ID.AmmoID"/> nor <seealso cref="T:Terraria.ID.ItemID"/></remarks>
-        </member>
-        <member name="M:TerrariansConstructLib.CoreLibMod.GetAmmoID(System.Int32)">
-            <summary>
-            Gets the <seealso cref="T:Terraria.ID.ItemID"/>/<seealso cref="T:Terraria.ID.AmmoID"/> of a registered constructed ammo type
-            </summary>
-            <param name="constructedAmmoID">The ID of the constructed ammo type to get</param>
-            <returns>The <seealso cref="T:Terraria.ID.ItemID"/>/<seealso cref="T:Terraria.ID.AmmoID"/> of the registered constructed ammo type, or throws an exception if a constructed ammo type of type <paramref name="constructedAmmoID"/> does not exist</returns>
-            <exception cref="T:System.Exception"/>
-            <remarks>Note: The input ID does not correlate with <seealso cref="T:Terraria.ID.AmmoID"/> nor <seealso cref="T:Terraria.ID.ItemID"/></remarks>
-        </member>
-        <member name="M:TerrariansConstructLib.CoreLibMod.GetAmmoProjectileType(System.Int32)">
-            <summary>
-            Gets the projectile ID of a registered constructed ammo type
-            </summary>
-            <param name="constructedAmmoID">The ID of the constructed ammo type to get</param>
-            <returns>The <seealso cref="T:Terraria.ID.ItemID"/>/<seealso cref="T:Terraria.ID.AmmoID"/> of the registered constructed ammo type, or throws an exception if a constructed ammo type of type <paramref name="constructedAmmoID"/> does not exist</returns>
-            <exception cref="T:System.Exception"/>
-        </member>
-        <member name="M:TerrariansConstructLib.CoreLibMod.GetItemName(System.Int32)">
-            <summary>
-            Gets the name for a registered item
-            </summary>
-            <param name="registeredItemID">The ID for the registered item.  Not to be confused with its <seealso cref="T:Terraria.ID.ItemID"/> or <seealso cref="P:Terraria.ModLoader.ModItem.Type"/></param>
-            <returns>The name for the registered item</returns>
-            <exception cref="T:System.Exception"/>
-        </member>
-        <member name="M:TerrariansConstructLib.CoreLibMod.GetItemInternalName(System.Int32)">
-            <summary>
-            Gets the internal name for a registered item
-            </summary>
-            <param name="registeredItemID">The ID for the registered item.  Not to be confused with its <seealso cref="T:Terraria.ID.ItemID"/> or <seealso cref="P:Terraria.ModLoader.ModItem.Type"/></param>
-            <returns>The internal name for the registered item</returns>
-            <exception cref="T:System.Exception"/>
-        </member>
-        <member name="M:TerrariansConstructLib.CoreLibMod.GetItemValidPartIDs(System.Int32)">
-            <summary>
-            Gets a clone of the valid part IDs for a registered item
-            </summary>
-            <param name="registeredItemID">The ID for the registered item.  Not to be confused with its <seealso cref="T:Terraria.ID.ItemID"/> or <seealso cref="P:Terraria.ModLoader.ModItem.Type"/></param>
-            <returns>A clone of the valid part IDs for the registered item</returns>
-            <exception cref="T:System.Exception"/>
+            <param name="material">The material instance</param>
+            <returns>The <see cref="P:TerrariansConstructLib.API.Definitions.MaterialDefinition.Type"/> if successful, <c>-1</c> otherwise</returns>
         </member>
         <member name="M:TerrariansConstructLib.CoreLibMod.GetItemType(System.Int32)">
             <summary>
@@ -591,21 +563,6 @@
             <param name="registeredItemID">The registered item ID</param>
             <returns>The tModLoader item ID</returns>
             <exception cref="T:System.Exception"/>
-        </member>
-        <member name="M:TerrariansConstructLib.CoreLibMod.FindItem(System.Int32[])">
-            <summary>
-            Attempts to find a registered item whose valid part IDs are set to the same values as <paramref name="partIDs"/>
-            </summary>
-            <param name="partIDs">The part IDs to check</param>
-            <returns>A value &gt;= <c>0</c> and &lt; <seealso cref="P:TerrariansConstructLib.Registry.ItemRegistry.Count"/> if successful, <c>-1</c> otherwise</returns>
-        </member>
-        <member name="M:TerrariansConstructLib.CoreLibMod.TryFindItem(System.Int32[],System.Int32@)">
-            <summary>
-            Attempts to find a registered item whose valid part IDs are set to the same values as <paramref name="partIDs"/>
-            </summary>
-            <param name="partIDs">The part IDs to check</param>
-            <param name="registeredItemID">A value &gt;= <c>0</c> and &lt; <seealso cref="P:TerrariansConstructLib.Registry.ItemRegistry.Count"/> if successful, <c>-1</c> otherwise</param>
-            <returns><see langword="true"/> if the search was successful, <see langword="false"/> otherwise</returns>
         </member>
         <member name="M:TerrariansConstructLib.CoreLibMod.GetItemPart(TerrariansConstructLib.Materials.Material,System.Int32)">
             <summary>
@@ -637,13 +594,20 @@
             <exception cref="T:System.Exception"/>
             <exception cref="T:System.ArgumentException"/>
         </member>
-        <member name="M:TerrariansConstructLib.CoreLibMod.AddPart(Terraria.ModLoader.Mod,TerrariansConstructLib.Materials.Material,System.Int32)">
+        <member name="M:TerrariansConstructLib.CoreLibMod.TryFindItem(System.Int32[],System.Int32@)">
             <summary>
-            Registers a part item for the material, <paramref name="material"/>
+            Attempts to find a registered item whose valid part IDs are set to the same values as <paramref name="partIDs"/>
             </summary>
-            <param name="mod">The mod instance to add the part to</param>
-            <param name="material">The material instance</param>
-            <param name="partID">The part ID</param>
+            <param name="partIDs">The part IDs to check</param>
+            <param name="registeredItemID">A value &gt;= <c>0</c> and &lt; <seealso cref="P:TerrariansConstructLib.API.ItemDefinitionLoader.Count"/> if successful, <c>-1</c> otherwise</param>
+            <returns><see langword="true"/> if the search was successful, <see langword="false"/> otherwise</returns>
+        </member>
+        <member name="M:TerrariansConstructLib.CoreLibMod.FindItem(System.Int32[])">
+            <summary>
+            Attempts to find a registered item whose valid part IDs are set to the same values as <paramref name="partIDs"/>
+            </summary>
+            <param name="partIDs">The part IDs to check</param>
+            <returns>A value &gt;= <c>0</c> and &lt; <seealso cref="P:TerrariansConstructLib.API.ItemDefinitionLoader.Count"/> if successful, <c>-1</c> otherwise</returns>
         </member>
         <member name="F:TerrariansConstructLib.DataStructures.TileDestructionContext.pickaxe">
             <summary>
@@ -703,7 +667,7 @@
         <member name="P:TerrariansConstructLib.Items.BaseTCItem.RegisteredItemTypeName">
             <summary>
             The name for the item, used in <see cref="M:TerrariansConstructLib.Items.BaseTCItem.SetStaticDefaults"/><br/>
-            Defaults to:  <c>CoreLibMod.GetItemName(registeredItemID)</c>
+            Defaults to:  <c>ItemDefinitionLoader.Get(registeredItemID)!.Name</c>
             </summary>
         </member>
         <member name="P:TerrariansConstructLib.Items.BaseTCItem.TooltipText">
@@ -840,11 +804,6 @@
         <member name="T:TerrariansConstructLib.Modifiers.BaseModifier">
             <summary>
             The base class for a modifier that can be applied to a Terrarians' Construct item
-            </summary>
-        </member>
-        <member name="P:TerrariansConstructLib.Modifiers.BaseModifier.ID">
-            <summary>
-            The integer ID assigned to the instance of this modifier during registration
             </summary>
         </member>
         <member name="P:TerrariansConstructLib.Modifiers.BaseModifier.MaxTier">
@@ -1172,19 +1131,11 @@
             </summary>
             <param name="tag">The TagCompound to load data from.</param>
         </member>
-        <member name="M:TerrariansConstructLib.Modifiers.ModifierCollection.AddModifier(System.Int32)">
+        <member name="M:TerrariansConstructLib.Modifiers.ModifierCollection.AddModifier(TerrariansConstructLib.Modifiers.BaseModifier)">
             <summary>
             Adds a modifier to the collection
             </summary>
-            <param name="id">The ID for the modifier</param>
-            <returns>The modifier instance</returns>
-            <exception cref="T:System.Exception"/>
-        </member>
-        <member name="M:TerrariansConstructLib.Modifiers.ModifierCollection.AddModifier(System.String)">
-            <summary>
-            Adds a modifier to the collection
-            </summary>
-            <param name="identifier">The identifier for the modifier</param>
+            <param name="modifier">The modifier</param>
             <returns>The modifier instance</returns>
             <exception cref="T:System.Exception"/>
         </member>
@@ -1226,28 +1177,6 @@
             This hook runs immediately before the projectile is drawn
             </summary>
             <param name="lightColor">The color of the light at the projectile's center</param>
-        </member>
-        <member name="M:TerrariansConstructLib.Registry.ItemRegistry.RegistrationContext.#ctor(System.String,System.Single,System.Int32)">
-            <summary>
-            
-            </summary>
-            <param name="partVisualsFolder">The folder where the item's part visuals is located, relative to the mod they're from</param>
-            <param name="useSpeedMultiplier">A modifier applied to the base use speed generated from the item's parts</param>
-            <param name="ammoConsumedPerShot"></param>
-        </member>
-        <member name="M:TerrariansConstructLib.Registry.ItemRegistry.RegistrationContext.WithConfiguration(TerrariansConstructLib.API.UI.ForgeUISlotConfiguration[])">
-            <summary>
-            
-            </summary>
-            <param name="configuration">The array of parts that comprise the weapon and their slot contexts in the Forge UI</param>
-            <returns></returns>
-        </member>
-        <member name="M:TerrariansConstructLib.Registry.ItemRegistry.RegistrationContext.WithConfiguration(System.ValueTuple{System.Int32,System.Int32,System.Int32}[])">
-            <summary>
-            
-            </summary>
-            <param name="configuration">The array of parts that comprise the weapon and their slot contexts in the Forge UI</param>
-            <returns></returns>
         </member>
         <member name="T:TerrariansConstructLib.Stats.ItemStat">
             <summary>

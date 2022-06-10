@@ -7,7 +7,7 @@ using TerrariansConstructLib.Items;
 using TerrariansConstructLib.Modifiers;
 
 namespace TerrariansConstruct.Modifiers.Traits {
-	internal sealed class SilverTrait : BaseTrait {
+	public sealed class SilverTrait : BaseTrait {
 		public override Color TooltipColor => new(0x99, 0xb4, 0xcc);
 
 		public override string LangKey => "Mods.TerrariansConstruct.PartTooltips.Silver";

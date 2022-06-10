@@ -5,7 +5,7 @@ using TerrariansConstructLib.Items;
 using TerrariansConstructLib.Modifiers;
 
 namespace TerrariansConstruct.Modifiers.Traits {
-	internal sealed class CobwebTrait : BaseTrait {
+	public sealed class CobwebTrait : BaseTrait {
 		public override Color TooltipColor => new(0x9e, 0xad, 0xae);
 
 		public override bool IsSingleton => true;

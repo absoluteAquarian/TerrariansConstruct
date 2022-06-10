@@ -5,7 +5,7 @@ using TerrariansConstructLib.Items;
 using TerrariansConstructLib.Modifiers;
 
 namespace TerrariansConstruct.Modifiers.Traits {
-	internal class WoodTrait : BaseTrait {
+	public class WoodTrait : BaseTrait {
 		public override bool IsSingleton => true;
 
 		public override Color TooltipColor => new(0x99, 0x66, 0x33);

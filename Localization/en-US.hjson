@@ -1,7 +1,6 @@
 ﻿Mods: {
 	TerrariansConstruct: {
 		Loading: {
-			Parts: "Adding part items"
 			ForgeUI: "Initializing Forge UI"
 		}
 

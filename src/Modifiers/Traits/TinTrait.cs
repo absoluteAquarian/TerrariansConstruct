@@ -7,7 +7,7 @@ using TerrariansConstructLib.Items;
 using TerrariansConstructLib.Modifiers;
 
 namespace TerrariansConstruct.Modifiers.Traits {
-	internal sealed class TinTrait : BaseTrait {
+	public sealed class TinTrait : BaseTrait {
 		public override bool IsSingleton => true;
 
 		public override Color TooltipColor => new(0xbb, 0xa5, 0x7c);

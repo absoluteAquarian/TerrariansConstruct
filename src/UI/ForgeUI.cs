@@ -3,16 +3,16 @@ using System;
 using System.Linq;
 using Terraria;
 using Terraria.Audio;
-using Terraria.GameContent.UI.Elements;
 using Terraria.ID;
 using Terraria.UI;
+using TerrariansConstruct.Definitions;
 using TerrariansConstruct.TileEntities;
 using TerrariansConstructLib;
+using TerrariansConstructLib.API;
 using TerrariansConstructLib.API.UI;
 using TerrariansConstructLib.Items;
 using TerrariansConstructLib.Materials;
 using TerrariansConstructLib.Modifiers;
-using TerrariansConstructLib.Registry;
 
 namespace TerrariansConstruct.UI {
 	internal class ForgeUI : UIState {
@@ -53,7 +53,8 @@ namespace TerrariansConstruct.UI {
 
 					panel.viewArea.Append(pageTools);
 
-					ItemRegistry.TryGetConfiguration(CoreMod.RegisteredItems.Sword, out var configuration);
+					var configuration = ItemDefinitionLoader.Get(CoreLibMod.ItemType<Sword>())!.GetForgeSlotConfiguration();
+					
 					pageTools.ConfigureSlots(configuration.ToArray());
 
 					currentPage = pageTools;
@@ -128,10 +129,11 @@ namespace TerrariansConstruct.UI {
 		}
 
 		public static Texture2D GetToolOptionTexture(int registeredItemID) {
-			int[] partIDs = CoreLibMod.GetItemValidPartIDs(registeredItemID);
+			var data = ItemDefinitionLoader.Get(registeredItemID)!;
+			int[] partIDs = data.GetValidPartIDs().ToArray();
 
 			if (partIDs.Length >= (int)ColorMaterialType.Count)
-				throw new Exception($"Registered item \"{CoreLibMod.GetItemName(registeredItemID)}\" has too many parts ({partIDs.Length}).  Report this to the Terrarians' Construct devs");
+				throw new Exception($"Registered item \"{data.Name}\" has too many parts ({partIDs.Length})");
 
 			ItemPart[] parts = partIDs.Select((p, i) => (p, i + ColorMaterial.StaticBaseType)).Select(t => new ItemPart() { partID = t.p, material = Material.FromItem(t.Item2) }).ToArray();
 

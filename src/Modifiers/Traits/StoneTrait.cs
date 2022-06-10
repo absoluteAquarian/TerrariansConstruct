@@ -7,7 +7,7 @@ using TerrariansConstructLib.Items;
 using TerrariansConstructLib.Modifiers;
 
 namespace TerrariansConstruct.Modifiers.Traits {
-	internal sealed class StoneTrait : BaseTrait {
+	public sealed class StoneTrait : BaseTrait {
 		public override bool IsSingleton => true;
 
 		public override bool CounterIncrements => false;

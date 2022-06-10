@@ -1,6 +1,8 @@
 ﻿using Terraria.ID;
 using Terraria.ModLoader;
+using TerrariansConstruct.Definitions;
 using TerrariansConstruct.Projectiles;
+using TerrariansConstructLib;
 using TerrariansConstructLib.Items;
 
 namespace TerrariansConstruct.Items.Weapons {
@@ -12,7 +14,7 @@ namespace TerrariansConstruct.Items.Weapons {
 
 		public override bool? SafeIsLoadingEnabled(Mod mod) => true;
 
-		public TCShortsword() : base(CoreMod.RegisteredItems.Shortsword) { }
+		public TCShortsword() : base(CoreLibMod.ItemType<Shortsword>()) { }
 
 		public override void SafeSetDefaults() {
 			Item.useStyle = ItemUseStyleID.Rapier; // Makes the player do the proper arm motion
