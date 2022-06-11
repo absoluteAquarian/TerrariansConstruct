@@ -18,7 +18,7 @@ namespace TerrariansConstruct.Modifiers.Traits {
 		public override string LangKey => "Mods.TerrariansConstruct.PartTooltips.Glass";
 
 		//Counter is kept track of manually
-		public override bool ShouldUpdateCounter(Player player) => true;
+		public override bool ShouldUpdateCounter(Player player) => false;
 
 		public override double GetExpectedCounterTarget(Player player) => -1;
 
