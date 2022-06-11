@@ -143,16 +143,22 @@ namespace TerrariansConstruct.Definitions {
 				.With(CoreLibMod.KnownStatModifiers.ExtraDurability, new StatModifier(20, 0.95f))) { }
 	}
 
+	public sealed class GlassMaterial : TCBaseMaterialDefinition<GlassTrait> {
+		public GlassMaterial() : base(ItemID.Glass,
+			new HeadPartStats(3, knockback: 0.4f, crit: -5, pickPower: 30, axePower: 30, hammerPower: 30, durability: 20),
+			new HandlePartStats(attackDamage: new StatModifier(0, 0.8f), attackKnockback: new StatModifier(0, 0.7f), durability: new StatModifier(-50, 0.8f)),
+			new ExtraPartStats()
+				.With(CoreLibMod.KnownStatModifiers.ExtraDurability, new StatModifier(-10, 0.7f))) { }
+	}
+
 	/*
 	public static Material AshBlock { get; internal set; }
 	public static Material BlueBrick { get; internal set; }
 	public static Material BorealWood { get; internal set; }
 	public static Material CandyCaneBlock { get; internal set; }
 	public static Material Chain { get; internal set; }
-	public static Material Cactus { get; internal set; }
 	public static Material DirtBlock { get; internal set; }
 	public static Material Ebonwood { get; internal set; }
-	public static Material Glass { get; internal set; }
 	public static Material GraniteBlock { get; internal set; }
 	public static Material GreenBrick { get; internal set; }
 	public static Material GreenCandyCaneBlock { get; internal set; }

@@ -17,6 +17,7 @@
 			Tungsten: "Thermal {R}"
 			Tin: "Erosion {R}"
 			Cactus: "Thorns {R}"
+			Glass: "Shattering {R}"
 		}
 
 		Modifiers: {

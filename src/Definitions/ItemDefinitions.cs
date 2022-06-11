@@ -50,6 +50,7 @@ namespace TerrariansConstruct.Definitions {
 			};
 	}
 
+	/*
 	public sealed class Axe : TCItemDefinition {
 		public override int ItemType => ModContent.ItemType<TCAxe>();
 
@@ -60,6 +61,7 @@ namespace TerrariansConstruct.Definitions {
 				(2, 16, CoreLibMod.PartType<ToolRod>())
 			};
 	}
+	*/
 
 	/*
 	ForgeUISlotConfiguration.Register(RegisteredItems.Hammer,

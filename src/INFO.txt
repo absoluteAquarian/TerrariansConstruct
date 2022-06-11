@@ -276,3 +276,52 @@ Tungsten Bar (ID: 705)
 
     Extra stats:
         Base druability (extra): 90
+
+Cactus (ID: 276)
+    Material worth: 1
+
+	Modifier: Thorns
+        Being hit by an NPC or a projectile from it reflects an increasing amount of damage per tier
+
+	Head stats:
+        Base damage: 5
+		Base knockback: 1.7
+		Base crit: 0%
+		Base use speed: 20 ticks
+		Base pickaxe power: 35%
+		Base axe power: 35%
+		Base hammer power: 35%
+		Base durability (head): 220
+	
+	Handle stats:
+	    n/a
+		
+	Extra stats:
+        Base durability (extra): 20
+        Durability modifier: 0.95x
+
+Glass (ID: 170)
+    Material worth: 1
+	
+	Modifier: Shattering
+        Hitting an NPC or Player has an increasing chance per tier to deal extra damage and knockback (NPCs only) at the cost of extra durability usage
+
+	Head stats:
+        Base damage: 3
+		Base knockback: 0.4
+		Base crit: -5%
+		Base use speed: 20 ticks
+		Base pickaxe power: 30%
+		Base axe power: 30%
+		Base hammer power: 30%
+		Base durability (head): 20
+	
+	Handle stats:
+        Damage modifier: 0.8x
+        Knockback modifier: 0.7x
+        Base durability (handle): -50
+        Durability modifier: 0.8x
+	
+	Extra stats:
+        Base durability (extra): -10
+        Durability modifier: 0.7x

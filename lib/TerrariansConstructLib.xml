@@ -1068,7 +1068,7 @@
         </member>
         <member name="M:TerrariansConstructLib.Modifiers.BaseTrait.OnHitNPCWithProjectile(TerrariansConstructLib.Projectiles.BaseTCProjectile,Terraria.NPC,System.Int32,System.Single,System.Boolean)">
             <summary>
-            This hook rusn in <see cref="M:TerrariansConstructLib.Projectiles.BaseTCProjectile.OnHitNPC(Terraria.NPC,System.Int32,System.Single,System.Boolean)"/>
+            This hook runs in <see cref="M:TerrariansConstructLib.Projectiles.BaseTCProjectile.OnHitNPC(Terraria.NPC,System.Int32,System.Single,System.Boolean)"/>
             </summary>
             <param name="projectile">The projectile</param>
             <param name="target">The target</param>

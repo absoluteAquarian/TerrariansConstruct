@@ -6,7 +6,7 @@ using TerrariansConstructLib.API;
 using TerrariansConstructLib.Items;
 
 namespace TerrariansConstruct.Items.Tools {
-	[Autoload(false)]  //Until sprites exist for its visuals
+	/*
 	public sealed class TCAxe : BaseTCItem {
 		public override int PartsCount => 3;
 
@@ -24,6 +24,7 @@ namespace TerrariansConstruct.Items.Tools {
 
 		public override void OnInitializedWithParts() {
 			Item.axe = GetAxePower();
-		}		
+		}
 	}
+	*/
 }
