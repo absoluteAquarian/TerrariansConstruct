@@ -4,8 +4,6 @@ using TerrariansConstructLib.Projectiles;
 
 namespace TerrariansConstruct.Projectiles {
 	public class TCBulletProjectile : BaseTCProjectile {
-		public override bool? SafeIsLoadingEnabled(Mod mod) => true;
-
 		public override void SetDefaults() {
 			Projectile.CloneDefaults(ProjectileID.Bullet);
 		}
