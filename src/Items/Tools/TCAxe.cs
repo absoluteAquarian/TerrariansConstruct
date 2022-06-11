@@ -11,8 +11,8 @@ namespace TerrariansConstruct.Items.Tools {
 		public override void SafeSetDefaults() {
 			//useTime/useAnimation are overridden anyway
 			Item.DefaultToMeleeWeapon(0, ItemUseStyleID.Swing, useTurn: true);
-			Item.width = 32;
-			Item.height = 28;
+			Item.width = 36;
+			Item.height = 36;
 			Item.UseSound = SoundID.Item1;
 		}
 
