@@ -10,11 +10,7 @@ namespace TerrariansConstruct.Items.Weapons {
 	/// A constructed shortsword item
 	/// </summary>
 	public class TCShortsword : BaseTCItem {
-		public override int PartsCount => 3;
-
-		public override bool? SafeIsLoadingEnabled(Mod mod) => true;
-
-		public TCShortsword() : base(CoreLibMod.ItemType<Shortsword>()) { }
+		public override int ItemDefinition => CoreLibMod.ItemType<Shortsword>();
 
 		public override void SafeSetDefaults() {
 			Item.useStyle = ItemUseStyleID.Rapier; // Makes the player do the proper arm motion

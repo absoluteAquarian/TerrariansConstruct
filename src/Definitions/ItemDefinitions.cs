@@ -50,7 +50,6 @@ namespace TerrariansConstruct.Definitions {
 			};
 	}
 
-	/*
 	public sealed class Axe : TCItemDefinition {
 		public override int ItemType => ModContent.ItemType<TCAxe>();
 
@@ -61,14 +60,19 @@ namespace TerrariansConstruct.Definitions {
 				(2, 16, CoreLibMod.PartType<ToolRod>())
 			};
 	}
-	*/
+
+	public sealed class Hammer : TCItemDefinition {
+		public override int ItemType => ModContent.ItemType<TCHammer>();
+
+		public override IEnumerable<ForgeUISlotConfiguration> GetForgeSlotConfiguration()
+			=> new ForgeUISlotConfiguration[] {
+				(0, 12, CoreLibMod.PartType<ToolBinding>()),
+				(1,  8, CoreLibMod.PartType<ToolHammerHead>()),
+				(2, 16, CoreLibMod.PartType<ToolRod>())
+			};
+	}
 
 	/*
-	ForgeUISlotConfiguration.Register(RegisteredItems.Hammer,
-		(0, 12, RegisteredParts.ToolBinding),
-		(1,  8, RegisteredParts.ToolHammerHead),
-		(2, 16, RegisteredParts.ToolRod));
-
 	ForgeUISlotConfiguration.Register(RegisteredItems.Bow,
 		(0,  7, RegisteredParts.WeaponBowHead),
 		(1, 13, RegisteredParts.WeaponBowHead),

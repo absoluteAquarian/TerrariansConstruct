@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using Terraria.ID;
 using Terraria.ModLoader;
-using TerrariansConstruct.Modifiers.ForgeModifiers;
 using TerrariansConstruct.Modifiers.Traits;
 using TerrariansConstructLib;
 using TerrariansConstructLib.API.Definitions;
@@ -150,6 +149,8 @@ namespace TerrariansConstruct.Definitions {
 			new ExtraPartStats()
 				.With(CoreLibMod.KnownStatModifiers.ExtraDurability, new StatModifier(-10, 0.7f))) { }
 	}
+
+	// TODO: RedCandyCaneTrait = slightly increased health regen, GreenCandyCaneTrait = slightly increased mana regen
 
 	/*
 	public static Material AshBlock { get; internal set; }

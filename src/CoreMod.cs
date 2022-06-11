@@ -7,17 +7,10 @@ using Terraria.ModLoader;
 using Terraria.UI;
 using TerrariansConstruct.API.Edits;
 using TerrariansConstruct.Definitions;
-using TerrariansConstruct.Items.Tools;
-using TerrariansConstruct.Items.Weapons;
-using TerrariansConstruct.Modifiers.ForgeModifiers;
-using TerrariansConstruct.Modifiers.Traits;
-using TerrariansConstruct.Projectiles;
 using TerrariansConstruct.UI;
 using TerrariansConstructLib;
 using TerrariansConstructLib.API;
 using TerrariansConstructLib.API.Definitions;
-using TerrariansConstructLib.API.Stats;
-using TerrariansConstructLib.Materials;
 
 namespace TerrariansConstruct {
 	public partial class CoreMod : Mod {

@@ -5,7 +5,6 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using TerrariansConstruct.Systems;
 using TerrariansConstruct.TileEntities;
-using TerrariansConstructLib;
 
 namespace TerrariansConstruct {
 	public enum MessageType {

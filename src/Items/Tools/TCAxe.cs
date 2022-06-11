@@ -1,18 +1,12 @@
 ﻿using Terraria.ID;
-using Terraria.ModLoader;
 using TerrariansConstruct.Definitions;
 using TerrariansConstructLib;
 using TerrariansConstructLib.API;
 using TerrariansConstructLib.Items;
 
 namespace TerrariansConstruct.Items.Tools {
-	/*
 	public sealed class TCAxe : BaseTCItem {
-		public override int PartsCount => 3;
-
-		public override bool? SafeIsLoadingEnabled(Mod mod) => true;
-
-		public TCAxe() : base(CoreLibMod.ItemType<Axe>()) { }
+		public override int ItemDefinition => CoreLibMod.ItemType<Axe>();
 
 		public override void SafeSetDefaults() {
 			//useTime/useAnimation are overridden anyway
@@ -26,5 +20,4 @@ namespace TerrariansConstruct.Items.Tools {
 			Item.axe = GetAxePower();
 		}
 	}
-	*/
 }

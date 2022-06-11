@@ -1,5 +1,4 @@
 ﻿using Terraria.ID;
-using Terraria.ModLoader;
 using TerrariansConstruct.Definitions;
 using TerrariansConstructLib;
 using TerrariansConstructLib.API;
@@ -10,11 +9,7 @@ namespace TerrariansConstruct.Items.Weapons {
 	/// A constructed sword item
 	/// </summary>
 	public class TCSword : BaseTCItem {
-		public override int PartsCount => 3;
-
-		public override bool? SafeIsLoadingEnabled(Mod mod) => true;
-
-		public TCSword() : base(CoreLibMod.ItemType<Sword>()){ }
+		public override int ItemDefinition => CoreLibMod.ItemType<Sword>();
 
 		public override void SafeSetDefaults() {
 			//useTime/useAnimation are overridden anyway
