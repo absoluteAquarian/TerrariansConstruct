@@ -37,7 +37,8 @@ namespace TerrariansConstruct.Modifiers.Traits {
 
 			if (player.RollLuck(100) < chance) {
 				bool tool = item.HasAnyToolPower();
-				item.TryReduceDurability(player, 9, new DurabilityModificationSource_HitEntity(target, tool));
+				if (!item.TryReduceDurability(player, 9, new DurabilityModificationSource_HitEntity(target, tool)))
+					return;
 				
 				DisplayMessageAbovePlayer(player, TooltipColor, $"-{(tool ? 20 : 10)} DURABILITY");
 

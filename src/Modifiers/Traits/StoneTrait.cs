@@ -25,7 +25,8 @@ namespace TerrariansConstruct.Modifiers.Traits {
 			if (Counter <= 0) {
 				if (player.RollLuck(150) == 0) {
 					//Lose 4 extra durability (5 total)
-					item.TryReduceDurability(player, 4, new DurabilityModificationSource_Mining(context, x, y));
+					if (!item.TryReduceDurability(player, 4, new DurabilityModificationSource_Mining(context, x, y)))
+						return;
 
 					// Between 20 and 50 tiles
 					Counter = Main.rand.Next(31) + 20;
