@@ -2,6 +2,8 @@
 using Terraria;
 using Terraria.Enums;
 using Terraria.ModLoader;
+using TerrariansConstruct.Definitions;
+using TerrariansConstructLib;
 using TerrariansConstructLib.Projectiles;
 
 namespace TerrariansConstruct.Projectiles {
@@ -24,6 +26,8 @@ namespace TerrariansConstruct.Projectiles {
 		}
 
 		public override string ProjectileTypeName => "Shortsword";
+
+		public override int ProjectileDefinition => CoreLibMod.ProjectileType<ShortswordProjectile>();
 
 		public override void SetDefaults() {
 			Projectile.Size = new Vector2(18); // This sets width and height to the same value (important when projectiles can rotate)

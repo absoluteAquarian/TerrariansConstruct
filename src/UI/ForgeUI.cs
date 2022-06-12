@@ -79,6 +79,8 @@ namespace TerrariansConstruct.UI {
 
 			SoundEngine.PlaySound(SoundID.MenuOpen);
 
+			panel.UIDelay = 10;
+
 			if (Main.netMode == NetmodeID.MultiplayerClient && openingPlayer == Main.myPlayer) {
 				var packet = NetHelper.GetPacket(MessageType.OpenForgeUI);
 				packet.Write((ushort)entity.ID);

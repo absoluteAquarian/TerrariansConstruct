@@ -5,7 +5,7 @@ using TerrariansConstructLib.API;
 using TerrariansConstructLib.Items;
 
 namespace TerrariansConstruct.Items.Tools {
-	public sealed class TCHammer : BaseTCItem {
+	public class TCHammer : BaseTCItem {
 		public override int ItemDefinition => CoreLibMod.ItemType<Hammer>();
 
 		public override void SafeSetDefaults() {

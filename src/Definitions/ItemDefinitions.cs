@@ -2,6 +2,7 @@
 using Terraria.ModLoader;
 using TerrariansConstruct.Items.Tools;
 using TerrariansConstruct.Items.Weapons;
+using TerrariansConstruct.Projectiles;
 using TerrariansConstructLib;
 using TerrariansConstructLib.API.Definitions;
 using TerrariansConstructLib.API.UI;
@@ -76,12 +77,22 @@ namespace TerrariansConstruct.Definitions {
 		public override float UseSpeedMultiplier => 1 / 0.4f;
 	}
 
-	/*
-	ForgeUISlotConfiguration.Register(RegisteredItems.Bow,
-		(0,  7, RegisteredParts.WeaponBowHead),
-		(1, 13, RegisteredParts.WeaponBowHead),
-		(2, 16, RegisteredParts.WeaponBowString));
+	public sealed class Bow : TCItemDefinition {
+		public override int ItemType => ModContent.ItemType<TCBow>();
 
+		public override IEnumerable<ForgeUISlotConfiguration> GetForgeSlotConfiguration()
+			=> new ForgeUISlotConfiguration[] {
+				(0,  7, CoreLibMod.PartType<WeaponBowHead>()),
+				(1, 17, CoreLibMod.PartType<WeaponBowHead>()),
+				(2, 11, CoreLibMod.PartType<WeaponBowString>())
+			};
+
+		public override float UseSpeedMultiplier => 1 / 0.75f;
+
+		public override int ProjectileSpawnedFromAmmo => ModContent.ProjectileType<TCArrowProjectile>();
+	}
+
+	/*
 	public static int Hamaxe { get; internal set; }
 	public static int Hampixe { get; internal set; }  //Hammer, pickaxe and axe	
 	*/

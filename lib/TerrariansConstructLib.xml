@@ -105,12 +105,28 @@
             Defaults to 2
             </summary>
         </member>
+        <member name="P:TerrariansConstructLib.API.Definitions.TCItemDefinition.ProjectileSpawnedFromAmmo">
+            <summary>
+            If this item's definition's item is ammo, this property indicates what <see cref="T:TerrariansConstructLib.Projectiles.BaseTCProjectile"/> it spawns
+            </summary>
+        </member>
         <member name="M:TerrariansConstructLib.API.Definitions.TCItemDefinition.GetForgeSlotConfiguration">
             <summary>
             Return a collection of <see cref="T:TerrariansConstructLib.API.UI.ForgeUISlotConfiguration"/> values for this item definition here.<br/>
             A <see cref="T:TerrariansConstructLib.API.UI.ForgeUISlotConfiguration"/> value contains context for its item slot in the Forge UI
             </summary>
             <returns></returns>
+        </member>
+        <member name="P:TerrariansConstructLib.API.Definitions.TCProjectileDefinition.ProjectileType">
+            <summary>
+            The ID of the <see cref="T:TerrariansConstructLib.Projectiles.BaseTCProjectile"/> projectile that this projectile definition is tied to
+            </summary>
+        </member>
+        <member name="P:TerrariansConstructLib.API.Definitions.TCProjectileDefinition.AmmoItemType">
+            <summary>
+            The ID of the <see cref="T:TerrariansConstructLib.Items.BaseTCItem"/> ammo item that this projectile definition is tied to.
+            Defaults to 0, meaning this projectile is not spawned from ammo.
+            </summary>
         </member>
         <member name="M:TerrariansConstructLib.API.Extensions.GetSimplifiedGenericTypeName(System.Type)">
             <summary>
@@ -649,6 +665,18 @@
             The ID of the <see cref="T:TerrariansConstructLib.API.Definitions.TCItemDefinition"/> that this item retrieves its data from
             </summary>
         </member>
+        <member name="P:TerrariansConstructLib.Items.BaseTCItem.AmmoIDClassification">
+            <summary>
+            The ID of the <see cref="T:Terraria.ID.AmmoID"/> or item ID that this item is classified under.
+            Defaults to 0, meaning this item is not ammo.
+            </summary>
+        </member>
+        <member name="P:TerrariansConstructLib.Items.BaseTCItem.UseAmmoIDClassification">
+            <summary>
+            The ID of the <see cref="T:Terraria.ID.AmmoID"/> or item ID that this item's ammo is classified under.
+            Defaults to 0, meaning this item does not use ammo.
+            </summary>
+        </member>
         <member name="P:TerrariansConstructLib.Items.BaseTCItem.CurrentDurability">
             <summary>
             The current durability for the item
@@ -1168,10 +1196,15 @@
             The base projectile class for any projectiles fired from Terrarians' Construct weapons
             </summary>
         </member>
+        <member name="P:TerrariansConstructLib.Projectiles.BaseTCProjectile.ProjectileDefinition">
+            <summary>
+            The ID of the <see cref="T:TerrariansConstructLib.API.Definitions.TCProjectileDefinition"/> that this projectile retrieves its data from
+            </summary>
+        </member>
         <member name="P:TerrariansConstructLib.Projectiles.BaseTCProjectile.ProjectileTypeName">
             <summary>
             The name for the projectile, used in <see cref="M:TerrariansConstructLib.Projectiles.BaseTCProjectile.SetStaticDefaults"/><br/>
-            Defaults to: <c>"Projectile"</c>
+            Defaults to: <c>ProjectileDefinitionLoader.Get(ProjectileDefinition)!.Name</c>
             </summary>
         </member>
         <member name="M:TerrariansConstructLib.Projectiles.BaseTCProjectile.SafeSetStaticDefaults">
@@ -1189,11 +1222,20 @@
         <member name="M:TerrariansConstructLib.Projectiles.BaseTCProjectile.SafeAI">
             <inheritdoc cref="M:TerrariansConstructLib.Projectiles.BaseTCProjectile.AI"/>
         </member>
-        <member name="M:TerrariansConstructLib.Projectiles.BaseTCProjectile.SafePreDraw(Microsoft.Xna.Framework.Color@)">
+        <member name="M:TerrariansConstructLib.Projectiles.BaseTCProjectile.SetSpriteEffects(Microsoft.Xna.Framework.Graphics.SpriteEffects@)">
             <summary>
-            This hook runs immediately before the projectile is drawn
+            This hook lets you set the <see cref="T:Microsoft.Xna.Framework.Graphics.SpriteEffects"/> used when drawing this <see cref="T:TerrariansConstructLib.Projectiles.BaseTCProjectile"/> projectile.
+            This hook runs after <see cref="F:Terraria.Projectile.spriteDirection"/> is checked
             </summary>
-            <param name="lightColor">The color of the light at the projectile's center</param>
+            <param name="effects">The flipping effects</param>
+        </member>
+        <member name="M:TerrariansConstructLib.Projectiles.BaseTCProjectile.GetTextureOverride(System.ReadOnlySpan{TerrariansConstructLib.Items.ItemPart})">
+            <summary>
+            This hook lets you override what texture is used for this <see cref="T:TerrariansConstructLib.Projectiles.BaseTCProjectile"/> projectile.
+            Defaults to the texture created from the <see cref="T:TerrariansConstructLib.Items.ItemPart"/> parts stored in the projectile.
+            </summary>
+            <param name="parts">The parts stored in this <see cref="T:TerrariansConstructLib.Projectiles.BaseTCProjectile"/></param>
+            <returns><see langword="null"/> to use the default texture, a <see cref="T:Microsoft.Xna.Framework.Graphics.Texture2D"/> object otherwise</returns>
         </member>
         <member name="T:TerrariansConstructLib.Stats.ItemStat">
             <summary>

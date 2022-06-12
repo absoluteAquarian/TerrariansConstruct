@@ -123,6 +123,14 @@ namespace TerrariansConstruct.UI {
 				VAlign = 0.5f
 			};
 			result.Left.Set(-size - 20, 1f);
+			result.OnItemChanged += item => {
+				//Item was removed from the slot by the player...
+				if (item.IsAir && CheckIfResultIsValid()) {
+					//Clear the part slots
+					for (int i = 0; i < slots.Count - 1; i++)
+						slots[i].SetItem(new());
+				}
+			};
 
 			slots.Add(result);
 
@@ -142,6 +150,8 @@ namespace TerrariansConstruct.UI {
 				slots[^1].SetItem(new Item());
 			else {
 				Item? display = null;
+
+				// TODO: result does not display.  find out why
 
 				int[] parts = currentConfiguration.Select(s => s.partID).ToArray();
 

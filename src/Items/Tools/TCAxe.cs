@@ -5,7 +5,7 @@ using TerrariansConstructLib.API;
 using TerrariansConstructLib.Items;
 
 namespace TerrariansConstruct.Items.Tools {
-	public sealed class TCAxe : BaseTCItem {
+	public class TCAxe : BaseTCItem {
 		public override int ItemDefinition => CoreLibMod.ItemType<Axe>();
 
 		public override void SafeSetDefaults() {

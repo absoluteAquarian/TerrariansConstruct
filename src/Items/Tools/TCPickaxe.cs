@@ -6,7 +6,7 @@ using TerrariansConstructLib.API;
 using TerrariansConstructLib.Items;
 
 namespace TerrariansConstruct.Items.Tools {
-	public sealed class TCPickaxe : BaseTCItem {
+	public class TCPickaxe : BaseTCItem {
 		public override int ItemDefinition => CoreLibMod.ItemType<Pickaxe>();
 
 		public override void SafeSetDefaults() {
