@@ -11,7 +11,7 @@ namespace TerrariansConstruct.Items.Weapons {
 
 		public override void SafeSetDefaults() {
 			//useTime/useAnimation are overridden anyway
-			Item.DefaultToBow(0, 10f);
+			Item.DefaultToBow(0, 0f);
 			Item.width = 24;
 			Item.height = 44;
 		}
