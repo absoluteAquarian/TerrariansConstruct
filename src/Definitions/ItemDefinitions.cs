@@ -59,6 +59,8 @@ namespace TerrariansConstruct.Definitions {
 				(1,  8, CoreLibMod.PartType<ToolAxeHead>()),
 				(2, 16, CoreLibMod.PartType<ToolRod>())
 			};
+
+		public override float UseSpeedMultiplier => 1 / 0.6f;
 	}
 
 	public sealed class Hammer : TCItemDefinition {
@@ -70,6 +72,8 @@ namespace TerrariansConstruct.Definitions {
 				(1,  8, CoreLibMod.PartType<ToolHammerHead>()),
 				(2, 16, CoreLibMod.PartType<ToolRod>())
 			};
+
+		public override float UseSpeedMultiplier => 1 / 0.4f;
 	}
 
 	/*

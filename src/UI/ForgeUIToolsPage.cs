@@ -103,6 +103,9 @@ namespace TerrariansConstruct.UI {
 			foreach (var slot in itemsToDrop) {
 				Item item = items[slot];
 
+				if (item.IsAir)
+					continue;
+
 				//Spawn a clone of the item
 				Utility.DropItem(new EntitySource_DebugCommand("TerrariansConstruct:ForgeUIToolsPage"), item, area);
 			}
