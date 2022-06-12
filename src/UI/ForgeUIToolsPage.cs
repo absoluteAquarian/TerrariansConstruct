@@ -88,6 +88,9 @@ namespace TerrariansConstruct.UI {
 				slot.Top.Set(top + size * (configuration.position / 5), 0);
 
 				slots.Add(slot);
+
+				if (configuration.slot < items.Length - 1)
+					slot.SetItem(items[configuration.slot]);
 			}
 
 			const int areaSize = 8;
