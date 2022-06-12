@@ -81,8 +81,6 @@ namespace TerrariansConstruct.UI {
 			const int left = 200, top = 100;
 			int size = TextureAssets.InventoryBack9.Value.Width + 15;
 
-			HashSet<int> itemsToDrop = new();
-
 			foreach (var configuration in configurations) {
 				//ValidItemFunc and OnItemChanged are both set by the constructor
 				TCUIItemSlot slot = new TCUIItemPartSlot(configuration);
@@ -90,24 +88,22 @@ namespace TerrariansConstruct.UI {
 				slot.Top.Set(top + size * (configuration.position / 5), 0);
 
 				slots.Add(slot);
-
-				//Drop the item if it was in a slot that's no longer present
-				if (configuration.slot >= prevSlotsCount)
-					itemsToDrop.Add(configuration.slot);
 			}
 
 			const int areaSize = 8;
 			Point tl = (Main.LocalPlayer.Center - new Vector2(areaSize / 2)).ToPoint();
 			Rectangle area = new(tl.X, tl.Y, areaSize, areaSize);
+			
+			if (prevSlotsCount > 2) {
+				for (int slot = prevSlotsCount; slot < slots.Count - 1; slot++) {
+					Item item = items[slot];
 
-			foreach (var slot in itemsToDrop) {
-				Item item = items[slot];
+					if (item.IsAir)
+						continue;
 
-				if (item.IsAir)
-					continue;
-
-				//Spawn a clone of the item
-				Utility.DropItem(new EntitySource_DebugCommand("TerrariansConstruct:ForgeUIToolsPage"), item, area);
+					//Spawn a clone of the item
+					Utility.DropItem(new EntitySource_DebugCommand("TerrariansConstruct:ForgeUIToolsPage"), item, area);
+				}
 			}
 
 			//Add the result slot
@@ -118,6 +114,8 @@ namespace TerrariansConstruct.UI {
 			result.Left.Set(-size - 40, 1f);
 
 			slots.Add(result);
+
+			result.SetItem(tool);
 
 			foreach (var slot in slots)
 				Append(slot);
