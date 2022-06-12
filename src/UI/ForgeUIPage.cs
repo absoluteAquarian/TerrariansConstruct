@@ -12,7 +12,13 @@ namespace TerrariansConstruct.UI {
 
 		internal ForgeUI parentUI;
 
-		internal virtual void DropAllItems() {
+		public readonly string Name;
+
+		public ForgeUIPage(string name) {
+			Name = name;
+		}
+		
+		public virtual void DropAllItems() {
 			const int areaSize = 8;
 			Point tl = (Main.LocalPlayer.Center - new Vector2(areaSize / 2)).ToPoint();
 			Rectangle area = new(tl.X, tl.Y, areaSize, areaSize);
@@ -22,6 +28,24 @@ namespace TerrariansConstruct.UI {
 					Utility.DropItem(new EntitySource_DebugCommand("TerrariansConstruct:ForgeUIPage"), slots[i].StoredItem, area);
 
 				slots[i].SetItem(new Item());
+			}
+		}
+
+		public virtual void OnSetAsActive() { }
+
+		internal void SetAsActivePage() {
+			if (!object.ReferenceEquals(parentUI.currentPage, this)) {
+				parentUI.panel.SetActivePage(Name);
+
+				parentUI.currentPage.DropAllItems();
+
+				parentUI.currentPage.Remove();
+
+				parentUI.panel.viewArea.Append(this);
+
+				OnSetAsActive();
+
+				parentUI.currentPage = this;
 			}
 		}
 	}

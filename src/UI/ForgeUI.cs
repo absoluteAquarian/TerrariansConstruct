@@ -1,8 +1,10 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Terraria;
 using Terraria.Audio;
+using Terraria.GameContent.UI.Elements;
 using Terraria.ID;
 using Terraria.UI;
 using TerrariansConstruct.Definitions;
@@ -16,7 +18,7 @@ using TerrariansConstructLib.Modifiers;
 
 namespace TerrariansConstruct.UI {
 	internal class ForgeUI : UIState {
-		private UIDragablePanel panel;
+		internal UIDragablePanel panel;
 
 		internal ForgeEntity entity;
 		
@@ -27,56 +29,35 @@ namespace TerrariansConstruct.UI {
 
 		public ForgeUIPage currentPage;
 
+		public Dictionary<string, ForgeUIPage> pages;
+
 		public override void OnInitialize() {
 			//Make the panel
 			panel = new(true, "Molds", "Parts", "Tools", "Modifiers");
 
-			panel.menus["Molds"].OnClick += (evt, e) => {
-				if (!object.ReferenceEquals(currentPage, pageMolds)) {
-					currentPage.DropAllItems();
+			pages = new();
 
-					currentPage.Remove();
+			panel.OnMenuClose += () => Hide(Main.myPlayer);
 
-					panel.viewArea.Append(pageMolds);
-
-					pageMolds.needsUpdate = true;
-
-					currentPage = pageMolds;
-				}
-			};
-
-			panel.menus["Tools"].OnClick += (evt, e) => {
-				if (!object.ReferenceEquals(currentPage, pageTools)) {
-					currentPage.DropAllItems();
-
-					currentPage.Remove();
-
-					panel.viewArea.Append(pageTools);
-
-					var configuration = ItemDefinitionLoader.Get(CoreLibMod.ItemType<Sword>())!.GetForgeSlotConfiguration();
-					
-					pageTools.ConfigureSlots(configuration.ToArray());
-
-					currentPage = pageTools;
-				}
-			};
+			foreach (var page in panel.menus.Values)
+				page.OnClick += (evt, e) => pages[(e as UITextPanel<string>)!.Text].SetAsActivePage();
 
 			// TODO: don't drop items when switching pages nor when leaving the UI
 
-			panel.Width.Set(600, 0);
-			panel.Height.Set(400, 0);
+			panel.Width.Set(720, 0);
+			panel.Height.Set(550, 0);
 
 			panel.HAlign = panel.VAlign = 0.5f;
 
 			Append(panel);
 
-			pageMolds = new() {
+			pages["Molds"] = pageMolds = new("Molds") {
 				parentUI = this
 			};
 			pageMolds.Width.Set(0, 1f);
 			pageMolds.Height.Set(0, 1f);
 
-			pageTools = new() {
+			pages["Tools"] = pageTools = new("Tools") {
 				parentUI = this
 			};
 			pageTools.Width.Set(0, 1f);

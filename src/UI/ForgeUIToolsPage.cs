@@ -18,12 +18,20 @@ namespace TerrariansConstruct.UI {
 
 		private ForgeUISlotConfiguration[] currentConfiguration;
 
+		public ForgeUIToolsPage(string name) : base(name) { }
+
+		public override void OnSetAsActive() {
+			var configuration = CoreLibMod.GetItemDefinition<Sword>()!.GetForgeSlotConfiguration();
+					
+			ConfigureSlots(configuration.ToArray());
+		}
+
 		public override void OnInitialize() {
 			//Make the rest of the text
 			createWeapon = new("Creating: n/a", 1.3f){
 				HAlign = 0.7f
 			};
-			createWeapon.Top.Set(58, 0);
+			createWeapon.Top.Set(22, 0);
 			Append(createWeapon);
 
 			slots = new();
@@ -49,7 +57,7 @@ namespace TerrariansConstruct.UI {
 
 			for (int i = 0; i < ItemDefinitionLoader.Count; i++) {
 				var option = new ForgeUIToolsOption(i);
-				option.Height.Set(32, 0f);
+				option.Height.Set(50, 0f);
 				option.Width.Set(0, 0.8f);
 				option.Left.Set(10, 0f);
 
@@ -78,8 +86,8 @@ namespace TerrariansConstruct.UI {
 
 			slots.Clear();
 
-			const int left = 200, top = 100;
-			int size = TextureAssets.InventoryBack9.Value.Width + 15;
+			const int left = 260, top = 80;
+			int size = TextureAssets.InventoryBack9.Value.Width + 4;
 
 			foreach (var configuration in configurations) {
 				//ValidItemFunc and OnItemChanged are both set by the constructor
@@ -114,7 +122,7 @@ namespace TerrariansConstruct.UI {
 				ValidItemFunc = item => item.IsAir,
 				VAlign = 0.5f
 			};
-			result.Left.Set(-size - 40, 1f);
+			result.Left.Set(-size - 20, 1f);
 
 			slots.Add(result);
 

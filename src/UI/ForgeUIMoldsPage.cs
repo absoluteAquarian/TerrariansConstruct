@@ -8,9 +8,17 @@ using TerrariansConstructLib.API.UI;
 namespace TerrariansConstruct.UI {
 	internal class ForgeUIMoldsPage : ForgeUIPage {
 		internal bool needsUpdate;
-		
-		internal override void DropAllItems() {
+
+		public ForgeUIMoldsPage(string name) : base(name) {
+			needsUpdate = true;
+		}
+
+		public override void DropAllItems() {
 			//Don't drop any items
+		}
+
+		public override void OnSetAsActive() {
+			needsUpdate = true;
 		}
 
 		public override void OnInitialize() {

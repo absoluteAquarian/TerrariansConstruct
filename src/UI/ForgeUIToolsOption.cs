@@ -43,7 +43,8 @@ namespace TerrariansConstruct.UI {
 			var texture = ForgeUI.GetToolOptionTexture(registeredItemID);
 
 			UIImage image = new(texture);
-			image.Left.Set(8, 0f);
+			image.Left.Set(-2, 0f);
+			image.Top.Set(-4, 0f);
 			panel.Append(image);
 		}
 	}
