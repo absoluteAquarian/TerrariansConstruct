@@ -91,4 +91,28 @@ namespace TerrariansConstruct.Definitions {
 
 		public override int MaterialCost => 3 * 2;
 	}
+
+	public sealed class AmmoArrowHead : PartDefinition {
+		public override StatType StatType => StatType.Head;
+
+		public override string DisplayName => "Arrow Head";
+
+		public override int MaterialCost => 5 * 2;
+	}
+
+	public sealed class AmmoArrowShaft : PartDefinition {
+		public override StatType StatType => StatType.Handle;
+
+		public override string DisplayName => "Arrow Shaft";
+
+		public override int MaterialCost => 7;
+	}
+
+	public sealed class AmmoArrowFletching : PartDefinition {
+		public override StatType StatType => StatType.Extra;
+
+		public override string DisplayName => "Arrow Fletching";
+
+		public override int MaterialCost => 4 * 2;
+	}
 }

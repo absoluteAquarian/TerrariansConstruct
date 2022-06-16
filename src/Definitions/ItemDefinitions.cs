@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Terraria.ModLoader;
+using TerrariansConstruct.Items.Ammo;
 using TerrariansConstruct.Items.Tools;
 using TerrariansConstruct.Items.Weapons;
 using TerrariansConstruct.Projectiles;
@@ -88,6 +89,17 @@ namespace TerrariansConstruct.Definitions {
 			};
 
 		public override float UseSpeedMultiplier => 1 / 0.75f;
+	}
+
+	public sealed class Arrow : TCItemDefinition {
+		public override int ItemType => ModContent.ItemType<TCArrow>();
+
+		public override IEnumerable<ForgeUISlotConfiguration> GetForgeSlotConfiguration()
+			=> new ForgeUISlotConfiguration[] {
+				(0,  7, CoreLibMod.PartType<AmmoArrowHead>()),
+				(1, 12, CoreLibMod.PartType<AmmoArrowShaft>()),
+				(2, 17, CoreLibMod.PartType<AmmoArrowFletching>())
+			};
 
 		public override int ProjectileSpawnedFromAmmo => ModContent.ProjectileType<TCArrowProjectile>();
 	}
