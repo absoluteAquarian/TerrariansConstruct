@@ -24,18 +24,28 @@ namespace TerrariansConstruct {
 		internal static Dictionary<ushort, int> oreTileToOreItem;
 		internal static bool disableOreTracking;
 
-		public static IEnumerable<PartDefinition> AllRemaningTypicalParts
+		public static IEnumerable<PartDefinition> AllRemainingTypicalParts
 			=> new PartDefinition[] {
-				ModContent.GetInstance<ToolBinding>(),
-				ModContent.GetInstance<WeaponSwordGuard>(),
-				ModContent.GetInstance<WeaponShortSwordGuard>()
+				CoreLibMod.GetPartDefinition<ToolBinding>()!,
+				CoreLibMod.GetPartDefinition<WeaponSwordGuard>()!,
+				CoreLibMod.GetPartDefinition<WeaponShortSwordGuard>()!
 			};
 
 		public static IEnumerable<PartDefinition> AllTypicalParts
 			=> PartDefinitionLoader.ShartPart()
 			.Concat(PartDefinitionLoader.AllHeadParts())
 			.Concat(PartDefinitionLoader.AllHandleParts())
-			.Concat(AllRemaningTypicalParts);
+			.Concat(AllRemainingTypicalParts);
+
+		public static IEnumerable<PartDefinition> BowString
+			=> new PartDefinition[] {
+				CoreLibMod.GetPartDefinition<WeaponBowString>()!
+			};
+		
+		public static IEnumerable<PartDefinition> ArrowFletching
+			=> new PartDefinition[] {
+				CoreLibMod.GetPartDefinition<AmmoArrowFletching>()!
+			};
 
 		public override void Load() {
 			Utility.ForceLoadModHJsonLocalization(this);

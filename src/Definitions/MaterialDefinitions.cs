@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Terraria.ID;
 using Terraria.ModLoader;
 using TerrariansConstruct.Modifiers.Traits;
@@ -42,6 +43,8 @@ namespace TerrariansConstruct.Definitions {
 			new HandlePartStats(attackKnockback: new StatModifier(0, 0.9f), durability: new StatModifier(0, 1.05f)),
 			new ExtraPartStats()
 				.With(CoreLibMod.KnownStatModifiers.ExtraDurability, new StatModifier(30, 1f))) { }
+
+		public override IEnumerable<PartDefinition> ValidParts => base.ValidParts.Concat(CoreMod.ArrowFletching);
 	}
 
 	public sealed class CobwebMaterial : MaterialDefinition {
@@ -49,10 +52,7 @@ namespace TerrariansConstruct.Definitions {
 
 		public override BaseTrait? Trait => GetTrait<CobwebTrait>();
 
-		public override IEnumerable<PartDefinition> ValidParts
-			=> new PartDefinition[] {
-				CoreLibMod.GetPartDefinition<WeaponBowString>()!
-			};
+		public override IEnumerable<PartDefinition> ValidParts => CoreMod.BowString.Concat(CoreMod.ArrowFletching);
 
 		public override int MaterialWorth => 8;
 
