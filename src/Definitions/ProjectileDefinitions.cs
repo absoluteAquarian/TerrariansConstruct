@@ -1,5 +1,6 @@
 ﻿using System;
 using Terraria.ModLoader;
+using TerrariansConstruct.Items.Ammo;
 using TerrariansConstruct.Projectiles;
 using TerrariansConstructLib.API.Definitions;
 
@@ -16,5 +17,7 @@ namespace TerrariansConstruct.Definitions {
 
 	public sealed class ArrowProjectile : TCProjectileDefinition {
 		public override int ProjectileType => ModContent.ProjectileType<TCArrowProjectile>();
+
+		public override int AmmoItemType => ModContent.ItemType<TCArrow>();
 	}
 }
